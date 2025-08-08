@@ -37,41 +37,45 @@ title: "我的笔记列表"
 </style>
 
 <!-- ===================================================================== -->
-<!--                        修正后的 Liquid 逻辑部分                       -->
+<!--                        最稳健的 Liquid 逻辑部分                       -->
 <!-- ===================================================================== -->
 
-<!-- 步骤 1: 将所有笔记按 'created' 字段升序排列 (不在这里反转) -->
-{% assign sorted_notes = site.clippings | sort: 'created' %}
+{% comment %}
+  步骤 1: 创建一个只包含有 'created' 日期字段的笔记的新数组。
+  这是为了防止因缺少元数据而导致的排序失败。这是最关键的一步。
+{% endcomment %}
+{% assign notes_with_date = "" | split: "" %}
+{% for note in site.clippings %}
+  {% if note.created %}
+    {% assign notes_with_date = notes_with_date | push: note %}
+  {% endif %}
+{% endfor %}
 
-<!-- 步骤 2: 将升序的笔记按月份分组 -->
+{% comment %} 
+  步骤 2: 对这个“干净”的数组进行所有后续操作。
+{% endcomment %}
+{% assign sorted_notes = notes_with_date | sort: 'created' %}
 {% assign notes_by_month = sorted_notes | group_by_exp: "note", "note.created | date: '%Y-%m'" %}
-
-<!-- 步骤 3: 将月份组本身进行反转，这样最新的月份就在最前面 -->
 {% assign reversed_months = notes_by_month | reverse %}
 
 
 <!-- ===================================================================== -->
-<!--                        页面 HTML 结构部分                           -->
+<!--                        页面 HTML 结构部分 (无需修改)                  -->
 <!-- ===================================================================== -->
 
 <h1>我的知识库</h1>
 <nav class="month-nav" id="month-navigator">
-  <!-- 遍历反转后的月份组来创建导航 -->
   {% for month in reversed_months %}
     <a class="month-nav-item" data-target="#content-{{ month.name }}">{{ month.name | date: "%Y 年 %B" }}</a>
   {% endfor %}
 </nav>
 
 <div class="content-container">
-  <!-- 再次遍历反转后的月份组来创建内容面板 -->
   {% for month in reversed_months %}
     <div id="content-{{ month.name }}" class="month-content-panel">
       <div class="post-list">
         {% assign current_day = "" %}
-        
-        <!-- 步骤 4: 将每个月内部的笔记列表也进行反转，确保日期从新到旧 -->
         {% assign notes_in_month = month.items | reverse %}
-        
         {% for note in notes_in_month %}
           {% assign note_day = note.created | date: "%d" %}
           {% if note_day != current_day %}
