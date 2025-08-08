@@ -150,7 +150,7 @@ title: "我的笔记列表"
 {% assign notes_by_month = sorted_notes | group_by_exp: "note", "note.created | date: '%Y-%m'" %}
 
 <!-- 3. 顶部导航栏 -->
-<h1>我的知识库</h1>
+<h1>我的随手Obsidian 记录</h1>
 <nav class="month-nav" id="month-navigator">
   {% for month in notes_by_month %}
     <!-- `data-target` 属性是关键，它链接到下面对应的内容面板 -->
