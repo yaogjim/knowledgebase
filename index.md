@@ -37,18 +37,18 @@ title: "我的笔记列表"
 </style>
 
 <!-- ===================================================================== -->
-<!--                        修正语法后的 Liquid 逻辑                     -->
+<!--                        终极防御性 Liquid 逻辑                       -->
 <!-- ===================================================================== -->
 
 {% comment %}
   步骤 1: 使用 'where_exp' 过滤器创建一个“干净”的笔记列表。
-  这个简化的表达式 "item", "item.created" 会筛选出所有 'created' 字段存在 (不为 nil 或 false) 的笔记。
-  这是最标准、最不容易出错的用法。
+  这个表达式 "item", "item.created" 会筛选出所有 'created' 字段存在且不为 nil 或 false 的笔记。
+  这是比手动 for 循环更稳健的方式。
 {% endcomment %}
 {% assign notes_with_date = site.clippings | where_exp: "item", "item.created" %}
 
 {% comment %} 
-  步骤 2: 对这个干净的列表进行后续操作。
+  步骤 2: 对这个 100% 干净的列表进行后续操作。
 {% endcomment %}
 {% assign sorted_notes = notes_with_date | sort: 'created' %}
 {% assign notes_by_month = sorted_notes | group_by_exp: "note", "note.created | date: '%Y-%m'" %}
