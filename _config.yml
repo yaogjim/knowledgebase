@@ -1,5 +1,3 @@
-theme: jekyll-theme-minimal
-title: "我的知识库"
 baseurl: "/knowledgebase"
 
 collections:
