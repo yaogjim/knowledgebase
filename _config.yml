@@ -4,3 +4,12 @@ collections:
   clippings:
     output: true
     sort_by: created
+
+# 为 "notes" 集合设置默认布局
+defaults:
+  -
+    scope:
+      path: ""
+      type: "clippings" # 将类型指定为我们刚刚定义的 notes
+    values:
+      layout: "post"
