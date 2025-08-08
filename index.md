@@ -61,49 +61,88 @@ title: "我的笔记列表"
   }
 </style>
 
-<!-- 1. 强制排序：在这里直接对 `site.clippings` 进行排序和反转，确保顺序正确 -->
+<!-- 1. 准备数据 -->
 {% assign sorted_notes = site.clippings | sort: 'created' | reverse %}
 
-<!-- 2. 按月份分组：使用 `group_by_exp` 过滤器将所有笔记按月份分组 -->
-{% assign notes_by_month = sorted_notes | group_by_exp: "note", "note.created | date: '%Y-%m'" %}
+<!-- 2. 全新逻辑：一次性处理所有内容，并在此过程中“捕获”导航和内容 -->
+{% assign captured_nav_links = "" %}
+{% assign current_month = "" %}
+{% assign current_day = "" %}
 
-<!-- 3. 顶部导航栏 -->
+{% capture captured_content %}
+  {% for note in sorted_notes %}
+    {% if note.created %}
+      {% assign note_month = note.created | date: '%Y-%m' %}
+      {% assign note_day = note.created | date: '%d' %}
+
+      <!-- A. 月份变更检测 -->
+      {% if note_month != current_month %}
+        <!-- A1. 如果不是第一个月，则结束上一个月的 div -->
+        {% if current_month != "" %}
+            </div> <!-- close .post-list -->
+          </div> <!-- close .month-content-panel -->
+        {% endif %}
+
+        <!-- A2. 捕获新的导航链接，并追加到变量中 -->
+        {% capture nav_link %}
+          <a class="month-nav-item" data-target="#content-{{ note_month }}">{{ note_month | date: "%Y 年 %B" }}</a>
+        {% endcapture %}
+        {% assign captured_nav_links = captured_nav_links | append: nav_link %}
+
+        <!-- A3. 开始新的月份面板 -->
+        <div id="content-{{ note_month }}" class="month-content-panel">
+          <div class="post-list">
+        {% assign current_month = note_month %}
+        {% assign current_day = "" %} <!-- 每个新月份都重置日期 -->
+      {% endif %}
+
+      <!-- B. 日期变更检测 -->
+      {% if note_day != current_day %}
+        <h3 class="day-group">{{ note.created | date: "%-d 日" }}</h3>
+        {% assign current_day = note_day %}
+      {% endif %}
+
+      <!-- C. 渲染笔记条目 -->
+      <li class="note-item">
+        <div class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title | default: "无标题笔记" }}</a></div>
+        <div class="note-details">
+          {% if note.author %}<span>✍️ {{ note.author | join: ', ' | remove: '[[' | remove: ']]' }}</span>{% endif %}
+          {% if note.source %}<span>🔗 <a href="{{ note.source }}" target="_blank" rel="noopener noreferrer">来源链接</a></span>{% endif %}
+        </div>
+        {% if note.tags %}
+        <div class="note-tags">
+          {% assign flat_tags_string = note.tags | join: ' ' %}
+          {% assign tag_list = flat_tags_string | split: ' ' %}
+          {% for tag in tag_list %}
+            {% if tag != "" and tag != "#" %}
+              <span class="tag">{{ tag }}</span>
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </li>
+    {% endif %}
+  {% endfor %}
+
+  <!-- D. 循环结束后，关闭最后一个月份的 div -->
+  {% if sorted_notes.size > 0 %}
+      </div> <!-- close .post-list -->
+    </div> <!-- close .month-content-panel -->
+  {% endif %}
+{% endcapture %}
+
+<!-- 3. 渲染最终页面 -->
 <h1>我的知识库</h1>
 <nav class="month-nav" id="month-navigator">
-  {% for month in notes_by_month %}
-    <!-- `data-target` 属性是关键，它链接到下面对应的内容面板 -->
-    <a class="month-nav-item" data-target="#content-{{ month.name }}">{{ month.name | date: "%Y 年 %B" }}</a>
-  {% endfor %}
+  {{ captured_nav_links }}
 </nav>
 
-<!-- 4. 内容容器 -->
 <div class="content-container">
-  {% for month in notes_by_month %}
-    <!-- 每个月份的内容都包裹在一个带唯一 ID 的 div 中 -->
-    <div id="content-{{ month.name }}" class="month-content-panel">
-      <div class="post-list">
-        {% assign current_day = "" %}
-        {% for note in month.items %}
-          {% assign note_day = note.created | date: "%d" %}
-          {% if note_day != current_day %}
-            <h3 class="day-group">{{ note.created | date: "%-d 日" }}</h3>
-            {% assign current_day = note_day %}
-          {% endif %}
-          <li class="note-item">
-            <div class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title | default: "无标题笔记" }}</a></div>
-            <div class="note-details">
-              {% if note.author %}<span>✍️ {{ note.author | join: ', ' | remove: '[[' | remove: ']]' }}</span>{% endif %}
-              {% if note.source %}<span>🔗 <a href="{{ note.source }}" target="_blank" rel="noopener noreferrer">来源链接</a></span>{% endif %}
-            </div>
-            {% if note.tags %}<div class="note-tags">{% assign tag_list = note.tags | first | split: ' ' %}{% for tag in tag_list %}{% if tag != "" and tag != "#" %}<span class="tag">{{ tag }}</span>{% endif %}{% endfor %}</div>{% endif %}
-          </li>
-        {% endfor %}
-      </div>
-    </div>
-  {% endfor %}
+  {{ captured_content }}
 </div>
 
-<!-- 5. JavaScript 逻辑 -->
+
+<!-- 4. JavaScript 逻辑 (保持不变) -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const navContainer = document.getElementById('month-navigator');
@@ -112,10 +151,8 @@ title: "我的笔记列表"
     const navLinks = navContainer.querySelectorAll('.month-nav-item');
     const contentPanels = document.querySelectorAll('.month-content-panel');
 
-    // 如果没有导航链接，就什么都不做
     if (navLinks.length === 0) return;
 
-    // 默认激活第一个导航链接并显示对应内容
     navLinks[0].classList.add('is-active');
     const firstPanelId = navLinks[0].getAttribute('data-target');
     const firstPanel = document.querySelector(firstPanelId);
@@ -123,20 +160,12 @@ title: "我的笔记列表"
       firstPanel.classList.add('is-visible');
     }
 
-    //为每个导航链接添加点击事件
     navLinks.forEach(link => {
       link.addEventListener('click', function(event) {
-        event.preventDefault(); // 阻止链接的默认跳转行为
-
-        // 移除所有链接的激活状态
+        event.preventDefault();
         navLinks.forEach(nav => nav.classList.remove('is-active'));
-        // 隐藏所有内容面板
         contentPanels.forEach(panel => panel.classList.remove('is-visible'));
-
-        // 激活当前点击的链接
         this.classList.add('is-active');
-        
-        // 显示目标内容面板
         const targetId = this.getAttribute('data-target');
         const targetPanel = document.querySelector(targetId);
         if (targetPanel) {
