@@ -3,6 +3,6 @@ title: "我的知识库"
 baseurl: "/knowledgebase"
 
 collections:
-  Clippings:
+  clippings:
     output: true
     sort_by: created
