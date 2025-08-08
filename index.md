@@ -4,48 +4,23 @@ title: "我的笔记列表"
 ---
 
 <style>
-  /* --- 基础和布局 --- */
+  /* CSS 样式与之前相同，无需修改 */
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; }
   .wrapper { max-width: 960px; margin: 0 auto; padding: 20px; }
-  
-  /* --- 顶部月份导航 --- */
   .month-nav {
-    display: flex;
-    flex-wrap: wrap; /* 在窄屏幕上换行 */
-    gap: 10px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 30px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+    padding-bottom: 15px; border-bottom: 1px solid #ddd; margin-bottom: 30px;
   }
   .month-nav-item {
-    padding: 8px 15px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    text-decoration: none;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    padding: 8px 15px; border: 1px solid #ddd; border-radius: 20px;
+    text-decoration: none; color: #333; cursor: pointer; transition: all 0.2s ease;
   }
-  .month-nav-item:hover {
-    background-color: #f0f0f0;
-    border-color: #ccc;
-  }
+  .month-nav-item:hover { background-color: #f0f0f0; border-color: #ccc; }
   .month-nav-item.is-active {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
-    font-weight: bold;
+    background-color: #007bff; color: white; border-color: #007bff; font-weight: bold;
   }
-
-  /* --- 月份内容面板 --- */
-  .month-content-panel {
-    display: none; /* 默认隐藏所有月份的内容 */
-  }
-  .month-content-panel.is-visible {
-    display: block; /* 只显示被激活的那个 */
-  }
-  
-  /* --- 笔记列表样式 --- */
+  .month-content-panel { display: none; }
+  .month-content-panel.is-visible { display: block; }
   .post-list { list-style: none; padding-left: 0; }
   .day-group { margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 10px; font-size: 1.2em; color: #444; }
   .note-item { list-style-type: '▸'; margin-left: 20px; padding-left: 10px; margin-bottom: 20px; }
@@ -61,29 +36,43 @@ title: "我的笔记列表"
   }
 </style>
 
-<!-- 1. 强制排序：在这里直接对 `site.clippings` 进行排序和反转，确保顺序正确 -->
-{% assign sorted_notes = site.clippings | sort: 'created' | reverse %}
+<!-- ===================================================================== -->
+<!--                        修正后的 Liquid 逻辑部分                       -->
+<!-- ===================================================================== -->
 
-<!-- 2. 按月份分组：使用 `group_by_exp` 过滤器将所有笔记按月份分组 -->
+<!-- 步骤 1: 将所有笔记按 'created' 字段升序排列 (不在这里反转) -->
+{% assign sorted_notes = site.clippings | sort: 'created' %}
+
+<!-- 步骤 2: 将升序的笔记按月份分组 -->
 {% assign notes_by_month = sorted_notes | group_by_exp: "note", "note.created | date: '%Y-%m'" %}
 
-<!-- 3. 顶部导航栏 -->
+<!-- 步骤 3: 将月份组本身进行反转，这样最新的月份就在最前面 -->
+{% assign reversed_months = notes_by_month | reverse %}
+
+
+<!-- ===================================================================== -->
+<!--                        页面 HTML 结构部分                           -->
+<!-- ===================================================================== -->
+
 <h1>我的知识库</h1>
 <nav class="month-nav" id="month-navigator">
-  {% for month in notes_by_month %}
-    <!-- `data-target` 属性是关键，它链接到下面对应的内容面板 -->
+  <!-- 遍历反转后的月份组来创建导航 -->
+  {% for month in reversed_months %}
     <a class="month-nav-item" data-target="#content-{{ month.name }}">{{ month.name | date: "%Y 年 %B" }}</a>
   {% endfor %}
 </nav>
 
-<!-- 4. 内容容器 -->
 <div class="content-container">
-  {% for month in notes_by_month %}
-    <!-- 每个月份的内容都包裹在一个带唯一 ID 的 div 中 -->
+  <!-- 再次遍历反转后的月份组来创建内容面板 -->
+  {% for month in reversed_months %}
     <div id="content-{{ month.name }}" class="month-content-panel">
       <div class="post-list">
         {% assign current_day = "" %}
-        {% for note in month.items %}
+        
+        <!-- 步骤 4: 将每个月内部的笔记列表也进行反转，确保日期从新到旧 -->
+        {% assign notes_in_month = month.items | reverse %}
+        
+        {% for note in notes_in_month %}
           {% assign note_day = note.created | date: "%d" %}
           {% if note_day != current_day %}
             <h3 class="day-group">{{ note.created | date: "%-d 日" }}</h3>
@@ -103,40 +92,26 @@ title: "我的笔记列表"
   {% endfor %}
 </div>
 
-<!-- 5. JavaScript 逻辑 -->
+<!-- JavaScript 逻辑与之前相同，无需修改 -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const navContainer = document.getElementById('month-navigator');
     if (!navContainer) return;
-
     const navLinks = navContainer.querySelectorAll('.month-nav-item');
     const contentPanels = document.querySelectorAll('.month-content-panel');
-
-    // 如果没有导航链接，就什么都不做
     if (navLinks.length === 0) return;
-
-    // 默认激活第一个导航链接并显示对应内容
     navLinks[0].classList.add('is-active');
     const firstPanelId = navLinks[0].getAttribute('data-target');
     const firstPanel = document.querySelector(firstPanelId);
     if (firstPanel) {
       firstPanel.classList.add('is-visible');
     }
-
-    //为每个导航链接添加点击事件
     navLinks.forEach(link => {
       link.addEventListener('click', function(event) {
-        event.preventDefault(); // 阻止链接的默认跳转行为
-
-        // 移除所有链接的激活状态
+        event.preventDefault();
         navLinks.forEach(nav => nav.classList.remove('is-active'));
-        // 隐藏所有内容面板
         contentPanels.forEach(panel => panel.classList.remove('is-visible'));
-
-        // 激活当前点击的链接
         this.classList.add('is-active');
-        
-        // 显示目标内容面板
         const targetId = this.getAttribute('data-target');
         const targetPanel = document.querySelector(targetId);
         if (targetPanel) {
