@@ -1,127 +1,66 @@
 ---
-layout: default
-title: "我的笔记列表"
+title: "AI时代  产品迭代  新方向"
+source: "https://x.com/xbanboo/status/1953663396609765392"
+author:
+  - "[[@xbanboo]]"
+created: 2025-08-08
+description:
+tags:
+  - "@xbanboo #AI时代 #精耕细作 #产品迭代"
+---
+**banboo** @xbanboo [2025-08-08](https://x.com/xbanboo/status/1953663396609765392)
+
+我对快速把一个想法做成 App 已经失去兴趣，开始对把这段时间的十几个想法，挑一个好好打磨，再接着跑之后的流程。
+
+这方法我从自己做生意就一直在用，先做一堆出来，看谁跑得好，然后停掉其它的，专心捧一个出来。这次再验证一下，看看这个方法在 AI 时代还灵不灵。
+
+![Image](https://pbs.twimg.com/media/GxzOf90bsAESXxM?format=jpg&name=large)
+
 ---
 
-<style>
-  /* CSS 样式与之前相同，无需修改 */
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; }
-  .wrapper { max-width: 960px; margin: 0 auto; padding: 20px; }
-  .month-nav {
-    display: flex; flex-wrap: wrap; gap: 10px;
-    padding-bottom: 15px; border-bottom: 1px solid #ddd; margin-bottom: 30px;
-  }
-  .month-nav-item {
-    padding: 8px 15px; border: 1px solid #ddd; border-radius: 20px;
-    text-decoration: none; color: #333; cursor: pointer; transition: all 0.2s ease;
-  }
-  .month-nav-item:hover { background-color: #f0f0f0; border-color: #ccc; }
-  .month-nav-item.is-active {
-    background-color: #007bff; color: white; border-color: #007bff; font-weight: bold;
-  }
-  .month-content-panel { display: none; }
-  .month-content-panel.is-visible { display: block; }
-  .post-list { list-style: none; padding-left: 0; }
-  .day-group { margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 10px; font-size: 1.2em; color: #444; }
-  .note-item { list-style-type: '▸'; margin-left: 20px; padding-left: 10px; margin-bottom: 20px; }
-  .note-title a { text-decoration: none; font-weight: bold; color: #333; font-size: 1.1em; }
-  .note-details { font-size: 0.9em; color: #777; padding-left: 20px; margin-top: 5px; }
-  .note-details span { margin-right: 15px; }
-  .note-tags { margin-top: 8px; padding-left: 20px; }
-  .tag {
-    display: inline-block; background-color: #f0f0f0; color: #555;
-    padding: 4px 10px; border-radius: 15px; font-size: 0.9em;
-    margin-right: 6px; margin-bottom: 8px; text-decoration: none;
-    border: 1px solid #e0e0e0;
-  }
-</style>
+**Yangyi** @Yangyixxxx [2025-08-08](https://x.com/Yangyixxxx/status/1953664842377879847)
 
-<!-- ===================================================================== -->
-<!--                        最稳健的 Liquid 逻辑部分                       -->
-<!-- ===================================================================== -->
+是的是的！
 
-{% comment %}
-  步骤 1: 创建一个只包含有 'created' 日期字段的笔记的新数组。
-  这是为了防止因缺少元数据而导致的排序失败。这是最关键的一步。
-{% endcomment %}
-{% assign notes_with_date = "" | split: "" %}
-{% for note in site.clippings %}
-  {% if note.created %}
-    {% assign notes_with_date = notes_with_date | push: note %}
-  {% endif %}
-{% endfor %}
+我也开始打磨！
 
-{% comment %} 
-  步骤 2: 对这个“干净”的数组进行所有后续操作。
-{% endcomment %}
-{% assign sorted_notes = notes_with_date | sort: 'created' %}
-{% assign notes_by_month = sorted_notes | group_by_exp: "note", "note.created | date: '%Y-%m'" %}
-{% assign reversed_months = notes_by_month | reverse %}
+---
 
+**banboo** @xbanboo [2025-08-08](https://x.com/xbanboo/status/1953672317068095757)
 
-<!-- ===================================================================== -->
-<!--                        页面 HTML 结构部分 (无需修改)                  -->
-<!-- ===================================================================== -->
+你打算用几目的砂纸😅
 
-<h1>我的知识库</h1>
-<nav class="month-nav" id="month-navigator">
-  {% for month in reversed_months %}
-    <a class="month-nav-item" data-target="#content-{{ month.name }}">{{ month.name | date: "%Y 年 %B" }}</a>
-  {% endfor %}
-</nav>
+---
 
-<div class="content-container">
-  {% for month in reversed_months %}
-    <div id="content-{{ month.name }}" class="month-content-panel">
-      <div class="post-list">
-        {% assign current_day = "" %}
-        {% assign notes_in_month = month.items | reverse %}
-        {% for note in notes_in_month %}
-          {% assign note_day = note.created | date: "%d" %}
-          {% if note_day != current_day %}
-            <h3 class="day-group">{{ note.created | date: "%-d 日" }}</h3>
-            {% assign current_day = note_day %}
-          {% endif %}
-          <li class="note-item">
-            <div class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title | default: "无标题笔记" }}</a></div>
-            <div class="note-details">
-              {% if note.author %}<span>✍️ {{ note.author | join: ', ' | remove: '[[' | remove: ']]' }}</span>{% endif %}
-              {% if note.source %}<span>🔗 <a href="{{ note.source }}" target="_blank" rel="noopener noreferrer">来源链接</a></span>{% endif %}
-            </div>
-            {% if note.tags %}<div class="note-tags">{% assign tag_list = note.tags | first | split: ' ' %}{% for tag in tag_list %}{% if tag != "" and tag != "#" %}<span class="tag">{{ tag }}</span>{% endif %}{% endfor %}</div>{% endif %}
-          </li>
-        {% endfor %}
-      </div>
-    </div>
-  {% endfor %}
-</div>
+**DinoDeer** @xDinoDeer [2025-08-08](https://x.com/xDinoDeer/status/1953665920171487523)
 
-<!-- JavaScript 逻辑与之前相同，无需修改 -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const navContainer = document.getElementById('month-navigator');
-    if (!navContainer) return;
-    const navLinks = navContainer.querySelectorAll('.month-nav-item');
-    const contentPanels = document.querySelectorAll('.month-content-panel');
-    if (navLinks.length === 0) return;
-    navLinks[0].classList.add('is-active');
-    const firstPanelId = navLinks[0].getAttribute('data-target');
-    const firstPanel = document.querySelector(firstPanelId);
-    if (firstPanel) {
-      firstPanel.classList.add('is-visible');
-    }
-    navLinks.forEach(link => {
-      link.addEventListener('click', function(event) {
-        event.preventDefault();
-        navLinks.forEach(nav => nav.classList.remove('is-active'));
-        contentPanels.forEach(panel => panel.classList.remove('is-visible'));
-        this.classList.add('is-active');
-        const targetId = this.getAttribute('data-target');
-        const targetPanel = document.querySelector(targetId);
-        if (targetPanel) {
-          targetPanel.classList.add('is-visible');
-        }
-      });
-    });
-  });
-</script>
+为啥非得是做 APP ？这个太难做留存了。
+
+---
+
+**banboo** @xbanboo [2025-08-08](https://x.com/xbanboo/status/1953666144935850501)
+
+现在什么好做留存😅
+
+---
+
+**Tony出海** @iamtonyzhu [2025-08-08](https://x.com/iamtonyzhu/status/1953681867862950287)
+
+你还好吧，我们web买域名的还得战损一笔钱
+
+---
+
+**一地鸡毛** @zhang\_baoqing [2025-08-08](https://x.com/zhang_baoqing/status/1953664719811748268)
+
+学到了
+
+---
+
+**American Industries Group** @American\_Ind
+
+Mexico gains tariff exemption under USMCA and accelerates 18 economic programs to boost production, jobs, and investor confidence.
+
+Explore how this supports nearshoring and manufacturing growth.  
+墨西哥在美国-墨西哥-加拿大协定（USMCA）下获得关税豁免，并加快 18 项经济计划以促进生产、增加就业和提升投资者信心。
+
+探索这如何支持近岸外包和制造业增长。
