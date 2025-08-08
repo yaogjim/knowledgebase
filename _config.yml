@@ -5,4 +5,4 @@ baseurl: "/knowledgebase"
 collections:
   clippings:
     output: true
-    sort_by: date
+    sort_by: created
