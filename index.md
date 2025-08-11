@@ -174,10 +174,18 @@ title: "我的笔记列表"
           <li class="note-item">
             <div class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title | default: "无标题笔记" }}</a></div>
             <div class="note-details">
-              {% if note.author %}<span>✍️ {{ note.author | join: ', ' | remove: '[[' | remove: ']]' }}</span>{% endif %}
-              {% if note.source %}<span>🔗 <a href="{{ note.source }}" target="_blank" rel="noopener noreferrer">来源链接</a></span>{% endif %}
+              {% if note.author and note.author.size > 0 %}<span>✍️ {{ note.author | join: ', ' | remove: '[[' | remove: ']]' }}</span>{% endif %}
+              {% if note.source and note.source != "" %}<span>🔗 <a href="{{ note.source }}" target="_blank" rel="noopener noreferrer">来源链接</a></span>{% endif %}
             </div>
-            {% if note.tags %}<div class="note-tags">{% assign tag_list = note.tags | first | split: ' ' %}{% for tag in tag_list %}{% if tag != "" and tag != "#" %}<a href="#" class="tag">{{ tag }}</a>{% endif %}{% endfor %}</div>{% endif %}
+            {% if note.tags and note.tags.size > 0 %}
+            <div class="note-tags">
+                {% for tag in note.tags %}
+                  {% if tag != "" and tag != "#" %}
+                    <a href="#" class="tag">{{ tag }}</a>
+                  {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
           </li>
         {% endfor %}
       </ul>

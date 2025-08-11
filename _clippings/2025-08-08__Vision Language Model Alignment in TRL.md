@@ -1,12 +1,11 @@
 ---
-title: "Vision Language Model Alignment in TRL ⚡️"
+title: "Vision Language Model Alignment in TRL"
 source: "https://huggingface.co/blog/trl-vlm-alignment"
 author:
 published:
 created: 2025-08-08
 description: "We’re on a journey to advance and democratize artificial intelligence through open source and open science."
 tags:
-  - "clippings"
 ---
 [Back to Articles](https://huggingface.co/blog)
 
