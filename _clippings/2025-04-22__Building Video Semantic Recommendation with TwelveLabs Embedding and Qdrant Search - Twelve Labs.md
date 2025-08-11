@@ -2,7 +2,7 @@
 title: "Building Video Semantic Recommendation with TwelveLabs Embedding and Qdrant Search - Twelve Labs"
 source: "https://www.twelvelabs.io/blog/content-recommender"
 author:
-published:
+published: 2025-07-11
 created: 2025-04-22
 description: "Recognized by leading researchers as the most performant AI for video understanding; surpassing benchmarks from cloud majors and open-source models."
 tags:

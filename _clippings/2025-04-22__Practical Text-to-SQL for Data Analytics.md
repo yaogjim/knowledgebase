@@ -2,7 +2,7 @@
 title: "Practical Text-to-SQL for Data Analytics"
 source: "https://www.linkedin.com/blog/engineering/ai/practical-text-to-sql-for-data-analytics"
 author:
-published:
+published: 2025-07-11
 created: 2025-04-22
 description:
 tags:

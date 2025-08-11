@@ -3,7 +3,7 @@ title: "Real Estate Agent with LangGraph (using CLI)"
 source: "https://docs.tensorlake.ai/examples/tutorials/real-estate-agent-with-langgraph-cli"
 author:
   - "[[Tensorlake]]"
-published:
+published: 2025-07-11
 created: 2025-07-01
 description: "Build a real estate agent using LangGraph to interact with purchase agreements and answer agent queries."
 tags:

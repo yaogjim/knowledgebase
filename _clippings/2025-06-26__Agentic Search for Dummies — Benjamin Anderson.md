@@ -2,7 +2,7 @@
 title: "Agentic Search for Dummies — Benjamin Anderson"
 source: "https://benanderson.work/blog/agentic-search-for-dummies/"
 author:
-published:
+published: 2025-07-11
 created: 2025-06-26
 description: "A simple, effective baseline for building AI search agents."
 tags:

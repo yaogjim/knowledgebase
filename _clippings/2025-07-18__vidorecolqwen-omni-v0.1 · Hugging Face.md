@@ -2,7 +2,7 @@
 title: "vidore/colqwen-omni-v0.1 · Hugging Face"
 source: "https://huggingface.co/vidore/colqwen-omni-v0.1"
 author:
-published:
+published: 2025-07-11
 created: 2025-07-18
 description: "We’re on a journey to advance and democratize artificial intelligence through open source and open science."
 tags:

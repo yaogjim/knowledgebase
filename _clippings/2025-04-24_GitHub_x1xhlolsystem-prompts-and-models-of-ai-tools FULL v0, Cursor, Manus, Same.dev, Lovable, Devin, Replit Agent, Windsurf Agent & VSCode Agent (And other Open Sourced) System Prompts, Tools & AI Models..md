@@ -3,7 +3,7 @@ title: "x1xhlol/system-prompts-and-models-of-ai-tools: FULL v0, Cursor, Manus, S
 source: "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools"
 author:
   - "[[GitHub]]"
-published:
+published: 2025-07-11
 created: 2025-04-24
 description: "FULL v0, Cursor, Manus, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent & VSCode Agent (And other Open Sourced) System Prompts, Tools & AI Models. - x1xhlol/system-prompts-and-models-of-ai-tools"
 tags:

@@ -3,7 +3,7 @@ title: "Claude 4 prompt engineering best practices"
 source: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices#example-formatting-preferences"
 author:
   - "[[Anthropic]]"
-published:
+published: 2025-07-11
 created: 2025-07-11
 description:
 tags:

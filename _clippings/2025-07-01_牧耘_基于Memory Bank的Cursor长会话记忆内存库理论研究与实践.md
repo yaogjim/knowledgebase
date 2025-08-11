@@ -3,7 +3,7 @@ title: "基于Memory Bank的Cursor长会话记忆内存库理论研究与实践"
 source: "https://mp.weixin.qq.com/s/4W-PcMVPZbtVO70HpX5Bgg"
 author:
   - "[[牧耘]]"
-published:
+published: 2025-07-11
 created: 2025-07-01
 description:
 tags:

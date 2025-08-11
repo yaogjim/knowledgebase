@@ -3,7 +3,7 @@ title: "The Architecture Behind Lovable and Bolt • Beam"
 source: "https://www.beam.cloud/blog/agentic-apps"
 author:
   - "[[Beam]]"
-published:
+published: 2025-07-11
 created: 2025-07-18
 description: "A Deep Dive into Production-Grade Agentic Apps"
 tags:

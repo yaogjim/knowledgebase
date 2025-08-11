@@ -3,7 +3,7 @@ title: "How to Build an Automatically Branching Chat with DSPy"
 source: "https://maximerivest.com/posts/dspy_ai_program_gem.html"
 author:
   - "[[Maxime Rivest]]"
-published:
+published: 2025-07-11
 created: 2025-07-18
 description: "DSPy is particularly useful for making use of AI generation straight back in your code. As a way to demonstrate, we will build a chat application that has no single conversation. Where your messages go will be decided automatically by AI."
 tags:

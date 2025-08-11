@@ -2,7 +2,7 @@
 title: "Context Engineering with Agents using LangGraph: A Guide for Modern AI Development | by Ankush k Singal | in AI Artistry - Freedium"
 source: "https://freedium.cfd/https://medium.com/ai-artistry/context-engineering-with-agents-using-langgraph-a-guide-for-modern-ai-development-7434ffec3aa8"
 author:
-published:
+published: 2025-07-11
 created: 2025-07-07
 description: "Ankush k Singal"
 tags:

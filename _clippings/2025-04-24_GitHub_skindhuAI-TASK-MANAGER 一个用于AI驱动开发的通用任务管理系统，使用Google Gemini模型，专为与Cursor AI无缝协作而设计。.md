@@ -3,7 +3,7 @@ title: "skindhu/AI-TASK-MANAGER: 一个用于AI驱动开发的通用任务管理
 source: "https://github.com/skindhu/AI-TASK-MANAGER"
 author:
   - "[[GitHub]]"
-published:
+published: 2025-07-11
 created: 2025-04-24
 description: "一个用于AI驱动开发的通用任务管理系统，使用Google Gemini模型，专为与Cursor AI无缝协作而设计。 - skindhu/AI-TASK-MANAGER"
 tags:

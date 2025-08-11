@@ -4,6 +4,7 @@ source: "https://x.com/dontbesilent12/status/1910357191904944590"
 author:
   - "[[X (formerly Twitter)]]"
 created: 2025-04-11
+published: 2025-07-11
 description:
 tags:
   - "X (formerly Twitter) #AI写作 #短视频创作 #内容自动化 #效率提升"

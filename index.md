@@ -4,7 +4,7 @@ title: "我的笔记列表"
 ---
 
 <style>
-  /* --- 基础和布局 --- */
+  /* --- 基础和布局 (样式部分保持不变) --- */
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     background-color: #f8f9fa; /* 为页面添加一个浅灰色背景 */
@@ -19,8 +19,6 @@ title: "我的笔记列表"
     margin-bottom: 25px;
     color: #343a40;
   }
-
-  /* --- 顶部月份导航 --- */
   .month-nav {
     display: flex;
     flex-wrap: wrap;
@@ -49,16 +47,12 @@ title: "我的笔记列表"
     border-color: #007bff;
     font-weight: bold;
   }
-
-  /* --- 月份内容面板 --- */
   .month-content-panel {
     display: none; /* 默认隐藏 */
   }
   .month-content-panel.is-visible {
     display: block; /* 显示激活的面板 */
   }
-
-  /* --- 笔记列表样式 --- */
   .post-list {
     list-style: none;
     padding-left: 0;
@@ -70,8 +64,6 @@ title: "我的笔记列表"
     font-size: 1.4em;
     color: #495057;
   }
-
-  /* --- 核心更新：笔记卡片样式 --- */
   .note-item {
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
@@ -83,13 +75,10 @@ title: "我的笔记列表"
     list-style-type: none; /* 移除默认的列表点 */
     margin-left: 0; /* 覆盖旧的缩进 */
   }
-
-  /* 鼠标悬停效果 */
   .note-item:hover {
     transform: translateY(-4px); /* 向上移动 */
     box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* 阴影加深 */
   }
-
   .note-title a {
     text-decoration: none;
     font-weight: bold;
@@ -101,7 +90,6 @@ title: "我的笔记列表"
     color: #003d82;
     text-decoration: underline;
   }
-
   .note-details {
     font-size: 0.9em;
     color: #6c757d; /* 细节文字颜色变浅 */
@@ -118,7 +106,6 @@ title: "我的笔记列表"
   .note-details a:hover {
     text-decoration: underline;
   }
-
   .note-tags {
     margin-top: 15px; /* 增加与上方内容的间距 */
     padding-left: 0; /* 移除旧的缩进 */
@@ -143,25 +130,51 @@ title: "我的笔记列表"
   }
 </style>
 
-<!-- 1. 强制排序：在这里直接对 `site.clippings` 进行排序和反转，确保顺序正确 -->
-{% assign sorted_notes = site.clippings | sort: 'created' | reverse %}
+<!-- ===================================================================== -->
+<!-- =================== 核心修正：基于您的建议的全新排序逻辑 =================== -->
+<!-- ===================================================================== -->
 
-<!-- 2. 按月份分组：使用 `group_by_exp` 过滤器将所有笔记按月份分组 -->
-{% assign notes_by_month = sorted_notes | group_by_exp: "note", "note.created | date: '%Y-%m'" %}
+{%- comment -%}
+步骤 1: 【分组】我们不再直接排序，而是先按一个标准化的日期字符串进行分组。
+`date: '%Y-%m-%d %H:%M:%S'` 会将所有日期格式（无论带不带时间）都统一转换成一个
+可以按字典序正确排序的字符串。无效的日期会返回空字符串，自动被忽略。
+{%- endcomment -%}
+{%- assign notes_grouped_by_time = site.clippings | group_by_exp: "item", "item.created | date: '%Y-%m-%d %H:%M:%S'" -%}
+
+{%- comment -%}
+步骤 2: 【排序】我们对这些“组”进行排序。因为组的 `name` 属性现在是标准化的日期字符串，
+所以 `sort: 'name'` 是绝对安全的，并且能得到正确的时序。
+{%- endcomment -%}
+{%- assign sorted_groups = notes_grouped_by_time | sort: 'name' | reverse -%}
+
+{%- comment -%}
+步骤 3: 【重组】我们将排好序的组重新展开，得到一个最终的、正确排序的笔记列表。
+{%- endcomment -%}
+{%- assign sorted_notes = "" | split: "" -%}
+{%- for group in sorted_groups -%}
+  {%- for note in group.items -%}
+    {%- assign sorted_notes = sorted_notes | push: note -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+<!-- 步骤 4: 【安全分组】现在，对这个绝对干净且排好序的列表进行按月份分组 -->
+{%- assign notes_by_month = sorted_notes | group_by_exp: "note", "note.created | date: '%Y-%m'" -%}
+
+<!-- ===================================================================== -->
+<!-- =================== 数据处理结束，开始渲染页面 ===================== -->
+<!-- ===================================================================== -->
 
 <!-- 3. 顶部导航栏 -->
 <h1>我的随手Obsidian 记录</h1>
 <nav class="month-nav" id="month-navigator">
   {% for month in notes_by_month %}
-    <!-- `data-target` 属性是关键，它链接到下面对应的内容面板 -->
     <a class="month-nav-item" data-target="#content-{{ month.name }}">{{ month.name | date: "%Y 年 %B" }}</a>
   {% endfor %}
 </nav>
 
-<!-- 4. 内容容器 -->
+<!-- 4. 内容容器 (这部分使用之前的健壮显示逻辑，无需改动) -->
 <div class="content-container">
   {% for month in notes_by_month %}
-    <!-- 每个月份的内容都包裹在一个带唯一 ID 的 div 中 -->
     <div id="content-{{ month.name }}" class="month-content-panel">
       <ul class="post-list">
         {% assign current_day = "" %}
@@ -174,10 +187,28 @@ title: "我的笔记列表"
           <li class="note-item">
             <div class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title | default: "无标题笔记" }}</a></div>
             <div class="note-details">
-              {% if note.author %}<span>✍️ {{ note.author | join: ', ' | remove: '[[' | remove: ']]' }}</span>{% endif %}
+              {% if note.author and note.author != "" %}
+                <span>✍️ 
+                {%- if note.author contains '[' -%}
+                  {{ note.author | join: ', ' | remove: '[[' | remove: ']]' }}
+                {%- else -%}
+                  {{ note.author }}
+                {%- endif -%}
+                </span>
+              {% endif %}
               {% if note.source %}<span>🔗 <a href="{{ note.source }}" target="_blank" rel="noopener noreferrer">来源链接</a></span>{% endif %}
             </div>
-            {% if note.tags %}<div class="note-tags">{% assign tag_list = note.tags | first | split: ' ' %}{% for tag in tag_list %}{% if tag != "" and tag != "#" %}<a href="#" class="tag">{{ tag }}</a>{% endif %}{% endfor %}</div>{% endif %}
+            {% if note.tags and note.tags != "" %}
+              <div class="note-tags">
+                {%- assign tag_string = note.tags | join: ' ' -%}
+                {%- assign tag_list = tag_string | split: ' ' -%}
+                {%- for tag in tag_list -%}
+                  {%- if tag != "" and tag != "#" -%}
+                    <a href="#" class="tag">{{ tag }}</a>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {% endif %}
           </li>
         {% endfor %}
       </ul>
@@ -190,35 +221,21 @@ title: "我的笔记列表"
   document.addEventListener('DOMContentLoaded', function() {
     const navContainer = document.getElementById('month-navigator');
     if (!navContainer) return;
-
     const navLinks = navContainer.querySelectorAll('.month-nav-item');
     const contentPanels = document.querySelectorAll('.month-content-panel');
-
-    // 如果没有导航链接，就什么都不做
     if (navLinks.length === 0) return;
-
-    // 默认激活第一个导航链接并显示对应内容
     navLinks[0].classList.add('is-active');
     const firstPanelId = navLinks[0].getAttribute('data-target');
     const firstPanel = document.querySelector(firstPanelId);
     if (firstPanel) {
       firstPanel.classList.add('is-visible');
     }
-
-    //为每个导航链接添加点击事件
     navLinks.forEach(link => {
       link.addEventListener('click', function(event) {
-        event.preventDefault(); // 阻止链接的默认跳转行为
-
-        // 移除所有链接的激活状态
+        event.preventDefault();
         navLinks.forEach(nav => nav.classList.remove('is-active'));
-        // 隐藏所有内容面板
         contentPanels.forEach(panel => panel.classList.remove('is-visible'));
-
-        // 激活当前点击的链接
         this.classList.add('is-active');
-        
-        // 显示目标内容面板
         const targetId = this.getAttribute('data-target');
         const targetPanel = document.querySelector(targetId);
         if (targetPanel) {

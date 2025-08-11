@@ -3,7 +3,7 @@ title: "elder-plinius/CL4R1T4S: SYSTEM PROMPT TRANSPARENCY FOR ALL - CHATGPT, GE
 source: "https://github.com/elder-plinius/CL4R1T4S"
 author:
   - "[[GitHub]]"
-published:
+published: 2025-07-11
 created: 2025-04-24
 description: "SYSTEM PROMPT TRANSPARENCY FOR ALL - CHATGPT, GEMINI, GROK, CLAUDE, PERPLEXITY, CURSOR, WINDSURF, DEVIN, REPLIT, AND MORE! - elder-plinius/CL4R1T4S"
 tags:

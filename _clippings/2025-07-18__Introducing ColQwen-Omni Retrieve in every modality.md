@@ -2,7 +2,7 @@
 title: "Introducing ColQwen-Omni: Retrieve in every modality"
 source: "https://huggingface.co/blog/manu/colqwen-omni-omnimodal-retrieval"
 author:
-published:
+published: 2025-07-11
 created: 2025-07-18
 description: "A Blog post by Manuel Faysse on Hugging Face"
 tags:

@@ -3,7 +3,7 @@ title: "Don’t Build Multi-Agents"
 source: "https://cognition.ai/blog/dont-build-multi-agents#applying-the-principles"
 author:
   - "[[Cognition]]"
-published:
+published: 2025-07-11
 created: 2025-06-26
 description: "Frameworks for LLM Agents have been surprisingly disappointing. I want to offer some principles for building agents based on our own trial & error, and explain why some tempting ideas are actually quite bad in practice."
 tags:

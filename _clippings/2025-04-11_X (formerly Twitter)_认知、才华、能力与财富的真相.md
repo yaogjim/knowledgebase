@@ -4,6 +4,7 @@ source: "https://x.com/dontbesilent12/status/1910349501128479207"
 author:
   - "[[X (formerly Twitter)]]"
 created: 2025-04-11
+published: 2025-07-11
 description:
 tags:
   - "X (formerly Twitter) #能力 #财富 #业务 #杠杆 #环境 #运气"

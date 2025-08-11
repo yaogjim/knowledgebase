@@ -4,6 +4,7 @@ source: "https://x.com/akazwz_/status/1910285275844288660"
 author:
   - "[[X (formerly Twitter)]]"
 created: 2025-04-11
+published: 2025-07-11
 description:
 tags:
   - "X (formerly Twitter) #浏览器语音通话 #MCP tools"

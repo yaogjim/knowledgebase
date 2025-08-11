@@ -3,7 +3,7 @@ title: "The Second Half：一位 OpenAI 科学家的 AI 下半场启示录"
 source: "https://mp.weixin.qq.com/s/iBVj-bcEtVbOGWEqwWp6EA"
 author:
   - "[[Shunyu Yao]]"
-published:
+published: 2025-07-11
 created: 2025-04-22
 description: "效用问题是当下 AI 领域最重要的问题。"
 tags:

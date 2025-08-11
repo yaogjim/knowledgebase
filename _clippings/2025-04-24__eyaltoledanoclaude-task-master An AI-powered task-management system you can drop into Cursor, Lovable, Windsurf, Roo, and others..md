@@ -2,7 +2,7 @@
 title: "eyaltoledano/claude-task-master: An AI-powered task-management system you can drop into Cursor, Lovable, Windsurf, Roo, and others."
 source: "https://github.com/eyaltoledano/claude-task-master"
 author:
-published:
+published: 2025-07-11
 created: 2025-04-24
 description:
 tags:

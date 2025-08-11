@@ -2,7 +2,7 @@
 title: "Aman's AI Journal • Primers • Ilya Sutskever's Top 30"
 source: "https://aman.ai/primers/ai/top-30-papers/"
 author:
-published:
+published: 2025-07-11
 created: 2025-04-22
 description: "Aman's AI Journal | Course notes and learning material for Artificial Intelligence and Deep Learning Stanford classes."
 tags:

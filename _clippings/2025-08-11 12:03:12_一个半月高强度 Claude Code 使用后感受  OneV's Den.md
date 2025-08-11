@@ -2,8 +2,8 @@
 title: "一个半月高强度 Claude Code 使用后感受 | OneV's Den"
 source: "https://onevcat.com/2025/08/claude-code/"
 author: ""
-created: 2025-08-11 11:36:54
-published: 2025-08-11 11:36:54
+created: 2025-08-11 12:03:12
+published: 2025-08-11 12:03:12
 description: ""
 tags: ""
 ---

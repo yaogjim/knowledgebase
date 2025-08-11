@@ -4,6 +4,7 @@ source: "https://x.com/yale_hwang/status/1909055439020654767"
 author:
   - "[[X (formerly Twitter)]]"
 created: 2025-04-07
+published: 2025-07-11
 description:
 tags:
   - "X (formerly Twitter) #LinuxKernel #知识库 #AI #模型微调 #Gemma3 #大规模项目 #索引"

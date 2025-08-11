@@ -4,7 +4,7 @@ source: "https://github.com/KentBeck/BPlusTree3/blob/main/rust/docs/CLAUDE.md"
 author:
   - "[[KentBeck]]"
   - "[[claude]]"
-published:
+published: 2025-07-11
 created: 2025-07-11
 description: "A plug-compatible replacement of Rust's BTree collection - BPlusTree3/rust/docs/CLAUDE.md at main · KentBeck/BPlusTree3"
 tags:

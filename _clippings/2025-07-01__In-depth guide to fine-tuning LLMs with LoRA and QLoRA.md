@@ -2,7 +2,7 @@
 title: "In-depth guide to fine-tuning LLMs with LoRA and QLoRA"
 source: "https://www.mercity.ai/blog-post/guide-to-fine-tuning-llms-with-lora-and-qlora"
 author:
-published:
+published: 2025-07-11
 created: 2025-07-01
 description: "In this blog we provide detailed explanation of how QLoRA works and how you can use it in hugging face to finetune your models. We also touch on the lastest quantization and LoRA based training methods!"
 tags:

@@ -2,7 +2,7 @@
 title: "Context Engineering for Agents"
 source: "https://rlancemartin.github.io/2025/06/23/context_engineering/"
 author:
-published:
+published: 2025-07-11
 created: 2025-06-26
 description: "Patterns for managing the context needed for agents to perform their tasks."
 tags:

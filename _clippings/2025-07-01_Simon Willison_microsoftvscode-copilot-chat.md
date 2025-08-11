@@ -3,7 +3,7 @@ title: "microsoft/vscode-copilot-chat"
 source: "https://simonwillison.net/2025/Jun/30/vscode-copilot-chat/"
 author:
   - "[[Simon Willison]]"
-published:
+published: 2025-07-11
 created: 2025-07-01
 description: "As promised at Build 2025 in May, Microsoft have released the GitHub Copilot Chat client for VS Code under an open source (MIT) license. So far this is just the …"
 tags:
