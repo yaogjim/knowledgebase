@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上下文工程：让大语言模型更懂你的需求</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">上下文工程：让大语言模型更懂你的需求</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">上下文工程：让大语言模型更懂你的需求</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @dotey</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-06-26</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/dotey/status/1938050483320479834" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>宝玉</strong> @dotey 2025-06-25</p>
+
+<p>Andrej Karpathy：</p>
+
+<p>相比起“提示工程”（prompt engineering），我更倾向使用“上下文工程”（context engineering）这个词。</p>
+
+<p>为什么呢？</p>
+
+<p>因为大多数人一想到“提示”，就联想到我们日常跟大语言模型（LLM）互动时，输入的那些短小的任务描述或问题。而在工业级的 LLM 应用场景中，“上下文工程”指的是一种精妙而复杂的技术：你要精准地将上下文窗口填充上恰到好处的信息，让模型能准确地迈出下一步。</p>
+
+<p>这是一门科学，也是门艺术。</p>
+
+<p>说它是科学，因为你要把任务描述、说明、少量样例（few-shot examples）、检索增强生成（RAG）、各种相关数据（甚至可能是多模态数据）、工具、状态、历史信息等全部巧妙地组合在一起，同时还要考虑如何压缩信息。这就像烹饪一道精致的菜肴，配料太少或搭配不对，模型无法获得足够的信息，性能会变差；配料太多或毫无关联，则会增加成本甚至降低表现。要做好这件事，需要的不仅仅是简单堆叠，更是高度专业化的技巧。</p>
+
+<p>说它是艺术，则是因为操作者还要掌握一种近似“心理学”的直觉，敏锐地洞察 LLM 和人类用户心理之间的微妙互动。</p>
+
+<p>除了上下文工程之外，一个工业级 LLM 应用还要：</p>
+
+<p>* 将复杂问题巧妙地拆解成合理的控制流程；</p>
+
+<p>* 精细地管理每次调用模型时的上下文窗口；</p>
+
+<p>* 根据具体需求分派不同类型、能力等级的模型；</p>
+
+<p>* 妥善处理生成与验证的交互式用户界面和用户体验；</p>
+
+<p>* 以及更多其他任务——如安全防护、性能评估、并行计算、预取数据等等……</p>
+
+<p>所以说，“上下文工程”其实仅仅是众多工作中的一环。围绕 LLM 应用，还在逐渐兴起一层厚重、复杂的软件基础设施，它的任务是协调、优化各种 LLM 调用和相关操作，组合出真正有效、有价值的 LLM 应用。</p>
+
+<p>因此，以前常听到的“ChatGPT 套壳”（wrapper）这样的说法，现在看来已经不仅陈旧，更是非常不恰当了。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@dotey</span>
+            
+          
+            
+              <span class="tag">#大语言模型</span>
+            
+          
+            
+              <span class="tag">#上下文工程</span>
+            
+          
+            
+              <span class="tag">#人工智能</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

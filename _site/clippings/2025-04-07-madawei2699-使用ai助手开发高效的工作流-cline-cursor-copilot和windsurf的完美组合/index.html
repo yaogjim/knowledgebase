@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用AI助手开发高效的工作流：Cline、Cursor、Copilot和Windsurf的完美组合</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">使用AI助手开发高效的工作流：Cline、Cursor、Copilot和Windsurf的完美组合</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">使用AI助手开发高效的工作流：Cline、Cursor、Copilot和Windsurf的完美组合</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @madawei2699</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-07</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/madawei2699/status/1905860072795681017" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>Dawei Ma</strong> @madawei2699 <a href="https://x.com/madawei2699/status/1905860072795681017">2025-03-29</a></p>
+
+<p>最近一周完全用 Cline/Cursor/Copilot/Windsurf 等 AI Agent开发完了下面两个专注 LLM动态工作流编排（非 DAG 这种预定义工作流）的项目：</p>
+
+<p>🔗 https://github.com/i365dev/agent_forge…</p>
+
+<p>🔗 https://github.com/i365dev/llm_agent…</p>
+
+<p>一行代码没写，全程 AI agent 搞定，过程有点曲折，下面是我的折腾记录👇</p>
+
+<hr />
+
+<p><strong>Dawei Ma</strong> @madawei2699 <a href="https://x.com/madawei2699/status/1905862440128070044">2025-03-29</a></p>
+
+<p>一开始用 cline + Copilot 和 Claude 3.5 开发，设计让官网的 Claude 3.7 完成。结果 Copilot 额度太低（2小时50条消息），开发断断续续，每天只能搞一点。更惨的是，遇到一个无限死循环，Claude 3.5 反复失败，3.7 也分析不下来… 尝试了 Trae 的 Claude 3.7，表现更差，直接在错误的方向狂奔！</p>
+
+<hr />
+
+<p><strong>Dawei Ma</strong> @madawei2699 <a href="https://x.com/madawei2699/status/1905862442510327896">2025-03-29</a></p>
+
+<p>无奈切换新分支测试，还是不行。又试了 Cursor，免费额度用了一些，但还是死循环，毫无进展…感觉要崩溃了😭</p>
+
+<p>在闲鱼花了20块买了五个 Windsurf 试用账户（本来想买 Cursor，但 Copilot 额度实在不够用）。</p>
+
+<p>Windsurf 便宜又好用，但一开始还是死循环，测试一直挂。</p>
+
+<hr />
+
+<p><strong>Dawei Ma</strong> @madawei2699 <a href="https://x.com/madawei2699/status/1905862444779508057">2025-03-29</a></p>
+
+<p>后来换了个思路，让 Claude 3.7 把需求拆成几个小 PR，步步推进。</p>
+
+<p>这个策略终于奏效了！Windsurf 上的 Claude 3.7 跳出了死循环，开发一路畅通。两个项目大概用了1000个 flow，累计时间不到10小时就搞定！</p>
+
+<hr />
+
+<p><strong>Dawei Ma</strong> @madawei2699 <a href="https://x.com/madawei2699/status/1905862448969887995">2025-03-29</a></p>
+
+<p>成果：两个项目近200个测试全过，几个大 example 也完美运行！我甚至没细看代码，Claude 分析源码后说完全符合最初设计。</p>
+
+<p>Claude 预测人工写得8周，AI 这么快，感觉程序员距离失业更近一步，这状态有点像汽车加入自动挡后，专业司机大量被下岗了，薪资也从高薪变成普通的工作。</p>
+
+<p><img src="https://pbs.twimg.com/media/GnL7Czyb0AA9PoL?format=jpg&amp;name=large" alt="Image" /> <img src="https://pbs.twimg.com/media/GnL7FqmbIAAxOrl?format=jpg&amp;name=large" alt="Image" /> <img src="https://pbs.twimg.com/media/GnL7Iiwa4AAhcfJ?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>Dawei Ma</strong> @madawei2699 <a href="https://x.com/madawei2699/status/1905862451796803792">2025-03-29</a></p>
+
+<p>顺便吐槽下：中途用 cline 试了 OpenRouter 的 Gemini 和 DeepSeek 模型。和 Claude 比，简直弱智，复杂需求完全玩不转。ChatGPT 的 4o 模型更是差劲，Copilot 默认用 ChatGPT 也拉胯，额度还低。</p>
+
+<hr />
+
+<p><strong>Dawei Ma</strong> @madawei2699 <a href="https://x.com/madawei2699/status/1905862453830750507">2025-03-29</a></p>
+
+<p>总结AI Agent开发的小技巧：</p>
+
+<p>1️⃣ 先用 Claude 规划整体设计与开发规则，创建各种 Agent 的 Rules，定下基调。</p>
+
+<p>2️⃣ 遇到死循环别硬刚，拆小 PR 推进更靠谱。</p>
+
+<p>3️⃣ Cline/Cursor/Windsurf 功能强大，当然前提是用 Claude 最新的模型，其他模型（Gemini/DeepSeek/ChatGPT）在复杂需求面前都不行。</p>
+
+<hr />
+
+<p><strong>Yang</strong> @yangpten</p>
+
+<p>Build powerful AI agents and automations for your business today.</p>
+
+<p>Check out our step-by-step video tutorials 100% FREE 🥳<br />
+立即为您的企业构建强大的人工智能代理和自动化工具。</p>
+
+<p>查看我们的分步视频教程，完全免费 🥳</p>
+
+<p><img src="https://pbs.twimg.com/media/GQrbMqGbMAETYdf?format=png&amp;name=large" alt="" /></p>
+
+<hr />
+
+<p><strong>Julian</strong> @EricZhupq <a href="https://x.com/EricZhupq/status/1906246378021585164">2025-03-30</a></p>
+
+<p>Elixir是个什么开发语言？</p>
+
+<hr />
+
+<p><strong>小偷</strong> @sthiejobs <a href="https://x.com/sthiejobs/status/1906567676757225814">2025-03-31</a></p>
+
+<p>开发环境最佳实践是什么，windsurf+claude3.7吗</p>
+
+<hr />
+
+<p><strong>晨光</strong> @hearyousayworld <a href="https://x.com/hearyousayworld/status/1906469284089381170">2025-03-30</a></p>
+
+<p>自己使用心得是同模型不同时刻表现的智力也时常不一样。除了cline都会被限制使用啊，可cline真是好贵，一天不小心就能跑出其他agent的月费来。</p>
+
+<hr />
+
+<p><strong>Dawei Ma</strong> @madawei2699 <a href="https://x.com/madawei2699/status/1906499108636131611">2025-03-31</a></p>
+
+<p>是的，不同时刻同模型同agent表现的也不一样😂，可能都会降智吧</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@madawei2699</span>
+            
+          
+            
+              <span class="tag">#AI</span>
+            
+          
+            
+              <span class="tag">#工作流</span>
+            
+          
+            
+              <span class="tag">#自动化</span>
+            
+          
+            
+              <span class="tag">#LLM</span>
+            
+          
+            
+              <span class="tag">#Cline</span>
+            
+          
+            
+              <span class="tag">#Cursor</span>
+            
+          
+            
+              <span class="tag">#Copilot</span>
+            
+          
+            
+              <span class="tag">#Windsurf</span>
+            
+          
+            
+              <span class="tag">#开发</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

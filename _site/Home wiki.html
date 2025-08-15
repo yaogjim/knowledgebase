@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的任務</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h2 id="我的任務">我的任務</h2>
+<pre><code class="language-dataview">TASK
+WHERE !completed
+SORT due DESC
+</code></pre>
+<h2 id="我的想法">我的想法</h2>
+<pre><code class="language-dataview">LIST
+from "奇思妙想"
+sort file.mday desc
+limit 10
+</code></pre>
+<hr />
+<p>![[DailyNewNotes|今日笔记摘录]]
+—</p>
+
+<hr />
+<h2 id="今日更新">今日更新</h2>
+<pre><code class="language-dataview">TABLE split(file.folder, "/")[0] AS "文件夾"
+FROM ""
+WHERE date(today) - file.mtime &lt;= dur(1 day)
+AND !contains(file.path, "Templates") 
+AND !contains(file.path, "ankicards") 
+AND !contains(file.path, "images")
+SORT file.mtime DESC,file.folder DESC
+</code></pre>
+
+<hr />
+
+<h2 id="本週更新">本週更新</h2>
+
+<pre><code class="language-dataview">TABLE split(file.folder, "/")[0] AS "文件夾",dateformat(file.mtime, "yyyy-MM-dd") AS "修改時間"
+FROM ""
+WHERE date(today) - file.mtime &lt;= dur(7 day)
+AND !contains(file.path, "Templates") 
+AND !contains(file.path, "images")
+SORT file.folder DESC,file.mtime DESC
+</code></pre>
+
+<hr />
+
+      </section>
+    </div>
+  </body>
+</html>

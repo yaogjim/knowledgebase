@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>构建强大的AI Agent：借鉴4KAgent架构的四大原则</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">构建强大的AI Agent：借鉴4KAgent架构的四大原则</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">构建强大的AI Agent：借鉴4KAgent架构的四大原则</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @ShenHuang_</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-16</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/ShenHuang_/status/1943463783768469551" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>Shen Huang</strong> @ShenHuang_ <a href="https://x.com/ShenHuang_/status/1943463783768469551">2025-07-11</a></p>
+
+<p>如何构建一个强大的AI Agent？</p>
+
+<p>别从零开始。参考这篇论文的 4KAgent 的架构，就是一份给开发者的完美蓝图。</p>
+
+<p>我把它拆解成了四大设计原则，可以直接借鉴：</p>
+
+<p>原则一：建立“感知-规划”大脑</p>
+
+<p>Agent必须先理解问题。4KAgent的核心是 Perception Agent（感知智能体）。它的工作流是：</p>
+
+<p>1. 多模态分析：用一个VLM（视觉语言模型）来“看”懂图像内容。</p>
+
+<p>2. 量化诊断：结合多个专业的IQA（图像质量评估）工具，输出客观的质量分数。</p>
+
+<p>3. 制定计划：综合主观的“内容理解”和客观的“质量分数”，生成一个有序的、分步骤的Restoration Plan（修复计划）。</p>
+
+<p>原则二：打造“模块化工具箱”</p>
+
+<p>不要试图用一个万能模型解决所有问题。为Agent配备一个 Toolbox（工具箱），里面装满各种“专家模型”。</p>
+
+<p>4KAgent的工具箱Model Zoo里，就集成了去噪、去模糊、超分、面部修复等9大类、数十个SOTA模型。 Agent根据规划，按需调用。</p>
+
+<p>原则三：设计“品控-反思”闭环</p>
+
+<p>这是4KAgent效果封神的关键，也是最值得学习的地方：</p>
+
+<p>Execution-Reflection-Rollback（执行-反思-回滚）机制。<br />
+执行-反思-回滚机制。</p>
+
+<p>a) 混合专家择优 (Q-MoE)：执行每一步计划时，它不是只用1个工具，而是让工具箱里所有相关的“专家”都出个结果，然后通过一个质量评分函数，选出效果最好的那个，再进入下一步。</p>
+
+<p>b) 失败回滚 (Rollback)：如果某一步操作后，质量评分反而下降了，系统会立即“回滚”并撤销这一步，尝试计划中的其他任务，避免“一条路走到黑”。</p>
+
+<p>原则四：提供“用户意图”接口</p>
+
+<p>最后，通过一个极简的Profile Module（配置文件模块），允许用户下达高级指令，比如“我更在乎观感，可以牺牲一点保真度 (Perception)”或“必须保真，不能有任何魔改 (Fidelity)”。 这让Agent无需重新训练，就能灵活适应不同用户的核心需求。</p>
+
+<p>总结如何设计一个强大的AI Agent：</p>
+
+<p>[感知规划 -&gt; 工具执行 -&gt; 质量反思] 的闭环设计，再配上灵活的 用户Profile，就是这套Agent系统的精髓。</p>
+
+<p>这个思路，对我们开发任何领域的Agent都极具启发。</p>
+
+<p><img src="https://pbs.twimg.com/media/GviR1_2akAIgzHo?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>Shen Huang</strong> @ShenHuang_ <a href="https://x.com/ShenHuang_/status/1943463786834477153">2025-07-11</a></p>
+
+<p>项目地址：https://4kagent.github.io</p>
+
+<p><img src="https://pbs.twimg.com/media/GviSASWWMAAxJOE?format=jpg&amp;name=large" alt="Image" /></p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@ShenHuang_</span>
+            
+          
+            
+              <span class="tag">#AI</span>
+            
+          
+            
+              <span class="tag">#Agent</span>
+            
+          
+            
+              <span class="tag">#机器学习</span>
+            
+          
+            
+              <span class="tag">#图像修复</span>
+            
+          
+            
+              <span class="tag">#4KAgent</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

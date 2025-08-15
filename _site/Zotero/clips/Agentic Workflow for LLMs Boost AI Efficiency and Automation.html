@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的知识库</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <p>在我们上一篇博客中，我们探讨了代理型 AI 与生成型 AI 之间的关键区别——这两种令人兴奋的人工智能方式，一种用于创造内容，另一种则能独立行动。现在，让我们更进一步，深入了解代理型 AI 如何通过所谓的代理工作流程实际运作。</p>
+
+<p>代理工作流程将大型语言模型（如 GPT）的功能提升至不仅仅是响应提示。相反，它使它们成为主动的问题解决者。这意味着它们能够将任务分解为更小的步骤，在执行过程中进行调整，并优化其结果——所有这些都不需要有人持续指导。</p>
+
+<p>它实现了从仅仅生成内容到真正完成任务的飞跃。</p>
+
+<p><img src="https://myscale.com/blog/assets/img/Agents.b8007637.png" alt="" /></p>
+
+<p>在这篇博文中，我们将探讨使 AI 具备代理性的核心特质，并深入了解那些有助于这些模型变得更加自主和适应性的设计模式。</p>
+
+<p>通过理解这些模式，我们将看到LLMs如何在各行各业中演进，承担起更大的角色——不仅仅是助手，更是能够胜任更多任务的独立代理。</p>
+
+<h2><a href="https://myscale.com/blog/agentic-workflow-for-llms/#key-characteristics-of-agentic-ai">#</a></h2>
+<p>Agentic AI 的关键特性</p>
+
+<p>既然我们已经了解了代理型 AI 的基本概念，接下来让我们深入探讨其关键特性，看看是什么让它与众不同。</p>
+
+<p><img src="https://myscale.com/blog/assets/img/Characteristics-of-AgenticAI.6f1ce6c0.png" alt="" /></p>
+
+<p>自主性：代理型 AI 能够独立执行任务，无需持续的人类指导。它自行做出决策并采取行动，从而提高工作效率并减少监督需求。</p>
+
+<p>目标导向行为：自主性 AI 专注于特定目标。它会制定计划并采取行动，以逐步实现这些目标，无论是完成一个项目、回答一个问题，还是解决一个问题。</p>
+
+<p>适应与学习：自主 AI 会根据新信息或反馈调整其行为。它从经验中学习，并随着时间的推移提升性能，从而更有效地处理任务。</p>
+
+<p>复杂决策制定：代理型 AI 分析多重因素，并做出超越简单规则的决策。它处理复杂情境，权衡不同选项，并选择最佳行动方案。</p>
+
+<p>环境感知：Agentic AI 能够理解和响应其环境。它感知周围的变化并相应地调整其行动，从而能够应对新情况并做出更好的决策。</p>
+
+<h2 id="-1"><a href="https://myscale.com/blog/agentic-workflow-for-llms/#the-core-patterns-in-agentic-ai-workflows">#</a>**</h2>
+<p>代理式 AI 工作流程的核心模式**</p>
+
+<p>在本节中，我们将了解用于开发代理的不同设计模式，重点关注这些模式如何使 AI 能够自主运行、适应不断变化的环境，并有效协作其他系统或代理以实现复杂目标。主要讨论以下四种主要模式：</p>
+
+<ul>
+  <li> <strong>反射模式</strong></li>
+  <li> <strong>工具使用模式</strong></li>
+  <li> <strong>规划模式</strong></li>
+  <li> <strong>多智能体模式</strong></li>
+</ul>
+
+<p>我们将逐一探讨每种模式，以理解其工作流程。</p>
+
+<h3 id="-反射模式"><a href="https://myscale.com/blog/agentic-workflow-for-llms/#reflection-pattern">#</a>  <strong>反射模式</strong></h3>
+
+<p>反思模式是一种自我提升方法，其中 AI 系统在完成任务后审视其表现。就像学生在考试后检查答案一样，AI 将其结果与目标进行比较，找出错误或改进领域。</p>
+
+<p>通过了解出错的原因，人工智能可以改变其方法，比如调整其程序或传感器，以便下次做得更好。这种回顾并从错误中学习的过程有助于人工智能不断进步，从而随着时间的推移获得更准确和高效的结果。</p>
+
+<p><img src="https://myscale.com/blog/assets/img/Reflection-pattern.33747b33.png" alt="" /></p>
+
+<p>在图中，AI 的任务是对列表 <code class="language-plaintext highlighter-rouge">[2, 4, 6, 7, 10]</code> 中所有偶数索引的数字求和。AI 首先识别出偶数索引的元素： <code class="language-plaintext highlighter-rouge">2</code> （索引 0）、 <code class="language-plaintext highlighter-rouge">6</code> （索引 2）和 <code class="language-plaintext highlighter-rouge">10</code> （索引 4），然后计算它们的和（ <code class="language-plaintext highlighter-rouge">2 + 6 + 10 = 18</code> ）。之后，AI 评估其结果并与预期输出（18）进行比较。如果结果正确，任务即完成。然而，如果出现错误，例如 AI 错误地对错误的索引求和，反思模式会提示 AI 分析其错误。</p>
+
+<p>然后，AI 将调整其逻辑并重新尝试该任务，重复此过程直至得出正确答案。</p>
+
+<p>这个评估、修正和重新执行的迭代过程持续进行，直到 AI 完成任务，确保其随着时间的推移不断改进并变得更加准确。</p>
+
+<p>工具使用模式是一种策略，使 AI 系统能够利用外部工具或资源来增强其能力并解决问题。通过使用这些工具，AI 可以访问大量信息、执行复杂计算并自动化重复任务。</p>
+
+<p>这种模式使 AI 系统能够解决更复杂的问题，更高效地工作，并生成创造性的解决方案。例如，一个编写故事的 AI 可能会使用语言模型来生成想法，使用搜索引擎来查找信息，或使用语法检查器来改进其写作。通过精心选择合适的工具，AI 可以取得更好的成果并扩展其能力。</p>
+
+<p><img src="https://myscale.com/blog/assets/img/Tool-use-pattern.b00754f5.png" alt="" /></p>
+
+<p>此图示展示了工具使用模式的实际应用。一个提示被提供给 AI 系统，由友好的机器人表示：“创建一个锤子的图像。”为了满足这一请求，AI 利用了一个外部工具，即 DALL-E，这是一个可以根据文本描述生成图像的 AI 模型。AI 将提示传递给 DALL-E，后者处理请求并生成一个锤子的图像。</p>
+
+<p>然后，系统会向用户展示这张图片作为 AI 的回复，以此说明 AI 如何成功地运用外部工具完成了任务。</p>
+
+<p>立即提升您的 AI 应用效率</p>
+
+<p>免费注册，享受 150+ QPS 及 5,000,000 向量的优势</p>
+
+<h2 id="规划模式"><a href="https://myscale.com/blog/agentic-workflow-for-llms/#planning-pattern">#</a> 规划模式</h2>
+
+<p>规划模式是一种策略，其中 AI 系统将任务分解为较小的动作或步骤以达成目标。AI 不是直接面对问题，而是首先制定一个计划，概述必要的行动，并安排步骤以有效完成任务。</p>
+
+<p>系统随后系统地遵循此计划以实现预期结果。这种方法使 AI 能够通过规划和有序安排其行动来解决更复杂的问题。</p>
+
+<p><img src="https://myscale.com/blog/assets/img/Planning-pattern.1fd76ce5.png" alt="" /></p>
+
+<p>该图示展示了 AI 如何将任务分解为更小、更易管理的步骤以达成目标。AI 不是急于一次性完成所有任务，而是首先制定详细的计划，然后一步一步地执行。</p>
+
+<p>每个行动都经过精心选择，并融入整体计划中，确保任务以有序的方式完成，从而取得成功结果。通过遵循这种结构化方法，AI 确保不遗漏任何细节，并高效达成目标。</p>
+
+<h2 id="-多智能体模式"><a href="https://myscale.com/blog/agentic-workflow-for-llms/#multi-agent-pattern">#</a>  <strong>多智能体模式</strong></h2>
+
+<p>多智能体模式描述了一个框架，其中多个[自主智能体](https://www.salesforce.com/agentforce/autonomous-agents/)（或 AI 系统）协作以解决问题或达成目标。</p>
+
+<p>每个代理都具备独特的能力和职责范围，使其能够在更大任务中执行特定操作。</p>
+
+<p>系统不依赖单一 AI 来管理任务的所有部分，而是将工作量分配给不同的代理，每个代理提供其独特的专业知识或能力。</p>
+
+<p>这些代理相互作用，共享信息，并协调其活动，以确保任务高效完成。</p>
+
+<p>这种团队协作方式使得解决方案更具适应性和可扩展性，因为可以根据任务的复杂性或需求来增减代理。</p>
+
+<p>此外，由于每个代理独立运作，系统更能抵御故障，因为即使一个代理出现问题，其他代理仍能继续运行。</p>
+
+<p>通过协调行动，这些代理能够解决比任何单一 AI 独立处理更为庞大和复杂的问题。</p>
+
+<p>In this scenario, a customer interacts with a system of four chatbots, each acting as an <strong>independent agent</strong> with a specific job. The <strong>Welcome Bot</strong> greets the customer and gathers information about their issue. If the problem is common, the <strong>FAQ Bot</strong> provides answers. For more complex issues, the <strong>Technical Support Bot</strong> assists with troubleshooting, and if the issue remains unresolved, the <strong>Escalation Bot</strong> hands the case over to a human agent. Each chatbot works <strong>autonomously</strong> but collaborates with the others by passing the customer to the right bot, ensuring the issue is resolved efficiently. This setup is a <strong>multi-agent system</strong> because each chatbot is an independent agent, and together they cooperate to achieve the shared goal of resolving the customer’s issue. </p>
+
+<h2 id="-2"><a href="https://myscale.com/blog/agentic-workflow-for-llms/#comparison-of-core-patterns-in-agentic-ai">#</a>**</h2>
+<p>代理型人工智能核心模式的比较**</p>
+
+<p>以下是一个对比表格，展示了四种设计模式：反射模式、工具使用模式、规划模式和多智能体模式之间的差异。每种模式都有其独特的特征和应用场景，具体总结如下表所示。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Pattern</strong></th>
+      <th> <strong>反射模式</strong></th>
+      <th> <strong>工具使用模式</strong></th>
+      <th> <strong>规划模式</strong></th>
+      <th> <strong>多智能体模式</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> <strong>定义</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>代理在运行时修改自身行为或知识。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>代理使用外部工具来完成任务。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>代理创建并遵循计划以实现特定目标。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>多个代理协同工作以实现共同目标。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> <strong>关键焦点</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>自我意识与动态适应。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>使用外部资源或工具。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>基于计划的面向目标决策。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>代理之间的协作与协调。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> <strong>主要组件</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>内省，行为修正。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>代理使用的第三方工具或系统。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>计划、行动、目标设定、决策过程。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>独立代理，沟通，协作。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> <strong>代理行为</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>代理动态调整其行为。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>代理依赖工具执行任务。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>代理遵循一个计划来执行特定操作。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>代理执行特定任务并与其他代理协作。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> <strong>协作</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>专注于个体代理行为，外部交互较少。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>使用外部工具，但代理之间无协作。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>协作仅限于计划共享或协调。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>与代理紧密协作，协调行动。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> <strong>用例</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>需要改变行为的自适应系统。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>需要外部资源完成任务的系统。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>机器人技术及需要结构化任务执行的系统。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>分布式系统中，代理执行协调任务。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> <strong>复杂性</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>由于需要内省和行为改变，情况变得复杂。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>较简单，但依赖外部资源。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>生成和遵循详细计划的复杂性。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>由于代理之间的协调和沟通而变得复杂。</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="data:image/png;base64,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" alt="" /></p>
+
+<p> 订阅我们的新闻通讯</p>
+
+<h2 id="结论"><a href="https://myscale.com/blog/agentic-workflow-for-llms/#conclusion">#</a> 结论</h2>
+
+<p>代理型人工智能确实带来了一些实实在在的优势——自动化任务、做出更明智的决策、个性化服务，以及全天候工作。</p>
+
+<p>通过承担这些职责，它有助于减少对持续人工干预的需求，使一切更加高效，降低成本，并为企业的成长腾出空间。</p>
+
+<p>它实时学习和适应的能力使其在医疗保健、金融和客户服务等领域特别有用，这些领域中速度和准确性至关重要。</p>
+
+<p>Agentic AI 的潜力确实令人振奋。它能够激发新思路，使流程更加顺畅，并解决棘手问题。在医疗和金融等领域，AI 代理可以协助诊断疾病、识别欺诈以及自动化重复性任务。</p>
+
+<p>随着人工智能的不断进步，其与其他系统的协作能力、做出公正决策的能力以及管理风险的能力将重塑各行各业，并为全球企业开辟新的机遇。</p>
+
+      </section>
+    </div>
+  </body>
+</html>

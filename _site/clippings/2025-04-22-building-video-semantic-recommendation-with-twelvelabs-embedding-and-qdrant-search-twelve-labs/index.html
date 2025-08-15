@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building Video Semantic Recommendation with TwelveLabs Embedding and Qdrant Search - Twelve Labs</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Building Video Semantic Recommendation with TwelveLabs Embedding and Qdrant Search - Twelve Labs</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Building Video Semantic Recommendation with TwelveLabs Embedding and Qdrant Search - Twelve Labs</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-22</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://www.twelvelabs.io/blog/content-recommender" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p>教程</p>
+
+<h3 id="使用-twelvelabs-嵌入和-qdrant-搜索构建视频语义推荐">使用 TwelveLabs 嵌入和 Qdrant 搜索构建视频语义推荐</h3>
+
+<p>赫里希克什·亚达夫</p>
+
+<p>在本教程中，我们将构建一个能够在语义层面理解视频内容的推荐系统。通过将 TwelveLabs 的视频嵌入功能与 Qdrant 向量相似性搜索相结合，我们将创建一个基于视频实际含义（而非仅仅基于关键词匹配）来查找相关视频的引擎。</p>
+
+<p><img src="https://framerusercontent.com/images/UBpkGi0Lq6691BouUkPiZ6M3A.png" alt="" /></p>
+
+<p>2025 年 4 月 11 日</p>
+
+<p>10 Min</p>
+
+<p>复制文章链接</p>
+
+<h4 id="介绍">介绍</h4>
+
+<p>要是你的内容推荐系统能够真正理解视频里发生了什么，而不只是依赖标签、文字记录和关键词呢？ 🔍</p>
+
+<p>在本教程中，我们将构建一个能够在语义层面理解视频内容的推荐系统。通过将 TwelveLabs 的视频嵌入功能与 Qdrant 向量相似性搜索相结合，我们将创建一个基于视频实际含义而非仅仅关键词匹配来查找相关视频的引擎。</p>
+
+<p>让我们探索一下这个应用程序是如何工作的，以及如何使用 TwelveLabs Python 软件开发工具包和 Qdrant Cloud 快速入门来构建类似的解决方案。</p>
+
+<p>你可以在此处探索该应用程序的演示：TwelveLabs 内容推荐</p>
+
+<p><img src="https://framerusercontent.com/images/pb6LNvPJN3O4M2uAwddzRBM7Do.gif" alt="" /></p>
+
+<h4 id="前提条件">前提条件</h4>
+
+<ul>
+  <li>通过在 TwelveLabs Playground 注册来生成一个 API 密钥。</li>
+  <li>按照设置指南设置 Qdrant Cloud。</li>
+  <li>在 Github 上找到此应用程序的存储库。</li>
+  <li>你应该熟悉 Python、Flask 和 Next.js</li>
+</ul>
+
+<h4 id="演示应用程序">演示应用程序</h4>
+
+<p>此演示应用程序展示了语义视频内容推荐的强大功能。用户可以选择基于意图的类别，系统通过语义相似性匹配推荐相关内容。用户还可以指定自己的情绪，以接收与其情绪状态相符的内容。</p>
+
+<p>该系统在 Qdrant Cloud 中存储来自不同类别的大量动画视频的嵌入向量。</p>
+
+<h4 id="应用程序的工作原理">应用程序的工作原理</h4>
+
+<p>该应用程序分两个主要阶段运行：</p>
+
+<ul>
+  <li>嵌入生成与存储 - 系统使用 Marengo 2.7 创建视频嵌入，并通过 S3 存储桶生成公共 URL。这些嵌入及其元数据存储在 Qdrant Cloud 向量数据库集合中。</li>
+  <li>搜索与检索 - 当用户输入他们的偏好和搜索查询时，系统使用 Marengo 2.7 将文本转换为嵌入向量，并对相关视频进行语义搜索。用户可以通过调整心情或选择新的偏好来优化结果，系统会从 Qdrant Cloud 集合中获取更新后的推荐。
+<img src="https://framerusercontent.com/images/GNVIJmgoSB4aLzNo7MmrdetE.png" alt="" /></li>
+</ul>
+
+<p>要使应用程序按预期运行，您必须将嵌入数据插入集合中，或者您可以参考此应用程序中使用的此处提供的示例数据。</p>
+
+<h4 id="准备步骤">准备步骤</h4>
+
+<ol>
+  <li>从 TwelveLabs Playground 获取您的 API 密钥并设置您的环境变量。</li>
+  <li>从 Github 克隆项目。</li>
+  <li>创建一个包含您的 TwelveLabs 和 Qdrant 凭证的.env 文件。</li>
+  <li>设置一个 Qdrant Cloud 实例。按照 Qdrant Cloud 集群的设置指南进行操作。</li>
+</ol>
+
+<p>一旦你完成了这些步骤，你就可以开始开发了！</p>
+
+<h4 id="内容推荐应用程序操作指南">内容推荐应用程序操作指南</h4>
+
+<p>本教程将向您展示如何构建一个视频内容推荐应用程序。该应用程序的前端使用 Next.js，后端使用启用了 CORS 的 Flask API。我们将专注于实现内容推荐的核心后端功能并设置应用程序。</p>
+
+<p>你将学习如何设置 Qdrant Cloud 客户端、生成并插入嵌入向量，以及与集合进行交互以检索相关视频。有关详细的代码结构和设置说明，请查看 GitHub 上的 README.md。</p>
+
+<h5 id="1---嵌入生成及插入到-qdrant-的指南">1 - 嵌入生成及插入到 Qdrant 的指南</h5>
+
+<h6 id="步骤-1---设置与依赖项">步骤 1 - 设置与依赖项</h6>
+
+<p>让我们从安装必要的依赖项开始。</p>
+
+<p>!pip install qdrant-client boto3</p>
+
+<p>!pip install twelvelabs pytube flask flask-cors python-dotenv</p>
+
+<p>现在让我们导入我们需要的库：</p>
+
+<p>import os</p>
+
+<p>import uuid</p>
+
+<p>import boto3</p>
+
+<p>from botocore.exceptions import ClientError</p>
+
+<p>import requests</p>
+
+<p>from IPython.display import display,HTML</p>
+
+<p>import shutil</p>
+
+<p>import pandas as pd</p>
+
+<p>from twelvelabs import TwelveLabs</p>
+
+<p>from qdrant_client import QdrantClient,models</p>
+
+<p>from qdrant_client.models import PointStruct</p>
+
+<p>import time</p>
+
+<h6 id="步骤-2---配置服务">步骤 2 - 配置服务</h6>
+
+<p>让我们配置 AWS S3、TwelveLabs 和 Qdrant。首先，设置一个 AWS S3 存储桶以生成用于流传输的公共视频 URL。然后，初始化 Qdrant 和 TwelveLabs 客户端以实现高效的视频嵌入和搜索。</p>
+
+<p># AWS S3 Configuration</p>
+
+<p>AWS_ACCESS_KEY = “YOUR_AWS_ACCESS_KEY”</p>
+
+<p>AWS_SECRET_KEY = “YOUR_AWS_SECRET_KEY”</p>
+
+<p>AWS_BUCKET_NAME = “YOUR_BUCKET_NAME”</p>
+
+<p>AWS_REGION = “us-east-1” # Change to your region</p>
+
+<p># Initialize S3 client</p>
+
+<p>s3_client = boto3.client (</p>
+
+<p>‘s3’,</p>
+
+<p>aws_access_key_id = AWS_ACCESS_KEY,</p>
+
+<p>aws_secret_access_key = AWS_SECRET_KEY,</p>
+
+<p>region_name = AWS_REGION</p>
+
+<p>)</p>
+
+<p># Twelve Labs Configuration</p>
+
+<p>TWELVE_LABS_API_KEY = “YOUR_TWELVE_LABS_API_KEY”</p>
+
+<p>twelvelabs_client = TwelveLabs (api_key = TWELVE_LABS_API_KEY)</p>
+
+<p># Qdrant Configuration</p>
+
+<p>QDRANT_HOST = “YOUR_QDRANT_HOST”</p>
+
+<p>QDRANT_API_KEY = “YOUR_QDRANT_API_KEY”</p>
+
+<p>COLLECTION_NAME = “content_collection”</p>
+
+<p>VECTOR_SIZE = 1024 # Size of embeddings from Twelve Labs</p>
+
+<p># Initialize Qdrant client</p>
+
+<p>qdrant_client = QdrantClient (</p>
+
+<p>url = f”https:// { QDRANT_HOST } “,</p>
+
+<p>api_key = QDRANT_API_KEY,</p>
+
+<p>timeout = 20,</p>
+
+<p>prefer_grpc = False</p>
+
+<p>)</p>
+
+<p>在配置 Qdrant 客户端时，设置 <code class="language-plaintext highlighter-rouge">timeout=20</code> 以防止无限期等待并避免延迟。设置 <code class="language-plaintext highlighter-rouge">prefer_grpc=False</code> 是因为 Flask 原生支持 HTTP REST API 而不是 gRPC。这确保了 Flask 和 Qdrant 之间使用标准 HTTP 进行顺畅通信。</p>
+
+<p>定义视频目录并访问其中的 MP4 文件夹。此设置对于后续处理步骤至关重要。</p>
+
+<p># Get a list of video files</p>
+
+<p>video_dir = “downloads/video_content”</p>
+
+<p>video_files = [f for f in os.listdir (video_dir) if f.endswith (‘.mp4’)]</p>
+
+<h6 id="步骤-3---将视频上传到-aws-s3">步骤 3 - 将视频上传到 AWS S3</h6>
+
+<p>首先，我们需要一个函数来将视频上传到 AWS S3 存储桶并生成公共 URL。返回公共 URL 并将其存储为每个视频的元数据。</p>
+
+<p>def upload_to_s3 (file_path,filename):</p>
+
+<p>try:</p>
+
+<p># Upload the file</p>
+
+<p>s3_client.upload_file (</p>
+
+<p>file_path,</p>
+
+<p>AWS_BUCKET_NAME,</p>
+
+<p>f”videos-embed/ { filename } “,</p>
+
+<p>ExtraArgs = {</p>
+
+<p>‘ACL’: ‘public-read’,</p>
+
+<p>‘ContentType’: ‘video/mp4’</p>
+
+<p>}</p>
+
+<p>)</p>
+
+<p># Generate the public URL</p>
+
+<p>url = f”https:// { AWS_BUCKET_NAME }.s3.{ AWS_REGION }.amazonaws.com/videos-embed/ { filename } “</p>
+
+<p>print (f”Uploaded to S3: { url } “)</p>
+
+<p>return url</p>
+
+<p>except ClientError as e:</p>
+
+<p>print (f”Error uploading to S3: { str (e) } “)</p>
+
+<p>raise</p>
+
+<h6 id="步骤-4---使用-marengo-27-生成视频嵌入">步骤 4 - 使用 Marengo 2.7 生成视频嵌入</h6>
+
+<p>现在我们将创建一个函数，用于使用 TwelveLabs Marengo-retrieval-2.7 引擎生成视频嵌入。你可以在此处找到视频嵌入生成和插入的代码。</p>
+
+<p>def create_video_embedding (video_path,max_retries = 3,retry_delay = 5):</p>
+
+<p>if not twelvelabs_client:</p>
+
+<p>raise ValueError (“Twelve Labs API key not configured”)</p>
+
+<p>retries = 0</p>
+
+<p>while retries &lt; max_retries:</p>
+
+<p>try:</p>
+
+<p>print (f”Creating whole video embedding for { video_path }… (Attempt { retries + 1 } / { max_retries })”)</p>
+
+<p># Use video_embedding_scopes parameter set to [“clip”, “video”] to get whole video embedding</p>
+
+<p>task = twelvelabs_client.embed.task.create (</p>
+
+<p>model_name = “Marengo-retrieval-2.7”,</p>
+
+<p>video_file = video_path,</p>
+
+<p>video_embedding_scopes = [“clip”,”video”]</p>
+
+<p>)</p>
+
+<p>print (f”Created task: id= { task.id }, status= { task.status } “)</p>
+
+<p>task.wait_for_done (sleep_interval = 3)</p>
+
+<p>task_result = twelvelabs_client.embed.task.retrieve (task.id)</p>
+
+<p>if task_result.status!= ‘ready’:</p>
+
+<p>raise ValueError (f”Task failed with status: { task_result.status } “)</p>
+
+<p>return task_result</p>
+
+<p>except Exception as e:</p>
+
+<p>print (f”Error creating embedding (attempt { retries + 1 }): { str (e) } “)</p>
+
+<p>retries += 1</p>
+
+<p>if retries &lt; max_retries:</p>
+
+<p>print (f”Retrying in { retry_delay } seconds…”)</p>
+
+<p>time.sleep (retry_delay)</p>
+
+<p>retry_delay *= 2</p>
+
+<p>else:</p>
+
+<p>print (“Max retries reached, giving up.”)</p>
+
+<p>raise</p>
+
+<p><code class="language-plaintext highlighter-rouge">video_embedding_scopes</code> 被设置为剪辑和视频，以便为整个视频剪辑生成嵌入。</p>
+
+<h6 id="步骤-5---将嵌入内容与元数据插入到-qdrant-中">步骤 5 - 将嵌入内容与元数据插入到 Qdrant 中</h6>
+
+<p>让我们创建一个函数，将生成的嵌入向量存储在我们的 Qdrant 向量数据库中。视频嵌入向量作为一个带有元数据有效负载的点进行存储，从而提高可搜索性。元数据中的视频 URL 支持流传输。</p>
+
+<p>def store_in_qdrant (task_result,video_id,s3_url,original_filename):</p>
+
+<p>if not qdrant_client:</p>
+
+<p>raise ValueError (“Qdrant client not configured”)</p>
+
+<p>try:</p>
+
+<p>print (f”Processing video embedding for { video_id }…”)</p>
+
+<p># The embedding will be in the segments with embedding_scope=”video”</p>
+
+<p>if task_result.video_embedding and task_result.video_embedding.segments:</p>
+
+<p>video_segments = [s for s in task_result.video_embedding.segments</p>
+
+<p>if hasattr (s,’embedding_scope’) and s.embedding_scope == ‘video’]</p>
+
+<p>if video_segments:</p>
+
+<p>print (f”Found video-scope embedding”)</p>
+
+<p>embedding_vector = video_segments [0].embeddings_float</p>
+
+<p>else:</p>
+
+<p># If no video scope segment is found, use the first segment as fallback</p>
+
+<p>print (f”No video-scope embedding found, using first available segment”)</p>
+
+<p>embedding_vector = task_result.video_embedding.segments [0].embeddings_float</p>
+
+<p>else:</p>
+
+<p>raise ValueError (“No embeddings found in the response”)</p>
+
+<p># Create a unique point structure for Qdrant storage</p>
+
+<p>point = PointStruct (</p>
+
+<p>id = uuid.uuid4 ().int &amp; ((1 « 64) - 1),# Generate a unique 64-bit integer ID</p>
+
+<p>vector = embedding_vector,# Store the extracted embedding vector</p>
+
+<p>payload = {</p>
+
+<p>‘video_id’: video_id,</p>
+
+<p>‘video_url’: s3_url,# Store the public S3 URL of the video</p>
+
+<p>‘is_url’: True,</p>
+
+<p>‘original_filename’: original_filename # Save the original filename</p>
+
+<p>}</p>
+
+<p>)</p>
+
+<p># Insert the generated embedding point into the Qdrant collection</p>
+
+<p>qdrant_client.upsert (collection_name = COLLECTION_NAME,points = [point])</p>
+
+<p>print (f”Stored whole video embedding in Qdrant”)</p>
+
+<p>return 1</p>
+
+<p>except Exception as e:</p>
+
+<p>print (f”Error storing in Qdrant: { str (e) } “)</p>
+
+<p>raise</p>
+
+<h6 id="步骤-6---视频处理管道">步骤 6 - 视频处理管道</h6>
+
+<p>现在我们将定义一个简化的流程，该流程连接所有组件，通过我们的管道处理视频。</p>
+
+<p>通过完整流程处理目录中的所有视频：</p>
+
+<ol>
+  <li>上传到 AWS S3 存储桶</li>
+  <li>使用 TwelveLabs 生成嵌入向量</li>
+  <li>将嵌入向量存储在 Qdrant 中</li>
+</ol>
+
+<p># Process each video</p>
+
+<p>for filename in video_files [:5]: # Process first 5 videos or you can setup as per convenience</p>
+
+<p>try:</p>
+
+<p>print (f”\nProcessing { filename }…”)</p>
+
+<p>video_path = os.path.join (video_dir,filename)</p>
+
+<p>video_id = f” { str (uuid.uuid4 ()) [:8] } _ { filename } “</p>
+
+<p># Upload to S3</p>
+
+<p>s3_url = upload_to_s3 (video_path,video_id)</p>
+
+<p># Generate embeddings</p>
+
+<p>task_result = create_video_embedding (video_path)</p>
+
+<p># Store in Qdrant</p>
+
+<p>store_in_qdrant (task_result,video_id,s3_url,filename)</p>
+
+<p>print (f”Successfully processed { filename } “)</p>
+
+<p>except Exception as e:</p>
+
+<p>print (f”Error processing { filename }: { str (e) } “)</p>
+
+<p>视频嵌入和元数据现在存储在 Qdrant Cloud 中。下一步是将我们的应用程序连接到集合以进行检索。</p>
+
+<h5 id="2---使用-flask-构建搜索-api">2 - 使用 Flask 构建搜索 API</h5>
+
+<h6 id="步骤-1---设置跨域资源共享源">步骤 1 - 设置跨域资源共享源</h6>
+
+<p>要启用跨域请求，我们需要在 Flask 应用程序中配置 CORS（跨域资源共享）。这允许托管在不同域上的 Web 客户端访问我们的 API。你可以在 app.py 中找到完整的后端实现。</p>
+
+<p>app = Flask (__name__)</p>
+
+<p>CORS (app,resources = { r”/*”: { “origins”: “*” } })</p>
+
+<h6 id="步骤-2---初始化-qdrant-集合">步骤 2 - 初始化 Qdrant 集合</h6>
+
+<p>如果我们的 Qdrant 集合不存在，我们需要对其进行初始化。此设置可确保我们的向量数据库能够正确检索视频嵌入。初始化 TwelveLabs 客户端以生成用于语义搜索功能的搜索查询嵌入。</p>
+
+<p># Get credentials from environment variables</p>
+
+<p>API_KEY = os.getenv (‘API_KEY’)</p>
+
+<p>QDRANT_HOST = os.getenv (‘QDRANT_HOST’)</p>
+
+<p>QDRANT_API_KEY = os.getenv (‘QDRANT_API_KEY’)</p>
+
+<p># Qdrant Configuration</p>
+
+<p>COLLECTION_NAME = “content_collection”</p>
+
+<p>VECTOR_SIZE = 1024 # Dimension of vector embeddings</p>
+
+<p># Initialize clients</p>
+
+<p>try:</p>
+
+<p>client = TwelveLabs (api_key = API_KEY)</p>
+
+<p>qdrant_client = QdrantClient (</p>
+
+<p>url = f”https:// { QDRANT_HOST } “,</p>
+
+<p>api_key = QDRANT_API_KEY,</p>
+
+<p>timeout = 20</p>
+
+<p>)</p>
+
+<p>logger.info (“Successfully initialized API clients”)</p>
+
+<p>except Exception as e:</p>
+
+<p>logger.error (f”Failed to initialize clients: { str (e) } “)</p>
+
+<p>raise</p>
+
+<p>def init_qdrant ():</p>
+
+<p>try:</p>
+
+<p># Fetch all existing collections</p>
+
+<p>collections = qdrant_client.get_collections ().collections</p>
+
+<p>collection_exists = any (col.name == COLLECTION_NAME for col in collections)</p>
+
+<p>if not collection_exists:</p>
+
+<p># Create the collection with specified vector configuration if it doesn’t exist</p>
+
+<p>qdrant_client.recreate_collection (</p>
+
+<p>collection_name = COLLECTION_NAME,</p>
+
+<p>vectors_config = VectorParams (</p>
+
+<p>size = VECTOR_SIZE,</p>
+
+<p>distance = Distance.COSINE # Use cosine similarity for retrieval</p>
+
+<p>)</p>
+
+<p>)</p>
+
+<p>logger.info (f”Created collection: { COLLECTION_NAME } “)</p>
+
+<p>except Exception as e:</p>
+
+<p>logger.error (f”Qdrant initialization error: { str (e) } “)</p>
+
+<p>raise</p>
+
+<h6 id="步骤-3---创建简单搜索功能">步骤 3 - 创建简单搜索功能</h6>
+
+<p>本节实现了一个搜索端点，该端点允许用户搜索视频。该端点处理搜索查询，通过 TwelveLabs 生成嵌入，从 Qdrant 检索相似向量，并返回匹配结果。</p>
+
+<p><img src="https://framerusercontent.com/images/4bKRwaxiaioOOLPeo0TCMOiKtI.png" alt="" /></p>
+
+<p>让我们为视频搜索创建一个搜索端点。</p>
+
+<p>@ app.route (‘/search’,methods = [‘POST’])</p>
+
+<p>def search ():</p>
+
+<p># Ensure the request contains JSON data</p>
+
+<p>if not request.is_json:</p>
+
+<p>logger.warning (“Missing JSON data”)</p>
+
+<p>return jsonify ({ ‘error’: ‘Request must be JSON format’ }),400</p>
+
+<p># Get and validate query</p>
+
+<p>data = request.get_json ()</p>
+
+<p>query = data.get (‘query’)</p>
+
+<p>if not query:</p>
+
+<p>logger.warning (“Empty query parameter”)</p>
+
+<p>return jsonify ({ ‘error’: ‘Missing query parameter’ }),400</p>
+
+<p>logger.info (f”Processing search: ‘ { query } ‘”)</p>
+
+<p>try:</p>
+
+<p># Generate embedding for the search query</p>
+
+<p>formatted_query = f”Recommend - { query } “</p>
+
+<p>embedding_response = client.embed.create (</p>
+
+<p>model_name = “Marengo-retrieval-2.7”,</p>
+
+<p>text = formatted_query</p>
+
+<p>)</p>
+
+<p># Get the embedding vector</p>
+
+<p>vector = embedding_response.text_embedding.segments [0].embeddings_float</p>
+
+<p># Similarity search from the Qdrant collection</p>
+
+<p>query_response = qdrant_client.query_points (</p>
+
+<p>collection_name = COLLECTION_NAME,</p>
+
+<p>query = vector,</p>
+
+<p>limit = 10,</p>
+
+<p>with_payload = True</p>
+
+<p>)</p>
+
+<p># Extract and format results</p>
+
+<p>search_results = query_response.points</p>
+
+<p>logger.info (f”Found { len (search_results) } matching results”)</p>
+
+<p># If no results, return empty list</p>
+
+<p>if not search_results:</p>
+
+<p>return jsonify ([])</p>
+
+<p># Build formatted response</p>
+
+<p>formatted_results = []</p>
+
+<p>for result in search_results:</p>
+
+<p>point_id = result.id</p>
+
+<p>score = float (result.score)</p>
+
+<p>payload = result.payload</p>
+
+<p>formatted_results.append ({</p>
+
+<p>‘video_id’: payload.get (‘video_id’,f”video_ { point_id } “),</p>
+
+<p>‘filename’: payload.get (‘original_filename’,payload.get (‘filename’,’video.mp4’)),</p>
+
+<p>‘start_time’: float (payload.get (‘start_time’,0)),</p>
+
+<p>‘end_time’: float (payload.get (‘end_time’,30)),</p>
+
+<p>‘score’: score,</p>
+
+<p>‘confidence’: ‘high’ if score &gt; 0.7 else ‘medium’,</p>
+
+<p>‘url’: payload.get (‘video_url’)</p>
+
+<p>})</p>
+
+<p>logger.info (f”Returning { len (formatted_results) } results”)</p>
+
+<p>return jsonify (formatted_results)</p>
+
+<p>except Exception as e:</p>
+
+<p>logger.exception (f”Search error: { str (e) } “)</p>
+
+<p>return jsonify ({ ‘error’: ‘Search failed’,’details’: str (e) }),500</p>
+
+<p>它是这样工作的：</p>
+
+<ol>
+  <li>从请求中接收搜索查询</li>
+  <li>使用 TwelveLabs 生成嵌入向量</li>
+  <li>在 Qdrant 中搜索相似向量</li>
+  <li>以结构化格式返回匹配的视频
+<img src="https://framerusercontent.com/images/JImOUhVwLhQQgRqWUsehdKRVbGE.gif" alt="" /></li>
+</ol>
+
+<h4 id="更多可用于试验教程的想法">更多可用于试验教程的想法</h4>
+
+<p>了解应用程序的工作原理有助于您创建满足用户需求的创新产品。以下是视频内容嵌入的一些潜在用例：</p>
+
+<p>🎯 个性化广告插入 —— 动态地将与上下文相关的广告插入视频中。</p>
+
+<p>⚙️实时相似度匹配 —— 新内容上传时即时找到相似视频。</p>
+
+<p>📊 趋势分析与洞察 —— 基于嵌入模式对视频趋势进行聚类和分析。</p>
+
+<h4 id="结论">结论</h4>
+
+<p>本教程展示了视频理解如何创建更智能、更准确的内容推荐。通过使用 TwelveLabs 进行视频嵌入，并使用 Qdrant 进行快速向量搜索，我们构建了一个能够理解视频内容的系统，而不仅仅局限于手动转录、标签或关键词。这种方法能够提供更好的推荐，使用户保持参与度，并能轻松扩展以处理大型视频集。作为一个开源解决方案，它可以针对从教育到娱乐等各个行业进行定制。</p>
+
+<h4 id="其他资源">其他资源</h4>
+
+<p>了解有关嵌入生成引擎 Marengo-retrieval-2.7 的更多信息。要进一步探索 TwelveLabs 并加深您对视频内容分析的理解，请查看以下资源：</p>
+
+<ul>
+  <li>尝试集成：立即注册 TwelveLabs 嵌入 API 公开测试版，并开始使用 Qdrant 构建自己的人工智能视频应用程序。</li>
+  <li>探索更多用例：访问 Qdrant Cloud 快速入门指南，了解如何根据您的业务需求实施类似的工作流程。</li>
+  <li>加入对话：在 TwelveLabs Discord 上分享你对此次集成的反馈。</li>
+  <li>探索教程：通过我们全面的教程更深入地了解 TwelveLabs 的功能</li>
+</ul>
+
+<p>我们鼓励您利用这些资源来扩展您的知识，并使用 TwelveLabs 视频理解技术创建创新应用程序。</p>
+
+<h4 id="相关文章">相关文章</h4>
+
+<p><a href="https://www.twelvelabs.io/blog/security-analysis"><img src="https://framerusercontent.com/images/PWYixWAaBu15PyfPL1SpVNI1ESk.png" alt="" /></a></p>
+
+<p><a href="https://www.twelvelabs.io/blog/security-analysis">使用 Twelve Labs 构建安全分析应用程序</a></p>
+
+<p>[<img src="https://framerusercontent.com/images/Tg3mwrbJRSPDD4GvbNAwrRd2On4.png" alt="" /></p>
+
+<p>使用 Twelve Labs 和 Milvus 构建多模态检索增强生成应用程序</p>
+
+<p>](https://www.twelvelabs.io/blog/fashion-chat-assistant)[<img src="https://framerusercontent.com/images/2qQiwkKXesYczPLkwRWyT3XWXCc.png" alt="" /></p>
+
+<p>使用 Twelve Labs 构建一个奥运视频分类应用程序</p>
+
+<p>](https://www.twelvelabs.io/blog/olympics-classification)[<img src="https://framerusercontent.com/images/WHHJPUhjOkptvGqH1ZrSc6Hbok.png" alt="" /></p>
+
+<p>使用 Twelve Labs 构建视频人工智能面试分析器</p>
+
+<p>](https://www.twelvelabs.io/blog/interview-analyzer)</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

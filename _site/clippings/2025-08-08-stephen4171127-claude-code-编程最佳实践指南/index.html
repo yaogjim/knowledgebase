@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 编程最佳实践指南</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">AI 编程最佳实践指南</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">AI 编程最佳实践指南</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @Stephen4171127</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-08-08</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/Stephen4171127/status/1953470929817698786" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>熊布朗</strong> @Stephen4171127 <a href="https://x.com/Stephen4171127/status/1953470929817698786">2025-08-07</a></p>
+
+<p>本周发布 2：📖 推出 Claude Code Practices - AI 编程最佳实践指南！</p>
+
+<p>深入解析如何充分发挥 Claude Code 的潜力，从基础使用到高级技巧的完整学习路径。</p>
+
+<p>🎯 核心内容：</p>
+
+<p>• 工作流优化策略</p>
+
+<p>• 提示词工程技巧</p>
+
+<p>• 自定义命令开发</p>
+
+<p>• 团队协作模式</p>
+
+<p>• 实战案例分析</p>
+
+<p>配合 Claude Code Cookbook 使用，让 AI 成为你最得力的编程伙伴！</p>
+
+<p>📚 在线阅读: http://cc.deeptoai.com</p>
+
+<p><img src="https://pbs.twimg.com/media/GxwfZTvW0AAjW9L?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>熊布朗</strong> @Stephen4171127 <a href="https://x.com/Stephen4171127/status/1953563009000890530">2025-08-07</a></p>
+
+<p>这是我通过整理文章总结的大佬们在使用 Claude Code 的时候达成的共识：</p>
+
+<p>1. 维护 http://CLAUDE.md 与记忆：在仓库根目录（以及子目录/用户目录）维护精炼的 http://CLAUDE.md；用 # 快速沉淀命令、规范与重要规则。</p>
+
+<p>2. 先规划再编码：先让 Claude 调研并给出方案（探索 → 规划 → 编码 → 提交）；用增强思考（“think hard/ultrathink”）；避免一次性超大指令。</p>
+
+<p>3. 保持上下文专注：任务间多用 /clear 开新会话；在自然断点用 /compact；不同任务尽量分开线程。</p>
+
+<p>4. 测试优先且由人书写：倾向 TDD；每次小改动后立刻运行测试/类型检查/格式校验；避免让 AI 修改关键测试或断言。</p>
+
+<p>5. 权限与安全：配置允许列表；谨慎使用自动批准；仅在受限环境且有备份时考虑 YOLO（–dangerously-skip-permissions）。</p>
+
+<p>6. 明确且具体的指令：给出精确需求、边界条件与成功标准；显式引用文件；必要时附图片/URL。</p>
+
+<p>7. 小步快跑、可回滚：小范围迭代与审阅；及时中断纠偏与撤销；避免一次性大变更。</p>
+
+<p>8. 用子代理与工作树并行：利用 Task/子代理、多实例、多个检出或 git worktree 并行独立任务。</p>
+
+<p>9. 定制环境：自定义斜杠命令与 Hooks；优化 .claude/settings.json；安装 gh CLI；启用 IDE/终端集成。</p>
+
+<p>10. 善用 Claude 操作 git/GitHub：生成提交/PR，修复 CI 失败，分流与归类 Issue，辅助复杂 git 操作。</p>
+
+<p>11. 无头/CI 自动化：在脚本与 CI 中使用无头模式执行检查、分流或结构化流程。</p>
+
+<p>12. 划定“禁止触碰”区域：迁移脚本、API 契约、机密配置与安全关键代码由人掌控，并加边界提示。</p>
+
+<p>https://cc.deeptoai.com/docs/zh/best-practices…</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@Stephen4171127</span>
+            
+          
+            
+              <span class="tag">#AI编程</span>
+            
+          
+            
+              <span class="tag">#ClaudeCode</span>
+            
+          
+            
+              <span class="tag">#编程最佳实践</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

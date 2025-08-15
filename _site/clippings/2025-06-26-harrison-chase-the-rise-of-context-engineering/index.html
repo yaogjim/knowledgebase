@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The rise of &quot;context engineering&quot;</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">The rise of "context engineering"</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">The rise of "context engineering"</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> Harrison Chase</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-06-26</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://blog.langchain.com/the-rise-of-context-engineering/" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><em>标题图片来自</em> <a href="https://x.com/dexhorthy/status/1933283008863482067?ref=blog.langchain.com"><em>推特上的德克斯·霍尔蒂</em></a> <em>。</em></p>
+
+<p>上下文工程是构建动态系统，以便以正确的格式提供正确的信息和工具，使大语言模型（LLM）能够合理地完成任务。</p>
+
+<p>大多数情况下，当智能体表现不稳定时，根本原因是没有向模型传达适当的上下文、指令和工具。</p>
+
+<p>大语言模型（LLM）应用正在从单一提示发展为更复杂、动态的智能体系统。因此，上下文工程正成为人工智能工程师能够培养的最重要技能。</p>
+
+<h2 id="什么是上下文工程">什么是上下文工程？</h2>
+
+<p>上下文工程是构建动态系统，以正确的格式提供正确的信息和工具，使大语言模型（LLM）能够合理地完成任务。</p>
+
+<p>这就是我喜欢的定义，它基于托比·卢特克（Tobi Lutke）、安库尔·戈亚尔（Ankur Goyal）和瓦尔登·严（Walden Yan）最近对此的看法。让我们来剖析一下。</p>
+
+<p><strong>上下文工程是一个系统</strong></p>
+
+<p>复杂的智能体可能会从多个来源获取上下文。上下文可以来自应用程序的开发者、用户、先前的交互、工具调用或其他外部数据。将这些全部整合在一起需要一个复杂的系统。</p>
+
+<p><strong>这个系统是动态的</strong></p>
+
+<p>许多这些上下文片段可以动态传入。因此，构建最终提示的逻辑也需要是动态的。它不仅仅是一个静态提示。</p>
+
+<p><strong>你需要正确的信息</strong></p>
+
+<p>智能代理系统表现不佳的一个常见原因是它们没有正确的上下文。大语言模型无法读取人的心思——你需要给它们正确的信息。输入垃圾，输出垃圾。</p>
+
+<p><strong>你需要合适的工具</strong></p>
+
+<p>并非总是仅基于输入，LLM 就能解决任务。在这些情况下，如果你想让 LLM 有能力这样做，你需要确保它有合适的工具。这些工具可以是用于查找更多信息、采取行动或介于两者之间的任何工具。给 LLM 提供合适的工具与给它提供正确的信息同样重要。</p>
+
+<p><strong>格式很重要</strong></p>
+
+<p>就像与人类交流一样，你与大语言模型（LLMs）的交流方式很重要。一条简短但具有描述性的错误消息比一大串 JSON 数据更有用。这同样适用于工具。在确保大语言模型能够使用工具时，工具的输入参数非常重要。</p>
+
+<p><strong>它有可能完成这项任务吗？</strong></p>
+
+<p>当你思考上下文工程时，这是一个非常值得提出的好问题。它强化了一个观点，即大语言模型（LLMs）不是读心术者——你需要为它们的成功做好准备。这也有助于区分失败模式。它失败是因为你没有给它正确的信息或工具吗？还是它已经掌握了所有正确信息，只是搞砸了？这些失败模式有非常不同的解决方法。</p>
+
+<h2 id="为什么上下文工程很重要">为什么上下文工程很重要</h2>
+
+<p>当智能代理系统出错时，很大程度上是因为大型语言模型（LLM）出了问题。从第一性原理思考，大型语言模型（LLMs）可能出错有两个原因：</p>
+
+<ol>
+  <li>基础模型搞砸了，它还不够好</li>
+  <li>基础模型没有被传递适当的上下文以产生良好的输出</li>
+</ol>
+
+<p>通常情况下（尤其是随着模型性能提升），模型错误更多是由第二个原因导致的。传递给模型的上下文可能由于以下几个原因而存在问题：</p>
+
+<ul>
+  <li>只是缺少模型做出正确决策所需的上下文。模型又不是读心术。如果你不给它们正确的上下文，它们就不会知道其存在。</li>
+  <li>上下文格式很差。就像人类一样，沟通很重要！当你将数据传入模型时，你对数据的格式化方式绝对会影响它的响应。</li>
+</ul>
+
+<h2 id="上下文工程与提示工程有何不同">上下文工程与提示工程有何不同？</h2>
+
+<p>为什么从“提示”转向“上下文”？早期，开发者专注于巧妙措辞提示以引出更好的答案。但随着应用变得越来越复杂，向人工智能提供完整且结构化的上下文远比任何神奇的措辞重要得多这一点变得愈发明显。</p>
+
+<p>我还要指出，提示工程是上下文工程的一个子集。即使你拥有所有的上下文信息，如何在提示中组织这些信息仍然至关重要。不同之处在于，你构建提示的目的不是使其在单一的输入数据集上运行良好，而是处理一组动态数据并对其进行正确格式化。</p>
+
+<p>我还要强调的是，上下文的一个关键部分通常是关于大语言模型（LLM）应如何表现的核心指令。这往往是提示工程的一个关键部分。你会说为智能体应如何表现提供清晰详细的指令是上下文工程还是提示工程呢？我认为两者都有一点。</p>
+
+<h2 id="上下文工程的示例">上下文工程的示例</h2>
+
+<p>一些良好的上下文工程的基本示例包括：</p>
+
+<ul>
+  <li>工具使用：确保如果智能体需要访问外部信息，它拥有能够访问该信息的工具。当工具返回信息时，其格式应最大程度便于大语言模型（LLMs）理解。</li>
+  <li>短期记忆：如果一段对话持续了一段时间，创建该对话的摘要并在未来使用。</li>
+  <li>长期记忆：如果用户在之前的对话中表达了偏好，能够获取该信息。</li>
+  <li>提示工程：关于智能体应如何表现的指令在提示中清晰列出。</li>
+  <li>检索：在调用大语言模型（LLM）之前，动态获取信息并将其插入到提示中。</li>
+</ul>
+
+<h2 id="langgraph-如何实现上下文工程">LangGraph 如何实现上下文工程</h2>
+
+<p>当我们构建 <a href="https://github.com/langchain-ai/langgraph?ref=blog.langchain.com">LangGraph</a> 时，我们的构建目标是使其成为最可控的智能体框架。这也使其能够完美地实现上下文工程。</p>
+
+<p>使用 LangGraph，你可以掌控一切。你决定运行哪些步骤。你决定**确切地**将什么输入到你的 LLM 中。你决定将输出存储在哪里。你掌控一切。</p>
+
+<p>这使你能够进行所有你想要的上下文工程。代理抽象（大多数其他代理框架所强调的）的缺点之一是它们限制了上下文工程。可能存在一些地方，你无法确切更改进入大语言模型（LLM）的内容，或者无法确切更改事先运行的步骤。</p>
+
+<p>旁注：Dex Horthy 的《十二要素应用》是一本非常值得一读的书。其中很多观点都与上下文工程相关（“掌控你的提示”、“掌控你的上下文构建”等）。本博客的标题图片也取自 Dex。我们非常欣赏他阐述该领域重要内容的方式。</p>
+
+<h2 id="langsmith-如何助力上下文工程">LangSmith 如何助力上下文工程</h2>
+
+<p><a href="https://smith.langchain.com/?ref=blog.langchain.com">LangSmith</a> 是我们的大语言模型（LLM）应用可观测性和评估解决方案。LangSmith 的关键特性之一是能够 <a href="https://docs.smith.langchain.com/observability/tutorials/observability?ref=blog.langchain.com">追踪你的智能体调用</a> 。虽然在我们构建 LangSmith 时“上下文工程”这个术语还不存在，但它恰如其分地描述了这种追踪所带来的帮助。</p>
+
+<p>LangSmith 让你能够查看智能体中发生的所有步骤。这使你可以了解为收集发送到 LLM 的数据而运行了哪些步骤。</p>
+
+<p>LangSmith 让你能够查看 LLM 的精确输入和输出。这使你能确切了解输入到 LLM 的内容——它所拥有的数据以及数据的格式。然后，你可以调试这些内容是否包含任务所需的所有相关信息。这包括 LLM 可以使用哪些工具——这样你就能调试它是否被赋予了有助于完成手头任务的适当工具。</p>
+
+<h2 id="沟通就是你所需要的一切">沟通就是你所需要的一切</h2>
+
+<p>几个月前，我写了一篇名为《沟通就是一切》的博客。主要观点是，与大语言模型（LLM）进行沟通很困难，且未得到足够重视，它常常是许多智能体错误的根源。其中许多观点都与上下文工程有关！</p>
+
+<p>上下文工程并不是一个新想法——在过去一两年里，智能体构建者们一直在这么做。这是一个新术语，恰如其分地描述了一项日益重要的技能。我们将围绕这个主题撰写并分享更多内容。我们认为我们构建的许多工具（LangGraph、LangSmith）非常适合用于实现上下文工程，所以我们很高兴看到对这方面的重视开始兴起。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

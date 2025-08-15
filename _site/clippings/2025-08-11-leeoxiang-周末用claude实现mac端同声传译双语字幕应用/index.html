@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周末用Claude实现Mac端同声传译/双语字幕应用</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">周末用Claude实现Mac端同声传译/双语字幕应用</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">周末用Claude实现Mac端同声传译/双语字幕应用</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @leeoxiang</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-08-11</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/leeoxiang/status/1954517729333202956" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>Leo Xiang</strong> @leeoxiang <a href="https://x.com/leeoxiang/status/1954517729333202956">2025-08-10</a></p>
+
+<p>一个周末借助Claude完成一个同声传译/双语字幕的Mac端应用：</p>
+
+<p>1、支持ScreenCaptureKit 采集系统声音、单应用声音、以及麦克风声音，以及多流的mixer；</p>
+
+<p>2、支持OpenAI Realtime API 以及 阿里云Gummy 实时转录模型；</p>
+
+<p>3、支持多家大模型翻译API。</p>
+
+<p>PS：也能支持视频号视频/直播的实时字幕和翻译了。</p>
+
+<p>有相关需求的伙伴可以一起聊聊，看是否可以做成一个产品或者API 出来？</p>
+
+<p><img src="https://pbs.twimg.com/media/Gx_V0FPacAA6Npq?format=jpg&amp;name=large" alt="Image" /> <img src="https://pbs.twimg.com/media/Gx_WpL3bkAArojT?format=jpg&amp;name=large" alt="Image" /> <img src="https://pbs.twimg.com/media/Gx_Vj8RbgAAoKvO?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>逆天</strong> @forever7943 <a href="https://x.com/forever7943/status/1954528107076947984">2025-08-10</a></p>
+
+<p>用实时api就不用考虑vad了？实时api好像挺贵的吧，可以考虑支持whisper和本地翻译，后者要vad</p>
+
+<hr />
+
+<p><strong>Leo Xiang</strong> @leeoxiang <a href="https://x.com/leeoxiang/status/1954528364678586770">2025-08-10</a></p>
+
+<p>用实时的最好也自己做vad，云API的vad不一定能满足自己的场景。</p>
+
+<hr />
+
+<p><strong>Xu Desheng</strong> @xudesheng <a href="https://x.com/xudesheng/status/1954644619175809221">2025-08-10</a></p>
+
+<p>哈哈，我周末也vibe coding了一把 https://x.com/xudesheng/status/1954616813796446496… ，但与你这个就无法比了。正好今天朋友讨论假日摆摊，摊位上怎么弄个供不同语言访客来询问的东西，你这个方案有很大参考意义。</p>
+
+<blockquote>
+  <p>2025-08-10</p>
+
+  <p>周五车子出车祸回家后，到周六半夜为止，全力Vibe Coding，糊了个网站： https://demotest.io ，没有手工输入任何代码，没有编写任何测试用例，将常用的工具做在一起。Claude Code、ChatGPT、Gemini CLI以及Cursor都用到，主要是前两者，如果再来一次，速度会快很多；准备将整个过程记录一下。</p>
+</blockquote>
+
+<hr />
+
+<p><strong>fancyboi</strong> @z2631966523 <a href="https://x.com/z2631966523/status/1954564406278549599">2025-08-10</a></p>
+
+<p>我一直想做一个产品，可以实时把视频中说话者的语言翻译成另一种语言，同时保留并克隆说话者的声音，让译后的声音听起来就像原人说的一样。B站的内测功能好像就是类似的——先克隆说话者的声音，再用翻译后的内容合成语音，达成实时翻译，听感无障碍</p>
+
+<hr />
+
+<p><strong>yanhua</strong> @yanhua1010 <a href="https://x.com/yanhua1010/status/1954696299560964202">2025-08-11</a></p>
+
+<p>这该死的渐变</p>
+
+<hr />
+
+<p><strong>世界很大，我希望去看看</strong> @0x0000001b <a href="https://x.com/0x0000001b/status/1954567468065689971">2025-08-10</a></p>
+
+<p>弄个app，搭配一个耳机和播放设备例如苹果手表，场景可观</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@leeoxiang</span>
+            
+          
+            
+              <span class="tag">#同声传译</span>
+            
+          
+            
+              <span class="tag">#双语字幕</span>
+            
+          
+            
+              <span class="tag">#Mac应用</span>
+            
+          
+            
+              <span class="tag">#实时翻译</span>
+            
+          
+            
+              <span class="tag">#机器翻译</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

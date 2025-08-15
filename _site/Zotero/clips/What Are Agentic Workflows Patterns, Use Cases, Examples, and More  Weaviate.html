@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的知识库</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <p><img src="https://weaviate.io/assets/images/hero-295f13f006733dd2c3564641acac87de.jpg" alt="What Are Agentic Workflows? Patterns, Use Cases, Examples, and More" /></p>
+
+<p>人工智能智能体。具身人工智能。具身架构。具身工作流程。智能体无处不在。但它们究竟是什么？它们真的能做任何事吗？</p>
+
+<p>新技术带来了一堆令人困惑的术语、不切实际的期望以及自称的在线专家。在本文中，我们拨开围绕人工智能智能体的喧嚣与炒作，来解释和阐述智能体人工智能的一个关键原则：智能体工作流程。</p>
+
+<p>代理完全靠自身能做的事情不多。它们需要被赋予角色、目标以及实现目标的结构。这就是工作流发挥作用的地方。</p>
+
+<p>理解智能体工作流能让你明白人工智能智能体是如何以及为何以它们的方式运行。为了帮助你理解这一点，我们将介绍人工智能智能体的关键组件，给出智能体工作流的简明定义，解释使工作流具有智能体特性的因素，详细阐述智能体工作流中反复出现的关键模式，列举实际示例和用例，并诚实地概述使用智能体工作流的好处和挑战。</p>
+
+<h2 id="什么是人工智能代理">  什么是人工智能代理？<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#what-are-ai-agents" title="Direct link to What are AI agents?">​</a></h2>
+
+<p>人工智能代理是将用于推理和决策的LLMs与用于现实世界交互的工具相结合的系统，使它们能够在有限的人工参与下完成复杂任务。代理被分配特定角色并被赋予不同程度的自主权以实现其最终目标。它们还配备了记忆功能，使它们能够从过去的经验中学习并随着时间的推移提高其性能。</p>
+
+<p>有关 AI 智能体的更深入解释、它们的历史以及构建它们的工具，请查看我们最近的博客文章《简化智能体：在人工智能背景下的含义》。</p>
+
+<p>为了更好地理解人工智能智能体如何融入代理工作流程，我们将探讨人工智能智能体的核心组件。</p>
+
+<h3 id="人工智能智能体的组件">  人工智能智能体的组件<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#components-of-ai-agents" title="Direct link to Components of AI Agents">​</a></h3>
+
+<p>虽然人工智能代理旨在进行半自主决策，但它们依赖于更大的组件框架才能正常运行。这个框架由使代理能够有效推理的LLMs、帮助代理完成任务的工具以及使代理能够从过去的经验中学习并随着时间的推移改进响应的内存组成。</p>
+
+<p><img src="https://weaviate.io/assets/images/components-of-ai-agents-c5c45c1f91e33db975d3113b5bb9dee4.jpg" alt="components-of-ai-agents.jpg" /></p>
+
+<h4 id="推理">  推理<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#reasoning" title="Direct link to Reasoning">​</a></h4>
+
+<p>使人工智能智能体如此有效的部分原因在于它们的迭代推理能力，这本质上使智能体能够在整个解决问题的过程中积极地“思考”。人工智能智能体的推理能力源于其底层的LLM，并具有两个主要功能：规划和反思。</p>
+
+<p>在规划阶段，智能体执行任务分解，即将一个更复杂的问题分解为更小的、可操作的步骤的过程。这种技术使智能体能够系统地处理任务，并允许它们针对不同任务使用不同工具。它还允许进行查询分解，即将复杂查询分解为更简单的查询，这提高了来自LLM的响应的准确性和可靠性。</p>
+
+<p>智能体还通过反思其行动结果来进行推理。这使它们能够根据从外部来源获取的结果和数据来评估并迭代调整其行动计划。</p>
+
+<h4 id="tools">Tools<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#tools" title="Direct link to Tools">​</a></h4>
+
+<p>LLMs 拥有静态的、参数化的知识，这意味着它们的理解局限于训练期间编码的信息。为了扩展其在原始数据集之外的能力，智能体可以利用外部工具，如网络搜索引擎、应用程序编程接口（API）、数据库和计算框架。这意味着智能体可以访问实时外部数据以指导其决策，并完成需要与其他应用程序交互的任务。</p>
+
+<p>工具通常与权限相关联，例如查询 API、发送消息或访问特定文档或数据库模式的能力。下表概述了人工智能代理的几种常见工具及其执行的任务。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Tool</strong></th>
+      <th><strong>Task</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>  互联网搜索</td>
+      <td>检索并汇总实时信息。</td>
+    </tr>
+    <tr>
+      <td>  向量搜索</td>
+      <td>检索并汇总外部数据。</td>
+    </tr>
+    <tr>
+      <td>  代码解释器</td>
+      <td>迭代运行由智能体生成的代码。</td>
+    </tr>
+    <tr>
+      <td>API</td>
+      <td>检索实时信息并与外部服务和应用程序执行任务。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>当LLM选择一个工具来帮助完成一项任务时，它会进行一种称为函数调用的行为，将其能力扩展到简单的文本生成之外，并使其能够与现实世界进行交互。</p>
+
+<p>使用哪种工具的选择可以由最终用户预先确定，也可以留给代理。让代理动态选择工具对于解决更复杂的任务可能会有帮助，但对于更简单的工作流程来说，当预定义的工具效率更高时，这可能会增加不必要的复杂性。</p>
+
+<h4 id="memory">Memory<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#memory" title="Direct link to Memory">​</a></h4>
+
+<p>从过去的经验中学习并记住行动发生的背景，这是使能动工作流程有别于纯粹由LLM驱动的工作流程的部分因素。内存是一个关键组件，它能够跨多个用户交互和会话捕获并存储上下文和反馈。智能体有两种主要类型的内存：短期内存和长期内存。</p>
+
+<p>短期记忆存储更多即时信息，如对话历史，这有助于智能体确定接下来采取哪些步骤以完成其总体目标。长期记忆存储随着时间推移、在多个会话中积累的信息和知识，从而实现智能体的个性化并随着时间推移提高性能。</p>
+
+<h2 id="什么是代理工作流程">什么是代理工作流程？<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#what-are-agentic-workflows" title="Direct link to What are Agentic Workflows?">​</a></h2>
+
+<p>一般来说，工作流是一系列相互关联的步骤，旨在实现特定的任务或目标。最简单的工作流类型是确定性的，这意味着它们遵循预定义的步骤顺序，并且无法适应新信息或不断变化的条件。例如，一个自动费用审批工作流可能如下所示：“如果费用标记为‘餐饮’且低于 30 美元，则自动批准。”</p>
+
+<p>然而，一些工作流程利用LLMs或其他机器学习模型或技术。这些通常被称为人工智能工作流程，并且可以是智能体的或非智能体的。在非智能体工作流程中，LLM会根据指令生成输出。例如，文本摘要工作流程会将较长的文本段落作为输入，促使LLM对其进行摘要，然后直接返回摘要。然而，仅仅因为一个工作流程使用了LLM，并不一定意味着它是智能体的。</p>
+
+<p>智能体工作流是由一个或一系列智能体动态执行的一系列相互关联的步骤，以实现特定任务或目标。智能体由其用户授予权限，这使其具有一定程度的自主权，能够收集数据、执行任务并做出在现实世界中执行的决策。智能体工作流还利用了人工智能智能体的核心组件，包括其推理能力、使用工具与环境交互的能力以及持久内存，从而将传统工作流彻底转变为响应式、自适应和自我进化的流程。</p>
+
+<p><img src="https://weaviate.io/assets/images/types-of-workflows-8976ed4aad76322779634ef312962ae4.jpg" alt="types-of-workflows.jpg" /></p>
+
+<h3 id="是什么让工作流具有能动性">是什么让工作流具有能动性？<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#what-makes-a-workflow-agentic" title="Direct link to What makes a workflow agentic?">​</a></h3>
+
+<p>当一个或多个智能体引导并塑造任务的进展时，人工智能工作流程就会变得具有智能体特性。在现有的非智能体工作流程中添加智能体，会创建一种混合方法，该方法将结构化工作流程的可靠性和可预测性与LLMs的智能和适应性结合起来。智能体工作流程的定义能力包括：</p>
+
+<ul>
+  <li>制定一个计划。一个主动型工作流程始于计划。LLM用于通过任务分解将复杂任务分解为更小的子任务，然后确定最佳执行路线。</li>
+  <li>使用工具执行操作。智能工作流使用一组预定义的工具并结合权限来完成任务并执行生成的计划。</li>
+  <li>反思并迭代。智能体可以在每一步评估结果，如有需要调整计划，然后循环往复，直到结果令人满意。</li>
+</ul>
+
+<p>如你所见，我们需要区分三种类型的工作流程：传统的非人工智能工作流程、非智能体人工智能工作流程和智能体工作流程。传统的基于规则的工作流程与人工智能工作流程之间的区别在于，前者使用预定义步骤，而后者使用人工智能模型来完成任务。其次，非智能体人工智能工作流程与智能体人工智能工作流程之间的区别在于，前者使用静态人工智能模型，而后者使用动态智能体。这使得智能体工作流程比非智能体工作流程更具适应性和动态性。</p>
+
+<h3 id="代理架构与工作流之间的差异">代理架构与工作流之间的差异<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#the-difference-between-agentic-architectures-and-workflows" title="Direct link to The difference between agentic architectures and workflows">​</a></h3>
+
+<p>对于任何新兴技术来说，都会涌现大量新术语。虽然有些人可能会互换使用“智能架构”和“智能工作流程”这两个术语，但它们实际上有着重要的区别。</p>
+
+<p>一种智能工作流程，是智能体为实现特定目标而采取的一系列步骤。这些步骤可能包括使用LLMs来制定计划，将任务分解为子任务，使用互联网搜索等工具来完成任务，以及使用LLMs来反思任务结果并调整其总体计划。</p>
+
+<p>另一方面，智能体架构是用于实现给定任务的技术框架和整体系统设计。智能体架构多种多样且富有创造性，但总是至少包含一个具有决策和推理能力的智能体、智能体可用于实现其目标的工具，以及用于短期和长期记忆的系统。</p>
+
+<p>note</p>
+
+<p>探索最强大的智能体架构，配有可视化图示以便即时理解。在此处下载免费电子书。</p>
+
+<h2 id="智能工作流程中的模式">智能工作流程中的模式<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#patterns-in-agentic-workflows" title="Direct link to Patterns in Agentic Workflows">​</a></h2>
+
+<p>请记住，自主工作流程是为完成特定任务（也称为最终目标）而采取的一系列结构化步骤。因此，当我们谈论自主工作流程时，我们谈论的是使智能体能够实现其最终目标的特定行为模式。如我们之前提到的，人工智能智能体的核心组件在自主工作流程模式中起着关键作用。智能体的推理能力促进了规划和反思模式，而它们使用工具与环境进行交互的能力则是工具使用模式的基础。</p>
+
+<h3 id="规划模式">  规划模式<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#planning-pattern" title="Direct link to Planning Pattern">​</a></h3>
+
+<p>规划设计模式允许智能体自主地将更复杂的任务分解为一系列更小、更简单的任务，这一过程称为任务分解。任务分解能带来更好的结果，因为它减轻了LLM的认知负担，改善了推理，并将幻觉和其他不准确情况降至最低。</p>
+
+<p>当实现最终目标的方法不明确且在解决问题的过程中适应性至关重要时，规划尤其有效。例如，一个被指示修复软件漏洞的人工智能代理可能会使用规划模式将任务分解为子任务，如阅读漏洞报告、识别相关代码部分、生成潜在原因列表，最后选择一种特定的调试策略。如果第一次修复漏洞的尝试不起作用，该代理可以在执行后读取错误消息并调整其策略。</p>
+
+<p>虽然规划可以帮助智能体更好地处理更复杂的任务，但与更具确定性的工作流程相比，它也可能导致结果的可预测性降低。因此，最好仅将规划模式用于需要深入解决问题和多跳推理的任务。</p>
+
+<p><img src="https://weaviate.io/assets/images/planning-pattern-2cfafa2a33b111d1e1a788ba1346de2b.jpg" alt="planning-pattern.jpg" /></p>
+
+<h3 id="工具使用模式">  工具使用模式<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#tool-use-pattern" title="Direct link to Tool Use Pattern">​</a></h3>
+
+<p>生成式LLMs的一个重大限制是它们依赖预先存在的训练数据，这意味着它们无法检索实时信息或核实其先前所学之外的事实。因此，当它们不知道答案时，可能会生成不符合事实的回答或“猜测”。检索增强生成（RAG）通过为LLM提供相关的实时外部数据来帮助减轻这一限制，从而实现更准确且基于上下文的回答。</p>
+
+<p>然而，工具的使用超越了单纯的检索增强生成（RAG），它允许LLM与现实世界进行动态交互，而不仅仅是从现实世界中检索数据。在智能体工作流程中，工具使用模式通过允许智能体与外部资源、应用程序、实时数据或其他计算资源进行交互，扩展了智能体的能力。</p>
+
+<p>常见工具包括应用程序编程接口（API）、信息检索（如向量搜索）、网络浏览器、机器学习模型和代码解释器。这些工具用于执行特定任务，如搜索网页、从外部数据库检索数据，或读取或发送电子邮件，以帮助智能体实现其目标。</p>
+
+<p><img src="https://weaviate.io/assets/images/tool-use-pattern-a61ba23a5e23719ec3904bf476df0908.jpg" alt="tool-use-pattern.jpg" /></p>
+
+<h3 id="反射模式">  反射模式<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#reflection-pattern" title="Direct link to Reflection Pattern">​</a></h3>
+
+<p>反思是一种强大的智能体设计模式，相对易于实现，并且可以为智能体工作流程带来显著的改进收益。反思模式是一种自我反馈机制，在这种机制中，智能体在确定响应或采取进一步行动之前，会迭代地评估其输出或决策的质量。然后，这些批评意见被用于改进智能体的方法、纠正错误，并改善未来的响应或决策。</p>
+
+<p>当智能体不太可能在首次尝试时就成功实现其目标，比如编写代码时，反射就特别有用。在这种情况下，智能体可能会生成一段代码片段，在沙盒或执行环境中运行它，并将错误迭代地反馈到LLM中，同时给出改进代码的指令，直到代码成功执行。</p>
+
+<p>反思的力量在于智能体能够对自身输出进行批判，并将这些见解动态地整合到工作流程中，从而在没有直接人工反馈的情况下实现持续改进。这些反思可以编码到智能体的记忆中，以便在当前用户会话期间更高效地解决问题，并通过适应用户偏好实现个性化，进而改善未来的交互。</p>
+
+<p><img src="https://weaviate.io/assets/images/reflection-pattern-eb9793baea3dd58102421c7104370111.jpg" alt="reflection-pattern.jpg" /></p>
+
+<h2 id="智能工作流用例">智能工作流用例<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#agentic-workflows-use-cases" title="Direct link to Agentic Workflows Use Cases">​</a></h2>
+
+<p>原子设计模式，如规划和工具使用，可以以创造性的方式组合起来，以便在不同领域的各种任务中有效地利用智能 AI。除了组合设计模式外，还可以为 AI 智能体提供不同的工具组合，甚至赋予它们根据需要动态选择工具的能力。它们还可以与人类反馈循环集成，并被赋予不同程度的自主性和决策权。</p>
+
+<p>这些不同的配置允许为跨行业的广泛任务量身定制智能工作流程。为了证明这一点，我们概述了两个特别强大的用例：智能检索增强生成（RAG）和智能研究助手。</p>
+
+<h3 id="智能检索增强生成">  智能检索增强生成<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#agentic-rag" title="Direct link to Agentic RAG">​</a></h3>
+
+<p>检索增强生成（RAG）是一种框架，它通过向LLM提供从外部数据源检索到的相关数据来增强其知识。智能 RAG 将一个或多个智能体纳入 RAG 管道。</p>
+
+<p>在规划阶段，智能体可以通过查询分解将复杂查询分解为更小的子查询，或者确定是否需要向用户询问更多信息以完成请求。</p>
+
+<p>人工智能代理还可用于在将检索到的数据和响应传递给用户之前评估其相关性和准确性。如果响应不令人满意，代理可以重新制定查询、重新审视查询分解步骤，甚至创建一个新的查询响应计划。</p>
+
+<p><img src="https://weaviate.io/assets/images/agentic-search-workflow-2b8e44550b28c263f52c18e1d8b7ca1f.jpg" alt="agentic-search-workflow.jpg" /></p>
+
+<p>note</p>
+
+<p>像这样的智能工作流程可以使用不同的智能架构来构建。如果你对上述工作流程的潜在架构感兴趣，请下载我们关于智能架构的免费电子书！</p>
+
+<h3 id="智能研究助手">智能研究助手<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#agentic-research-assistants" title="Direct link to Agentic Research Assistants">​</a></h3>
+
+<p>智能研究助手，一些人工智能公司也称之为“深度研究”，通过搜索网络和各种外部数据，就复杂主题生成深入的报告和详细的见解。这些助手利用智能检索增强生成（RAG）技术，根据用户查询从网络和其他外部来源检索信息。然而，这些助手与传统的 RAG 的区别在于，它们能够综合和分析信息，而不是简单地从外部来源检索相关数据以增强由LLM生成的输出。</p>
+
+<p>这种独特的能力归因于几个特性。首先，智能研究助手通常使用LLMs，这些工具已经针对网页浏览、任务分解和动态规划进行了专门的微调。其次，这些工作流程中的智能体积极寻求用户指导，请求提供更多信息或进行澄清，以便更好地理解最终目标。第三，这些智能体能够根据检索到的信息调整计划并改变方向。这意味着它们在合成新信息时可以探索新的、有趣的角度，并连续查询多个数据源，直到获得所需数据。</p>
+
+<p>因此，具有自主能力的研究助手能够获得更深入的见解，识别长期趋势，并就相关主题编写完整的报告，而不仅仅是检索现有知识。在撰写本文时，OpenAI、Perplexity 和谷歌都有各自公开可用的深度研究版本。</p>
+
+<h3 id="智能编码助手">智能编码助手<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#agentic-coding-assistants" title="Direct link to Agentic Coding Assistants">​</a></h3>
+
+<p>智能编码助手可以在最少人工干预的情况下生成、重构、优化和调试代码。非智能编码助手，如 GitHub Copilot 的第一个版本，由经过生成式LLMs微调以生成代码的模型提供支持，但仅限于此——生成代码。</p>
+
+<p>使编码助手具有智能体特性的是其通过执行生成的代码与环境进行交互，并根据执行结果、错误或反馈对代码进行迭代优化的能力。这些助手还可以被赋予权限，通过创建提交和拉取请求来对现有代码库进行更改，就像 Anthropic 的 Claude Code 一样，这是自动化软件开发过程中的重要一步。具有智能体特性的编码助手还可以用于建议终端命令以及其他代码更改和添加，并在执行前等待明确的人工批准，比如 Cursor 的 Agent，从而让人类能够完全掌控智能体。此外，重要的是，具有智能体特性的编码助手可以通过将错误编码到长期记忆中来从错误中学习，从而随着时间的推移变得更加智能。</p>
+
+<h2 id="智能工作流示例">智能工作流示例<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#agentic-workflow-examples" title="Direct link to Agentic Workflow Examples">​</a></h2>
+
+<p>既然我们已经概述了一些自主工作流程的用例，接下来我们将更详细地了解两个实际应用中的智能体（Claygent 和 ServiceNow AI Agents）工作流程的各个步骤。每个工作流程都使用其独特的模式和工具组合，赋予其智能体不同程度的自主性和决策能力，并依赖于不同程度的人工反馈和参与。</p>
+
+<h3 id="克莱金特克莱">  克莱金特（克莱）<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#claygent-clay" title="Direct link to Claygent (Clay)">​</a></h3>
+
+<p>对于增长和销售团队来说，主导研究和数据充实可能是一项繁琐的任务。数据充实和拓展自动化公司 Clay 通过 Claygent 简化了这一过程，Claygent 是一种由人工智能驱动的研究代理，它不断扫描网络和内部数据库，以提供实时、可操作的见解。</p>
+
+<p>假设你想使用 Claygent 根据姓名和电子邮件地址列表丰富领英资料，然后发送个性化的介绍信息。首先，你指定要查找的数据字段（例如工作经历、教育背景、技能），这些字段会被注入到预先配置的提示模板中。代理的LLM处理查询，使用网络爬虫工具在网络上搜索领英 URL，并从领英资料中提取所需数据。然后，这些数据可以发送到另一个LLM，你可以根据自己的需求指示它对丰富后的数据进行总结或分析。然后，可以使用相同的LLM（或另一个）为每个资料创建个性化的拓展信息。</p>
+
+<p>Claygent 是一个相对灵活的智能工作流程的示例，它可以通过创造性的方式进行定制，同时仍通过针对特定任务的预配置提示模板为智能体提供指导。</p>
+
+<h3 id="servicenow-人工智能代理">  ServiceNow 人工智能代理<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#servicenow-ai-agents" title="Direct link to ServiceNow AI Agents">​</a></h3>
+
+<p>ServiceNow 是一个基于云的平台，可简化和自动化跨 IT、运营、人力资源和客户服务领域的工作流程。他们的 ServiceNow 平台现在包括对人工智能代理的访问，旨在自动化重复性任务和预先存在的工作流程，同时仍让人类完全掌控决策。</p>
+
+<p>以下是一个关于自主工作流程如何帮助解决技术支持案例的示例。当客户提交技术支持工单时，该工作流程即被触发。然后，工单中的信息会传递给一个或多个代理，这些代理会对内部 IT 支持知识库执行 RAG 操作。代理会总结调查结果，分析类似案例，并为 IT 支持专家生成一份摘要。最后，它会生成一份关于如何继续处理的建议，专家可以批准或拒绝该建议。</p>
+
+<p>ServiceNow 人工智能代理代表了一种在生产环境中部署代理的创新但更为谨慎的方法，为它们赋予严格的角色和任务去完成，并且在做出影响最终用户或客户的决策时，即使有也只有有限的自主权。</p>
+
+<p>note</p>
+
+<p>想构建自己的自主工作流程吗？查看《使用 Inngest 构建自主工作流程》，我们在其中展示了如何创建一个自主晚餐计划器。</p>
+
+<h2 id="代理工作流程的优点和局限性">代理工作流程的优点和局限性<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#benefits-and-limitations-of-agentic-workflows" title="Direct link to Benefits and Limitations of Agentic Workflows">​</a></h2>
+
+<p>人工智能代理已迅速从机器学习领域走向主流。鉴于围绕代理人工智能的所有兴奋、期待和期望，很难区分炒作与现实，也难以了解其真正的能力和局限性。在本节中，我们将为您全面介绍代理工作流程的优点、挑战和局限性。</p>
+
+<h3 id="智能工作流的好处">智能工作流的好处<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#benefits-of-agentic-workflows" title="Direct link to Benefits of Agentic Workflows">​</a></h3>
+
+<p>智能代理工作流程超越了传统自动化，它使人工智能代理能够随着时间的推移进行规划、适应和改进。与遵循固定规则的确定性工作流程不同，智能代理工作流程可以动态应对复杂性，通过反馈优化其方法，并扩展以处理更高级的任务。这种适应性使它们在灵活性、学习和决策至关重要的场景中特别有价值。</p>
+
+<p>让我们更深入地了解自主工作流程的好处：</p>
+
+<ul>
+  <li>灵活性、适应性和可定制性。静态的、确定性的工作流程难以适应不断变化的情况和意外困难。另一方面，智能工作流程提供了根据任务难度进行调整和演变的灵活性，确保它们始终保持相关性并提供最佳解决方案。它们还可以通过组合不同模式进行定制，实现模块化设计，随着需求和复杂性的增加允许进行迭代升级。</li>
+  <li>在复杂任务上的性能提升。通过将复杂任务分解为更小的可管理步骤（通过任务分解和规划），智能工作流程显著优于确定性的零样本方法。</li>
+  <li>自我纠正和持续学习。反思模式使智能工作流程能够评估自身行动、完善策略并随着时间推移改善结果。通过利用短期和长期记忆，它们从过去的经验中学习，在每次迭代中变得更有效率且更具个性化。</li>
+  <li>运营效率和可扩展性。智能工作流程可以高精度地自动化重复任务（如果构建得当），在特定场景中减少人工工作量和运营成本。它们还可以轻松扩展，使其非常适合处理更大的工作量或复杂系统。</li>
+</ul>
+
+<p>请记住，人工智能代理仍然是一项新兴技术，随着研究人员和用户发现将代理纳入工作流程的新方法，这份好处清单可能会不断扩大。</p>
+
+<h3 id="代理工作流程的挑战与局限">代理工作流程的挑战与局限<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#challenges-and-limitations-of-agentic-workflows" title="Direct link to Challenges and Limitations of Agentic Workflows">​</a></h3>
+
+<p>尽管人工智能代理具有诸多优点和创新特性，但也带来了一些挑战和限制。由于其概率性本质，人工智能代理在工作流程中天生就增加了复杂性。而且仅仅因为代理可用于自动化流程，并不意味着就应该使用它们。以下是代理工作流程中一些最显著的挑战和限制：</p>
+
+<ul>
+  <li>简单任务的不必要复杂性。在用于表单填写或基本数据提取等简单工作流程时，人工智能代理可能会增加额外负担。在确定性的、基于规则的自动化就足够的情况下，引入代理可能会导致效率低下、额外费用，并可能降低性能。</li>
+  <li>由于自主性增加导致可靠性降低。随着智能体在工作流程中获得更多决策权，其概率性本质可能会引入不可预测性，使输出结果的可靠性降低且更难控制。为智能体实施并积极维护防护措施，以及持续审查授予它们的权限至关重要。</li>
+  <li>伦理和实际考量。并非所有决策都应委托给人工智能系统。在高风险或敏感领域使用智能体需要仔细监督，以确保负责任的部署并防止意外后果。</li>
+</ul>
+
+<p>考虑到这些限制，我们建议花些时间思考在给定的工作流程中使用代理是否真的有必要。一些有助于你确定这一点的问题可能包括：</p>
+
+<ul>
+  <li>该任务是否复杂到需要适应性决策，还是确定性方法就足够了？</li>
+  <li>一个更简单的人工智能辅助工具（例如没有智能体的 RAG）能达到同样的效果吗？</li>
+  <li>该工作流程是否涉及不确定性、不断变化的条件或多步骤推理，而智能体可以更有效地处理这些？</li>
+  <li>赋予智能体自主权会带来哪些风险，这些风险可以减轻吗？</li>
+</ul>
+
+<h2 id="summary">Summary<a href="https://weaviate.io/blog/what-are-agentic-workflows?utm_source=linkedin&amp;utm_medium=vs_social&amp;utm_campaign=agents&amp;utm_content=honeypot_post_9790000000#summary" title="Direct link to Summary">​</a></h2>
+
+<p>智能代理工作流是强大的工具，可帮助自动化完成需要决策和推理的复杂任务。在本文中，我们回顾了人工智能代理的核心组件，包括内存、工具和推理能力，以及它们如何为智能代理工作流做出贡献。我们还讨论了常见的工作流模式，如规划、工具使用和反思，这些模式可以单独使用或组合使用以创建动态工作流。此外，我们概述了两个特别有效的用例，即智能代理检索增强生成（RAG）和智能代理研究代理，并描述了市场上已有的两个代理，即 Clay 公司的 Claygent 和 ServiceNow 公司的人工智能代理背后的工作流。最后，我们探讨了智能代理工作流的好处以及它们的局限性和挑战。</p>
+
+<p>人工智能代理背后的技术在不断发展，我们对它们的理解也是如此。本文旨在让你对人工智能代理在工作流程中的运作方式有一个基本的了解，但绝不是对该主题的详尽探讨。</p>
+
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的知识库</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <p>可能对很多人而言，个人电脑的超级入口，应该就是 spotlight 应用了，也就是所谓的启动器。</p>
+
+<p>通过快捷键 Ctrl + Space 唤起 spotlight 输入框，输入关键字，快速找到并打开本地的软件 / 文件。</p>
+
+<p>Mac 电脑第三方 spotlight 领域的王者，以前是 Alfred，后来是 Raycast，我最近几年一直在用的是一款国产软件，叫 uTools。这类 spotlight 软件，除了支持最基本的本地资源查找与启动之外，都会带一个第三方应用市场，可以下载各类应用来定制你的工作流。比如使用 uTools，我复制一个英文单词，打开 uTools 输入框，自动识别到一个翻译插件，一键翻译成中文，非常丝滑。</p>
+
+<p>上周 Anthropic 发布 MCP 协议之后，我觉得对于 spotlight 应用，是一个很大的机会。</p>
+
+<p>先来梳理一下，实现一个 AI-Native 版的 spotlight 应用，应该怎么做：</p>
+
+<p>1. 确定产品定位和技术栈。 选择 MacOS 作为主要切入点，用 Swift + SwiftUI 开发，体验更流畅（对齐 Afred 和 Raycast），也可以选择跨平台开发框架（Electron 或 Tauri），后面更好扩展到 Windows 和 Linux（参考 uTools）</p>
+
+<p>2. 实现最基本的输入框控件。 在电脑居中弹出的一个长条形输入框，默认绑定到一个系统快捷键，比如 Command + Shift + Space，支持用户自定义快捷键（如果日常使用，一般会修改成 Command + Space）</p>
+
+<p>3. 实现最核心的功能：关键词查找 + 快速打开本地应用 / 文件。 调用操作系统的 API 可以实现，但要考虑查找速度优化的问题。</p>
+
+<p>4. 实现通用的 AI 问答 + 搜索功能。 用户输入一个 query，调用搜索 API 和大模型 API 进行回复，在一个新的窗口显示回复结果，支持追问。可以@本地文件做 RAG，省去了上传文件的步骤。</p>
+
+<p>5. 实现第三方应用的查找与调用。 比如我在本地安装了一个 mcp-server-chatsum，在 spotlight 输入框提问：“今天上午大家都在聊啥”，spotlight 主动服务发现，或者由用户选择“chatsum”这个应用进行调用，通过本地进程通信实现数据交互。</p>
+
+<p>6. 实现第三方应用商城。 在应用商城展示系统内置的，或者第三方上传的各类应用，这些应用可以是一个功能/函数/UI 控件（能直接在 spotlight 应用里运行/展示），也可以是一个 MCP Server，需要下载到本地运行，再由 spotlight 通过本地进程通信调用。</p>
+
+<p>跟目前流行的第三方 spotlight 相比，一个 AI-Native 版本的 spotlight，在实现最基本的应用查找与启动功能之外，会有一些不同：</p>
+
+<p>1. 原生支持 AI 问答 + AI 搜索，可以调用本地大模型，可以挂载本地文件做 RAG，效率更高。（Raycast 去年推出了 AI 问答功能）</p>
+
+<p>2. 基于 MCP 协议扩展第三方应用，如果 MCP 生态能起来，spotlight 就是一个超级 MCP Client，对接海量的 MCP Server，在功能丰富度方面会有很大的优势。</p>
+
+<p>spotlight 作为个人电脑的超级入口，是兵家必争之地。豆包 / ChatGPT / Perplexity 都推出了桌面版，有一个类似 spotlight 的输入框，可以调用他们自身的 AI 能力（但是不能查找/启动本地软件）。微信去年也推出了一个“小微助手”，可能体验不太行，被吐槽下架了。</p>
+
+<p>虽然避免不了竞争，但我觉得 AI-Native 版 spotlight 依然是一个可以尝试的方向，不管是对小公司还是独立开发者。至少这是一个高频场景，做一个自己每天都在用的产品，何乐而不为。</p>
+
+<p>从战略执行角度，也许可以找找差异点，比如先从成为一个 MCP Client 开始，大厂短时间内也许不会跟，做得早就是优势。</p>
+
+<p>我在 poe 上的测试
+<a href="https://poe.com/chat/2x1jjcxduytbux9bg4f">Poe - Fast, Helpful AI Chat</a>
+测试效果
+<a href="https://poe.com/preview/new_tab?local=514">poe.com/preview/new_tab?local=514</a></p>
+
+<p>![[Pasted image 20241205144758.png]]
+![[Pasted image 20241205144805.png]]</p>
+
+      </section>
+    </div>
+  </body>
+</html>

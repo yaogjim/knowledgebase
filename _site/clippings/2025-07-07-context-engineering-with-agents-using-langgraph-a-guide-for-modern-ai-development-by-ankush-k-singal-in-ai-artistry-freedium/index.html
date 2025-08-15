@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Context Engineering with Agents using LangGraph: A Guide for Modern AI Development | by Ankush k Singal | in AI Artistry - Freedium</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Context Engineering with Agents using LangGraph: A Guide for Modern AI Development | by Ankush k Singal | in AI Artistry - Freedium</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Context Engineering with Agents using LangGraph: A Guide for Modern AI Development | by Ankush k Singal | in AI Artistry - Freedium</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-07</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://freedium.cfd/https://medium.com/ai-artistry/context-engineering-with-agents-using-langgraph-a-guide-for-modern-ai-development-7434ffec3aa8" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><a href="https://medium.com/ai-artistry/context-engineering-with-agents-using-langgraph-a-guide-for-modern-ai-development-7434ffec3aa8#bypass">&lt; 返回原文</a></p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:700/1*XJjv3c4py09Spssj1VzmbA.jpeg" alt="Preview image" /></p>
+
+<h2 id="使用-langgraph-通过智能体进行上下文工程现代人工智能开发指南">使用 LangGraph 通过智能体进行上下文工程：现代人工智能开发指南</h2>
+
+<h2 id="安库什k辛加尔人工智能艺术">安库什·K·辛加尔<a href="https://medium.com/ai-artistry" title="Your AI knowledge hub!">人工智能艺术</a></h2>
+
+<p>无障碍模式 - 浅色 约5分钟阅读时长 · 2025年6月25日（更新：2025年6月25日） · 免费：否</p>
+
+<h4 id="引言">引言</h4>
+
+<p>随着大语言模型（LLMs）演变成通用的推理引擎，我们设计、引导和管理其行为的方式正在迅速改变。LLMs 不再局限于单轮提示，现在它已成为复杂的 <strong>人工智能代理</strong> 背后的认知引擎，这些代理系统能够进行自主推理、使用工具并执行长期任务。这个新时代让一个强大的概念成为焦点： <strong>上下文工程</strong> 。</p>
+
+<p>上下文工程是管理大型语言模型（LLM）用于思考、行动和决策的信息的艺术与科学。就如同操作系统管理进入中央处理器（CPU）随机存取存储器（RAM）的数据一样，如今开发者必须确定哪些内容进入大型语言模型有限的上下文窗口。对于智能体而言，这一挑战变得更加关键且更加复杂。</p>
+
+<p>在本文中，我们将剖析在人工智能代理时代上下文工程意味着什么、它为何重要，以及如何通过代码有效地实现它。</p>
+
+<h3 id="在我们开始之前️">在我们开始之前！🦸🏻♀️</h3>
+
+<p>如果你喜欢这个话题并且想支持我：</p>
+
+<ol>
+  <li>给我的文章鼓掌50次；那真的会帮到我。👏</li>
+  <li>在 Medium 上关注我并订阅，即可免费获取我的最新文章🫶</li>
+  <li>加入我们的大家庭——订阅 <strong><a href="https://www.youtube.com/@andy111007">YouTube 频道</a></strong>
+<img src="https://miro.medium.com/v2/resize:fit:700/1*LZ0JeHfzubxmkjVU-HJ28g.png" alt="None" /></li>
+</ol>
+
+<p>来源： <a href="https://rlancemartin.github.io/2025/06/23/context_engineering/">上下文工程</a></p>
+
+<h3 id="什么是上下文工程">什么是上下文工程？</h3>
+
+<p>由人工智能从业者创造并得到 Anthropic 和 Cognition 的研究人员强调， <strong>上下文工程</strong> 是指在大语言模型（LLM）运行的任何给定时刻，对呈现给它的数据进行的策略性打包和管理。这包括：</p>
+
+<ul>
+  <li><strong>提示：</strong> 用户指令或系统消息。</li>
+  <li><strong>检索到的内容：</strong> 实时提取的文档或事实。</li>
+  <li><strong>工具输出：</strong> 来自 API 或函数调用的响应。</li>
+</ul>
+
+<p>安德烈·卡帕西（Andrej Karpathy）将大语言模型（LLMs）比作一种新型的中央处理器（CPU），其中上下文窗口（context window）的功能类似于随机存取存储器（RAM）。由于这种“工作内存”是有限的——通常限制在数万或数十万个词元——有效的上下文工程对于性能、成本效益和任务成功至关重要。</p>
+
+<h4 id="为何上下文工程对智能体至关重要">为何上下文工程对智能体至关重要</h4>
+
+<p>与简单的聊天机器人不同，人工智能代理可在长时间会话、多次工具调用和动态工作流程中运行。它们旨在：</p>
+
+<ul>
+  <li>做出决策</li>
+  <li>执行计划</li>
+  <li>持久化知识</li>
+  <li>与其他智能体协作</li>
+</ul>
+
+<p>这些功能中的每一个都需要仔细的 <strong>上下文管理</strong> 。如果不加以控制，上下文窗口会变得臃肿，工具输出会消耗资源，模型的性能也会下降——这种现象被称为 <strong>上下文退化综合征</strong> 。</p>
+
+<p><strong>有效上下文工程的好处</strong></p>
+
+<ol>
+  <li><strong>性能提升：</strong> 减少令牌过载并增强 LLM 的专注度。</li>
+  <li><strong>降低成本：</strong> 更少的令牌 = 更便宜的运行。</li>
+  <li><strong>更智能的智能体：</strong> 从精心策划的相关上下文中做出更好的决策。</li>
+  <li><strong>可扩展性：</strong> 支持长期或多智能体工作流程。</li>
+  <li><strong>一致性：</strong> 在不同会话或任务中持久保存知识。</li>
+</ol>
+
+<h4 id="上下文工程与提示工程有何不同">上下文工程与提示工程有何不同？</h4>
+
+<p>为什么从“提示”转向“上下文”？早期，开发者专注于巧妙措辞提示以引出更好的答案。但随着应用变得越来越复杂，很明显，为人工智能提供完整且结构化的上下文远比任何神奇的措辞重要得多。</p>
+
+<p>我还要指出， <strong>提示工程是上下文工程的一个子集</strong> 。即使你拥有所有的上下文信息，如何在提示中组织这些信息仍然至关重要。不同之处在于，你构建提示的目的不是为了与单一的输入数据集良好配合，而是为了处理一组动态数据并对其进行正确格式化。</p>
+
+<p>上下文的一个关键部分通常是关于大语言模型（LLM）应如何表现的核心指令。这往往是提示工程的一个关键部分。你会说为智能体应如何表现提供清晰详细的指令是上下文工程还是提示工程呢？我认为两者都有一点。</p>
+
+<h4 id="langgraph-如何实现上下文工程">LangGraph 如何实现上下文工程</h4>
+
+<p>当我们构建 LangGraph 时，我们的目标是使其成为最可控的智能体框架。这也使其能够完美地实现上下文工程。</p>
+
+<p>使用 LangGraph，你可以掌控一切。你决定运行哪些步骤。你确切地决定将什么输入到你的 LLM 中。你决定将输出存储在哪里。你掌控一切。</p>
+
+<p>这使你能够进行所有你想要的上下文工程。代理抽象（大多数其他代理框架所强调的）的缺点之一是它们限制了上下文工程。可能存在一些地方，你无法确切更改进入大语言模型（LLM）的内容，或者无法确切更改事先运行的步骤。</p>
+
+<p><strong>示例：简化图调用</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Current (still supported)
+</span><span class="n">agent</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span>
+    <span class="n">state</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s">"configurable"</span><span class="p">:</span> <span class="p">{</span><span class="s">"user_id"</span><span class="p">:</span> <span class="s">"user_123"</span><span class="p">,</span> <span class="s">"thread_id"</span><span class="p">:</span> <span class="s">"12345"</span><span class="p">}}</span>
+<span class="p">)</span>
+
+<span class="c1"># New (recommended)
+</span><span class="n">agent</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span>
+    <span class="n">state</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s">"thread_id"</span><span class="p">:</span> <span class="s">"12345"</span><span class="p">},</span>
+    <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s">"user_id"</span><span class="p">:</span> <span class="s">"user_123"</span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>示例：增强型节点函数签名</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Current approach
+</span><span class="k">def</span> <span class="nf">my_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">StateSchema</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">RunnableConfig</span><span class="p">):</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s">"configurable"</span><span class="p">][</span><span class="s">"user_id"</span><span class="p">]</span>  <span class="c1"># Deep nesting
+</span>    <span class="c1"># ...
+</span>
+<span class="c1"># New approach
+</span><span class="k">class</span> <span class="nc">Runtime</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">ContextT</span><span class="p">]):</span>
+    <span class="n">context</span><span class="p">:</span> <span class="n">ContextT</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">LangGraphConfig</span>  <span class="c1"># Cleaner config with top-level properties
+</span>
+    <span class="o">@</span><span class="nb">property</span>
+    <span class="k">def</span> <span class="nf">stream_writer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StreamWriter</span><span class="p">:</span>
+        <span class="s">"""Access streaming utilities without complex injection into node signatures."""</span>
+
+<span class="k">def</span> <span class="nf">my_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">StateSchema</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">Runtime</span><span class="p">):</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">runtime</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">user_id</span>  <span class="c1"># Clean, typed access
+</span>    <span class="n">thread_id</span> <span class="o">=</span> <span class="n">runtime</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">thread_id</span>  <span class="c1"># No more nesting under "configurable"
+</span>    <span class="c1"># ...
+</span></code></pre></div></div>
+
+<h4 id="结论">结论</h4>
+
+<p>随着大语言模型（LLM）应用的成熟，性能的标准不再仅仅取决于你使用的是哪个模型，而是在于你与它的沟通效果如何。 <strong>上下文工程</strong> 是一种使这种沟通变得精确、完整且一致的实践方法。</p>
+
+<p>这不仅仅是一个技术问题，更是一种设计理念。当你将上下文视为系统架构的头等重要部分时，一切都会变得更好：模型输出、用户体验以及开发速度。</p>
+
+<p>随着这一概念得到更广泛的理解，我们很高兴能不断突破 LLMs 的能力边界——不仅通过更好的模型，还通过更好的交流方式。</p>
+
+<h4 id="资源">资源</h4>
+
+<ul>
+  <li><a href="https://blog.langchain.com/the-rise-of-context-engineering/">上下文工程的兴起</a></li>
+  <li><a href="https://rlancemartin.github.io/2025/06/23/context_engineering/">智能体的上下文工程</a></li>
+</ul>
+
+<p>通过各种平台保持联系并支持我的工作：</p>
+
+<p><a href="https://github.com/andysingal">GitHub</a> <a href="https://www.patreon.com/AndyShanu">Patreon</a> <a href="https://www.kaggle.com/alphasingal">Kaggle</a> <a href="https://huggingface.co/Andyrasika">拥抱脸</a> <a href="https://www.youtube.com/@andy111007">YouTube</a> <a href="https://rasikasingal.gumroad.com/">GumRoad</a> <a href="http://calendly.com/alphasingal">Calendly</a> 需注意，“Hugging-Face”常见的中文译法是“拥抱脸” ，但在一些专业领域可能有更特定的译法，如果这是一个特定的技术或平台名称，可能需要根据具体情况进一步优化</p>
+
+<p>喜欢我的内容吗？欢迎 <a href="https://paypal.me/alphasingal?country.x=US&amp;locale.x=en_US">请我喝杯咖啡☕</a> ！</p>
+
+<p>请求与问题：如果你有一个希望我参与的项目，或者对我所解释的概念有任何疑问，请随时告诉我。我一直在为未来的笔记本寻找新想法，并且很乐意帮助解决你可能存在的任何疑惑。</p>
+
+<p>请记住，每一次“点赞”、“分享”和“加星标”都对我的工作有很大帮助，并激励我继续创作更多优质内容。感谢您的支持！</p>
+
+<p>如果你喜欢这个故事，欢迎 <a href="https://medium.com/@andysingal">订阅</a> Medium，这样当我的新文章发布时你会收到通知，并且可以获得完全访问权限</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

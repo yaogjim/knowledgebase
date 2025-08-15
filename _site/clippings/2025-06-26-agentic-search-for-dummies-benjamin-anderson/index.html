@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic Search for Dummies — Benjamin Anderson</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Agentic Search for Dummies — Benjamin Anderson</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Agentic Search for Dummies — Benjamin Anderson</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-06-26</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://benanderson.work/blog/agentic-search-for-dummies/" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <h2 id="傻瓜式自主搜索指南">《傻瓜式自主搜索指南》</h2>
+
+<p>克劳德代码证明了仅仅给模型提供工具并让它们自行解决其余问题所具有的超乎常理的有效性。在这篇文章中，我将阐述在一个模型足够智能，能够将任务或用户请求转化为对搜索索引的一系列查询的世界里，我是如何进行搜索的。我认为，带有离线增强的全文搜索是让模型搜索文档语料库的一种简单而有效的方法。我并未声称这是最先进的方法，而且在这篇文章中你也找不到任何评估数据。相反，我正在展示一种我所喜欢的设置智能搜索的方法，这种方法效果良好，足以成为一个不错的基线。</p>
+
+<p>我假设你已经对搜索以及“智能体”是什么有了一些了解。如果你感到困惑，我建议你查看托尔斯滕·鲍尔的文章《<如何构建一个智能体>》，它会向你展示如何从一个语言模型开始，用几百行代码将其转变为一个简单的编码智能体。</如何构建一个智能体></p>
+
+<h2 id="概述">概述</h2>
+
+<p>这里的“搜索代理”指的是这样一种系统：它接收请求或查询，并使用必要的搜索来收集上下文以完成任务，然后返回针对该请求的 <em>答案</em> 或 <em>结果</em> 。它由几个基本部分组成，我将逐一介绍。</p>
+
+<ul>
+  <li>用于构建搜索索引的文档语料库</li>
+  <li>一个搜索 API（无人工智能），它接收查询，命中索引，并返回一个结果页面</li>
+  <li>一组允许语言模型使用搜索应用程序编程接口（API）的“工具”</li>
+  <li>被赋予任务和工具并被指示给出答案的人工智能模型</li>
+</ul>
+
+<h2 id="第1部分---语料库">第1部分 - 语料库</h2>
+
+<p>搜索很有用，因为它能让人工智能根据任务动态收集上下文信息，而无需你事先确切知道完成任务需要哪些信息。你提供的不是恰好所需的上下文，而是大得多的信息集（语料库），人工智能的部分工作就是弄清楚为完成任务要查看其中的哪些部分。所以，语料库通常是非常大的文档集（数百、数千甚至数百万）。</p>
+
+<p>准备一个干净的语料库非常重要，因为它既是：a）将由你的搜索引擎进行搜索的文本，也是 b）将由模型读取的文本。你要非常确定已移除了随机的 SVG 文件、Base64 编码的数据、导航栏等等，为你的模型留下一组格式良好的文档以供读取。</p>
+
+<p>像 Gemini、Claude、GPT-4.1 这样的多模态大语言模型（LLMs）现在在光学字符识别（OCR）方面已经足够出色，你可以给它们发送 PDF 文件并得到相当干净的 Markdown 文本。但是对于大规模处理 PDF 文件的 OCR，我喜欢 DataLab 的工具 <a href="https://github.com/datalab-to/marker">Marker</a> ，你可以在 H100 上免费自行运行（如果用于商业目的且你的初创公司筹集了大量资金，则需要许可证）。DOCX 文件可以使用 <code class="language-plaintext highlighter-rouge">python-docx</code> 以保留编号的方式导入，这很有帮助。HTML 可以转换为 Markdown，我通常会用大语言模型（LLM）对网页进行后处理以去除模板内容。</p>
+
+<p>最后，我认为一个重要的关键技巧（很遗憾，同样没有数据支持这一点！）是离线文档增强。这意味着使用语言模型为每个文档创建一组关键词和一个摘要，它有两个作用。首先，这使得人工智能更容易搜索文档，因为查询可能与文档文本不匹配，但仍可能命中我们预先生成的关键词之一。其次，它能提供更多信息，以便在搜索结果页面上的文档“预览”中显示（稍后会详细介绍）。增强是通过这样一个提示来执行的：</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Given a section from the {document_name},
+provide the following metadata as JSON, with
+<span class="se">\`</span>keywords<span class="se">\`</span> and <span class="se">\`</span>description<span class="se">\`</span> keys as follows:
+<span class="p">
+ -</span> <span class="se">\`</span>keywords<span class="se">\`</span> list[str]: A list of as many
+keywords/keyphrases as you can think of that
+someone might search for where the section
+would be relevant. The keywords/phrases do
+NOT have to occur in the section, they can be
+semantic matches, synonyms, etc. However, they
+should be specific to the section, not keywords
+that would apply to literally any section of
+the {document_name}.
+<span class="p">-</span> <span class="se">\`</span>description<span class="se">\`</span> str: A summary/overview of what
+the section says. Be mindful of your tendency
+to make overlong summaries, and remember that
+the goal is to provide a SHORT overview of the
+section. A long summary is pointless because
+you may as well just read the original.
+
+Here is the {document_name} section:
+
+{section}
+
+Now provide your JSON response,
+no prelude or commentary needed.
+</code></pre></div></div>
+
+<p>这些文档以及生成的关键词和摘要，都会被保存到一个 JSONL 文件中，该文件可根据需要加载到搜索索引中。</p>
+
+<h2 id="第2部分---搜索索引">第2部分 - 搜索索引</h2>
+
+<p>文档准备好后，需要进行索引。搜索索引只是存储文档的一种特殊方式，它能让搜索文档变得快速。例如， <a href="https://en.wikipedia.org/wiki/Inverted_index">倒排索引</a> 存储从关键词到文档的映射。这样一来，当你搜索一个关键词时，就不必在每个文档中扫描该关键词，那将与文档数量呈线性关系。相反，你可以直接跳到映射中的那个关键词，获取所有相关文档，这只需要固定时间。</p>
+
+<p>对于我们的搜索索引，我们使用 Tantivy。它速度快、开源、实现了优秀的算法，并且有易于安装的 Python 绑定。我们将上一部分生成的文本、关键词和摘要用作可搜索列来构建一个 Tantivy 索引，对于成百上千篇文档来说，这只需几秒钟。我们用一个简单的 API 封装 Tantivy 索引，该 API 实现了两个操作： <code class="language-plaintext highlighter-rouge">search</code> 和 <code class="language-plaintext highlighter-rouge">read</code> 。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">queries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SearchResult</span><span class="p">]:</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">document_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+    <span class="k">pass</span>
+</code></pre></div></div>
+
+<p><strong>此 API 将搜索与读取分离。</strong> 这一点很重要，因为如果强制 AI 读取它搜索到的每一篇文档，上下文窗口很快就会被不相关或重复的文档填满。相反，对于每次搜索，我们会得到一个搜索结果列表（就像谷歌搜索页面一样），并将其提供给 AI。然后，AI 可以决定它实际想要“点击”并读取其中哪些文档（如果有的话）。</p>
+
+<p>你还会注意到， <code class="language-plaintext highlighter-rouge">queries</code> 是一个列表。我们的搜索索引允许多个查询，并融合结果。这意味着你可以提供 5 个、10 个或 100 个查询，但仍然只会得到一个搜索结果页面。每个查询都是单独运行的，然后会使用像 <a href="https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion">Reciprocal Rank Fusion</a> 这样的算法，根据每个文档在所有查询中的排名高低，将所有 5 个、10 个或 100 个页面 “融合” 成 1 个搜索结果页面。允许模型像这样 “随意抛洒” 查询可以提高召回率，因为这增加了至少有一个查询包含命中所需文档的关键字的机会。</p>
+
+<h2 id="第3部分---工具">第3部分 - 工具</h2>
+
+<p>人工智能模型可以编写 Python 代码，所以它们本可以使用这个搜索索引，但执行由语言模型生成的任意代码被认为是有害的，所以通常会使用“工具”抽象，这使得人工智能能够调用非常特定的函数，而不能调用其他函数。在我们的例子中，上面的 <code class="language-plaintext highlighter-rouge">search</code> 和 <code class="language-plaintext highlighter-rouge">read</code> 函数分别被转换成人工智能能理解的形式，并与请求一起传递给模型。</p>
+
+<p>实现这一点的一种方法是使用 <em>工具</em> ，这是一种抽象概念，其中每个函数都有一个 JSON 模式来解释如何使用它。这个工具列表会直接传递给模型。另一种方法是使用 MCP 服务器，它现在似乎很流行。MCP（模型上下文协议）服务器类似于 API 服务器，但专门为人工智能使用工具而设计。OpenAI、Anthropic 和谷歌都在某种程度上支持 MCP 集成。我们使用 <a href="https://github.com/jlowin/fastmcp">FastMCP</a> 将工具转换为服务器。</p>
+
+<p>使用 MCP 时，你只需提供有关服务器的信息。我仍然不完全相信这种额外的抽象是值得的。MCP 部署有点脆弱且不直观，并且提供程序集成可能不稳定（缺少一个尾随斜杠可能会使服务器无法正常工作！）</p>
+
+<p>关于多个索引的一点说明：如果你需要你的搜索代理能够查阅大量来源，我发现将每个来源作为一个单独的索引来处理会很有帮助。例如，一个遗产规划助手应该能够搜索遗嘱检验法规和《国内税收法典》。你 <em>可以</em> 将两者合并到一个语料库中，但这会导致不理想的结果：遗嘱检验文件出现在对《国内税收法典》文件的搜索中，反之亦然。相反，你可以将搜索索引分开，并为模型为每个索引提供单独的工具。让人工智能决定它想要搜索哪个语料库——如果你的工具描述足够详细，它通常足够聪明能够弄清楚。</p>
+
+<h2 id="第4部分---搜索代理">第4部分 - 搜索代理</h2>
+
+<p>构建一个搜索智能体，你只需要一个语料库、一个搜索索引和一些工具。剩下的就是告诉人工智能它需要完成什么任务，向模型提供工具，并循环调用模型。每个搜索查询都会产生一个结果页面，每次读取文档的请求都会将这些文档直接放入模型的上下文中。搜索和读取以循环方式进行，直到模型确定它已经读取了足够多的内容，并在不使用任何工具的情况下生成最终答案。</p>
+
+<p>使用 MCP 服务器时，模型提供商会为你处理这个循环。如果你要传递工具，那么你必须自己将每个工具的结果发送回模型。不管怎样，这个搜索和读取的循环最终产生一个答案，这就是一个搜索智能体！我们完成了。</p>
+
+<h2 id="为什么你的搜索代理不使用嵌入">为什么你的搜索代理不使用嵌入？</h2>
+
+<p>密集嵌入并没有什么问题。一个真正的先进搜索系统可能应该使用它们。但它们有严重的弱点，并且会带来开销。对于长文档，嵌入效果会变差，而许多实际任务（包括我们感兴趣的那些）都需要长文档。这意味着使用嵌入要么会带来性能损失，要么就得把文档拆分成非常小的片段（“分块”）。无论如何，非常长的文档都必须分块，但将块限制在500 - 1000字是很苛刻的——这使得在文档的“节点”处进行分割变得更加困难。</p>
+
+<p>将全文搜索与嵌入相结合也会增加排名融合的开销。现在你不仅要跨不同查询进行融合，还要跨两种搜索模式（关键字搜索和神经搜索）进行融合，并且需要调整分配给每种模式的权重。使用密集嵌入还需要进行 LLM 推理，这对 CPU 要求很高，可能不适合在你的 Web 服务器上运行。老实说，Tantivy 也不适合，但 Transformer 推理几乎肯定更糟糕。总体而言，这需要一个更复杂的架构。</p>
+
+<p>关于嵌入的观点是，如果文档在语义上相似，那么即使确切的关键词不匹配，嵌入也能让文档实现匹配。我认为这对智能体搜索来说没那么重要。如果是人类在搜索，并且想用一个写得很差的查询立即得到一个好结果，仅靠全文搜索是不行的。但当一个智能体在搜索时：</p>
+
+<ul>
+  <li>它可以一次编写大量查询（我们通过多查询搜索来利用这一点）</li>
+  <li>它可以编写更长、更详尽的查询语句（涵盖更多同义词和关键词）</li>
+  <li>当它的初始查询不起作用时，它可以再次尝试</li>
+</ul>
+
+<p>如果说有什么不同的话，那么对于人工智能模型而言，全文搜索是比黑箱搜索引擎更强大的原语，因为查询和结果之间的关系是可预测的，而不是基于直觉的。我知道如果在查询中输入“披萨”这个词，我会得到其中包含“披萨”一词的文档。相比之下，黑箱搜索 API 是模型必须即时学习如何使用的东西（“我是输入意大利辣香肠还是达美乐？在直觉空间中哪个最接近我想要的？”）</p>
+
+<h2 id="结论">结论</h2>
+
+<p>如果你有任何意见或问题，请在推特上找我（@andersonbcdefg）。通常在这部分我会说如果这类内容让你感兴趣就加入我们，或者请你使用我们的产品，但我们目前不招人，也不想向开发者推销产品，所以……就这些。感谢阅读！</p>
+
+<hr />
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

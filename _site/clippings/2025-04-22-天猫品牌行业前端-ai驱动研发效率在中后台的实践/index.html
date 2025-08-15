@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI驱动研发效率在中后台的实践</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">AI驱动研发效率在中后台的实践</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">AI驱动研发效率在中后台的实践</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> 天猫品牌行业前端</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-22</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://mp.weixin.qq.com/s?__biz=MzAxNDEwNjk5OQ==&mid=2650539800&idx=1&sn=45a92ab85bd456648d75977a0dddf4d8&subscene=0" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p>原创 天猫品牌行业前端 <em>2025年04月18日 16:15</em></p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/33P2FdAnju8wR6tAicOeT6zeXrYH5MAzz2tSeQeje01Wib7IrWTbaIDF3I7NiaH4wV9FNQqiaQTiawcriaQtZjF3pAbg/640?wx_fmt=gif&amp;wxfrom=5&amp;wx_lazy=1&amp;tp=webp" alt="图片" /></p>
+
+<p>本文探讨了AI驱动的中后台前端研发实践， 涵盖设计出码、接口定义转换、代码拟合、自动化测试等多个环节，通过具体案例展示了AI技术如何优化研发流程并提升效率。特别是在UI代码编写和接口联调阶段，并提出了设计出码（Design to Code）、接口定义到数据模型转换、代码拟合与调整、自动化测试回归等解决方案。同时，介绍了基于大语言模型的私有组件支持、RAG方案以及AI辅助的Code Review工具。最后，文章总结了试点结果，展示了AI在中后台场景下的应用效果，并展望了未来AI在研发流程中的深度整合与发展方向。</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnju9ktXcOebovS1SbeNE5Nc6ROCUABskFSIhpDnV6snAu0BaEwUuywlUnf5dkQLtKUpwOmg9WlYwOWw/640?wx_fmt=other&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&amp;tp=webp" alt="图片" /></p>
+
+<p>背景</p>
+
+<blockquote>
+  <p>除了日常的研发辅助类的工具（如：Cursor，Copilot类产品）以外，希望能针对业务特色的痛点和专属场景，在现有流程上进行定制，不仅仅是辅助编码，更是的研发模式的升级和和扩展。以下是天猫品牌行业前端团队在FY25财年阶段的一些思考，推导和实践和结果。本文没有复杂晦涩的概念架构图，更多是一些具体落地实操的细节实践分享，欢迎大家一起讨论交流。</p>
+</blockquote>
+
+<p>从Anthropic今年2月发布的AI经济分析报告中可以看到，现阶段对社会各行各业来说，AI影响最大的仍然是计算软件和编程相关领域。在Claude中的所有对话中占比达到了37%，而在编程领域中，前端结合AI的空间是非常大的，因为业务前端是以一个个页面的形态交付，每个APP之间比较独立，不像后端应用中有着复杂的依赖的调用关系，更加适合AI去创作和理解。</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuibtTBDB96EIdhT3fe5R4wibCMiclX4go6ITeHmxYps4oSqJxWcG3V85nvyERLWUHK2MXevA7Krjg72Q/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>对于研发提效整体的思路是：在研发流程的各个阶段将问题进行拆解，在不同的流程中融入AI Agent能力进行研发节点的提效。在实践的过程中，沉淀产品化的能力，并最终落地形成AI驱动中后台研发解决方案。</p>
+
+<p><strong>▐</strong> <strong>效率问题分析</strong></p>
+
+<p>一个产品需求迭代从流程上我们一般从大的阶段上分为以下几个阶段：</p>
+
+<p>需求评估 -&gt; 研发 -&gt; 联调 -&gt; 测试 -&gt; 交付。</p>
+
+<p>从研发开始的流程再往下细分，不同的BU，不同的业务线由于使用的技术栈会存在部分的差异，以岗位的视角来看，一般可前端和后端可以拆分成以下几个流程：</p>
+
+<ul>
+  <li>后端研发流程： PRD -&gt; UI -&gt; 技术评审/接口设计 -&gt; 变更 -&gt; 代码开发 -&gt; 网关注册 -&gt; 联调修改 -&gt; 线上发布</li>
+  <li><strong>前端研发流程：PRD -&gt; UI -&gt; 技术评审/接口设计 -&gt; 创建应用/变更 -&gt; 开发 -&gt; 联调 -&gt; 线上发布</strong></li>
+</ul>
+
+<p>我们统计了团队内部的同学在一线业务需求研发的过程中，研发流程各个阶段的耗时比例，统计的方式主要是通过一线开发同学的主观反馈，因为一个需求研发过程并不是连贯的，大部分的同学手里同时都在做多个需求，并且也会由于各种客观原因，比如需求发生调整，业务以来信息还没有准备完成，人员抽调等等，很难进行精确的时效统计。</p>
+
+<p>研发流程的耗时分布统计：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuibtTBDB96EIdhT3fe5R4wibCbYDGH3TH2XibpQicsowjgG4fReibOric6sELklj67lOkCDDF6TymHnFCNQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>（注：联调阶段包含联调的接口业务逻辑编写和调试，代码编写特指设计稿到前端交互代码的编码阶段）</p>
+
+<p>从上述的阶段分析来看， <strong>对于研发效率主要能提升的节点在于UI代码编写和接口连调阶段。</strong></p>
+
+<p>到具体的反馈来看，联调的耗时问题的集中在：</p>
+
+<ul>
+  <li>需求频繁变动：需求变更频繁，前后端需要快速响应调整，这对双方的沟通效率和代码灵活性提出了更高要求。</li>
+  <li>文档滞后与不准确：接口文档常常无法及时更新或描述不够准确，导致前后端开发人员依据过时或错误的信息进行开发。</li>
+</ul>
+
+<p>接下来主要围绕这2个场景介绍一下我们在提效过程中的一些方案设计推导和实践。</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnju9ktXcOebovS1SbeNE5Nc6RVPNickIRicCdiaQ2bxameAK3wOHnQ93hVCqPO1FtrQiaBNSfhN2xp8tFoA/640?wx_fmt=other&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&amp;tp=webp" alt="图片" /></p>
+
+<p>实践推导</p>
+
+<p><strong>▐</strong> <strong>设计出码(Design to Code)</strong></p>
+
+<p>在设计出码的这个链路中，已经有很多的同类型的产品，有的产品会选择DSL的转化路线，比如Figma/mgdone的砖码插件，支付宝的WeaveFox，还有大部分低代码平台，虽然 通过DSL中间层实现代码生成，相较于普通AI直出代码，优势在于程序化解析保障稳定性（防错机制）和统一DSL支撑跨语言协同。</p>
+
+<p>我们选择了AI直出代码的方案，主要考虑到几下几点：</p>
+
+<ul>
+  <li>DSL大部分是各个平台私有化的定制，缺少统一的标准化，对于模型学习的语料不足，或者说需要进行一定的预训练，而前端代码，无论是React/Vue都有海量的公共学习语料，随着模型的学习数据和理解力的不断提升，完全能达到初/中级前端程序员的编码能力。</li>
+  <li>面向B端以中后台为主的页面和面向C端以导购营销为主的页面存在较大的差别，C端页面会存在各种营销氛围的叠加，一个商品坑位存在好几层的图层堆叠，使用DSL转换辅助可以保障AI出码的稳定性，但是 <strong>中后台的场景更偏功能性，每个区块分布都比较独立，使用最新的Anthropic Claude Sonnet3.7模型出码已经能以较高的还原度满足开发诉求</strong> ，以下是一个中后台的例子：</li>
+</ul>
+
+<p>设计稿：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuibtTBDB96EIdhT3fe5R4wibCmNVm3XYdK0c6uZcBHMPI5Vtw7OY1X1fAjEx98hLEsVicCZWqv6Sx0PA/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>AI出码的实现：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuibtTBDB96EIdhT3fe5R4wibC5hSa5h7hqqdicL2L2r1icDtINV7FuGNPjLMSKTOdEwpjRibbJK3vFQovg/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<ul>
+  <li>
+    <h3 id="模型选择和提示词">模型选择和提示词</h3>
+  </li>
+</ul>
+
+<h4 id="1-claude-37-sonnet">1. Claude 3.7 Sonnet</h4>
+
+<p>在模型的选择方面，Claude 3.7 sonnet V2 在代码方面的能力毋庸置疑，已经甩开了与OpenAI主流模型的差距,新版本在 主动编码和工具使用方面有明显进步。</p>
+
+<p>在编码测试中，它将SWE-bench Verified的表现从33.4%提高到了49.0%，超过了所有公开的模型，不仅包括OpenAI o1-preview这样的推理模型，还有专为主动编码设计的系统。</p>
+
+<p><strong>在我们内部的测试中，面向前端开发，无论是面向UI出码还是后续的代码拟合过程中，</strong> <strong>Claude 3.7 sonnet 在横向的多种模型对比下均表现出最佳的代码生成能力，问题解决能力，架构设计能力</strong> 。以下是 Anthropic官方在2025年2月25日发布的最新评分：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuibtTBDB96EIdhT3fe5R4wibC8qJ7vVuibrzOh05biaH5QR0CtrLsgUQvoz1HPtSohF2ZMhZb2XAGI8Og/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuibtTBDB96EIdhT3fe5R4wibCNOQKOIxzFCibxyICmJWgWor4nYiaWH9vhwqN8vZiaiaSx4lCcQckV7RqibA/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>附上目前主流的几个模型横向能力的对比：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>模型</th>
+      <th>上下文窗口</th>
+      <th>多模态</th>
+      <th>训练数据截止</th>
+      <th>D2C编码测试</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GPT-4o</td>
+      <td>128k tokens</td>
+      <td>支持</td>
+      <td>2023-10</td>
+      <td>优秀</td>
+    </tr>
+    <tr>
+      <td>Claude 3.7 Sonnet</td>
+      <td>200 tokens</td>
+      <td>支持</td>
+      <td>2025-02</td>
+      <td>非常优秀</td>
+    </tr>
+    <tr>
+      <td>Gemini 1.5 Pro</td>
+      <td>128k tokens</td>
+      <td>支持</td>
+      <td>2024-06</td>
+      <td>优秀</td>
+    </tr>
+    <tr>
+      <td>Qwen2.5-Coder</td>
+      <td>32 tokens</td>
+      <td>不支持</td>
+      <td>2024-02</td>
+      <td>优秀</td>
+    </tr>
+    <tr>
+      <td>DeepSeek-R1</td>
+      <td>128k tokens</td>
+      <td>不支持</td>
+      <td>2024-05</td>
+      <td>优秀</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>模型计费的横向数据对比：<br />
+<img src="https://mmbiz.qpic.cn/mmbiz_jpg/33P2FdAnjuibtTBDB96EIdhT3fe5R4wibC7JLMFn6fFG0sgJp7ic36iayYS4tYVux9FtDmZ6bP4UmccRh3vCic8tNFQ/640?wx_fmt=other&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<h4 id="2-提示词编写">2. 提示词编写</h4>
+
+<p>关于D2C出码提示词的编写，业内有很多的参考，比如：</p>
+
+<p>cline提示词： https://github.com/cline/cline/blob/main/src/core/prompts/system.ts</p>
+
+<p>bolt.new提示词： https://github.com/stackblitz/bolt.new/blob/main/app/lib/.server/llm/prompts.ts</p>
+
+<p>整体的思路都是比较类似的，大致的范式就是：角定定义(role)，系统约束(constraints)，还有具体的示例（few-shot）。</p>
+
+<p>角定定义和技能相关上的描述基本比较通用，比如“你的知识覆盖了各种编程语言、框架和最佳实践，特别注重React和现代Web开发。”，“具有React组件和Hooks的深度开发经验。”，“能够熟练的使用 Fusion(@alifd/next) 组件库进行页面的还原。”</p>
+
+<p>系统约束由于不同业务场景的不同需要，一般是由业务团队自己进行定制，</p>
+
+<ul>
+  <li>明确性：eact组件代码块仅支持一个文件，没有文件系统。用户不会为不同文件编写多个代码块，也不会在多个文件中编写代码。用户的习惯总是内联所有代码。</li>
+  <li>约束性：所有的时间格式处理请都使用原生的 js 代码实现，不要使用任何时间处理库。</li>
+  <li>场景化：不会为组件或库使用动态导入或懒加载。例如，`const Confetti = dynamic(…)`是不允许的。请使用`import Confetti from ‘react-confetti’`。</li>
+</ul>
+
+<p>也可以包含一些通用的限制，例如：</p>
+
+<p>1. 避免使用 iframe、视频或其他媒体，因为它们不会在预览中正确渲染。</p>
+
+<p>2. 不会输出`<svg>\`图标。总是使用 \`@alifd/next\` 库中的Icon的图标。</svg></p>
+
+<p>以下是我们prompt的一个案例：</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;role&gt;</span>  你是一个高级前端开发工程师。基于用户提供的组件描述，请生成一个React Fusion组件代码块。请使用中文回答。<span class="nt">&lt;/role&gt;</span>
+<span class="nt">&lt;skills&gt;</span>  1. 你能够熟练的使用 Fusion(@alifd/next) 组件库进行页面的还原。   2. 你能够熟练的使用 bizcharts  图表库进行图表的可视化展示。图表库的导入方式类似\`import {AreaChart} from 'bizcharts'\`; 3. 注意field 是要用Field.useField()<span class="nt">&lt;/skills&gt;</span>
+<span class="nt">&lt;constraints&gt;</span>使用\`\`\`tsx 语法来返回 React 代码块。
+<span class="nt">&lt;engineering-constraints&gt;</span>  1. React组件代码块仅支持一个文件，没有文件系统。用户不会为不同文件编写多个代码块，也不会在多个文件中编写代码。用户的习惯总是内联所有代码。  2. 必须导出一个名为"Component"的函数作为默认导出。   3. 你总是需要返回完整的代码片段，可以直接复制并粘贴到项目工程中执行。不要包含用户补充的注释。  4. 代码返回格式需要参考给出的示例代码   ......  10. tsx block请务必在第一个返回，后面讲思考过程和解释。  11. 请注意UI的布局、颜色、主要按钮等信息，保证和图像中的结构和布局一致。  12. 按照 <span class="nt">&lt;data-define&gt;&lt;/data-define&gt;</span>中的数据、hooks定义构建符合字段含义的数据。<span class="nt">&lt;/engineering-constraints&gt;</span>
+<span class="nt">&lt;attention&gt;</span>1. form用法中应该用Field.useField() 而不是Form.useForm，更要注意Rol Col用法和props2. pay attention on fusion components. 如果不确定有没有对应组件请用div实现3. 请注意严格按照图片中的逻辑、描述进行还原......<span class="nt">&lt;/attention&gt;</span>
+<span class="nt">&lt;style-constraints&gt;</span>  1. 总是尝试使用 @alifd/next 库，在 @alifd/next 不满足的情况下才通过 div 和 style 属性生成。  2. 必须生成响应式设计，生成的代码移动端优先。 ......<span class="nt">&lt;/style-constraints&gt;</span>
+<span class="nt">&lt;/constraints&gt;</span>
+<span class="nt">&lt;good-examples&gt;</span>......<span class="nt">&lt;/good-examples&gt;</span>
+<span class="nt">&lt;bad-examples&gt;</span>......<span class="nt">&lt;/bad-examples&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>私有化组件支持</li>
+</ul>
+
+<p>对于AI出码来说，除了设计稿的准确还原以外，另一部分很重要的是如何把团队的私有的物料组件结合到生成的代码中。</p>
+
+<p>使用业务私有组件的主要原因包括：</p>
+
+<ul>
+  <li>设计资产复用 ：将团队沉淀的业务组件（如审批流表单、数据看板卡片）转化为AI可识别的设计资产，避免重复造轮子</li>
+  <li>代码规范统一： 通过私有组件约束代码生成边界，保证AI输出符合企业级代码规范（如数据校验规则、埋点标准）</li>
+</ul>
+
+<p>在AI出码的流程实现融入私有化组件的大致流程如下：</p>
+
+<p>1. 将设计元素与私有组件库特征进行向量化匹配</p>
+
+<p>2. 动态注入组件使用规范、业务逻辑约束等上下文</p>
+
+<p>3. 生成符合企业标准的定制化代码</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31q5x4N9yV5TtibI91VhdpiaH9u6phhIoJJBLDypfbHjygvMnFvc8icnz3NA/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>1.组件文档的生成</p>
+
+<p>目前的大语言模型AI的能力，尤其是近期不断更新的reasoning推理型大模型，将私有组件的源代码转换成标准化的组件文档非常的轻松，仅需要编写一段清晰的prompt并且给几个具体的example案例，模型就可以生成非常高标准高质量的markdown格式组件文档。</p>
+
+<p>关注提示词编写的注意事项在上文D2C提示词编写已经说明过了，这里直接给出具体的prompt案例：</p>
+
+<p>以下是一个完整组件文档的示例：</p>
+
+<p>2. RAG的方案</p>
+
+<p>关于RAG相关的基础背景知识在这里就不详细展开了，外网上可以搜到大量相关的介绍的文章。在使用RAG方案使用私有组件进行出码分为索引(Index)部分和查询(Query)2个阶段：</p>
+
+<p>在索引阶段：</p>
+
+<ol>
+  <li>知识文档的准备：收集和准备组件的文档，这里的文档可以是上文中通过AI生成的文档，也可以是类似Fusion Design之类的一些外网知识信息偏少的公共组件文档。</li>
+  <li>文本块拆分：对于私有组件而言，一般来说一个组件就是一个md文档，不需要在额外进行拆分。</li>
+  <li>嵌入模型：通过LamaIndex等服务将文本块转换为向量表示并存储在向量数据库中。</li>
+</ol>
+
+<p>在查询阶段:</p>
+
+<ol>
+  <li>接收查询请求：在发起模型请求阶段判断当前的出码流程是否需要进行私有组件的召回。</li>
+  <li>查询处理并检索：按设计稿进行拆分准备检索私有组件文档，如果图像识别不够准确的话可以配以文字的描述</li>
+  <li>生成回答：根据检索到的文档信息中的组件API和使用说明生成回答（代码）。</li>
+</ol>
+
+<p>RAG整体流程的示意图：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qHTEGFqYAmsGjsiaM9GE3xr9c3enhicqR6sLDDqQFTMBAUsr6nkwmXXnQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>实现RAG也有比较多的方式，主要常见的包括以下几种：</p>
+
+<p>通过LlamaIndex 类的RAG框架从0自己搭建</p>
+
+<p>LlamaIndexTS 是一个面向 TypeScript/JavaScript 生态的检索增强生成（RAG）框架，专为构建私有化知识索引与智能查询系统设计。其核心目标是通过高效的索引结构，将企业私有数据（如组件库、业务文档、设计规范）与大型语言模型（LLM）结合，实现精准的语义检索与上下文增强生成。</p>
+
+<p>知识库构建示例代码：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 加载私有组件文档const componentDocs = await new ComponentDocLoader({  repoPath: './src/components',  metadataExtractor: (code) =&gt; ({    props: extractComponentProps(code),    usage: extractUsageExamples(code)  })}).load();</span>
+<span class="c1">// 创建专用索引const componentIndex = await VectorStoreIndex.fromDocuments(componentDocs, {  embedModel: new ComponentEmbeddingModel()});</span>
+</code></pre></div></div>
+
+<p>检索示例代码：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">需要一个带校验功能的表单输入框</span><span class="dl">"</span><span class="p">;</span><span class="kd">const</span> <span class="nx">results</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">componentIndex</span><span class="p">.</span><span class="nx">asRetriever</span><span class="p">().</span><span class="nx">retrieve</span><span class="p">({</span>  <span class="nx">query</span><span class="p">,</span>  <span class="na">filters</span><span class="p">:</span> <span class="p">{</span>    <span class="na">componentType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">FormInput</span><span class="dl">'</span><span class="p">,</span>    <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&gt;=2.3.0</span><span class="dl">'</span>  <span class="p">}});</span>
+<span class="c1">// 生成代码上下文const context = results.map(r =&gt; r.node.getContent());const prompt = buildCodeGenPrompt(query, context);const code = await llm.generate(prompt);</span>
+</code></pre></div></div>
+
+<p>自建RAG服务的场景主要适合对知识库的分拆算法，召回逻辑自定义要求比较高的，并且本身有一定的基础研发能力的团队，涉及到的服务能力，向量数据库的维护，尤其是AI基建越来越完善的当下， <strong>一般来说不是特别推荐</strong> 。</p>
+
+<p><strong>通过Dify等的AI agent平台搭建流程</strong></p>
+
+<p>除了通过LamaIndex，LangChain等开发框架进行私有化部署以外，也可以集成化的AI服务平台，从知识库的管理，Prompt的调优，Agent的流程设计实现都可以一站式的完成。</p>
+
+<p>以集团的AI studio为例，首先在Workspace中先创建一个知识库</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qgtDsmAtx8RoQrXt8ErebmJibicYKPZ6sRtK1RoVt8SMgoxx2VY4Gsf8w/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>支持通过语雀文档或者是本地pdf，markdown等常用格式进行知识库内容的上传</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qr5AHVOicABnE4UvrU06ibV54XDAQlrDDg1pL9RQlCLX5yibKSZUWc6H4w/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>创建一个流程编排Agent,将输入的图片，预制的prompt连接到对应的知识库上，完成整个流程的串联。最后根据这个agent流程在workspace中进行测试和调优，就完成了整个服务的搭建，非常的便捷。</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qzjFIFCFkmevebZ20Y8wDy1lLicKrR5tic2ds2NtIEQkWmRHfj2ibg7OHA/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>RAG的方案最大的问题在于召回的匹配度，由于输入的信息是图片，大模型根据图像识别的理解需要能够准确的理解需求，并根据语意相似度匹配上对应的私有化组件，这个会存在一定的召回失败的概率。</p>
+
+<p><strong>所以在文档上需要有详细的应用场景和对应的案例，或者是通过类似CopyCoder的方案在前置进行一次图片转文字Prompt的解析，帮助更精准的召回。</strong></p>
+
+<p><strong>在私有化组件数量不大的情况下，不考虑输入token的成本，除了rag的方案，也可以直接将所有的私有化组件文档通过js脚本进行组合成一个大的语料集合输入给生码的prompt中</strong> 。现在的大模型对于token的输入限制已经达到了百万级别，对于私有组件不多场景，少了RAG的召回步骤，应用效果是比较好的。</p>
+
+<p>虽然RAG是比较通用的解决方案，但是由于大部分的用户缺乏专业性，会导致在切片和检索的时候没有办法进行非常精准的匹配导致效果不佳。当然本身RAG的方案也在不断的进步，除了传统的文字embeding模式，现在也有类似Graph RAG， DeepSearcher等新的RAG架构，不断的能提升召回的准确率。</p>
+
+<ul>
+  <li>
+    <h3 id="业务案例">业务案例</h3>
+  </li>
+</ul>
+
+<p>以下是我们在业务实际场景中的几个案例：</p>
+
+<h4 id="1-基于fusion组件">1. 基于Fusion组件</h4>
+
+<p>在中后台的业务场景中，表单和表格的场景占了大头的部分。以服务供应链业务的创建服务为例，整个流程是由多个表单串联，每个表单涉及到不同的交互布局，组件之间的联动，通过AI D2C出码能大幅度提升编码的效率，以下是表单场景的一次出码案例：</p>
+
+<p>原始视觉截图：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31q1zN5phnZpTkUyicGxJmryFWIKV47XVSYf5DpzJwP2P58elugDfNNMzg/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>一次D2C出码效果：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qT1P220OYt9804NgHXux2kicOdia3Qibq9n2ChqmbJYnZvpBz1IDIPxJDw/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>可以看到整体框架是比较符合预期的，但是也有些细节需要进行调整，总的来说对比从0开始手写，真正需要人工参与的部分不足20%。</p>
+
+<h4 id="2-基于私有组件">2. 基于私有组件</h4>
+
+<p>这里的例子是行业解决方案，基于各能力平台构建的解决供应链特定业务问题，面向商家、消费者、小二的体系化解题方法，定义粒度一般为一个业务专项，面向前端开发有多套风格主题类似的portal首页。</p>
+
+<p>传统的做法是先拆解小的ui组件，最后把整个portal抽象成一个大组件模块，通过props参数传递实现不同解决方案的UI层差异化表达。这里就会涉及到设计平衡的问题： <strong>如果组件抽象封装程度过高，导致内部实现和使用复杂，不断需要增加差异化的定制点；如果只是封装小的UI片段，对效率的提升不够明显。</strong></p>
+
+<p>通过AI D2C出码的方式可以实现在保持组件灵活度的同时，实现效率的大幅度提升。</p>
+
+<p>设计稿原始截图：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qtSIHDdm0eUK4UvgCxiaawibKZmnV5eCFicibkzIBvXXX2p7Ww7YzGFAMoQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>一次AI出码效果： <img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qEsCLpKHvqkqtTzYOicvtbELZsNHabLCibRmBpz0MTz9qQQ04cDKVnF8Q/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>与上文类似，整体框架是符合预期。目前一次出码的受制于模型的理解力，会存在一些随机性的因素，如果很小的话可以直接手动改下，比较大的话可以通过持续chat优化或者选择再出一次。</p>
+
+<p>当然随着大模型在coding和多模态理解方面的不断提升，尤其是最新发布的Claude3.7模型在web编程能力上已经达到了非常高的水准，未来一次出码的效果也会越来越好。</p>
+
+<p><strong>▐</strong> <strong>接 口定义到数据模型</strong></p>
+
+<p>从前后端连调的视角最核心需要解决的问题是定义清楚接口的交付字段，通常来说后端会编写一份连调接口文档，然后根据这份文档约定进行前后端的业务代码编写。理想是美好的，但是在实际的研发过程中会有各种协同上的问题，如：</p>
+
+<ul>
+  <li>文档信息不完备， 接口相关的内容信息存在缺失。例如：缺少接口返回response对象最外层Wrapper的结构，导致前端调用出现空指针。</li>
+  <li>接口定义频繁的进行变更， 后端在技术方案设计到最终实现的过程中，经常会出现一些内部逻辑或者细节的调整，有可能是出现技术方案上没有考虑到的情况，也有可能是产品需求发生变更。有时是在连调的过程中，有时甚至有的时候是在发布前的CodeReview阶段，不仅存在安全隐患，也导致前端对接的成本随之上升。</li>
+  <li>交付方式不规范 ，由于人员的流动等影响，部分业务外包开发缺少在协同过程中的一些规范，经常会有直接把接口信息扔到钉钉聊天中就觉得完成交付，可能是出于觉得编写文档这个过程过于麻烦。</li>
+</ul>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qEzGmvDm19jdIqtmnleVmmCCKKNnHPfqOMic0MxK61AvDaWddLScWoVw/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>我们希望借助AI的能力，把接口定义到前端代码生成的过程标准化，对于后端，不需要花时间和精力去编写/维护接口文档，对于前端，在获取到接口定义的时候，自动转换成实体模型及相关请求hooks，减少时间去编写重复性的代码。</p>
+
+<p>整体的技术方案思路大致如下：</p>
+
+<ul>
+  <li>通过不同途径（技术文档/PRD/mock平台）的接口定义的语料输入，经由带CoT的推理模型进行思考解析出标准化的OpenAPI schema协议，作为前后端对接的凭证。</li>
+  <li>OpenAPI schema 3.0 规范可以参考：https://spec.openapis.org/oas/v3.0.3.html</li>
+  <li>根据得到的接口OpenAPI schema，生成对应的接口相关前端代码，model,service,hooks等。</li>
+  <li>如果需要，也可以通过工程化的链路，推送到对应的网关进行接口的注册（Mtop，IDD网关）。</li>
+</ul>
+
+<p>链路框架如下图所示：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qKp8eicKF9ib9rVmvZqCqDP6hib0OKyRSiaJweibn5pkmHen8blBejeWroCQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+<ul>
+  <li>获取OpenAPI 3.0 Schema</li>
+</ul>
+
+<p>将接口定义的转换成Open API Schema的语料有很多种，目前我们常见支持的包括以下几种方式：</p>
+
+<p>1. 通过Java Interface或接口文档获取接口定义</p>
+
+<p>服务端对接前端的接口如果是http的，那么一般是在Spring MVP的Controller层。如果是通过MTOP等网关形式提供的,那么接口的定义一般是在client或者api包下的Facade Service中。</p>
+
+<p>所以只要可以拿到后端应用中的controller或者是interface的代码，那么就可以通过让模型去理解接口的字段定义并转换成OpenAPI schema。</p>
+
+<p>目前我们提供了一个管理页面，服务端开发可以在管理页面上粘贴本次迭代变更相关的接口代码或者是技术文档，只要能包含全量的信息即可，存在部分的冗余也没有关系。（这一步后续也可以集成到git webhooks或者终端的指令上，智能去分析仓库中相关涉及这次变更的代码和实体模型）。</p>
+
+<p>如图是一个二方HSF的Java Interface的源码</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qczngtJaClHnskK4aHzDQJZ8yUbhpSicw3ibaB6KQmFWiahOA61BXXMQTw/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>提交后由CoT推理大模型进行分析，提取关键的函数名和签名参数信息</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qX2dQiayIhdiaLwmKAT5twdGS4kwLqgOYw331DUibLmX7RQqSWnhz3Ixyw/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /> <img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qFl2gHRI1Qw6AyHWUPf2mEEQKuvwcOtKbyzxuBBwXuo7WcxrQzkxnRA/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>最后以OpenAPI Schema的格式进行输出</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qVYzZgbWWPKP5LqKic5ict37hYd6ibS6Uew62h9KP6C5ELqxtdbibvZT2TQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>这种方式的普适性比较广，但是准确率相对偏低一点，一方面是目前的大模型无法避免的幻觉问题，另一方式则是部分的手动复制的时候可能会遗漏部分的必要信息，可以在左边的OpenAPI的可视化编辑器内进行二次的修改。</p>
+
+<h4 id="2-通过swagger插件获取接口定义">2. 通过Swagger插件获取接口定义</h4>
+
+<p>第二种方式是通过安装Swagger插件，在项目中引入springfox-swagger2的依赖，并初始化配置类，具体的接入方式和demo可以参考SpringFox的官方站点介绍： https://springfox.github.io/springfox/</p>
+
+<p>在maven中引入的配置包括：</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--swagger2--&gt;</span>            <span class="nt">&lt;dependency&gt;</span>                <span class="nt">&lt;groupId&gt;</span>io.springfox<span class="nt">&lt;/groupId&gt;</span>                <span class="nt">&lt;artifactId&gt;</span>springfox-swagger2<span class="nt">&lt;/artifactId&gt;</span>                <span class="nt">&lt;version&gt;</span>2.8.0<span class="nt">&lt;/version&gt;</span>            <span class="nt">&lt;/dependency&gt;</span>            <span class="nt">&lt;dependency&gt;</span>                <span class="nt">&lt;groupId&gt;</span>io.springfox<span class="nt">&lt;/groupId&gt;</span>                <span class="nt">&lt;artifactId&gt;</span>springfox-swagger-ui<span class="nt">&lt;/artifactId&gt;</span>                <span class="nt">&lt;version&gt;</span>2.8.0<span class="nt">&lt;/version&gt;</span>            <span class="nt">&lt;/dependency&gt;</span>            <span class="nt">&lt;dependency&gt;</span>                <span class="nt">&lt;groupId&gt;</span>com.github.xiaoymin<span class="nt">&lt;/groupId&gt;</span>                <span class="nt">&lt;artifactId&gt;</span>swagger-bootstrap-ui<span class="nt">&lt;/artifactId&gt;</span>                <span class="nt">&lt;version&gt;</span>1.9.6<span class="nt">&lt;/version&gt;</span>            <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>完成接入后，可以通过在代码中添加注释的就就可以自动生成swagger-ui ，并在本地的web页面中可以直接复制出OpenAPI Schema</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qE3VOwMd1AdwGMW4y36XXnCicmk93FGgTtrgjtDMiaQ1TPpQ68m8O6AhA/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<h4 id="3-通过网关获取接口定义">3. 通过网关获取接口定义</h4>
+
+<p>第三种方式是通过服务端注册网关，天猫品牌行业这边中后台页面接口有统一的网关服务用于管理：服务注册，稳定性流量的监控，生成http服务等。使用网关的研发流程中，服务端开发可以通过提供的Idea插件或者是手动配置的在网关上完成注册。我们在内部和网关团队合作，打通了服务的网关信息并支持完成OpenAPI Schema的转换。</p>
+
+<ul>
+  <li>
+    <h3 id="schema到代码生成注入">schema到代码生成注入</h3>
+  </li>
+</ul>
+
+<p>在拿到接口的详细OpenAPI schema定义后，就可以自动化的生成数据请求所需要的前端相关代码，主要是以下几部分：</p>
+
+<ul>
+  <li>Model：每个接口的Request，Response，DTO都有对应的数据模型的TS定义，类型定义清晰明确，确保代码的健壮性。</li>
+  <li>Service：封装完整的数据请求服务，包括请求路径，类型，参数，异常处理等。（部分的高级组件内部会集成状态管理，只需要把数据请求服务作为参数传入）。</li>
+  <li>Hooks：在Service的基础上进一步集成React状态管理，直接用于可以对接Fusion等UI组件</li>
+  <li>Mock：本地的数据仿真服务，通过faker.js模拟数据，根据环境识别自动切换本地仿真数据请求</li>
+</ul>
+
+<p>除此以外，也可以根据业务的需要注入相关的业务埋点服务,稳定性监控等。具体的模版到代码的生成实现方案可以参考开源社区的优秀工具集，如：Kubb(https://kubb.dev/) 是专为现代 TypeScript 前端工程设计的 OpenAPI 代码生成器，通过解析 OpenAPI 3.x 规范自动生成完整类型安全的 API 客户端代码。</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qa1RAqKBiaVKCaIB8ZGL52ibAnLatY2ymOZFq7ZhyeIricEib908phmZiahw/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /> 以下是一个业务仓库的实际生成情况： <img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qaZjjSWBEJ5880jpSicLicRhalXzCz8MVtILwU6XPtESH8bd9szMKpIkw/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qLUSk4UgFHfH6PmDx9NdztNSdtzP7Ly3P3aONRBmsZic8pg0gibNDA7CQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>所有的自动化代码都放在generate目录下， <strong>一般来说不会推荐修改，因为每次当接口定义发生变化的时候，目录下的内容会重新生成覆盖。</strong></p>
+
+<p><strong>▐</strong> <strong>代码拟合和调整</strong></p>
+<ul>
+  <li>
+    <h3 id="业务代码拟合">业务代码拟合</h3>
+  </li>
+</ul>
+
+<p>以上我们已经获取到了AI生成的UI交互代码和交互数据相关的接口服务，实体模型和react hooks，下一步就是让AI根据仓库下这些的代码素材进行业务逻辑的拟合和拼装。</p>
+
+<p>1. 拟合提示词</p>
+
+<p>prompt的关键提示词：</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 此处省略通用的一些编码要求......你是一个高级前端开发工程师，具有React组件和Hooks的深度开发经验熟练编写和集成自定义 hooks 与组件将用户提供的 React 组件代码与自定义 hooks 整合在一起。偏爱使用${component_lib}组件，如果必要或用户要求，可以使用其他第三方库。</span>
+<span class="p">....</span>
+<span class="err">##</span> <span class="err">注意事项确保整合代码的逻辑流畅和一致性理解用户的主要目标，包括如何整合组件和</span> <span class="n">Hooks</span><span class="err">，确保整合后的代码符合最佳实践。确保</span> <span class="n">Hooks</span> <span class="err">的方法名、引用路径以及类型定义的准确性和一致性。导入</span> <span class="n">hook</span><span class="p">,</span> <span class="n">model</span> <span class="err">的目录路径应该是相对于当前文件的路径，并加上</span> <span class="err">\`</span><span class="n">generate</span><span class="err">\`。最终组件中使用的数据字段应该是根据请求返回的数据定义来的。</span>
+<span class="c1">// 此处省略具体的内容规划，结构格式要求和执行路径......</span>
+</code></pre></div></div>
+
+<p>配以具体的examples示例，由于具体的examples比较长，这里只截取了其中一部分。</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">以下是一些正确的答复示例：</span><span class="p">&lt;</span><span class="n">examples</span><span class="p">&gt;&lt;</span><span class="n">example</span><span class="p">&gt;&lt;</span><span class="n">doc_string</span><span class="p">&gt;</span><span class="err">该示例展示如何组合用户输入的</span><span class="nc">React</span><span class="err">组件，</span><span class="n">hooks</span><span class="err">，</span><span class="n">model</span> <span class="err">定义来渲染所需的</span><span class="nc">UI</span><span class="p">&lt;</span><span class="err">/doc_str</span><span class="k">in</span><span class="err">g</span><span class="p">&gt;&lt;</span><span class="n">user_input</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">user-component</span><span class="p">&gt;</span><span class="k">import</span> <span class="nn">React,</span> <span class="p">{</span> <span class="n">useState</span> <span class="p">}</span> <span class="n">from</span> <span class="err">'</span><span class="n">react</span><span class="err">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nn">{</span>  <span class="nc">Input</span><span class="p">,</span>  <span class="nc">Select</span><span class="p">,</span>  <span class="nc">Button</span><span class="p">,</span>  <span class="nc">Table</span><span class="p">,</span>  <span class="nc">Pagination</span><span class="p">,</span>  <span class="nc">Box</span><span class="p">,</span>  <span class="nc">Grid</span><span class="p">,}</span> <span class="n">from</span> <span class="err">'@</span><span class="n">alifd</span><span class="p">/</span><span class="n">next</span><span class="err">'</span><span class="p">;&lt;</span><span class="n">assistant_response</span><span class="p">&gt;&lt;</span><span class="nc">Thinking</span><span class="p">&gt;</span><span class="err">用户输入的组件是一个列表查询组件，</span> <span class="n">hooks</span><span class="err">是使用结合</span><span class="n">react-query</span><span class="p">,</span> <span class="err">使用</span><span class="n">post</span><span class="err">发送一个请求，获得列表查询的结果。</span> <span class="err">请求的参数是</span> <span class="n">hook</span><span class="err">类型定义\</span><span class="nc">`RequestConfig</span><span class="err">\`</span> <span class="err">的泛型参数\</span><span class="nc">`ListUsingPostMutationRequest</span><span class="err">\`</span><span class="p">,</span> <span class="err">请求返回的结果是</span> <span class="n">hook</span> <span class="err">类型定义的</span> <span class="err">\</span><span class="nc">`ReponseConfig</span><span class="err">\`的泛型参数</span> <span class="err">\</span><span class="nc">`ListUsingPostMutationResponse</span><span class="err">\`</span><span class="p">,</span> <span class="err">在\</span><span class="n">`user-model</span><span class="err">\`的定义中。</span> <span class="err">最终渲染的数据使用的是</span> <span class="err">\</span><span class="nc">`PageModelAnomalyRecourseVo</span><span class="err">\`，</span> <span class="err">\</span><span class="nc">`Table</span><span class="err">\`</span> <span class="err">组件中的</span> <span class="err">\</span><span class="n">`columns</span><span class="err">\`</span> <span class="err">将使用</span> <span class="err">\</span><span class="nc">`PageModelAnomalyRecourseVo</span><span class="err">\`</span> <span class="err">中的字段，在导出组件时，使用</span> <span class="err">\</span><span class="n">`withMockService</span><span class="err">\`</span> <span class="err">高阶函数包裹组件。我将使用</span><span class="n">type</span><span class="p">=</span><span class="s">"react"</span><span class="err">的</span><span class="n">tsx</span><span class="err">代码块来处理这个用例。</span><span class="p">&lt;/</span><span class="nc">Thinking</span><span class="p">&gt;</span><span class="err">\`\`\</span><span class="n">`tsx</span> <span class="n">project</span><span class="p">=</span><span class="s">"component"</span> <span class="n">file</span><span class="p">=</span><span class="s">"index.tsx"</span> <span class="n">render</span><span class="p">=</span><span class="s">"true"</span> <span class="n">type</span><span class="p">=</span><span class="s">"react"</span><span class="k">import</span> <span class="nn">React,</span> <span class="p">{</span> <span class="n">useState</span> <span class="p">}</span> <span class="n">from</span> <span class="err">'</span><span class="n">react</span><span class="err">'</span><span class="p">;</span><span class="k">import</span> <span class="nn">{</span> <span class="nc">Input</span><span class="p">,</span> <span class="nc">Select</span><span class="p">,</span> <span class="nc">Button</span><span class="p">,</span> <span class="nc">Table</span><span class="p">,</span> <span class="nc">Pagination</span><span class="p">,</span> <span class="nc">Box</span><span class="p">,</span> <span class="nc">Grid</span> <span class="p">}</span> <span class="n">from</span> <span class="err">'@</span><span class="n">alifd</span><span class="p">/</span><span class="n">next</span><span class="err">'</span><span class="p">;</span><span class="k">import</span> <span class="nn">{</span> <span class="n">useListUsingPost</span> <span class="p">}</span> <span class="n">from</span> <span class="err">'</span><span class="p">./</span><span class="n">generate</span><span class="p">/</span><span class="n">hooks</span><span class="p">/</span><span class="n">useListUsingPost</span><span class="err">'</span><span class="p">;</span><span class="k">import</span> <span class="nn">type</span> <span class="p">{</span> <span class="nc">AnomalyRecourseVo</span> <span class="p">}</span> <span class="n">from</span> <span class="err">'</span><span class="p">./</span><span class="n">generate</span><span class="p">/</span><span class="n">models</span><span class="p">/</span><span class="nc">AnomalyRecourseVo</span><span class="err">'</span><span class="p">;</span><span class="k">import</span> <span class="nn">{</span> <span class="n">withMockService</span> <span class="p">}</span> <span class="n">from</span> <span class="err">'</span><span class="p">./</span><span class="n">generate</span><span class="p">/</span><span class="k">external</span><span class="err">'</span><span class="p">;</span>
+<span class="kd">interface</span> <span class="nc">ComponentProps</span> <span class="p">{}</span>
+<span class="k">const</span> <span class="nc">Component</span><span class="p">:</span> <span class="nc">React</span><span class="p">.</span><span class="nc">FC</span><span class="p">&lt;</span><span class="nc">ComponentProps</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>  <span class="k">const</span> <span class="p">{</span> <span class="n">m</span>  <span class="k">const</span> <span class="p">[</span><span class="n">currentPage</span><span class="p">,</span> <span class="n">setCurrentPage</span><span class="p">]</span> <span class="p">=</span> <span class="nf">useState</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="n">utateAsync</span><span class="p">:</span> <span class="n">fetchList</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">isPending</span> <span class="p">}</span> <span class="p">=</span> <span class="nf">useListUsingPost</span><span class="p">();</span>  <span class="k">const</span> <span class="p">[</span><span class="n">currentPage</span><span class="p">,</span> <span class="n">setCurrentPage</span><span class="p">]</span> <span class="p">=</span> <span class="nf">useState</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  <span class="k">const</span> <span class="n">handleSearch</span> <span class="p">=</span> <span class="p">(</span><span class="n">field</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>    <span class="nf">setSearchParams</span><span class="p">({</span> <span class="o">..</span><span class="p">.</span><span class="n">searchParams</span><span class="p">,</span> <span class="p">[</span><span class="n">field</span><span class="p">]:</span> <span class="n">value</span> <span class="p">});</span>  <span class="p">};</span>  <span class="c1">//省略代码    。。。。  return (  //省略代码    。。。。  &lt;Table loading={isPending} dataSource={data?.dataSource || []} columns={columns} /&gt;      &lt;Box margin={[20, 0]} direction="row" align="center" justify="space-between"&gt;        &lt;Pagination          total={data?.total || 0}          current={currentPage}          pageSize={pageSize}          onChange={(page) =&gt; setCurrentPage(page)}        /&gt;      &lt;/Box&gt;  )};</span>
+<span class="n">export</span> <span class="n">default</span> <span class="nf">withMockService</span><span class="p">(</span><span class="nc">Component</span><span class="p">);</span><span class="err">\`\`\`</span><span class="p">&lt;/</span><span class="n">assistant_response</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>最后是给AI出码的用户输入，这里的输入{component},{hook},{model}等就是前面生成的代码，通过ideaLAB的开放服务作为参数输入给模型进行推理</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;doc_string&gt;</span>现在用户的输入如下，请将 React 组件代码与自定义 hooks 整合在一起<span class="nt">&lt;/doc_string&gt;&lt;user_input&gt;&lt;user-component&gt;</span>${component}<span class="nt">&lt;/user-component&gt;&lt;user-hooks&gt;</span>${hook}<span class="nt">&lt;/user-hooks&gt;&lt;user-model&gt;</span>${model}<span class="nt">&lt;/user-model&gt;&lt;/user_input&gt;</span>
+</code></pre></div></div>
+
+<p>2. 拟合总结</p>
+
+<p>整体代码拟合的效果准确率对比前两个阶段，稳定性相对弱一点，当然也分情况：如果是私有化的组件（如团队内部的组件库）由于输入的使用信息更为完善，不容易产生幻觉。外部的组件则相反，由于大量的训练语料都是公域的信息，比如“responseData?.data?.dataSource” 经常会产生一些幻觉。</p>
+
+<p>当然也有对应的解决方案，就是不断的在prompt中去完善规则，或者给一些bad example，整体来说先阶段仍然需要对promp进行一个长期的优化，也是我们在整个项目中最耗时的一个阶段。</p>
+
+<p>目前我们在业务封装的一些高级场景组件中，拟合的稳定性和准确率大约能达到95%的水平（一线开发者仅需要做少量的修改），对于公有组件（Fuson,AntD等）大概是在80%左右的水平。</p>
+
+<ul>
+  <li>
+    <h3 id="code-review">Code Review</h3>
+  </li>
+</ul>
+
+<h4 id="1-外部产品">1. 外部产品</h4>
+
+<p>用AI进行C ode review其实已经是一个比较成熟的操作，在外部也有很多类似的研发工具产品：</p>
+
+<ul>
+  <li>比如gitlab极狐公司推出的CodeRider（ https://gitlab.cn/resources/articles/ability_tag/28 ）</li>
+  <li>Codium AI公司推出的PR-Agent（ https://github.com/qodo-ai/pr-agent https://www.qodo.ai/ ）</li>
+</ul>
+
+<p>这类的商业化企业开发服务工具除了code review以外提供从代码管理到CI/CD的完整解决方案</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qtl6CcopIbjk6ficia000FxGum3fnxhbpicZ4xqwCUnl1cb86oq3G1Eia2w/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>但是以上的这些外部平台存在以下这些问题：</p>
+
+<ul>
+  <li>基本都需要外部的账号登录，比如google账号，github账号，同时也涉及到账号的充值付费</li>
+  <li>大部分产品的工作流都是依附在Github上的，和其他代码平台的兼容性不够好</li>
+  <li>数据安全性问题无法完成保障</li>
+</ul>
+
+<p>基于以上的问题和我们考虑自己动手设计一个ai codereview agent或者采用集团内部的其他方案。</p>
+
+<p><strong>2. codereview AI Agent实现</strong></p>
+
+<p>由于大部分的前端场景对于逻辑的处理没有特别的复杂场景，更多是对代码风格，模型在简单的逻辑问题、命名拼写错误等，框架的调用的最佳实践等一些不涉及到文件之间上下文业务逻辑的场景，所以自动动手实现一个AI codereview工具的成本并不高，主要步骤：</p>
+
+<p>1. 在merge request提交的时候触发webhooks</p>
+
+<p>2. 通过code open api获取对应的code changes</p>
+
+<p>3. 通过prompt引导AI对代码进行审查</p>
+
+<p>4. 给出的优化建议以评论形式提交在mr上</p>
+
+<p>具体的实现设计可以参考一下以下流程图：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qbtaCSI55YHESVhwMAxMtquWCZFwzUU6Km6N9ydwBnYBR4phXibZcexA/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /><br />
+prompt</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="n">system</span><span class="p">&gt;</span><span class="err">你将扮演一名资深软件工程师，对同事的代码进行评审。</span><span class="p">&lt;/</span><span class="n">system</span><span class="p">&gt;</span>
+<span class="err">针对每个文件，判断是否需要提供反馈。若需要，用</span><span class="m">1</span><span class="p">-</span><span class="m">2</span><span class="err">句话说明反馈内容。若需修改代码，需注明原始代码并提出修改建议。建议后不要添加其他内容。若无反馈，则不对该文件添加评论。</span>
+<span class="err">最后，用</span><span class="m">1</span><span class="p">-</span><span class="m">2</span><span class="err">句话总结整体反馈。</span>
+<span class="p">&lt;</span><span class="n">example</span><span class="p">&gt;</span><span class="err">###</span> <span class="n">filename</span><span class="p">.</span><span class="n">jsThe</span> <span class="n">name</span> <span class="n">of</span> <span class="k">this</span> <span class="n">variable</span> <span class="k">is</span> <span class="n">unclear</span><span class="p">.</span>
+<span class="n">Original</span><span class="p">:</span><span class="err">\`\`\`</span><span class="n">jsconst</span> <span class="n">x</span> <span class="p">=</span> <span class="nf">getAllUsers</span><span class="p">();</span><span class="err">\`\`\`</span>
+<span class="n">Suggestion</span><span class="p">:</span><span class="err">\`\`\`</span><span class="n">jsconst</span> <span class="n">allUsers</span> <span class="p">=</span> <span class="nf">getAllUsers</span><span class="p">();</span><span class="err">\`\`\`</span><span class="p">&lt;/</span><span class="n">example</span><span class="p">&gt;</span><span class="c1">//...省略其他example</span>
+</code></pre></div></div>
+
+<p>可以参考的代码规范包括：</p>
+
+<p>https://github.com/microsoft/TypeScript/wiki/Coding-guidelines</p>
+
+<p>https://github.com/airbnb/javascript</p>
+
+<p>以下是一个：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qwOvvI0Eu4MQdYo2XHWAraqOczecqFpicxHZNz06APLBLDPBrLAVpHIQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>在我们的实际测试使用效果中，AI code review和传统的静态代码扫描缺陷可以形成互补，能更好的发现一些人为的粗心导致的代码实现不够严谨的问题。</p>
+
+<p>但是发现 AI 代码评审存在两大现象：</p>
+
+<ol>
+  <li>绝大部分的代码都没有代码缺陷 ，而这时候 大模型总是倾向于编造一些问题 来提示我们注意。</li>
+  <li>由于业务背景、需求文档、技术方案、上下游系统依赖、俗成的约定等 信息的缺失 ，导致人类能判断的代码缺陷而 AI 却找不出来。</li>
+</ol>
+
+<h4 id="3-code平台ai评审助手">3. code平台AI评审助手</h4>
+
+<p>除了自己实现以外，目前一些主流的代码托管平台像github也提供了类似的功能，代码托管平台最大的特色在于基于高质量的现有CodeReview数据集对模型进行了微调。</p>
+
+<p>为了在特定领域内提升大模型的表现，微调是很关键的一个步骤，这个步骤依赖于该领域内的高质量数据。相比优质代码数据，CodeReview 的高质量数据更难获取，因为它不仅包含代码数据，还涉及众多的自然语言数据。这些数据通常结构松散，含有二义性，而且缺乏有效的解析工具。其中代码数据多以 unified diff 格式呈现，增加了解析的复杂度。</p>
+
+<p><strong>▐</strong> <strong>自动化测试回归</strong></p>
+
+<p>传统自动化测试模式基于脚本驱动，依赖预定义脚本（Python/Java）需人工维护元素定位器。如：“driver.find_element(By.ID, “submit-btn”).click()）”，通过DOM结构或控件ID定位元素。一旦UI发生变更可能会导致60%以上的用例失效。基于像素对比（如Applitools）的方案受分辨率/动态内容影响大，另外还要考虑到平均用例的维护成本。</p>
+
+<p>在大模型时代，是否存在面向测试场景的更智能的方案呢？OmniParser V2 （https://github.com/microsoft/OmniParser）是微软推出的下一代视觉解析框架，专为智能UI自动化测试设计。它通过融合 YOLO目标检测 和 Florence-2语义理解模型，实现屏幕元素的精准识别与功能解析。将用户界面的像素空间“分词化”，将其转化为结构化的、可被大语言模型理解的元素。自动标注按钮、输入框等交互控件的位置坐标（±1px精度）和语义描述（支持中英文），并集成 GPT-4o 等大模型生成自动化脚本。</p>
+
+<p>这个产品之前更多被用户数据爬虫的场景，实际可以发挥的场景远不止这个领域，由于是通过视觉模拟的方案，打通了人机的交互形式。理论上可以做一切对电脑进行操作的场景。</p>
+
+<p>基于这样的能力来设计一条自动化测试回归的流程，大致分为如下这个部分：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qUO57Tib8m4iaUdJR9YJKGozQT2E1iaQljmso2AmJjKkLbo6MLZA1IczKw/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>举一个具体的例子，以clone一个github的某个仓库为例：</p>
+
+<p>通过自然语言描述需求（目前一些比较先进的reasoning模型也可以自己来拆解步骤）：</p>
+
+<ul>
+  <li>打开Chrome浏览器</li>
+  <li>在地址栏输入github.com跳转到github</li>
+  <li>在搜索栏搜索XXX项目</li>
+  <li>跳转到XXX项目后点击code-&gt;clone仓库到本地</li>
+</ul>
+
+<p>由于每一步基本都是类似的循环，这里只取其中一步来介绍一下具体的流程：在打开页面后通过OmniParser V2获取完整的页面结构化信息（红框里面的部分），包含了每个元素的类型，是按键，文本还是icon。和具体的坐标信息。</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qGhibP8pFEnuxlAa5V4RMf1Ymibo69tn3E4rPUWumfXk6jibaEchicAVNQQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>把这个页面的所有信息作为下一步的输入，并且告诉大模型下一步要做什么。</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qEM5Ym5fTHdrK09GFQaWfEkYw6ic007r2MFy3u2gGGBEx2pwrsYhOibLw/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>大模型是会根据页面信息，给出可能的操作步骤和推荐的建议。</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qQOuFaOyf7pVv3zEQiaNR3pflEBjQeEwBqXlVibgeDbhZnmVic7ENiaDmrQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p>最后大模型还会输出具体的操作代码：</p>
+
+<ul>
+  <li>定位目标元素：</li>
+</ul>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 筛选可交互且包含"Code"关键字的图标target_icons = [icon for icon in icons if                 icon['interactivity'] and                 'code' in icon['content'].lower()]
+</span></code></pre></div></div>
+
+<ul>
+  <li>坐标转换（以图标75为例）：</li>
+</ul>
+
+<div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 获取屏幕分辨率（示例为1920x1080）screen_width, screen_height = 1920, 1080bbox = icon75['bbox']  # [x1, y1, x2, y2]</span>
+<span class="c"># 计算点击中心坐标center_x = (bbox[0] + bbox[2])/2 * screen_widthcenter_y = (bbox[1] + bbox[3])/2 * screen_height</span>
+</code></pre></div></div>
+
+<ul>
+  <li>执行点击：</li>
+</ul>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="s">pyautoguipyautogui.click(center_x,</span> <span class="s">center_y)</span>  <span class="c1"># 点击代码按钮pyautogui.click(center_x, center_y + 80)  # 选择"Download ZIP"选项</span>
+</code></pre></div></div>
+
+<p>以上就是每一步的一个循环，当页面结构发生变化的时候，再次通过OmniParser V2分析新的页面结构和元素，再进行推理，这个过程和真实的人类去操作和理解页面的变化是类似的。有没有汽车自动驾驶领域现在很火热的 “端到端”技术架构的感觉？</p>
+
+<p>除了OmniParser+pyautogui以外，类似的方案还有 browser-use（https://github.com/browser-use/browser-use），从视觉模型的理解和结构化能力来说，OmniParser在发布V2版本以后已经领先于同类型的产品。另外背后有mircosoft站台，未来前景也更加优秀。</p>
+
+<p>我们在自动化测试回归领域还仅限于流程和理论上的探索验证，主要是OmniParser目前几乎不支持中文的识别，但是相信不久的将来，未来的自动化测试模式也会随着AI模型能力的提升更大幅度的提升效率。</p>
+
+<p><strong>▐</strong> <strong>产品化工具</strong></p>
+
+<p>在品牌行业前端内部，我们把上述的能力统一沉淀在了我们自己研发的一个VS Code插件上。根据我们的业务场景进行了深度的定制，包括支持C端通过mgdone的图层结构解析生成代码，和B端不同私有组件库的模式。同时也集成了接口/数据模型的代码生成，并支持一键进行代码拟合。</p>
+
+<p>在出码之后也支持类似Copilot/Cline/Continue等插件的chat模式，在能力上进行了定制和增强，包括根据已经出码的上下文，持续进行代码优化和调整，使用体验比起Cline更加稳定可控。</p>
+
+<p>整体的工作流程图：</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31q5hRBcicSa93ARtWiaibYYS5zWIa3ewrGR1aRyCV0D5BLcMbRmP8DNbsTA/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p><strong>用户使用流程：</strong></p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnjuicFRK8Q7SE9DN5cYfB1P31qoPTsfLsslGzdcwDjTTZrznHtUficPd0HUqRichQX6fFhue6LiasgMiaFfQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnju9ktXcOebovS1SbeNE5Nc6RIOKKwicFicPcOvvalDPb2yXHR6MlMfMjmcAeMbYsJuIUz6DsibHFeMsXg/640?wx_fmt=other&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&amp;tp=webp" alt="图片" /></p>
+
+<p>一些总结和未来展望</p>
+
+<p>在1月份的下旬开始，我们在品牌行业家享服务和物流的中后台场景全量开始推广使用新的研发模式：在新增的页面开发需求 场景中，中后台场景下D2C带来UI编写的效率提升40%，联调效率提升30%，AI代码的采纳率B端场景约在 40%，AI代码覆盖率75%以上。</p>
+
+<p><strong>▐</strong> <strong>大模型技术能力的迭代</strong></p>
+
+<p><strong>上层产品能力的演进最大的驱动力还是基础模型技术的迭代升级</strong></p>
+
+<p>前端AI驱动编码对于大模型的基础能力主要依赖包括：</p>
+
+<ul>
+  <li>多模态识别：对交互/视觉设计稿的识别，能正确进行组件的模态识别，尤其是对于弹窗等特殊浮层能理解交互设计的含义。</li>
+  <li>上下文理解力：在配合代码仓库索引的情况下，对代码上下文有足够的理解力，能读懂代码，在变更的时候准备的进行修改，</li>
+  <li>推理效率：在进行代码推理生成的响应速度要足够快（目前Cursor采用的仍是定制小参数模型的方案来确保响应速度）。</li>
+  <li>成本：每次代码生成/修改都会消耗大量的token，如果每次任务执行产生的费用过高，在实际的日常应用中也很难普及。</li>
+</ul>
+
+<p>换句话说，大模型在这4个维度的能力越强，AI编码的效果就会越好。目前随着qwen2.5VL,Deepseek R1等优秀的国产大模型崛起，在模型的上有了越来越多可选项，但是能够在这几个方向上做到都十分优秀的还是寥寥无几，所以尽管现阶段AI的能上进步迅猛，但仍旧是辅助流程的工具，还是需要人来做主导。</p>
+
+<p><strong>▐</strong> <strong>AI友好架构设计</strong></p>
+
+<p>将来越来越多的代码会是由AI来编写，在技术架构设计和代码实现的时候，需要越来越多考虑到AI的理解成本。</p>
+
+<p>以前端的业务组件为例：</p>
+
+<ul>
+  <li>明确的数据流与接口规范：确保组件状态管理路径清晰，降低AI理解逻辑的复杂度。组件间通信需通过标准化props/events接口，避免隐式依赖。AI 代理在处理代码时，如果能够借助强类型信息理解数据的结构和约束，就能更精准地实现功能，而不需要依赖隐式规则推导。</li>
+  <li>基于”单一职责原则”构建组件层级：基础UI组件保持功能原子化（如按钮、输入框），业务组件通过组合基础组件实现功能。这种分层结构便于AI识别组件复用场景，做到“代码即文档”</li>
+  <li>低耦合高内聚实现：采用容器-展示组件模式分离业务逻辑与视图层。组件应具备完整的自描述元数据（如PropTypes），方便AI解析功能边界。组件内部的过度会复用导入导出会增加代码的耦合性，使 AI 更难理解依赖关系。</li>
+</ul>
+
+<p><strong>▐</strong> <strong>未来应用层的发展方向</strong></p>
+
+<p>在面向未来的AI的应用层面，一定是对于整个流程链路的重构，比如：原来有 5 个步骤，目前现在我们做的都是在每个步骤上进行提效，仍处于在单点节点上的优化，而把 5 个步骤通过 AI 提效砍掉 2 个，并且形成新的产品形态或研发范式，才是真正通过AI的能力去解放生产力。</p>
+
+<p>未来的产品研发形态随着模型能力的提升 研发流程过程中真正需要编码的过程会越来少，那么是否还需要把代码Clone到本地，是否需要本地的编译器？</p>
+
+<p>我认为面向不久的未来对于部分的产品需求可能会只需要使用云端工具，面向PRD/MRD/业务需求，通过构建一套由多个专业智能体（Agent）组成的研发助手网络，覆盖从需求分析到代码生成、质量保障的全流程。智能体网络将实现自主决策和协作调用，各智能体根据需求上下文和开发阶段，主动调用相关工具并协同完成代码生产。</p>
+
+<p>AI Agent:接受需求 ==&gt; 编辑代码 ==&gt; 运行效果 ==&gt; 修改&amp;review ==&gt; 提交代码 ==&gt; 完成发布，其实Cursor/Cline等辅助工具目前通过MCP协议，已经在在理论上已经等完成上述的流程。</p>
+
+<p>但我不认为未来会减少对于高级研发的岗位的需求，未来的软件研发的需求会持续膨胀，数字化和数智化会更快更广的普惠到各行各业。</p>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/33P2FdAnju9ktXcOebovS1SbeNE5Nc6RwrVnTnu2rZhKtELjZeKUKxKibY7z1s6AeeS0ZhOhTQFMBjoFh4RMiazQ/640?wx_fmt=other&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&amp;tp=webp" alt="图片" /></p>
+
+<p>团队介绍</p>
+
+<p>本文作者 珈文，来自淘天集团的天猫品牌行业前端团队。我们团队负责消费电子、3C数码、运动、家装、汽车、奢品、服务等多个行业的项目。我们定位自身不局限于“传统”的前端团队，在AI、3D、工程化、中后台等领域，我们有着持续的探索和实践。</p>
+
+<p>继续滑动看下一个</p>
+
+<p>大淘宝技术</p>
+
+<p>向上滑动看下一个</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build a Deep Research Agent: $1 Alternative to $200 OpenAI&#39;s Tool</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Build a Deep Research Agent: $1 Alternative to $200 OpenAI's Tool</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Build a Deep Research Agent: $1 Alternative to $200 OpenAI's Tool</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> Dipanjan (DJ) Sarkar</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-03-26</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://www.analyticsvidhya.com/blog/2025/02/build-your-own-deep-research-agent/" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <h2 id="构建一个深度研究代理200-美元-openai-工具的-1-美元替代品">构建一个深度研究代理：200 美元 OpenAI 工具的 1 美元替代品</h2>
+
+<p>最后更新时间：2025 年 2 月 26 日</p>
+
+<p>如今，智能 AI 系统风靡一时！它们简直就是在 for 循环中与某些提示和工具相连的LLMs，可以为你自动执行任务。然而，你也可以构建可靠的逐步工作流程，在LLM为你解决问题时引导它变得更加可靠。最近在 2025 年 2 月，OpenAI 推出了深度研究，这是一个可以接收用户主题、自动进行一系列搜索并将其编译成一份不错报告的智能体。然而，它仅在其 200 美元的专业计划中可用。在这里，我将向你展示一个逐步的实践指南，教你如何使用 LangGraph 以不到一美元的成本构建自己的深度研究和报告生成智能体！</p>
+
+<h2 id="openai-深度研究简报">OpenAI 深度研究简报</h2>
+
+<p>OpenAI 于 2025 年 2 月 2 日推出了深度研究功能，该功能已作为其 ChatGPT 产品的一项附加功能推出。他们将此称为一种新的智能体能力，它可以针对用户提出的复杂任务或查询在互联网上进行多步骤研究。他们声称，它能在几十分钟内完成人类需要花费数小时才能完成的任务。</p>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/image.gif" alt="OpenAI DeepSearch" /></p>
+
+<p>深度研究进行中 – 来源：OpenAI</p>
+
+<p>深度研究是 OpenAI 当前的智能体人工智能产品，它可以为你自主完成工作。你通过提示向它给出一项任务或主题，ChatGPT 会查找、分析并综合数百个在线资源，以生成一份研究分析师水平的全面报告。它由即将推出的针对网页浏览和数据分析进行了优化的 OpenAI o3 模型版本提供支持，利用推理来搜索、解释和分析互联网上大量的文本、图像和 PDF 文件，最终编制出一份结构良好的报告。</p>
+
+<p>个性化生成式人工智能学习路径 2025✨专为您打造！</p>
+
+<p>新功能 Beta</p>
+
+<p><a href="https://www.analyticsvidhya.com/learning-path/chat/?article_id=219774&amp;utm_source=blog_banner">View original</a></p>
+
+<p>不过，这确实有一些限制，因为只有订阅了 200 美元的 ChatGPT 专业版才能使用它。这就是我自己的智能 AI 系统发挥作用的地方，它可以进行深入研究，并在不到一美元的成本下生成一份不错的综合报告。让我们开始吧！</p>
+
+<h2 id="深度研究与结构化报告生成规划智能-ai-系统架构">深度研究与结构化报告生成规划智能 AI 系统架构</h2>
+
+<p>下图展示了我们系统的整体架构，我们将使用 LangChain 的 LangGraph 开源框架来实现该架构，以便轻松且可控地构建有状态的智能系统。</p>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T160939.851.webp" alt="Deep Research &amp; Structured Report Generation Planning Agentic AI System Architecture" /></p>
+
+<p>深度研究与报告生成人工智能代理 - 来源：作者</p>
+
+<p>为上述系统提供动力的关键组件包括：</p>
+
+<ul>
+  <li>一个强大的、擅长推理的大语言模型。我们正在使用价格不算超级昂贵且速度快的 GPT-4o，不过，你甚至可以使用像 Llama 3.2 这样的LLMs或其他开源替代方案。</li>
+  <li>用于构建我们的智能系统的 LangGraph，因为它是一个出色的框架，用于构建基于循环图的系统，该系统可以在整个工作流程中维护状态变量，并有助于轻松构建智能反馈循环。</li>
+  <li>Tavily AI 是一款出色的人工智能搜索引擎，非常适合进行网络研究以及从网站获取数据以支持我们的深度研究系统。</li>
+</ul>
+
+<p>本项目专注于构建一个用于深度研究和结构化报告生成的规划代理，作为 OpenAI 深度研究的替代方案。该代理遵循流行的规划代理设计模式，自动执行分析用户定义主题、进行深度网络研究以及生成结构良好的报告的过程。该工作流程实际上受到了 LangChain 自己的 Report mAIstro 的启发，所以要充分肯定他们想出了这个工作流程，我以此为基础灵感，然后构建了这个系统，它包括以下组件：</p>
+
+<h4 id="1-报告规划">1. 报告规划：</h4>
+
+<ul>
+  <li>代理分析用户提供的主题和默认报告模板，以创建报告的自定义计划。</li>
+  <li>诸如引言、关键部分和结论等部分是根据主题定义的。</li>
+  <li>在确定主要部分之前，使用网络搜索工具收集所需信息。</li>
+</ul>
+
+<h4 id="2-研究与写作的并行执行">2. 研究与写作的并行执行：</h4>
+
+<ul>
+  <li>该代理使用并行执行来高效地执行：
+    <ul>
+      <li>网络研究：为每个部分生成查询，并通过网络搜索工具执行以检索最新信息。</li>
+      <li>章节写作：检索到的数据用于为每个章节撰写内容，过程如下：
+        <ul>
+          <li>研究人员从网络收集相关数据。</li>
+          <li>章节编写人员使用这些数据为指定章节生成结构化内容。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="3-格式化已完成部分">3. 格式化已完成部分：</h4>
+
+<ul>
+  <li>一旦所有部分都撰写完成，就会对其进行格式化，以确保一致性并符合报告结构。</li>
+</ul>
+
+<h4 id="4-引言和结论撰写">4. 引言和结论撰写：</h4>
+
+<ul>
+  <li>在主要部分完成并格式化之后：
+    <ul>
+      <li>引言和结论是根据其余部分的内容（并行）编写的</li>
+      <li>此过程可确保这些部分与报告的整体流程和见解保持一致。</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="5-最终编译">5. 最终编译：</h4>
+
+<ul>
+  <li>所有已完成的部分汇总在一起以生成最终报告。</li>
+  <li>最终输出是一份采用维基文档风格的全面且结构化的报告。</li>
+</ul>
+
+<p>现在让我们开始使用 LangGraph 和 Tavily 逐步构建这些组件。</p>
+
+<h2 id="我们深度研究与结构化报告生成规划智能体人工智能系统的实践实施">我们深度研究与结构化报告生成规划智能体人工智能系统的实践实施</h2>
+
+<p>我们现在将基于上一节详细讨论的架构，逐步为我们的深度研究报告生成代理人工智能系统实现端到端工作流程，并提供详细解释、代码和输出。</p>
+
+<h3 id="安装依赖项">安装依赖项</h3>
+
+<p>我们首先安装必要的依赖项，这些依赖项将是我们用于构建系统的库。这包括 langchain、LangGraph，还有用于生成漂亮的 markdown 报告的 rich。</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gs">!pip install langchain==0.3.14
+!pip install langchain-openai==0.3.0
+!pip install langchain-community==0.3.14
+!pip install langgraph==0.2.64
+!pip install rich
+</span></code></pre></div></div>
+
+<h3 id="输入-openai-api-密钥">输入 OpenAI API 密钥</h3>
+
+<p>我们使用 getpass()函数输入我们的 OpenAI 密钥，这样我们就不会在代码中意外暴露我们的密钥。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">from</span> <span class="n">getpass</span> <span class="kn">import</span> <span class="nn">getpass</span>
+<span class="no">OPENAI_KEY</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">(</span><span class="err">'</span><span class="nc">Enter</span> <span class="nc">Open</span> <span class="no">AI</span> <span class="no">API</span> <span class="nl">Key:</span> <span class="err">'</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="输入塔维利搜索-api-密钥">输入塔维利搜索 API 密钥</h3>
+
+<p>我们使用 getpass()函数输入我们的 Tavily 搜索密钥，这样我们就不会在代码中意外暴露我们的密钥。你可以从这里获取密钥，而且他们有慷慨的免费套餐。</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">TAVILY_API_KEY</span> <span class="p">=</span> <span class="s">getpass('Enter Tavily Search API Key: ')</span>
+</code></pre></div></div>
+
+<h3 id="设置环境变量">设置环境变量</h3>
+
+<p>接下来，我们设置一些系统环境变量，这些变量将在稍后验证我们的LLM和 Tavily Search 时使用。</p>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">import</span> <span class="n">os</span>
+<span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'OPENAI_API_KEY'</span><span class="p">]</span> <span class="o">=</span> <span class="n">OPENAI_KEY</span>
+<span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'TAVILY_API_KEY'</span><span class="p">]</span> <span class="o">=</span> <span class="n">TAVILY_API_KEY</span>
+</code></pre></div></div>
+
+<h3 id="定义代理状态架构">定义代理状态架构</h3>
+
+<p>我们使用 LangGraph 将我们的智能系统构建为一个带有节点的图，其中每个节点由整个工作流程中的一个特定执行步骤组成。每组特定的操作（节点）将具有如下定义的自己的模式。你可以根据自己的报告生成风格进一步自定义此内容。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypedDict</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span><span class="err"> </span> <span class="n">Annotated</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Literal</span>
+
+<span class="c1"># defines structure for each section in the report
+</span><span class="k">class</span> <span class="nc">Section</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="err">    </span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+<span class="err">        </span><span class="n">description</span><span class="o">=</span><span class="s">"Name for a particular section of the report."</span><span class="p">,</span>
+<span class="err">    </span><span class="p">)</span>
+<span class="err">    </span><span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+<span class="err">        </span><span class="n">description</span><span class="o">=</span><span class="s">"Brief overview of the main topics and concepts to be covered in this section."</span><span class="p">,</span>
+<span class="err">    </span><span class="p">)</span>
+<span class="err">    </span><span class="n">research</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+<span class="err">        </span><span class="n">description</span><span class="o">=</span><span class="s">"Whether to perform web search for this section of the report."</span>
+<span class="err">    </span><span class="p">)</span>
+<span class="err">    </span><span class="n">content</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+<span class="err">        </span><span class="n">description</span><span class="o">=</span><span class="s">"The content for this section."</span>
+<span class="err">    </span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Sections</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="err">    </span><span class="n">sections</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Section</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+<span class="err">        </span><span class="n">description</span><span class="o">=</span><span class="s">"All the Sections of the overall report."</span><span class="p">,</span>
+<span class="err">    </span><span class="p">)</span>
+
+<span class="c1"># defines structure for queries generated for deep research
+</span><span class="k">class</span> <span class="nc">SearchQuery</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="err">    </span><span class="n">search_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s">"Query for web search."</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Queries</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="err">    </span><span class="n">queries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SearchQuery</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+<span class="err">        </span><span class="n">description</span><span class="o">=</span><span class="s">"List of web search queries."</span><span class="p">,</span>
+<span class="err">    </span><span class="p">)</span>
+
+<span class="c1"># consists of input topic and output report generated
+</span><span class="k">class</span> <span class="nc">ReportStateInput</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="err">    </span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span> <span class="c1"># Report topic
+</span>
+<span class="k">class</span> <span class="nc">ReportStateOutput</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="err">    </span><span class="n">final_report</span><span class="p">:</span> <span class="nb">str</span> <span class="c1"># Final report
+</span>
+<span class="c1"># overall agent state which will be passed and updated in nodes in the graph
+</span><span class="k">class</span> <span class="nc">ReportState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="err">    </span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span> <span class="c1"># Report topic
+</span><span class="err">    </span><span class="n">sections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Section</span><span class="p">]</span> <span class="c1"># List of report sections
+</span><span class="err">    </span><span class="n">completed_sections</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="n">operator</span><span class="p">.</span><span class="n">add</span><span class="p">]</span> <span class="c1"># Send() API
+</span><span class="err">    </span><span class="n">report_sections_from_research</span><span class="p">:</span> <span class="nb">str</span> <span class="c1"># completed sections to write final sections
+</span><span class="err">    </span><span class="n">final_report</span><span class="p">:</span> <span class="nb">str</span> <span class="c1"># Final report
+</span>
+<span class="c1"># defines the key structure for sections written using the agent 
+</span><span class="k">class</span> <span class="nc">SectionState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="err">    </span><span class="n">section</span><span class="p">:</span> <span class="n">Section</span> <span class="c1"># Report section
+</span><span class="err">    </span><span class="n">search_queries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SearchQuery</span><span class="p">]</span> <span class="c1"># List of search queries
+</span><span class="err">    </span><span class="n">source_str</span><span class="p">:</span> <span class="nb">str</span> <span class="c1"># String of formatted source content from web search
+</span><span class="err">    </span><span class="n">report_sections_from_research</span><span class="p">:</span> <span class="nb">str</span> <span class="c1"># completed sections to write final sections
+</span><span class="err">    </span><span class="n">completed_sections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Section</span><span class="p">]</span> <span class="c1"># Final key in outer state for Send() API
+</span>
+<span class="k">class</span> <span class="nc">SectionOutputState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="err">    </span><span class="n">completed_sections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Section</span><span class="p">]</span> <span class="c1"># Final key in outer state for Send() API
+</span></code></pre></div></div>
+
+<h3 id="实用函数">实用函数</h3>
+
+<p>我们定义了一些实用函数，这些函数将帮助我们运行并行网络搜索查询并格式化从网络获得的结果。</p>
+
+<h4 id="1-运行搜索查询">1. 运行搜索查询(…)</h4>
+
+<p>这将异步运行针对特定查询列表的 Tavily 搜索查询，并返回搜索结果。这是异步的，因此它是非阻塞的，可以并行执行。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_community.utilities.tavily_search</span> <span class="kn">import</span> <span class="n">TavilySearchAPIWrapper</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">dataclass</span>
+
+<span class="c1"># just to handle objects created from LLM reponses
+</span><span class="o">@</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">SearchQuery</span><span class="p">:</span>
+<span class="err">    </span><span class="n">search_query</span><span class="p">:</span> <span class="nb">str</span>
+<span class="err">    </span><span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="err">        </span><span class="k">return</span> <span class="n">asdict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="n">tavily_search</span> <span class="o">=</span> <span class="n">TavilySearchAPIWrapper</span><span class="p">()</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">run_search_queries</span><span class="p">(</span>
+<span class="err">    </span><span class="n">search_queries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SearchQuery</span><span class="p">]],</span>
+<span class="err">    </span><span class="n">num_results</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+<span class="err">    </span><span class="n">include_raw_content</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="err">    </span><span class="n">search_tasks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="err">    </span><span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">search_queries</span><span class="p">:</span>
+<span class="err">        </span><span class="c1"># Handle both string and SearchQuery objects
+</span><span class="err">        </span><span class="c1"># Just in case LLM fails to generate queries as:
+</span><span class="err">        </span><span class="c1"># class SearchQuery(BaseModel):
+</span><span class="err">        </span><span class="c1">#     search_query: str
+</span><span class="err">        </span><span class="n">query_str</span> <span class="o">=</span> <span class="n">query</span><span class="p">.</span><span class="n">search_query</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">SearchQuery</span><span class="p">)</span> 
+                        <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="c1"># text query
+</span><span class="err">        </span><span class="k">try</span><span class="p">:</span>
+<span class="err">            </span><span class="c1"># get results from tavily async (in parallel) for each search query
+</span><span class="err">            </span><span class="n">search_tasks</span><span class="p">.</span><span class="n">append</span><span class="p">(</span>
+<span class="err">                </span><span class="n">tavily_search</span><span class="p">.</span><span class="n">raw_results_async</span><span class="p">(</span>
+<span class="err">                    </span><span class="n">query</span><span class="o">=</span><span class="n">query_str</span><span class="p">,</span>
+<span class="err">                    </span><span class="n">max_results</span><span class="o">=</span><span class="n">num_results</span><span class="p">,</span>
+<span class="err">                    </span><span class="n">search_depth</span><span class="o">=</span><span class="s">'advanced'</span><span class="p">,</span>
+<span class="err">                    </span><span class="n">include_answer</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+<span class="err">                    </span><span class="n">include_raw_content</span><span class="o">=</span><span class="n">include_raw_content</span>
+<span class="err">                </span><span class="p">)</span>
+<span class="err">            </span><span class="p">)</span>
+<span class="err">        </span><span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="err">            </span><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error creating search task for query '</span><span class="si">{</span><span class="n">query_str</span><span class="si">}</span><span class="s">': </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="err">            </span><span class="k">continue</span>
+<span class="err">    </span><span class="c1"># Execute all searches concurrently and await results
+</span><span class="err">    </span><span class="k">try</span><span class="p">:</span>
+<span class="err">        </span><span class="k">if</span> <span class="ow">not</span> <span class="n">search_tasks</span><span class="p">:</span>
+<span class="err">            </span><span class="k">return</span> <span class="p">[]</span>
+<span class="err">        </span><span class="n">search_docs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">search_tasks</span><span class="p">,</span> <span class="n">return_exceptions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="err">        </span><span class="c1"># Filter out any exceptions from the results
+</span><span class="err">        </span><span class="n">valid_results</span> <span class="o">=</span> <span class="p">[</span>
+<span class="err">            </span><span class="n">doc</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">search_docs</span>
+<span class="err">            </span><span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="nb">Exception</span><span class="p">)</span>
+<span class="err">        </span><span class="p">]</span>
+<span class="err">        </span><span class="k">return</span> <span class="n">valid_results</span>
+<span class="err">    </span><span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="err">        </span><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error during search queries: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="err">        </span><span class="k">return</span> <span class="p">[]</span>
+</code></pre></div></div>
+
+<h4 id="2-格式化搜索查询结果">2. 格式化搜索查询结果(…)</h4>
+
+<p>这将从 Tavily 搜索结果中提取上下文，确保内容不会从相同的 URL 重复，并将其格式化以显示来源、URL 和相关内容（以及可选的原始内容，可根据令牌数量进行截断）</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tiktoken</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="k">def</span> <span class="nf">format_search_query_results</span><span class="p">(</span>
+    <span class="n">search_response</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]],</span>
+    <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span>
+    <span class="n">include_raw_content</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">encoding</span> <span class="o">=</span> <span class="n">tiktoken</span><span class="p">.</span><span class="n">encoding_for_model</span><span class="p">(</span><span class="s">"gpt-4"</span><span class="p">)</span>
+    <span class="n">sources_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Handle different response formats if search results is a dict
+</span>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">search_response</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s">'results'</span> <span class="ow">in</span> <span class="n">search_response</span><span class="p">:</span>
+            <span class="n">sources_list</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">search_response</span><span class="p">[</span><span class="s">'results'</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sources_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">search_response</span><span class="p">)</span>
+    <span class="c1"># if search results is a list
+</span>    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">search_response</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">search_response</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">if</span> <span class="s">'results'</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                    <span class="n">sources_list</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s">'results'</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">sources_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">sources_list</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sources_list</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">"No search results found."</span>
+
+    <span class="c1"># Deduplicate by URL and keep unique sources (website urls)
+</span>    <span class="n">unique_sources</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s">'url'</span> <span class="ow">in</span> <span class="n">source</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">source</span><span class="p">[</span><span class="s">'url'</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">unique_sources</span><span class="p">:</span>
+                <span class="n">unique_sources</span><span class="p">[</span><span class="n">source</span><span class="p">[</span><span class="s">'url'</span><span class="p">]]</span> <span class="o">=</span> <span class="n">source</span>
+
+    <span class="c1"># Format output
+</span>    <span class="n">formatted_text</span> <span class="o">=</span> <span class="s">"Content from web search:</span><span class="se">\n\n</span><span class="s">"</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">source</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_sources</span><span class="p">.</span><span class="n">values</span><span class="p">(),</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">formatted_text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s">"Source </span><span class="si">{</span><span class="n">source</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'title'</span><span class="p">,</span> <span class="s">'Untitled'</span><span class="p">)</span><span class="si">}</span><span class="s">:</span><span class="se">\n</span><span class="s">===</span><span class="se">\n</span><span class="s">"</span>
+        <span class="n">formatted_text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s">"URL: </span><span class="si">{</span><span class="n">source</span><span class="p">[</span><span class="s">'url'</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s">===</span><span class="se">\n</span><span class="s">"</span>
+        <span class="n">formatted_text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s">"Most relevant content from source: </span><span class="si">{</span><span class="n">source</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'content'</span><span class="p">,</span> <span class="s">'No content available'</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s">===</span><span class="se">\n</span><span class="s">"</span>
+
+        <span class="k">if</span> <span class="n">include_raw_content</span><span class="p">:</span>
+            <span class="c1"># truncate raw webpage content to a certain number of tokens to prevent exceeding LLM max token window
+</span>            <span class="n">raw_content</span> <span class="o">=</span> <span class="n">source</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"raw_content"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">raw_content</span><span class="p">:</span>
+                <span class="n">tokens</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">raw_content</span><span class="p">)</span>
+                <span class="n">truncated_tokens</span> <span class="o">=</span> <span class="n">tokens</span><span class="p">[:</span><span class="n">max_tokens</span><span class="p">]</span>
+                <span class="n">truncated_content</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">truncated_tokens</span><span class="p">)</span>
+                <span class="n">formatted_text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s">"Raw Content: </span><span class="si">{</span><span class="n">truncated_content</span><span class="si">}</span><span class="se">\n\n</span><span class="s">"</span>
+
+    <span class="k">return</span> <span class="n">formatted_text</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>我们可以按如下方式测试这些函数，看看它们是否有效：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">docs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_search_queries</span><span class="p">([</span><span class="s">'langgraph'</span><span class="p">],</span> <span class="n">include_raw_content</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">format_search_query_results</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> 
+   <span class="n">include_raw_content</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="output">Output</h4>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">Content from web search:
+</span>
+Source Introduction - GitHub Pages:
+<span class="gh">===
+</span><span class="p">URL: https://langchain-ai.github.io/langgraphjs/
+</span><span class="gh">===
+</span><span class="p">Most relevant content from source: Overview¶. LangGraph is a library for
+</span> building stateful, multi-actor applications with LLMs, used to create agent
+ and multi-agent workflows......
+<span class="gh">===
+</span><span class="p">Raw Content: 🦜🕸️LangGraph.js¶
+</span><span class="err">⚡</span> Building language agents as graphs ⚡
+<span class="p">Looking for the Python version? Click
+here ( docs).
+Overview......
+</span>
+Source ️LangGraph - GitHub Pages:
+<span class="gh">===
+</span><span class="p">URL: https://langchain-ai.github.io/langgraph/
+</span><span class="gh">===
+</span><span class="p">Most relevant content from source: Overview¶. LangGraph is a library for
+</span> building stateful, multi-actor applications with LLMs, ......
+<span class="gh">===
+</span><span class="p">Raw Content: 🦜🕸️LangGraph¶
+</span><span class="err">⚡</span> Building language agents as graphs ⚡
+<span class="p">Note
+Looking for the JS version? See the JS repo and the JS docs.
+Overview¶
+LangGraph is a library for building
+stateful, multi-actor applications with LLMs, ......
+</span></code></pre></div></div>
+
+<h3 id="创建默认报告模板">创建默认报告模板</h3>
+
+<p>这是LLM了解如何构建通用报告的起点，它将以此为指导方针，根据主题构建自定义报告结构。请记住，这不是最终的报告结构，而更像是引导代理的提示。</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Structure Guideline
+</span><span class="py">DEFAULT_REPORT_STRUCTURE</span> <span class="p">=</span> <span class="s">"""The report structure should focus on breaking-down the user-provided topic
+                              and building a comprehensive report in markdown using the following format:
+
+                              1. Introduction (no web search needed)
+                                    - Brief overview of the topic area
+
+                              2. Main Body Sections:
+                                    - Each section should focus on a sub-topic of the user-provided topic
+                                    - Include any key concepts and definitions
+                                    - Provide real-world examples or case studies where applicable
+
+                              3. Conclusion (no web search needed)
+                                    - Aim for 1 structural element (either a list of table) that distills the main body sections
+                                    - Provide a concise summary of the report
+
+                              When generating the final response in markdown, if there are special characters in the text,
+                              such as the dollar symbol, ensure they are escaped properly for correct rendering e.g $25.5 should become </span><span class="se">\$</span><span class="s">25.5
+                          """</span>
+</code></pre></div></div>
+
+<h3 id="报告规划器的指令提示">报告规划器的指令提示</h3>
+
+<p>有两个主要的指令提示符：</p>
+
+<h4 id="1-报告计划查询生成器提示">1. 报告计划查询生成器提示</h4>
+
+<p>帮助LLM根据主题生成初始问题列表，以便从网络获取更多关于该主题的信息，从而规划报告的整体章节和结构</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">REPORT_PLAN_QUERY_GENERATOR_PROMPT</span> <span class="p">=</span> <span class="s">"""You are an expert technical report writer, helping to plan a report.
+
+The report will be focused on the following topic:
+{topic}
+
+The report structure will follow these guidelines:
+{report_organization}
+
+Your goal is to generate {number_of_queries} search queries that will help gather comprehensive information for planning the report sections.
+
+The query should:
+1. Be related to the topic
+2. Help satisfy the requirements specified in the report organization
+
+Make the query specific enough to find high-quality, relevant sources while covering the depth and breadth needed for the report structure.
+"""</span>
+</code></pre></div></div>
+
+<h4 id="2-报告计划部分生成器提示">2. 报告计划部分生成器提示</h4>
+
+<p>在这里，我们使用默认报告模板、主题名称以及初始查询生成的搜索结果来输入LLM，以创建报告的详细结构。LLM将为报告中的每个主要部分生成包含以下字段的结构化响应（这只是报告结构——此步骤不创建内容）：</p>
+
+<ul>
+  <li>名称 – 报告此部分的名称。</li>
+  <li>描述 – 本节将涵盖的主要主题和概念的简要概述。</li>
+  <li>研究 – 是否要对报告的这一部分进行网络搜索。</li>
+  <li>内容 – 该部分的内容，你现在可以留空。
+```ini
+REPORT_PLAN_SECTION_GENERATOR_PROMPT = “"”You are an expert technical report writer, helping to plan a report.</li>
+</ul>
+
+<p>Your goal is to generate the outline of the sections of the report.</p>
+
+<p>The overall topic of the report is:
+{topic}</p>
+
+<p>The report should follow this organizational structure:
+{report_organization}</p>
+
+<p>You should reflect on this additional context information from web searches to plan the main sections of the report:
+{search_context}</p>
+
+<p>Now, generate the sections of the report. Each section should have the following fields:</p>
+<ul>
+  <li>Name - Name for this section of the report.</li>
+  <li>Description - Brief overview of the main topics and concepts to be covered in this section.</li>
+  <li>Research - Whether to perform web search for this section of the report or not.</li>
+  <li>Content - The content of the section, which you will leave blank for now.</li>
+</ul>
+
+<p>Consider which sections require web search.
+For example, introduction and conclusion will not require research because they will distill information from other parts of the report.
+“””</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+### 报表规划器的节点函数
+
+我们将构建报告规划器节点的逻辑，其目标是根据输入的用户主题和默认报告模板指南，创建一个带有主要章节名称和描述的结构化自定义报告模板。
+
+![Node Function for Report Planner](https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T161136.455.webp)
+
+报告规划器节点功能 – 来源：作者
+
+此函数使用先前创建的两个提示来：
+
+- 首先，根据用户主题生成一些查询
+- 在网络上搜索并获取有关这些查询的一些信息
+- 使用此信息生成报告的整体结构，包括需要创建的关键部分
+```python
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage, SystemMessage
+
+llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
+
+async def generate_report_plan(state: ReportState):
+    """Generate the overall plan for building the report"""
+    topic = state["topic"]
+    print('--- Generating Report Plan ---')
+
+    report_structure = DEFAULT_REPORT_STRUCTURE
+    number_of_queries = 8
+
+    structured_llm = llm.with_structured_output(Queries)
+
+    system_instructions_query = REPORT_PLAN_QUERY_GENERATOR_PROMPT.format(
+        topic=topic,
+        report_organization=report_structure,
+        number_of_queries=number_of_queries
+    )
+
+    try:
+        # Generate queries
+        results = structured_llm.invoke([
+            SystemMessage(content=system_instructions_query),
+            HumanMessage(content='Generate search queries that will help with planning the sections of the report.')
+        ])
+        # Convert SearchQuery objects to strings
+        query_list = [
+            query.search_query if isinstance(query, SearchQuery) else str(query)
+            for query in results.queries
+        ]
+        # Search web and ensure we wait for results
+        search_docs = await run_search_queries(
+            query_list,
+            num_results=5,
+            include_raw_content=False
+        )
+        if not search_docs:
+            print("Warning: No search results returned")
+            search_context = "No search results available."
+        else:
+            search_context = format_search_query_results(
+                search_docs,
+                include_raw_content=False
+            )
+        # Generate sections
+        system_instructions_sections = REPORT_PLAN_SECTION_GENERATOR_PROMPT.format(
+            topic=topic,
+            report_organization=report_structure,
+            search_context=search_context
+        )
+        structured_llm = llm.with_structured_output(Sections)
+        report_sections = structured_llm.invoke([
+            SystemMessage(content=system_instructions_sections),
+            HumanMessage(content="Generate the sections of the report. Your response must include a 'sections' field containing a list of sections. Each section must have: name, description, plan, research, and content fields.")
+        ])
+
+        print('--- Generating Report Plan Completed ---')
+        return {"sections": report_sections.sections}
+
+    except Exception as e:
+        print(f"Error in generate_report_plan: {e}")
+        return {"sections": []}
+</code></pre></div></div>
+
+<h3 id="章节构建器的指令提示---查询生成器">章节构建器的指令提示 - 查询生成器</h3>
+
+<p>有一个主要的指令提示符：</p>
+
+<h4 id="1-报告部分查询生成器提示">1. 报告部分查询生成器提示</h4>
+
+<p>帮助LLM为需要构建的特定部分主题生成全面的问题列表</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">REPORT_SECTION_QUERY_GENERATOR_PROMPT</span> <span class="p">=</span> <span class="s">"""Your goal is to generate targeted web search queries that will gather comprehensive information for writing a technical report section.
+
+Topic for this section:
+{section_topic}
+
+When generating {number_of_queries} search queries, ensure that they:
+1. Cover different aspects of the topic (e.g., core features, real-world applications, technical architecture)
+2. Include specific technical terms related to the topic
+3. Target recent information by including year markers where relevant (e.g., "2024")</span>
+<span class="err">4.</span> <span class="err">Look</span> <span class="err">for</span> <span class="err">comparisons</span> <span class="err">or</span> <span class="err">differentiators</span> <span class="err">from</span> <span class="err">similar</span> <span class="err">technologies/approaches</span>
+<span class="err">5.</span> <span class="err">Search</span> <span class="err">for</span> <span class="err">both</span> <span class="err">official</span> <span class="err">documentation</span> <span class="err">and</span> <span class="err">practical</span> <span class="err">implementation</span> <span class="err">examples</span>
+
+<span class="err">Your</span> <span class="err">queries</span> <span class="err">should</span> <span class="err">be:</span>
+<span class="err">-</span> <span class="err">Specific</span> <span class="err">enough</span> <span class="err">to</span> <span class="err">avoid</span> <span class="err">generic</span> <span class="err">results</span>
+<span class="err">-</span> <span class="err">Technical</span> <span class="err">enough</span> <span class="err">to</span> <span class="err">capture</span> <span class="err">detailed</span> <span class="err">implementation</span> <span class="err">information</span>
+<span class="err">-</span> <span class="err">Diverse</span> <span class="err">enough</span> <span class="err">to</span> <span class="err">cover</span> <span class="err">all</span> <span class="err">aspects</span> <span class="err">of</span> <span class="err">the</span> <span class="err">section</span> <span class="err">plan</span>
+<span class="err">-</span> <span class="err">Focused</span> <span class="err">on</span> <span class="err">authoritative</span> <span class="err">sources</span> <span class="err">(documentation,</span> <span class="err">technical</span> <span class="err">blogs,</span> <span class="err">academic</span> <span class="err">papers)"""</span>
+</code></pre></div></div>
+
+<h3 id="节点功能用于章节构建器---生成查询查询生成器">节点功能用于章节构建器 - 生成查询（查询生成器）</h3>
+
+<p>这使用上面的部分主题和指令提示来生成一些问题，以便在网络上进行搜索，从而获取有关该部分主题的有用信息。</p>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T161210.363.webp" alt="Node Function for Section Builder - Generate Queries (Query Generator)" /></p>
+
+<p>查询生成器节点功能 – 来源：作者</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate_queries</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SectionState</span><span class="p">):</span>
+    <span class="s">""" Generate search queries for a specific report section """</span>
+
+    <span class="c1"># Get state
+</span>    <span class="n">section</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">"section"</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'--- Generating Search Queries for Section: '</span><span class="o">+</span> <span class="n">section</span><span class="p">.</span><span class="n">name</span> <span class="o">+</span><span class="s">' ---'</span><span class="p">)</span>
+    <span class="c1"># Get configuration
+</span>    <span class="n">number_of_queries</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="c1"># Generate queries
+</span>    <span class="n">structured_llm</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="n">with_structured_output</span><span class="p">(</span><span class="n">Queries</span><span class="p">)</span>
+    <span class="c1"># Format system instructions
+</span>    <span class="n">system_instructions</span> <span class="o">=</span> <span class="n">REPORT_SECTION_QUERY_GENERATOR_PROMPT</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">section_topic</span><span class="o">=</span><span class="n">section</span><span class="p">.</span><span class="n">description</span><span class="p">,</span>                                                                       <span class="n">number_of_queries</span><span class="o">=</span><span class="n">number_of_queries</span><span class="p">)</span>
+    <span class="c1"># Generate queries
+</span>    <span class="n">user_instruction</span> <span class="o">=</span> <span class="s">"Generate search queries on the provided topic."</span>
+    <span class="n">search_queries</span> <span class="o">=</span> <span class="n">structured_llm</span><span class="p">.</span><span class="n">invoke</span><span class="p">([</span><span class="n">SystemMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">system_instructions</span><span class="p">),</span>
+                                     <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">user_instruction</span><span class="p">)])</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'--- Generating Search Queries for Section: '</span><span class="o">+</span> <span class="n">section</span><span class="p">.</span><span class="n">name</span> <span class="o">+</span><span class="s">' Completed ---'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"search_queries"</span><span class="p">:</span> <span class="n">search_queries</span><span class="p">.</span><span class="n">queries</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="章节生成器的节点功能--搜索网络">章节生成器的节点功能 – 搜索网络</h3>
+
+<p>获取由 generate_queries(…)针对特定部分生成的查询，在网络上进行搜索，并使用我们之前定义的实用函数对搜索结果进行格式化。</p>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T161255.752.webp" alt="Node Function for Section Builder - Search Web" /></p>
+
+<p>网络研究员节点功能 – 来源：作者</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="k">def</span> <span class="nf">search_web</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SectionState</span><span class="p">):</span>
+    <span class="s">""" Search the web for each query, then return a list of raw sources and a formatted string of sources."""</span>
+
+    <span class="c1"># Get state
+</span>    <span class="n">search_queries</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">"search_queries"</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'--- Searching Web for Queries ---'</span><span class="p">)</span>
+    <span class="c1"># Web search
+</span>    <span class="n">query_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">query</span><span class="p">.</span><span class="n">search_query</span> <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">search_queries</span><span class="p">]</span>
+    <span class="n">search_docs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_search_queries</span><span class="p">(</span><span class="n">search_queries</span><span class="p">,</span> <span class="n">num_results</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">include_raw_content</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="c1"># Deduplicate and format sources
+</span>    <span class="n">search_context</span> <span class="o">=</span> <span class="n">format_search_query_results</span><span class="p">(</span><span class="n">search_docs</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span> <span class="n">include_raw_content</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'--- Searching Web for Queries Completed ---'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"source_str"</span><span class="p">:</span> <span class="n">search_context</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="章节构建器---章节编写器的指令提示">章节构建器 - 章节编写器的指令提示</h3>
+
+<p>有一个主要的指令提示符：</p>
+
+<h4 id="1-章节编写提示">1. 章节编写提示</h4>
+
+<p>约束LLM使用特定的风格、结构、长度、方法指南生成并写入特定部分的内容，并且还会发送之前使用 search_web(…)函数从网络获取的文档。</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SECTION_WRITER_PROMPT = """You are an expert technical writer crafting one specific section of a technical report.
+
+Title for the section:
+{section_title}
+
+Topic for this section:
+{section_topic}
+
+Guidelines for writing:
+<span class="p">
+1.</span> Technical Accuracy:
+<span class="p">-</span> Include specific version numbers
+<span class="p">-</span> Reference concrete metrics/benchmarks
+<span class="p">-</span> Cite official documentation
+<span class="p">-</span> Use technical terminology precisely
+<span class="p">
+2.</span> Length and Style:
+<span class="p">-</span> Strict 150-200 word limit
+<span class="p">-</span> No marketing language
+<span class="p">-</span> Technical focus
+<span class="p">-</span> Write in simple, clear language do not use complex words unnecessarily
+<span class="p">-</span> Start with your most important insight in <span class="gs">**bold**</span>
+<span class="p">-</span> Use short paragraphs (2-3 sentences max)
+<span class="p">
+3.</span> Structure:
+<span class="p">-</span> Use ## for section title (Markdown format)
+<span class="p">-</span> Only use ONE structural element IF it helps clarify your point:
+<span class="p">  *</span> Either a focused table comparing 2-3 key items (using Markdown table syntax)
+<span class="p">  *</span> Or a short list (3-5 items) using proper Markdown list syntax:
+<span class="p">    -</span> Use <span class="se">\`</span><span class="err">*</span><span class="se">\`</span> or <span class="se">\`</span>-<span class="se">\`</span> for unordered lists
+<span class="p">    -</span> Use <span class="se">\`</span>1.<span class="se">\`</span> for ordered lists
+<span class="p">    -</span> Ensure proper indentation and spacing
+<span class="p">-</span> End with ### Sources that references the below source material formatted as:
+<span class="p">  *</span> List each source with title, date, and URL
+<span class="p">  *</span> Format: <span class="se">\`</span>- Title : URL<span class="se">\`</span>
+<span class="p">
+3.</span> Writing Approach:
+<span class="p">-</span> Include at least one specific example or case study if available
+<span class="p">-</span> Use concrete details over general statements
+<span class="p">-</span> Make every word count
+<span class="p">-</span> No preamble prior to creating the section content
+<span class="p">-</span> Focus on your single most important point
+<span class="p">
+4.</span> Use this source material obtained from web searches to help write the section:
+{context}
+<span class="p">
+5.</span> Quality Checks:
+<span class="p">-</span> Format should be Markdown
+<span class="p">-</span> Exactly 150-200 words (excluding title and sources)
+<span class="p">-</span> Careful use of only ONE structural element (table or bullet list) and only if it helps clarify your point
+<span class="p">-</span> One specific example / case study if available
+<span class="p">-</span> Starts with bold insight
+<span class="p">-</span> No preamble prior to creating the section content
+<span class="p">-</span> Sources cited at end
+<span class="p">-</span> If there are special characters in the text, such as the dollar symbol,
+  ensure they are escaped properly for correct rendering e.g $25.5 should become <span class="se">\$</span>25.5
+"""
+</code></pre></div></div>
+
+<h3 id="章节生成器的节点函数---编写章节章节编写器">章节生成器的节点函数 - 编写章节（章节编写器）</h3>
+
+<p>使用上述的 SECTION_WRITER_PROMPT，并将章节名称、描述和网络搜索文档提供给它，然后将其传递给LLM以编写该章节的内容</p>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T161330.195.webp" alt="Node Function for Section Builder - Write Section (Section Writer)" /></p>
+
+<p>章节编写者节点功能 – 来源：作者</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">write_section</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SectionState</span><span class="p">):</span>
+    <span class="s">""" Write a section of the report """</span>
+
+    <span class="c1"># Get state
+</span>    <span class="n">section</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">"section"</span><span class="p">]</span>
+    <span class="n">source_str</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">"source_str"</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'--- Writing Section : '</span><span class="o">+</span> <span class="n">section</span><span class="p">.</span><span class="n">name</span> <span class="o">+</span><span class="s">' ---'</span><span class="p">)</span>
+    <span class="c1"># Format system instructions
+</span>    <span class="n">system_instructions</span> <span class="o">=</span> <span class="n">SECTION_WRITER_PROMPT</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">section_title</span><span class="o">=</span><span class="n">section</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>                                                     <span class="n">section_topic</span><span class="o">=</span><span class="n">section</span><span class="p">.</span><span class="n">description</span><span class="p">,</span>                                                       <span class="n">context</span><span class="o">=</span><span class="n">source_str</span><span class="p">)</span>
+    <span class="c1"># Generate section
+</span>    <span class="n">user_instruction</span> <span class="o">=</span> <span class="s">"Generate a report section based on the provided sources."</span>
+    <span class="n">section_content</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="n">invoke</span><span class="p">([</span><span class="n">SystemMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">system_instructions</span><span class="p">),</span>
+                                  <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">user_instruction</span><span class="p">)])</span>
+    <span class="c1"># Write content to the section object
+</span>    <span class="n">section</span><span class="p">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">section_content</span><span class="p">.</span><span class="n">content</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'--- Writing Section : '</span><span class="o">+</span> <span class="n">section</span><span class="p">.</span><span class="n">name</span> <span class="o">+</span><span class="s">' Completed ---'</span><span class="p">)</span>
+    <span class="c1"># Write the updated section to completed sections
+</span>    <span class="k">return</span> <span class="p">{</span><span class="s">"completed_sections"</span><span class="p">:</span> <span class="p">[</span><span class="n">section</span><span class="p">]}</span>
+</code></pre></div></div>
+
+<h3 id="创建章节构建器子代理">创建章节构建器子代理</h3>
+
+<p>此代理（或者更具体地说，子代理）将被并行调用多次，针对每个部分调用一次，以搜索网络、获取内容，然后撰写该特定部分。我们利用 LangGraph 的 Send 结构来实现这一点。</p>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T161407.452.webp" alt="Create the Section Builder Sub-Agent" /></p>
+
+<p>章节构建器子代理 - 来源：作者</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langgraph.graph</span> <span class="kn">import</span> <span class="n">StateGraph</span><span class="p">,</span> <span class="n">START</span><span class="p">,</span> <span class="n">END</span>
+
+<span class="c1"># Add nodes and edges
+</span><span class="n">section_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">SectionState</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">SectionOutputState</span><span class="p">)</span>
+<span class="n">section_builder</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">"generate_queries"</span><span class="p">,</span> <span class="n">generate_queries</span><span class="p">)</span>
+<span class="n">section_builder</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">"search_web"</span><span class="p">,</span> <span class="n">search_web</span><span class="p">)</span>
+<span class="n">section_builder</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">"write_section"</span><span class="p">,</span> <span class="n">write_section</span><span class="p">)</span>
+<span class="n">section_builder</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s">"generate_queries"</span><span class="p">)</span>
+<span class="n">section_builder</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">"generate_queries"</span><span class="p">,</span> <span class="s">"search_web"</span><span class="p">)</span>
+<span class="n">section_builder</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">"search_web"</span><span class="p">,</span> <span class="s">"write_section"</span><span class="p">)</span>
+<span class="n">section_builder</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">"write_section"</span><span class="p">,</span> <span class="n">END</span><span class="p">)</span>
+<span class="n">section_builder_subagent</span> <span class="o">=</span> <span class="n">section_builder</span><span class="p">.</span><span class="nb">compile</span><span class="p">()</span>
+
+<span class="c1"># Display the graph
+</span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">section_builder_subagent</span><span class="p">.</span><span class="n">get_graph</span><span class="p">().</span><span class="n">draw_mermaid_png</span><span class="p">())</span>
+</code></pre></div></div>
+
+<h4 id="output-1">Output</h4>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T161442.204.webp" alt="langgraph.graph" /></p>
+
+<h3 id="创建动态并行化节点函数--并行化节写入">创建动态并行化节点函数 – 并行化节写入</h3>
+
+<p>Send(…) 用于并行化，并针对每个部分调用一次 section_builder_subagent 以（并行地）写入内容</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langgraph.constants</span> <span class="kn">import</span> <span class="n">Send</span>
+
+<span class="k">def</span> <span class="nf">parallelize_section_writing</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ReportState</span><span class="p">):</span>
+    <span class="s">""" This is the "map" step when we kick off web research for some sections of the report in parallel and then write the section"""</span>
+
+    <span class="c1"># Kick off section writing in parallel via Send() API for any sections that require research
+</span>    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">Send</span><span class="p">(</span><span class="s">"section_builder_with_web_search"</span><span class="p">,</span> <span class="c1"># name of the subagent node
+</span>             <span class="p">{</span><span class="s">"section"</span><span class="p">:</span> <span class="n">s</span><span class="p">})</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">state</span><span class="p">[</span><span class="s">"sections"</span><span class="p">]</span>
+              <span class="k">if</span> <span class="n">s</span><span class="p">.</span><span class="n">research</span>
+    <span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="创建格式节节点函数">创建格式节节点函数</h3>
+
+<p>这基本上是所有章节进行格式化并组合成一个大文档的部分。</p>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T161531.617.webp" alt="Create Format Sections Node Function" /></p>
+
+<p>格式化章节节点功能 – 来源：作者</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">format_sections</span><span class="p">(</span><span class="n">sections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Section</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s">""" Format a list of report sections into a single text string """</span>
+    <span class="n">formatted_str</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">section</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sections</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">formatted_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s">"""
+</span><span class="si">{</span><span class="s">'='</span><span class="o">*</span><span class="mi">60</span><span class="si">}</span><span class="s">
+Section </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">section</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">
+</span><span class="si">{</span><span class="s">'='</span><span class="o">*</span><span class="mi">60</span><span class="si">}</span><span class="s">
+Description:
+</span><span class="si">{</span><span class="n">section</span><span class="p">.</span><span class="n">description</span><span class="si">}</span><span class="s">
+Requires Research:
+</span><span class="si">{</span><span class="n">section</span><span class="p">.</span><span class="n">research</span><span class="si">}</span><span class="s">
+
+Content:
+</span><span class="si">{</span><span class="n">section</span><span class="p">.</span><span class="n">content</span> <span class="k">if</span> <span class="n">section</span><span class="p">.</span><span class="n">content</span> <span class="k">else</span> <span class="s">'[Not yet written]'</span><span class="si">}</span><span class="s">
+
+"""</span>
+    <span class="k">return</span> <span class="n">formatted_str</span>
+
+<span class="k">def</span> <span class="nf">format_completed_sections</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ReportState</span><span class="p">):</span>
+    <span class="s">""" Gather completed sections from research and format them as context for writing the final sections """</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'--- Formatting Completed Sections ---'</span><span class="p">)</span>
+    <span class="c1"># List of completed sections
+</span>    <span class="n">completed_sections</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">"completed_sections"</span><span class="p">]</span>
+    <span class="c1"># Format completed section to str to use as context for final sections
+</span>    <span class="n">completed_report_sections</span> <span class="o">=</span> <span class="n">format_sections</span><span class="p">(</span><span class="n">completed_sections</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'--- Formatting Completed Sections is Done ---'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"report_sections_from_research"</span><span class="p">:</span> <span class="n">completed_report_sections</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="最后一部分的指令提示">最后一部分的指令提示</h3>
+
+<p>有一个主要的指令提示符：</p>
+
+<h4 id="1-最终部分编写器提示">1. 最终部分编写器提示</h4>
+
+<p>约束LLM根据某些关于风格、结构、长度、方法的指导方针生成并撰写引言或结论的内容，并且已经撰写部分的内容也会被发送。</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">FINAL_SECTION_WRITER_PROMPT = """You are an expert technical writer crafting a section that synthesizes information from the rest of the report.
+</span>
+Title for the section:
+<span class="err">{section_title}</span>
+
+<span class="p">Topic for this section:
+</span><span class="err">{section_topic}</span>
+
+<span class="p">Available report content of already completed sections:
+</span><span class="err">{context}</span>
+
+<span class="p">1. Section-Specific Approach:
+</span>
+For Introduction:
+<span class="gd">- Use # for report title (Markdown format)
+- 50-100 word limit
+- Write in simple and clear language
+- Focus on the core motivation for the report in 1-2 paragraphs
+- Use a clear narrative arc to introduce the report
+- Include NO structural elements (no lists or tables)
+- No sources section needed
+</span>
+For Conclusion/Summary:
+<span class="gd">- Use ## for section title (Markdown format)
+- 100-150 word limit
+- For comparative reports:
+</span>    * Must include a focused comparison table using Markdown table syntax
+    * Table should distill insights from the report
+    * Keep table entries clear and concise
+<span class="gd">- For non-comparative reports:
+</span>    * Only use ONE structural element IF it helps distill the points made in the report:
+    * Either a focused table comparing items present in the report (using Markdown table syntax)
+    * Or a short list using proper Markdown list syntax:
+      - Use \`*\` or \`-\` for unordered lists
+      - Use \`1.\` for ordered lists
+      - Ensure proper indentation and spacing
+<span class="gd">- End with specific next steps or implications
+- No sources section needed
+</span>
+3. Writing Approach:
+<span class="gd">- Use concrete details over general statements
+- Make every word count
+- Focus on your single most important point
+</span>
+4. Quality Checks:
+<span class="gd">- For introduction: 50-100 word limit, # for report title, no structural elements, no sources section
+- For conclusion: 100-150 word limit, ## for section title, only ONE structural element at most, no sources section
+- Markdown format
+- Do not include word count or any preamble in your response
+- If there are special characters in the text, such as the dollar symbol,
+</span>  ensure they are escaped properly for correct rendering e.g $25.5 should become \$25.5"""
+</code></pre></div></div>
+
+<h3 id="创建写入最终部分节点函数">创建写入最终部分节点函数</h3>
+
+<p>此函数使用上述指令提示 FINAL_SECTION_WRITER_PROMPT 来撰写引言和结论。此函数将使用下面的 Send(…)并行执行</p>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T161609.063.webp" alt="Create Write Final Sections Node Function" /></p>
+
+<p>最后部分编写器节点功能 – 来源：作者</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">write_final_sections</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SectionState</span><span class="p">):</span>
+    <span class="s">""" Write the final sections of the report, which do not require web search and use the completed sections as context"""</span>
+
+    <span class="c1"># Get state
+</span>    <span class="n">section</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">"section"</span><span class="p">]</span>
+    <span class="n">completed_report_sections</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">"report_sections_from_research"</span><span class="p">]</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'--- Writing Final Section: '</span><span class="o">+</span> <span class="n">section</span><span class="p">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">' ---'</span><span class="p">)</span>
+    <span class="c1"># Format system instructions
+</span>    <span class="n">system_instructions</span> <span class="o">=</span> <span class="n">FINAL_SECTION_WRITER_PROMPT</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">section_title</span><span class="o">=</span><span class="n">section</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+                                                             <span class="n">section_topic</span><span class="o">=</span><span class="n">section</span><span class="p">.</span><span class="n">description</span><span class="p">,</span>
+                                                             <span class="n">context</span><span class="o">=</span><span class="n">completed_report_sections</span><span class="p">)</span>
+
+    <span class="c1"># Generate section
+</span>    <span class="n">user_instruction</span> <span class="o">=</span> <span class="s">"Craft a report section based on the provided sources."</span>
+    <span class="n">section_content</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="n">invoke</span><span class="p">([</span><span class="n">SystemMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">system_instructions</span><span class="p">),</span>
+                                  <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">user_instruction</span><span class="p">)])</span>
+
+    <span class="c1"># Write content to section
+</span>    <span class="n">section</span><span class="p">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">section_content</span><span class="p">.</span><span class="n">content</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'--- Writing Final Section: '</span><span class="o">+</span> <span class="n">section</span><span class="p">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">' Completed ---'</span><span class="p">)</span>
+    <span class="c1"># Write the updated section to completed sections
+</span>    <span class="k">return</span> <span class="p">{</span><span class="s">"completed_sections"</span><span class="p">:</span> <span class="p">[</span><span class="n">section</span><span class="p">]}</span>
+</code></pre></div></div>
+
+<h3 id="创建动态并行化节点函数--并行化最终部分写入">创建动态并行化节点函数 – 并行化最终部分写入</h3>
+
+<p>Send(…) 用于并行化，并针对引言和结论中的每一个调用一次 write_final_sections 来（并行地）写入内容</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langgraph.constants</span> <span class="kn">import</span> <span class="n">Send</span>
+
+<span class="k">def</span> <span class="nf">parallelize_final_section_writing</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ReportState</span><span class="p">):</span>
+    <span class="s">""" Write any final sections using the Send API to parallelize the process """</span>
+
+    <span class="c1"># Kick off section writing in parallel via Send() API for any sections that do not require research
+</span>    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">Send</span><span class="p">(</span><span class="s">"write_final_sections"</span><span class="p">,</span>
+             <span class="p">{</span><span class="s">"section"</span><span class="p">:</span> <span class="n">s</span><span class="p">,</span> <span class="s">"report_sections_from_research"</span><span class="p">:</span> <span class="n">state</span><span class="p">[</span><span class="s">"report_sections_from_research"</span><span class="p">]})</span>
+                 <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">state</span><span class="p">[</span><span class="s">"sections"</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span><span class="p">.</span><span class="n">research</span>
+    <span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="编译最终报告节点功能">编译最终报告节点功能</h3>
+
+<p>此函数将报告的所有部分合并在一起，并将其汇编成最终报告文档</p>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T161646.327.webp" alt="Compile Final Report Node Function" /></p>
+
+<p>编译最终报告节点功能 – 来源：作者</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">compile_final_report</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ReportState</span><span class="p">):</span>
+    <span class="s">""" Compile the final report """</span>
+
+    <span class="c1"># Get sections
+</span>    <span class="n">sections</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">"sections"</span><span class="p">]</span>
+    <span class="n">completed_sections</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="p">.</span><span class="n">name</span><span class="p">:</span> <span class="n">s</span><span class="p">.</span><span class="n">content</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">state</span><span class="p">[</span><span class="s">"completed_sections"</span><span class="p">]}</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'--- Compiling Final Report ---'</span><span class="p">)</span>
+    <span class="c1"># Update sections with completed content while maintaining original order
+</span>    <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">sections</span><span class="p">:</span>
+        <span class="n">section</span><span class="p">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">completed_sections</span><span class="p">[</span><span class="n">section</span><span class="p">.</span><span class="n">name</span><span class="p">]</span>
+
+    <span class="c1"># Compile final report
+</span>    <span class="n">all_sections</span> <span class="o">=</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">([</span><span class="n">s</span><span class="p">.</span><span class="n">content</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sections</span><span class="p">])</span>
+    <span class="c1"># Escape unescaped $ symbols to display properly in Markdown
+</span>    <span class="n">formatted_sections</span> <span class="o">=</span> <span class="n">all_sections</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"</span><span class="se">\\</span><span class="s">$"</span><span class="p">,</span> <span class="s">"TEMP_PLACEHOLDER"</span><span class="p">)</span>  <span class="c1"># Temporarily mark already escaped $
+</span>    <span class="n">formatted_sections</span> <span class="o">=</span> <span class="n">formatted_sections</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"$"</span><span class="p">,</span> <span class="s">"</span><span class="se">\\</span><span class="s">$"</span><span class="p">)</span>  <span class="c1"># Escape all $
+</span>    <span class="n">formatted_sections</span> <span class="o">=</span> <span class="n">formatted_sections</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"TEMP_PLACEHOLDER"</span><span class="p">,</span> <span class="s">"</span><span class="se">\\</span><span class="s">$"</span><span class="p">)</span>  <span class="c1"># Restore originally escaped $
+</span>
+    <span class="c1"># Now escaped_sections contains the properly escaped Markdown text
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'--- Compiling Final Report Done ---'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"final_report"</span><span class="p">:</span> <span class="n">formatted_sections</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="构建我们的深度研究与报告撰写代理">构建我们的深度研究与报告撰写代理</h3>
+
+<p>我们现在将所有已定义的组件和子代理组合在一起，并构建我们的主要规划代理。</p>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T160939.851.webp" alt="Deep Research &amp; Structured Report Generation Planning Agentic AI System Architecture" /></p>
+
+<p>深度研究与报告撰写者智能工作流程 – 来源：作者</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">ReportState</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">ReportStateInput</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">ReportStateOutput</span><span class="p">)</span>
+
+<span class="n">builder</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">"generate_report_plan"</span><span class="p">,</span> <span class="n">generate_report_plan</span><span class="p">)</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">"section_builder_with_web_search"</span><span class="p">,</span> <span class="n">section_builder_subagent</span><span class="p">)</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">"format_completed_sections"</span><span class="p">,</span> <span class="n">format_completed_sections</span><span class="p">)</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">"write_final_sections"</span><span class="p">,</span> <span class="n">write_final_sections</span><span class="p">)</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">"compile_final_report"</span><span class="p">,</span> <span class="n">compile_final_report</span><span class="p">)</span>
+
+<span class="n">builder</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s">"generate_report_plan"</span><span class="p">)</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s">"generate_report_plan"</span><span class="p">,</span>
+                              <span class="n">parallelize_section_writing</span><span class="p">,</span>
+                              <span class="p">[</span><span class="s">"section_builder_with_web_search"</span><span class="p">])</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">"section_builder_with_web_search"</span><span class="p">,</span> <span class="s">"format_completed_sections"</span><span class="p">)</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s">"format_completed_sections"</span><span class="p">,</span>
+                              <span class="n">parallelize_final_section_writing</span><span class="p">,</span>
+                              <span class="p">[</span><span class="s">"write_final_sections"</span><span class="p">])</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">"write_final_sections"</span><span class="p">,</span> <span class="s">"compile_final_report"</span><span class="p">)</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">"compile_final_report"</span><span class="p">,</span> <span class="n">END</span><span class="p">)</span>
+
+<span class="n">reporter_agent</span> <span class="o">=</span> <span class="n">builder</span><span class="p">.</span><span class="nb">compile</span><span class="p">()</span>
+<span class="c1"># view agent structure
+</span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">reporter_agent</span><span class="p">.</span><span class="n">get_graph</span><span class="p">(</span><span class="n">xray</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">draw_mermaid_png</span><span class="p">()))</span>
+</code></pre></div></div>
+
+<h4 id="output-2">Output</h4>
+
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/unnamed-2025-02-05T161806.861.webp" alt="Mermaid graph " /></p>
+
+<p>我们现在准备好运行并测试我们的智能体系统了！</p>
+
+<h3 id="运行并测试我们的深度研究与报告撰写代理">运行并测试我们的深度研究与报告撰写代理</h3>
+
+<p>让我们最终对我们的深度研究报告撰写代理进行测试！我们将创建一个简单的函数来实时流式传输进度，然后展示最终报告。一旦你有了一个能正常运行的代理，我建议关闭所有中间打印消息！</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">rich.console</span> <span class="kn">import</span> <span class="n">Console</span>
+<span class="kn">from</span> <span class="nn">rich.markdown</span> <span class="kn">import</span> <span class="n">Markdown</span> <span class="k">as</span> <span class="n">RichMarkdown</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">call_planner_agent</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s">"recursion_limit"</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="n">astream</span><span class="p">(</span>
+        <span class="p">{</span><span class="s">'topic'</span> <span class="p">:</span> <span class="n">prompt</span><span class="p">},</span>
+        <span class="n">config</span><span class="p">,</span>
+        <span class="n">stream_mode</span><span class="o">=</span><span class="s">"values"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">event</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s">"__end__"</span><span class="p">:</span>
+                    <span class="n">display</span><span class="p">(</span><span class="n">RichMarkdown</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="s">' -&gt; '</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s">'final_report'</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">'='</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">'Final Report:'</span><span class="p">)</span>
+                <span class="n">md</span> <span class="o">=</span> <span class="n">RichMarkdown</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                <span class="n">display</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="测试运行">测试运行</h4>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">topic</span> <span class="p">=</span> <span class="s">"Detailed report on how is NVIDIA winning the game against its competitors"</span>
+<span class="k">await</span> <span class="nf">call_planner_agent</span><span class="p">(</span><span class="n">agent</span><span class="p">=</span><span class="n">reporter_agent</span><span class="p">,</span>
+                         <span class="n">prompt</span><span class="p">=</span><span class="n">topic</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="output-3">Output</h4>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">--- Generating Report Plan ---
+--- Generating Report Plan Completed ---
+--- Generating Search Queries for Section: NVIDIA's Market Dominance in GPUs
+</span> ------ Generating Search Queries for Section: Strategic Acquisitions and
+ Partnerships ---
+<span class="gd">--- Generating Search Queries for Section: Technological Innovations and AI
+</span> Leadership ---
+
+--- Generating Search Queries for Section: Financial Performance and Growth
+ Strategy ---
+<span class="gd">--- Generating Search Queries for Section: NVIDIA's Market Dominance in GPUs
+</span> Completed ---
+<span class="gd">--- Searching Web for Queries ---
+--- Generating Search Queries for Section: Financial Performance and Growth
+</span> Strategy Completed ---
+<span class="gd">--- Searching Web for Queries ---
+--- Generating Search Queries for Section: Technological Innovations and AI
+</span> Leadership Completed ---
+<span class="gd">--- Searching Web for Queries ---
+--- Generating Search Queries for Section: Strategic Acquisitions and
+</span> Partnerships Completed ---
+<span class="gd">--- Searching Web for Queries ---
+--- Searching Web for Queries Completed ---
+--- Writing Section : Strategic Acquisitions and Partnerships ---
+--- Searching Web for Queries Completed ---
+--- Writing Section : Financial Performance and Growth Strategy ---
+--- Searching Web for Queries Completed ---
+--- Writing Section : NVIDIA's Market Dominance in GPUs ---
+--- Searching Web for Queries Completed ---
+--- Writing Section : Technological Innovations and AI Leadership ---
+--- Writing Section : Strategic Acquisitions and Partnerships Completed ---
+--- Writing Section : Financial Performance and Growth Strategy Completed ---
+--- Writing Section : NVIDIA's Market Dominance in GPUs Completed ---
+--- Writing Section : Technological Innovations and AI Leadership Completed ---
+--- Formatting Completed Sections ---
+--- Formatting Completed Sections is Done ---
+--- Writing Final Section: Introduction ------ Writing Final Section:
+</span> Conclusion ---
+
+--- Writing Final Section: Introduction Completed ---
+<span class="gd">--- Writing Final Section: Conclusion Completed ---
+--- Compiling Final Report ---
+--- Compiling Final Report Done ---
+</span><span class="gh">==================================================
+</span><span class="p">Final Report:
+</span></code></pre></div></div>
+<p><a href="https://www.analyticsvidhya.com/wp-content/plugins/pdfjs-viewer-shortcode/pdfjs/web/viewer.php?file=https://cdn.analyticsvidhya.com/wp-content/uploads/2025/02/nvidia_report.pdf&amp;attachment_id=219818&amp;dButton=true&amp;pButton=true&amp;oButton=false&amp;sButton=true&amp;pagemode=none&amp;_wpnonce=43c3249032">查看全屏</a></p>
+
+<p>如上所示，它为我们给定的主题提供了一份相当全面、研究充分且结构良好的报告！</p>
+
+<h2 id="结论">结论</h2>
+
+<p>如果你正在阅读这篇文章，我赞赏你在这本篇幅巨大的指南中坚持读到最后的努力！在这里我们看到，构建一个类似于 OpenAI 推出的成熟商业产品（而且价格不菲！）并不太难，OpenAI 这家公司绝对知道如何在生成式人工智能以及现在的智能体人工智能领域推出高质量的产品。</p>
+
+<p>我们看到了一个关于如何构建我们自己的深度研究和报告生成智能 AI 系统的详细架构和工作流程，而且总体来说，运行这个系统，正如承诺的那样，花费不到一美元！如果你在所有事情上都使用开源组件，那它完全免费！此外，它完全可定制，你可以控制搜索的方式、报告的结构、长度和风格。请注意，如果你使用 Tavily，在运行这个深度研究智能体时很容易进行大量搜索，所以要注意并跟踪你的使用情况。这只是为你提供了一个构建基础，你可以自由使用这段代码和系统，对其进行定制并使其变得更好！</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

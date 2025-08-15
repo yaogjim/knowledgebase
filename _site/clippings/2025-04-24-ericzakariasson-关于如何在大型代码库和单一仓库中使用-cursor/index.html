@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提取中文标题</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">提取中文标题</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">提取中文标题</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @ericzakariasson</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-24</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/ericzakariasson/status/1915072216523497628" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>eric zakariasson</strong> @ericzakariasson <a href="https://x.com/ericzakariasson/status/1915072216523497628">2025-04-23</a></p>
+
+<p>关于如何在大型代码库和单一仓库中使用@cursor_ai，我收到了很多问题。虽然这取决于具体情况™，但这里有一些提示和技巧</p>
+
+<p><img src="https://pbs.twimg.com/media/GpO0BaubsAAQnH-?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>eric zakariasson</strong> @ericzakariasson <a href="https://x.com/ericzakariasson/status/1915072233816687015">2025-04-23</a></p>
+
+<p>启用项目结构，使模型更清楚项目的结构方式</p>
+
+<p><img src="https://pbs.twimg.com/media/GpO0DDrbcAA_eJv?format=png&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>eric zakariasson</strong> @ericzakariasson <a href="https://x.com/ericzakariasson/status/1915072249411023135">2025-04-23</a></p>
+
+<p>确保@提及你知道包含与你想要完成的任务相关模式和示例的特定文件或文件夹。这会让模型以你的代码库为基础</p>
+
+<p><img src="https://pbs.twimg.com/media/GpO0D87bMAACDR2?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>eric zakariasson</strong> @ericzakariasson <a href="https://x.com/ericzakariasson/status/1915072261750677854">2025-04-23</a></p>
+
+<p>不要试图一次做太多事情。把问题分解成可以逐一完成的小任务。想象一下从产品需求文档到一个个工单，一步一步来。</p>
+
+<hr />
+
+<p><strong>eric zakariasson</strong> @ericzakariasson <a href="https://x.com/ericzakariasson/status/1915072273809285199">2025-04-23</a></p>
+
+<p>当手头有新任务时创建新的聊天记录，以保持上下文清晰，避免混淆模型。如果您依赖之前的聊天记录，可以参考@过去的聊天记录</p>
+
+<blockquote>
+  <p>2025-02-13</p>
+
+  <p>单一用途的作曲器</p>
+
+  <p>这是我为充分利用@cursor_ai 而采用的模式之一。我经常看到人们使用非常长的编排器，将不相关的更改混在一起，导致模型感到困惑。</p>
+
+  <p>通过创建新的作曲家（命令+N），你可以从一个干净的状态重新开始</p>
+</blockquote>
+
+<hr />
+
+<p><strong>eric zakariasson</strong> @ericzakariasson <a href="https://x.com/ericzakariasson/status/1915072290066461159">2025-04-23</a></p>
+
+<p>开启询问模式，要求智能体在编写任何代码之前制定一个实施计划。反复迭代，直到你对规格满意为止，然后切换到智能体模式并提示模型进行实施</p>
+
+<p><img src="https://pbs.twimg.com/media/GpO0GVrakAALctv?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>eric zakariasson</strong> @ericzakariasson <a href="https://x.com/ericzakariasson/status/1915072302796226739">2025-04-23</a></p>
+
+<p>确保排除文件索引，例如构建工件、缓存等。模式由.gitignore 继承，所以你可能无需触碰它</p>
+
+<p>在即将推出的版本中，当我们推出工作区支持时，这将变得容易得多</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@ericzakariasson</span>
+            
+          
+            
+              <span class="tag">提取包含</span>
+            
+          
+            
+          
+            
+              <span class="tag">的中文标签</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

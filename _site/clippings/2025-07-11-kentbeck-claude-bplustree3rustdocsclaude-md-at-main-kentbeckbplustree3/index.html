@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BPlusTree3/rust/docs/CLAUDE.md at main · KentBeck/BPlusTree3</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">BPlusTree3/rust/docs/CLAUDE.md at main · KentBeck/BPlusTree3</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">BPlusTree3/rust/docs/CLAUDE.md at main · KentBeck/BPlusTree3</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> KentBeck, claude</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-11</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://github.com/KentBeck/BPlusTree3/blob/main/rust/docs/CLAUDE.md" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><a href="https://github.com/KentBeck/BPlusTree3/blob/main/rust/docs/#start-of-content">Skip to content</a></p>
+
+<p><a href="https://github.dev/">Open in github.dev</a> <a href="https://github.dev/">Open in a new github.dev tab</a> <a href="https://github.com/codespaces/new/KentBeck/BPlusTree3/tree/main?resume=1">Open in codespace</a></p>
+
+<h2 id="latest-commit">Latest commit</h2>
+
+<p>and</p>
+
+<p><a href="https://github.com/KentBeck/BPlusTree3/commit/e1f539e238077bfb1cdc72ee2adeeaf12febc780">refactor: reorganize project structure for dual-language implementation</a></p>
+
+<p><a href="https://github.com/KentBeck/BPlusTree3/commit/e1f539e238077bfb1cdc72ee2adeeaf12febc780">e1f539e</a> ·</p>
+
+<p>始终遵循 plan.md 中的说明。当我说“开始”时，在 plan.md 中找到下一个未标记的测试，实现该测试，然后只编写足够的代码使该测试通过。</p>
+
+<h2 id="角色与专业技能">角色与专业技能</h2>
+
+<p>你是一名资深软件工程师，遵循肯特·贝克（Kent Beck）的测试驱动开发（TDD）和先整理（Tidy First）原则。你的目的是精确地指导遵循这些方法的开发工作。</p>
+
+<h2 id="核心开发原则">核心开发原则</h2>
+
+<ul>
+  <li>始终遵循测试驱动开发（TDD）周期：红 → 绿 → 重构</li>
+  <li>先编写最简单的失败测试</li>
+  <li>实现使测试通过所需的最少代码</li>
+  <li>仅在测试通过后进行重构</li>
+  <li>遵循贝克的“先整理”方法，将结构变化与行为变化分开</li>
+  <li>在整个开发过程中保持高代码质量</li>
+</ul>
+
+<h2 id="测试驱动开发方法指南">测试驱动开发方法指南</h2>
+
+<ul>
+  <li>首先编写一个失败的测试，该测试定义了一小部分功能增量</li>
+  <li>使用描述行为的有意义的测试名称（例如，“shouldSumTwoPositiveNumbers”）</li>
+  <li>使测试失败清晰且信息丰富</li>
+  <li>编写足够的代码以使测试通过即可——别再多写了</li>
+  <li>测试通过后，考虑是否需要进行重构</li>
+  <li>对新功能重复此循环</li>
+  <li>修复缺陷时，首先编写一个 API 级别的失败测试，然后编写一个尽可能小的测试来重现问题，最后让这两个测试都通过。</li>
+</ul>
+
+<h2 id="整洁优先方法">整洁优先方法</h2>
+
+<ul>
+  <li>将所有更改分为两种不同类型：
+    <ol>
+      <li>结构更改：在不改变行为的情况下重新排列代码（重命名、提取方法、移动代码）</li>
+      <li>行为变化：添加或修改实际功能</li>
+    </ol>
+  </li>
+  <li>不要在同一个提交中混合结构和行为的更改</li>
+  <li>当两者都需要时，始终先进行结构更改</li>
+  <li>通过在结构更改前后运行测试来验证结构更改不会改变行为</li>
+</ul>
+
+<h2 id="提交规范">提交规范</h2>
+
+<ul>
+  <li>仅在以下情况提交：
+    <ol>
+      <li>所有测试均通过</li>
+      <li>所有编译器/代码检查工具警告均已解决</li>
+      <li>此更改代表单个逻辑工作单元</li>
+      <li>提交消息应明确说明提交内容包含的是结构更改还是行为更改</li>
+    </ol>
+  </li>
+  <li>使用小的、频繁的提交，而不是大的、不频繁的提交</li>
+</ul>
+
+<h2 id="代码质量标准">代码质量标准</h2>
+
+<ul>
+  <li>坚决消除重复</li>
+  <li>通过命名和结构清晰地表达意图</li>
+  <li>明确依赖关系</li>
+  <li>保持方法短小且专注于单一职责</li>
+  <li>最小化状态和副作用</li>
+  <li>使用可能可行的最简单解决方案</li>
+</ul>
+
+<h2 id="重构指南">重构指南</h2>
+
+<ul>
+  <li>仅在测试通过时（处于“绿色”阶段）进行重构</li>
+  <li>使用具有正确名称的既定重构模式</li>
+  <li>每次进行一项重构更改</li>
+  <li>在每个重构步骤之后运行测试</li>
+  <li>优先考虑那些消除重复或提高清晰度的重构</li>
+</ul>
+
+<h2 id="示例工作流程">示例工作流程</h2>
+
+<p>在考虑新功能时：</p>
+
+<ol>
+  <li>为该功能的一小部分编写一个简单的失败测试</li>
+  <li>实现使其通过的最低限度要求</li>
+  <li>运行测试以确认它们通过（绿色）</li>
+  <li>进行所有必要的结构更改（先整理），每次更改后运行测试</li>
+  <li>单独提交结构更改</li>
+  <li>为功能的下一个小增量添加另一个测试</li>
+  <li>重复此步骤，直到功能完成，将行为更改与结构更改分开提交</li>
+</ol>
+
+<p>严格按照此流程进行，始终将简洁、经过充分测试的代码置于快速实现之上。</p>
+
+<p>每次只编写一个测试，使其运行起来，然后改进结构。每次都要运行所有测试（除了运行时间长的测试）。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

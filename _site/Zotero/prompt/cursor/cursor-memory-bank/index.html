@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Memory Bank System v0.6-beta</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="memory-bank-system-v06-beta">Memory Bank System v0.6-beta</h1>
+
+<p>A modular, graph-based task management system that integrates with Cursor custom modes for efficient development workflows.</p>
+
+<pre><code class="language-mermaid">graph TD
+    Main["Memory Bank System"] --&gt; Modes["Custom Modes"]
+    Main --&gt; Rules["JIT Rule Loading"]
+    Main --&gt; Visual["Visual Process Maps"]
+    
+    Modes --&gt; VAN["VAN: Initialization"]
+    Modes --&gt; PLAN["PLAN: Task Planning"]
+    Modes --&gt; CREATIVE["CREATIVE: Design"]
+    Modes --&gt; IMPLEMENT["IMPLEMENT: Building"]
+    
+    style Main fill:#4da6ff,stroke:#0066cc,color:white
+    style Modes fill:#f8d486,stroke:#e8b84d
+    style Rules fill:#80ffaa,stroke:#4dbb5f
+    style Visual fill:#d9b3ff,stroke:#b366ff
+</code></pre>
+
+<blockquote>
+  <p><strong>Development Status</strong>: This system is actively under development. Features will be added and optimized over time. If you prefer stability over new features, you may continue using the previous version (v0.1-legacy), but please read about the architectural changes described in the <a href="/knowledgebase/Zotero/prompt/cursor/cursor-memory-bank/memory_bank_upgrade_guide.html">Memory Bank Upgrade Guide</a> to understand the benefits of this new approach.</p>
+</blockquote>
+
+<h2 id="about-memory-bank">About Memory Bank</h2>
+
+<p>Memory Bank is a personal project that provides a structured approach to development using specialized modes for different phases of the development process. It uses a Just-In-Time (JIT) rule loading architecture that loads only the rules needed for each phase, optimizing context usage and providing tailored guidance.</p>
+
+<h3 id="beyond-basic-custom-modes">Beyond Basic Custom Modes</h3>
+
+<p>While Cursor’s documentation describes custom modes as primarily standalone configurations with basic prompts and tool selections, Memory Bank significantly extends this concept:</p>
+
+<ul>
+  <li><strong>Graph-Based Mode Integration</strong>: Modes are interconnected nodes in a development workflow rather than isolated tools</li>
+  <li><strong>Workflow Progression</strong>: Modes are designed to transition from one to another in a logical sequence (VAN → PLAN → CREATIVE → IMPLEMENT)</li>
+  <li><strong>Shared Memory</strong>: Persistent state maintained across mode transitions via Memory Bank files</li>
+  <li><strong>Adaptive Behavior</strong>: Each mode adjusts its recommendations based on project complexity</li>
+  <li><strong>Built-in QA Functions</strong>: QA capabilities can be called from any mode for technical validation</li>
+</ul>
+
+<p>This approach transforms custom modes from simple AI personalities into components of a coordinated development system with specialized phases working together.</p>
+
+<h3 id="isolated-rules-architecture">Isolated Rules Architecture</h3>
+
+<p>A key architectural change in v0.6-beta is the complete isolation of rules to custom modes:</p>
+
+<ul>
+  <li><strong>No Global Rules</strong>: Unlike the previous version, this system doesn’t use global rules that affect all AI interactions</li>
+  <li><strong>Mode-Specific Rules Only</strong>: All rules are contained within their specific custom modes, with VAN serving as the entry point</li>
+  <li><strong>Non-Interference</strong>: When you’re not using one of the Memory Bank custom modes, your regular Cursor usage remains completely unaffected by any Memory Bank customizations</li>
+  <li><strong>Future-Proofing</strong>: This isolation keeps the global rules space free and available for potential future features</li>
+</ul>
+
+<p>This architectural change gives you much more control over when and how the Memory Bank system affects your Cursor experience.</p>
+
+<h3 id="creative-mode-and-claudes-think-tool">CREATIVE Mode and Claude’s “Think” Tool</h3>
+
+<p>The CREATIVE mode in Memory Bank is conceptually based on Anthropic’s Claude “Think” tool methodology, as described in their <a href="https://www.anthropic.com/engineering/claude-think-tool">engineering blog</a>. Key principles include:</p>
+
+<ul>
+  <li>Structured exploration of design options</li>
+  <li>Explicit documentation of pros and cons for different approaches</li>
+  <li>Breaking complex problems into manageable components</li>
+  <li>Systematic process to evaluate alternatives before making decisions</li>
+  <li>Documentation of reasoning processes for future reference</li>
+</ul>
+
+<p>For a detailed explanation of how Memory Bank implements these principles, including code examples and diagrams, see the <a href="/knowledgebase/Zotero/prompt/cursor/cursor-memory-bank/creative_mode_think_tool.html">CREATIVE Mode and Claude’s “Think” Tool</a> document.</p>
+
+<p>This implementation will continue to be refined and optimized as Claude’s capabilities evolve, maintaining the core methodology while enhancing integration with the Memory Bank ecosystem.</p>
+
+<h2 id="key-features">Key Features</h2>
+
+<ul>
+  <li><strong>Mode-Specific Visual Maps</strong>: Clear visual representations for each development phase</li>
+  <li><strong>Just-In-Time Rule Loading</strong>: Load only the rules needed for your current task</li>
+  <li><strong>Visual Decision Trees</strong>: Guided workflows with clear checkpoints</li>
+  <li><strong>Technical Validation</strong>: QA processes that can be called from any mode</li>
+  <li><strong>Platform-Aware Commands</strong>: Automatically adapts commands to your operating system</li>
+</ul>
+
+<h2 id="installation-instructions">Installation Instructions</h2>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+  <li><strong>Cursor Editor</strong>: Version 0.48 or higher is required.</li>
+  <li><strong>Custom Modes</strong>: Feature must be enabled in Cursor (Settings → Features → Chat → Custom modes).</li>
+  <li><strong>AI Model</strong>: Claude 3.7 Sonnet is recommended for best results, especially for CREATIVE mode’s “Think” tool methodology. Other models may work, but their interpretations might vary, potentially requiring some trial and error.</li>
+</ul>
+
+<h3 id="step-1-get-the-files">Step 1: Get the Files</h3>
+
+<p>Simply clone this repository into your project directory:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/vanzan01/cursor-memory-bank.git
+
+</code></pre></div></div>
+
+<p>Alternatively, you can download the ZIP file from GitHub and extract it to your project folder.</p>
+
+<p>This provides you with all the necessary files, including:</p>
+<ul>
+  <li>Rule files in <code class="language-plaintext highlighter-rouge">.cursor/rules/isolation_rules/</code></li>
+  <li>Mode instruction files in <code class="language-plaintext highlighter-rouge">custom_modes/</code> directory</li>
+  <li>Template Memory Bank files in <code class="language-plaintext highlighter-rouge">memory-bank/</code></li>
+</ul>
+
+<h3 id="step-2-setting-up-custom-modes-in-cursor">Step 2: Setting Up Custom Modes in Cursor</h3>
+
+<p><strong>This is the most critical and challenging part of the setup.</strong> You’ll need to manually create four custom modes in Cursor and copy the instruction content from the provided files:</p>
+
+<h4 id="how-to-add-a-custom-mode-in-cursor">How to Add a Custom Mode in Cursor</h4>
+
+<ol>
+  <li>Open Cursor and click on the mode selector in the chat panel</li>
+  <li>Select “Add custom mode”</li>
+  <li>In the configuration screen:
+    <ul>
+      <li>Enter the mode name (you can include emoji icons like 🔍, 📋, 🎨, ⚒️ by copy-pasting them at the beginning of the name)</li>
+      <li>Select an icon from Cursor’s limited predefined options (note: Cursor offers only a few basic icons, but you can use emoji in the name as a workaround)</li>
+      <li>Add a shortcut (optional)</li>
+      <li>Check the required tools</li>
+      <li>Click on <strong>Advanced options</strong></li>
+      <li>In the empty text box that appears at the bottom, paste the custom instruction content from the corresponding file</li>
+    </ul>
+  </li>
+</ol>
+
+<table>
+  <tr>
+    <td align="center"><em>Example configuration screen:</em></td>
+    <td align="center"><em>Result in mode selection menu:</em></td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <img src="assets/custom_mode_setup_1.png" alt="Custom Mode Configuration Screen" width="300" />
+    </td>
+    <td valign="top">
+      <img src="assets/custom_mode_setup_2.png" alt="Custom Modes in Menu" width="300" />
+    </td>
+  </tr>
+</table>
+
+<h4 id="mode-1-van-mode-initialization">Mode 1: VAN MODE (Initialization)</h4>
+
+<p>Configure as follows:</p>
+<ul>
+  <li><strong>Name</strong>: 🔍 VAN (copy-paste the magnifying glass emoji)</li>
+  <li><strong>Icon</strong>: Choose any available icon from Cursor’s limited selection</li>
+  <li><strong>Tools</strong>: Enable “Codebase Search”, “Read File”, “Terminal”, “List Directory”</li>
+  <li><strong>Advanced options</strong>: Paste the content from <code class="language-plaintext highlighter-rouge">custom_modes/van_instructions.md</code> in this repository into the text box at the bottom</li>
+</ul>
+
+<h4 id="mode-2-plan-mode-task-planning">Mode 2: PLAN MODE (Task Planning)</h4>
+
+<p>Configure as follows:</p>
+<ul>
+  <li><strong>Name</strong>: 📋 PLAN (copy-paste the clipboard emoji)</li>
+  <li><strong>Icon</strong>: Choose any available icon from Cursor’s limited selection</li>
+  <li><strong>Tools</strong>: Enable “Codebase Search”, “Read File”, “Terminal”, “List Directory”</li>
+  <li><strong>Advanced options</strong>: Paste the content from <code class="language-plaintext highlighter-rouge">custom_modes/plan_instructions.md</code> in this repository into the text box at the bottom</li>
+</ul>
+
+<h4 id="mode-3-creative-mode-design-decisions">Mode 3: CREATIVE MODE (Design Decisions)</h4>
+
+<p>Configure as follows:</p>
+<ul>
+  <li><strong>Name</strong>: 🎨 CREATIVE (copy-paste the artist palette emoji)</li>
+  <li><strong>Icon</strong>: Choose any available icon from Cursor’s limited selection</li>
+  <li><strong>Tools</strong>: Enable “Codebase Search”, “Read File”, “Terminal”, “List Directory”, “Edit File”</li>
+  <li><strong>Advanced options</strong>: Paste the content from <code class="language-plaintext highlighter-rouge">custom_modes/creative_instructions.md</code> in this repository into the text box at the bottom</li>
+</ul>
+
+<h4 id="mode-4-implement-mode-code-implementation">Mode 4: IMPLEMENT MODE (Code Implementation)</h4>
+
+<p>Configure as follows:</p>
+<ul>
+  <li><strong>Name</strong>: ⚒️ IMPLEMENT (copy-paste the hammer and pick emoji)</li>
+  <li><strong>Icon</strong>: Choose any available icon from Cursor’s limited selection</li>
+  <li><strong>Tools</strong>: Enable all tools</li>
+  <li><strong>Advanced options</strong>: Paste the content from <code class="language-plaintext highlighter-rouge">custom_modes/implement_instructions.md</code> in this repository into the text box at the bottom</li>
+</ul>
+
+<p>For additional help on setting up custom modes in Cursor, refer to the <a href="https://docs.cursor.com/chat/custom-modes">official Cursor documentation on custom modes</a>.</p>
+
+<h3 id="qa-functionality">QA Functionality</h3>
+
+<p>QA is not a separate custom mode but rather a set of validation functions that can be called from any mode. You can invoke QA capabilities by typing “QA” in any mode when you need to perform technical validation. This approach provides flexibility to conduct verification at any point in the development process.</p>
+
+<h3 id="file-structure-reference">File Structure Reference</h3>
+
+<p>After cloning, you’ll have this directory structure:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>your-project/
+├── .cursor/
+│   └── rules/
+│       └── isolation_rules/
+│           ├── Core/
+│           ├── Level3/
+│           ├── Phases/
+│           │   └── CreativePhase/
+│           ├── visual-maps/
+│           │   └── van_mode_split/
+│           └── main.mdc
+├── memory-bank/
+│   ├── tasks.md
+│   ├── activeContext.md
+│   └── progress.md
+└── custom_modes/
+    ├── van_instructions.md
+    ├── plan_instructions.md
+    ├── creative_instructions.md
+    ├── implement_instructions.md
+</code></pre></div></div>
+
+<h2 id="basic-usage">Basic Usage</h2>
+
+<ol>
+  <li><strong>Start with VAN Mode</strong>:
+    <ul>
+      <li>Switch to VAN mode in Cursor</li>
+      <li>Type “VAN” to initiate the initialization process</li>
+      <li>VAN will analyze your project structure and determine complexity</li>
+    </ul>
+  </li>
+  <li><strong>Follow the Workflow Based on Complexity</strong>:
+    <ul>
+      <li><strong>Level 1 tasks</strong>: May proceed directly to IMPLEMENT after VAN</li>
+      <li><strong>Level 2-4 tasks</strong>: Follow the full workflow (VAN → PLAN → CREATIVE → IMPLEMENT)</li>
+      <li><strong>At any point</strong>: Type “QA” to perform technical validation</li>
+    </ul>
+  </li>
+  <li><strong>Mode-Specific Commands</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VAN - Initialize project and determine complexity
+PLAN - Create detailed implementation plan
+CREATIVE - Explore design options for complex components
+IMPLEMENT - Systematically build planned components
+QA - Validate technical implementation (can be called from any mode)
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="core-files-and-their-purposes">Core Files and Their Purposes</h2>
+
+<pre><code class="language-mermaid">graph LR
+    subgraph "Memory Bank Files"
+        Tasks["tasks.md&lt;br&gt;Source of Truth"]
+        Active["activeContext.md&lt;br&gt;Current Focus"]
+        Progress["progress.md&lt;br&gt;Implementation Status"]
+        Creative["creative-*.md&lt;br&gt;Design Decisions"]
+    end
+    
+    style Tasks fill:#f9d77e,stroke:#d9b95c,stroke-width:3px
+    style Active fill:#a8d5ff,stroke:#88b5e0
+    style Progress fill:#c5e8b7,stroke:#a5c897
+    style Creative fill:#f4b8c4,stroke:#d498a4
+</code></pre>
+
+<ul>
+  <li><strong>tasks.md</strong>: Central source of truth for task tracking</li>
+  <li><strong>activeContext.md</strong>: Maintains focus of current development phase</li>
+  <li><strong>progress.md</strong>: Tracks implementation status</li>
+  <li><strong>creative-*.md</strong>: Design decision documents generated during CREATIVE mode</li>
+</ul>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="common-issues">Common Issues</h3>
+
+<ol>
+  <li><strong>Mode not responding correctly</strong>:
+    <ul>
+      <li>Verify custom instructions were copied completely (this is the most common issue)</li>
+      <li>Ensure the correct tools are enabled for each mode</li>
+      <li>Check that you’ve switched to the correct mode before issuing commands</li>
+      <li>Make sure you pasted the instructions in the “Advanced options” text box</li>
+    </ul>
+  </li>
+  <li><strong>Rules not loading</strong>:
+    <ul>
+      <li>Make sure the <code class="language-plaintext highlighter-rouge">.cursor/rules/isolation_rules/</code> directory is in the correct location</li>
+      <li>Verify file permissions allow reading the rule files</li>
+    </ul>
+  </li>
+  <li><strong>Command execution issues</strong>:
+    <ul>
+      <li>Ensure you’re running commands from the correct directory</li>
+      <li>Verify platform-specific commands are being used correctly</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="version-information">Version Information</h2>
+
+<p>This is version v0.6-beta of the Memory Bank system. It’s designed for new projects and experimental use. There is no formal migration path from the legacy version (v0.1-legacy), so it’s recommended to start fresh with new projects.</p>
+
+<h3 id="ongoing-development">Ongoing Development</h3>
+
+<p>The Memory Bank system is actively being developed and improved. Key points to understand:</p>
+
+<ul>
+  <li><strong>Work in Progress</strong>: This is a beta version with ongoing development. Expect regular updates, optimizations, and new features.</li>
+  <li><strong>Feature Optimization</strong>: The modular architecture enables continuous refinement without breaking existing functionality.</li>
+  <li><strong>Previous Version Available</strong>: If you prefer the stability of the previous version (v0.1-legacy), you can continue using it while this version matures.</li>
+  <li><strong>Architectural Benefits</strong>: Before deciding which version to use, please read the <a href="/knowledgebase/Zotero/prompt/cursor/cursor-memory-bank/memory_bank_upgrade_guide.html">Memory Bank Upgrade Guide</a> to understand the significant benefits of the new architecture, including improved context efficiency, visual guidance, and mode-specific optimization.</li>
+</ul>
+
+<h2 id="developer-notes">Developer Notes</h2>
+
+<p>This is a personal hobby project that brings me joy to build and develop. I welcome feedback and suggestions for improvement. The system is designed for experimentation and may evolve significantly based on user experiences.</p>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+  <li><a href="https://docs.cursor.com/chat/custom-modes">Cursor Custom Modes Documentation</a></li>
+  <li><a href="/knowledgebase/Zotero/prompt/cursor/cursor-memory-bank/memory_bank_upgrade_guide.html">Memory Bank Upgrade Guide</a></li>
+  <li><a href="/knowledgebase/Zotero/prompt/cursor/cursor-memory-bank/creative_mode_think_tool.html">CREATIVE Mode and Claude’s “Think” Tool</a></li>
+  <li>Mode-specific instruction files in the <code class="language-plaintext highlighter-rouge">custom_modes/</code> directory</li>
+</ul>
+
+<hr />
+
+<p><em>Note: This README is for v0.6-beta and subject to change as the system evolves.</em></p>
+
+      </section>
+    </div>
+  </body>
+</html>

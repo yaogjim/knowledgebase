@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的知识库</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <pre><code class="language-dataviewjs">const yesterday = new Date(Date.now() - 86400000);
+
+const pages = dv.pages()
+  .where(page =&gt; page.file.path.startsWith("Omnivore") &amp;&amp; page.file.mtime &gt; yesterday)
+  .sort(page =&gt; page.file.mtime, "desc");
+
+for (const page of pages) {
+    dv.paragraph("## "+page.file.link);
+    const content = await dv.io.load(page.file.path);
+    const limitedContent = content.split("\n").slice(0, 20).join("\n"); 
+    dv.paragraph(limitedContent);
+}
+
+</code></pre>
+
+      </section>
+    </div>
+  </body>
+</html>

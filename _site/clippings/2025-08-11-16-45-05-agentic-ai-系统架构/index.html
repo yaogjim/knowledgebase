@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic AI 系统架构</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Agentic AI 系统架构</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Agentic AI 系统架构</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> </span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-08-11</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <h1 id="agentic-ai-系统架构概览">Agentic AI 系统架构概览**</h1>
+
+<p>视频首先展示了整个系统的架构图，解释了其工作流程。</p>
+
+<p><strong>系统架构图</strong></p>
+
+<pre><code class="language-mermaid">graph TD
+    A[用户输入] --&gt; B{LangGraph};
+    B --&gt; C[工作流];
+    C --&gt; D[研究代理 &lt;br&gt; Tavily 工具];
+    C --&gt; E[LLM 链 &lt;br&gt; 生成创业点子];
+    E --&gt; F[检索相似的创业点子];
+    E --&gt; G[SingleStore &lt;br&gt; 向量数据库 &lt;br&gt; SQL 后端];
+    F -.-&gt; H[混合查询 &lt;br&gt; 语义搜索 + 结构化过滤];
+    style F stroke-dasharray: 5 5;
+    style H stroke-dasharray: 5 5;
+    linkStyle 6 stroke-width:2px,fill:none,stroke:gray,stroke-dasharray: 3;
+
+
+</code></pre>
+
+<p><strong>流程解读:</strong></p>
+
+<ol>
+  <li><strong>用户输入 (User Input):</strong> 用户提出一个想法或问题，例如“AI在旅游行业的应用”。</li>
+  <li><strong>LangGraph:</strong> 这是整个工作流的核心控制器，负责协调不同模块和代理之间的交互。</li>
+  <li><strong>工作流 (Workflow):</strong>
+    <ul>
+      <li><strong>研究代理 (Research Agent):</strong> 利用像 <strong>Tavily</strong> 这样的搜索工具，在互联网上进行信息检索，收集相关数据和见解。</li>
+      <li><strong>LLM 链 (LLM Chain):</strong> 将研究代理收集到的信息，通过大语言模型（LLM）处理，生成一个结构化的创业点子或商业计划书。</li>
+    </ul>
+  </li>
+  <li><strong>数据存储与检索 (Data Storage &amp; Retrieval):</strong>
+    <ul>
+      <li><strong>SingleStore:</strong> 这是一个既支持SQL又支持向量存储的数据库。所有生成的创业点子都会被存储在这里，作为向量数据库和SQL后端。</li>
+      <li><strong>检索相似点子 (Retrieve similar startup ideas):</strong> 当有新的点子生成时，系统可以（可选地）通过<strong>混合查询</strong>（结合语义搜索和结构化过滤）在SingleStore中检索历史上相似的创业点子，以供参考或避免重复。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="什么是-agentic-ai-智能代理ai"><strong>什么是 Agentic AI (智能代理AI)?</strong></h3>
+
+<p>与传统的问答式、一次性响应的大语言模型应用不同，Agentic AI 系统被设计用来模拟<strong>目标驱动的行为</strong>。</p>
+
+<p><strong>Agentic AI 架构核心组件图</strong></p>
+
+<p><img src="https://storage.googleapis.com/andromeda-third-party-assets/images/8447817b-d686-429a-bc07-b3534b8c0c4e.jpg" alt="Agentic AI 核心组件" /></p>
+
+<p><strong>核心能力:</strong></p>
+
+<ul>
+  <li><strong>感知 (Perceive):</strong> 能够接收和理解来自环境的输入。</li>
+  <li><strong>推理 (Reason):</strong> 对获取的信息进行分析和逻辑处理。</li>
+  <li><strong>规划 (Plan):</strong> 制定一系列行动步骤以达成目标。</li>
+  <li><strong>行动 (Act):</strong> 利用工具（如搜索引擎、数据库）执行计划。</li>
+  <li><strong>反馈循环 (Feedback Loop):</strong> 系统会持续迭代，直到达成预设的目标。</li>
+</ul>
+
+<p><strong>发言人总结:</strong> 这些系统是<strong>持久的、多步骤的、自主的</strong>，这使得它们非常强大。</p>
+
+<hr />
+
+<h3 id="langchain-vs-langgraph"><strong>LangChain vs. LangGraph</strong></h3>
+
+<p>视频特别对比了LangChain和LangGraph的区别。</p>
+
+<ul>
+  <li><strong>LangChain:</strong> 主要使用“链（Chain）”的概念，数据流通常是<strong>线性的</strong>，从A到B再到C。</li>
+  <li><strong>LangGraph:</strong> 使用“图（Graph）”的结构，允许定义<strong>节点（Nodes）</strong>和<strong>边（Edges）</strong>，从而构建更复杂的、非线性的、带有循环和条件分支的工作流，就像流程图一样。</li>
+</ul>
+
+<p><img src="https://storage.googleapis.com/andromeda-third-party-assets/images/07d35368-8092-42da-9f33-1763a137ef2c.jpg" alt="LangChain vs LangGraph" /></p>
+
+<p><strong>LangGraph可以被理解为：</strong> <code class="language-plaintext highlighter-rouge">LangChain + 图结构 + 内存 + 反馈循环</code>，功能远超传统的LangChain。</p>
+
+<h3 id="langgraph-工作流详解"><strong>LangGraph 工作流详解</strong></h3>
+
+<p>视频进一步解释了LangGraph的工作流是如何通过节点和边来构建的。</p>
+
+<p><img src="https://storage.googleapis.com/andromeda-third-party-assets/images/22370003-8d26-40fd-b384-569d19a27d2c.jpg" alt="LangGraph Workflow" /></p>
+
+<ul>
+  <li><strong>状态 (State):</strong> 在整个工作流中传递的数据对象。</li>
+  <li><strong>节点 (Node):</strong> 代表工作流中的一个具体步骤，比如一个与用户交互的<strong>代理（Agent）</strong>，或者一个执行特定任务的<strong>工具（Tool）</strong>。</li>
+  <li><strong>边 (Edge):</strong> 连接不同的节点，定义了工作流的方向。它可以是条件性的，根据上一个节点的结果决定下一步“去哪里（Where to go）”。</li>
+</ul>
+
+<hr />
+
+<h3 id="代码开发与演示"><strong>代码开发与演示</strong></h3>
+
+<p>视频的后半部分展示了实际的代码和运行效果。</p>
+
+<p><strong>项目文件结构:</strong></p>
+
+<p>在VS Code中，可以看到项目包含以下关键部分：</p>
+<ul>
+  <li><strong>agents/</strong>: 存放不同功能的代理。
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">research_agent.py</code>: 负责信息检索的代理。</li>
+      <li><code class="language-plaintext highlighter-rouge">summarizer_agent.py</code>: 负责总结信息的代理。</li>
+      <li><code class="language-plaintext highlighter-rouge">pitch_generator_agent.py</code>: 负责生成最终创业点子的代理。</li>
+    </ul>
+  </li>
+  <li><strong>graph/</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">orchestrator.py</code>: 使用LangGraph构建和协调整个工作流。</li>
+    </ul>
+  </li>
+  <li><strong>vectorstore/</strong>:
+    <ul>
+      <li>与SingleStore数据库交互的逻辑。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">app.py</code>: 应用的主入口文件，负责接收用户输入并调用图工作流。</li>
+  <li><code class="language-plaintext highlighter-rouge">similar_queries.py</code>: 用于查询相似历史记录的脚本。</li>
+  <li><code class="language-plaintext highlighter-rouge">.env</code>: 存放API密钥和数据库连接信息等环境变量。</li>
+</ul>
+
+<p><strong>核心代码逻辑 (<code class="language-plaintext highlighter-rouge">app.py</code>):</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># 接收用户输入
+</span>    <span class="n">topic</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter your startup idea or target market: </span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">Running Startup Intelligence Agent for: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s">...</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+    <span class="c1"># 构建并获取LangGraph图实例
+</span>    <span class="n">graph</span> <span class="o">=</span> <span class="n">build_graph</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span>
+    
+    <span class="c1"># 调用图工作流来执行任务
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="n">invoke</span><span class="p">({})</span>
+    
+    <span class="c1"># 打印最终生成的创业点子
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Generated Pitch:</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s">"pitch"</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<p><strong>运行演示:</strong></p>
+
+<ol>
+  <li><strong>启动应用:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python app.py
+</code></pre></div>    </div>
+  </li>
+  <li><strong>用户输入:</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter your startup idea or target market: The use of AI is travel industry
+</code></pre></div>    </div>
+  </li>
+  <li><strong>代理执行过程 (Agent Executor Chain):</strong>
+    <ul>
+      <li><strong>思考:</strong> 代理首先确定需要找到关于“AI在旅游行业的最新趋势”的信息，并识别出该领域的主要竞争对手。</li>
+      <li><strong>行动:</strong> 调用<code class="language-plaintext highlighter-rouge">tavily_search_results.json</code>工具，输入关键词“latest trends in AI in the travel industry”。</li>
+      <li><strong>观察:</strong> 从搜索结果中获取到多篇文章链接和摘要，内容涵盖了AI在旅游业中的应用，如个性化行程规划、聊天机器人、预测性预订工具等。</li>
+      <li><strong>再次行动:</strong> 再次调用搜索工具，查询“main competitors in AI in the travel industry”。</li>
+      <li><strong>最终答案:</strong> 综合所有信息，总结出AI在旅游业的最新趋势，并列出主要竞争对手，如 Snowflake, IBM, NVIDIA, Microsoft, AWS, Salesforce, Google LLC, Amadeus IT Group, Booking.com, TripAdvisor, KAYAK, and Expedia Group。</li>
+    </ul>
+  </li>
+  <li><strong>生成创业点子 (Generated Pitch):</strong>
+应用最终输出一份结构化的创业计划书，包含以下部分：
+    <ul>
+      <li><strong>I. 引言 (Introduction):</strong> 介绍公司和使命。</li>
+      <li><strong>II. 问题陈述 (Problem Statement):</strong> 描述旅行者在规划和预订过程中面临的挑战。</li>
+      <li><strong>III. 我们的解决方案 (Our Solution):</strong> 介绍AI驱动的个性化行程规划和预订解决方案。</li>
+      <li><strong>IV. 竞争格局 (Competitive Landscape):</strong> 列出主要竞争对手。</li>
+      <li><strong>V. 我们解决方案的优势 (Benefits of Our Solution):</strong> 阐述方案如何帮助旅行者和旅游公司。</li>
+      <li><strong>VI. 结论 (Conclusion):</strong> 总结要点。</li>
+      <li><strong>VII. 行动号召 (Call to Action):</strong> 邀请潜在客户或投资者进行下一步沟通。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="singlestore-数据库集成"><strong>SingleStore 数据库集成</strong></h3>
+
+<p>视频最后展示了SingleStore的云数据库控制台。</p>
+
+<ul>
+  <li><strong>工作区与数据库:</strong> 用户可以创建工作区（Workspace）和数据库（Database）。视频中创建了一个名为<code class="language-plaintext highlighter-rouge">Agents</code>的数据库。</li>
+  <li><strong>数据存储:</strong> 当AI代理运行后，生成的内容和其向量嵌入（Embeddings）被存储在数据库的表中。</li>
+  <li><strong>数据查看:</strong> 在控制台可以查看存储的数据，包括ID、内容（Content）、向量（Vector）和元数据（Metadata）。</li>
+  <li><strong>相似性搜索:</strong> 由于数据以向量形式存储，因此可以轻松地执行语义搜索，找出与新查询相似的历史记录。例如，当再次运行<code class="language-plaintext highlighter-rouge">similar_queries.py</code>并输入“AI in travel”时，系统能够从数据库中快速检索出之前分析过的最相关的三条记录。</li>
+</ul>
+
+<p>这个演示清晰地展示了如何利用Agentic AI架构、LangGraph的灵活性以及SingleStore的混合数据存储能力，构建一个端到端的、能够进行研究、分析并生成复杂内容的智能应用。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的知识库</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <p>标准检索增强生成遵循一条可预测的线性路径：接收查询，检索相关文档，并生成响应。在许多情况下，这可能足以解决特定问题。</p>
+
+<p>在最坏的情况下，您的LLM可能会选择不回答问题，因为上下文没有提供足够的信息。</p>
+
+<p><img src="https://qdrant.tech/articles_data/agentic-rag/linear-rag.png" alt="Standard, linear RAG pipeline" /></p>
+
+<p>另一方面，我们有代理。这些系统被赋予更多行动自由，可以采取多个非线性步骤来达成特定目标。</p>
+
+<p>没有对“代理”的单一明确定义，但一般来说，它是一个使用LLM的应用程序，通常还借助一些工具与外界进行通信。LLMs被用作决策者，决定下一步采取什么行动。</p>
+
+<p>操作可以是任何事情，但它们通常定义明确且局限于特定可能性集合。其中一种操作可能是查询向量数据库，如 Qdrant，以检索相关文档，如果上下文不足以做出决策的话。</p>
+
+<p>然而，RAG 只是代理工具库中的一个工具。</p>
+
+<p><img src="https://qdrant.tech/articles_data/agentic-rag/ai-agent.png" alt="AI Agent" /></p>
+
+<p>由于代理定义模糊，Agentic RAG 的概念也未明确界定。通常，它指的是 RAG 与代理的结合。这使得代理能够利用外部知识源进行决策，主要用于决定何时需要外部知识。</p>
+
+<p>我们可以将一个系统描述为 Agentic RAG，如果它打破了标准 RAG 系统的线性流程，并赋予代理采取多步骤达成目标的能力。</p>
+
+<p>一个简单的路由器，其选择路径跟随，常被描述为最简单的代理形式。此类系统具有多条路径，并附有条件描述何时采取特定路径。</p>
+
+<p>在 Agentic RAG 的框架下，代理可以根据情况决定是否查询向量数据库：若上下文不足以回答问题，则进行查询；若上下文已足够，则跳过查询；或者当问题涉及常识时，亦可选择不查询。</p>
+
+<p>或者，可能存在多个存储不同类型信息的集合，代理可以根据上下文决定查询哪个集合。关键因素是选择路径的决定由LLM做出，这是代理的核心。</p>
+
+<p>路由代理永远不会返回到前一步骤，因此它本质上只是一个条件决策系统。</p>
+
+<p><img src="https://qdrant.tech/articles_data/agentic-rag/routing-agent.png" alt="Routing Agent" /></p>
+
+<p>然而，路径规划仅仅是开始。代理可以变得更加复杂，极端形式的代理甚至可以拥有完全的行动自由。在这种情况下，代理被赋予一套工具，并能自主决定使用哪些工具、如何使用以及按什么顺序使用。</p>
+
+<p>LLMs 被要求制定并执行行动计划，代理可以采取多个步骤来实现目标，必要时包括后退一步。</p>
+
+<p>这样的系统不必遵循 DAG 结构（有向无环图），并且可以包含有助于自我纠正过去决策的循环。以这种方式构建的代理 RAG 系统不仅可以查询向量数据库，还可以操作查询、总结结果，甚至生成新数据来回答问题。</p>
+
+<p>选择无穷无尽，但在实际应用中可以观察到一些常见模式。</p>
+
+<p><img src="https://qdrant.tech/articles_data/agentic-rag/autonomous-agent.png" alt="Autonomous Agent" /></p>
+
+<h3><a href="https://qdrant.tech/articles/agentic-rag/#solving-information-retrieval-problems-with-llms"></a></h3>
+<p>用LLMs解决信息检索问题</p>
+
+<p>一般来说，在代理式 RAG 系统中暴露的工具用于解决信息检索问题，这些问题对搜索社区而言并不陌生。LLMs改变了我们处理这些问题的方式，但问题的核心依旧未变。</p>
+
+<p>在代理式 RAG 中可以考虑使用哪些工具？以下是一些示例：</p>
+
+<p>这些只是其中的一些例子，但列表并不详尽。例如，您的LLM可能会尝试调整 Qdrant 搜索参数，或选择不同的方法来查询它。举个例子？</p>
+
+<p>如果您的用户正在使用某些特定关键词进行搜索，您可能更倾向于使用稀疏向量而非密集向量，因为在这种情况下稀疏向量更为高效。在这种情况下，您需要为您的代理配备工具，以便决定何时使用稀疏向量，何时使用密集向量。</p>
+
+<p>了解采集结构的代理可以轻松做出此类决策。</p>
+
+<p>这些工具中的每一个都可能是一个独立的代理，而多代理系统并不罕见。在这种情况下，代理可以相互通信，一个代理可以决定使用另一个代理来解决特定问题。</p>
+
+<p>循环中的人类也是代理 RAG 的一个非常有用的组成部分，可以用来纠正代理的决策，或引导其走向正确的方向。</p>
+
+<h2 id="代理在哪里使用"><a href="https://qdrant.tech/articles/agentic-rag/#where-are-agents-used"></a> 代理在哪里使用？</h2>
+
+<p>代理是一个有趣的概念，但由于它们严重依赖LLMs，因此并非适用于所有问题。使用大型语言模型成本高昂且速度较慢，在许多情况下，其成本并不划算。标准 RAG 仅涉及对LLM的一次调用，响应以可预测的方式生成。</p>
+
+<p>另一方面，代理可以采取多个步骤，用户感受到的延迟会累积。在许多情况下，这是不可接受的。</p>
+
+<p>Agentic RAG 在电商搜索中可能并不那么广泛适用，因为用户期望快速响应，但在客户支持领域可能没问题，用户愿意为更好的答案稍作等待。</p>
+
+<h2 id="哪个框架最佳"><a href="https://qdrant.tech/articles/agentic-rag/#which-framework-is-best"></a> 哪个框架最佳？</h2>
+
+<p>有许多框架可用于构建代理，选择最佳框架并非易事。这取决于您现有的技术栈或您熟悉的工具。</p>
+
+<p>一些最受欢迎的LLM库已经转向了代理范式，并提供了构建它们的工具。然而，也有一些主要为代理开发而构建的工具，因此让我们重点关注这些工具。</p>
+
+<h3 id="朗图谱"><a href="https://qdrant.tech/articles/agentic-rag/#langgraph"></a> 朗图谱</h3>
+
+<p>由 LangChain 团队开发的 LangGraph，对于那些已经使用 LangChain 构建 RAG 系统并希望开始使用代理 RAG 的人来说，似乎是一个自然的延伸。</p>
+
+<p>令人惊讶的是，LangGraph 本身与大型语言模型无关。它是一个用于构建基于图的应用程序的框架，其中每个节点都是工作流程的一个步骤。每个节点以应用程序状态作为输入，并生成一个修改后的状态作为输出。然后，该状态被传递到下一个节点，依此类推。节点之间的边可能是条件性的，这使得分支成为可能。</p>
+
+<p>与某些基于 DAG 的工具（如 Apache Airflow）不同，LangGraph 允许图表中存在循环，这使得实现循环工作流成为可能，从而使代理能够实现自我反思和自我修正。</p>
+
+<p>理论上，LangGraph 可以用于以图结构方式构建任何类型的应用程序，而不仅仅是 LLM 代理。</p>
+
+<p>LangGraph 的一些优势包括：</p>
+
+<ul>
+  <li>
+    <p>持久性 - 工作流图的状态以检查点的形式存储。这一过程在每个所谓的超级步骤（即图中的单个顺序节点）时发生。它支持重放工作流的某些步骤、容错性，并包括人机交互。</p>
+
+    <p>此机制还充当短期记忆，可在特定工作流执行的上下文中访问。</p>
+  </li>
+  <li>长期记忆 - LangGraph 还具有在不同工作流运行之间共享的记忆概念。然而，这一机制必须由我们的节点显式处理。Qdrant 凭借其语义搜索能力，常被用作长期记忆层。</li>
+  <li>
+    <p>多代理支持 - 尽管在 LangGraph 中没有独立的多代理系统概念，但可以通过构建包含多个代理和某种监督者角色的图来实现这种架构，监督者负责在特定情况下决定使用哪个代理。</p>
+
+    <p>如果一个节点可能是任何事物，那么它也可能是一个其他代理。</p>
+  </li>
+</ul>
+
+<p>LangGraph 的其他有趣功能包括图的可视化能力、自动重试失败步骤以及包含人在回路中的交互。</p>
+
+<p>一个最简化的代理式 RAG 示例可以改进用户查询，例如通过修正拼写错误、用同义词扩展查询，甚至基于原始查询生成一个新查询。</p>
+
+<p>然后，代理可以根据改进后的查询从向量数据库中检索文档，并生成响应。实现此方法的 LangGraph 应用程序可能如下所示：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from typing import Sequence
+from typing_extensions import TypedDict, Annotated
+from langchain_core.messages import BaseMessage
+from langgraph.constants import START, END
+from langgraph.graph import add_messages, StateGraph
+
+
+class AgentState(TypedDict):
+    # The state of the agent includes at least the messages exchanged between the agent(s) 
+    # and the user. It is, however, possible to include other information in the state, as 
+    # it depends on the specific agent.
+    messages: Annotated[Sequence[BaseMessage], add_messages]
+
+
+def improve_query(state: AgentState):
+    ...
+
+def retrieve_documents(state: AgentState):
+    ...
+
+def generate_response(state: AgentState):
+    ...
+
+# Building a graph requires defining nodes and building the flow between them with edges.
+builder = StateGraph(AgentState)
+
+builder.add_node("improve_query", improve_query)
+builder.add_node("retrieve_documents", retrieve_documents)
+builder.add_node("generate_response", generate_response)
+
+builder.add_edge(START, "improve_query")
+builder.add_edge("improve_query", "retrieve_documents")
+builder.add_edge("retrieve_documents", "generate_response")
+builder.add_edge("generate_response", END)
+
+# Compiling the graph performs some checks and prepares the graph for execution.
+compiled_graph = builder.compile()
+
+# Compiled graph might be invoked with the initial state to start.
+compiled_graph.invoke({
+    "messages": [
+        ("user", "Why Qdrant is the best vector database out there?"),
+    ]
+})
+</code></pre></div></div>
+
+<p>流程中的每个节点都只是一个执行特定操作的 Python 函数。如果你愿意，可以在其中调用你选择的LLM，但并不假设这些消息是由任何 AI 生成的。LangGraph 更像是一个运行时，它按特定顺序启动这些函数，并在它们之间传递状态。虽然 LangGraph 与 LangChain 生态系统集成良好，但它也可以独立使用。对于寻求额外支持和功能的团队，还有一个名为 LangGraph Platform 的商业产品。</p>
+
+<p>该框架适用于 Python 和 JavaScript 环境，使其能够在不同的技术栈中使用。</p>
+
+<h3 id="crewai"><a href="https://qdrant.tech/articles/agentic-rag/#crewai"></a>CrewAI</h3>
+
+<p>CrewAI 是构建代理（包括代理式 RAG）的另一个热门选择。它是一个高级框架，假设存在一些基于LLM的代理共同协作以实现共同目标。这就是 CrewAI 中“crew”一词的由来。</p>
+
+<p>CrewAI 的设计理念围绕多智能体系统展开。与 LangGraph 不同，开发者并非构建处理图谱，而是定义智能体及其在团队中的角色。</p>
+
+<p>CrewAI 的一些关键概念包括：</p>
+
+<ul>
+  <li>代理 - 一个具有特定角色和目标的单元，由LLM控制。它可以有选择地使用一些外部工具与外界通信，但通常由我们提供给LLM的提示来引导。</li>
+  <li>
+    <p>流程 - 当前可以是顺序的或层次化的。它定义了代理将如何执行任务。</p>
+
+    <p>在顺序流程中，代理按顺序依次执行，而在分层流程中，由管理代理选择执行的代理，该管理代理负责在特定情况下决定使用哪个代理。</p>
+  </li>
+  <li>角色与目标——每个代理在团队中都有特定的角色，并应努力实现的目标。这些在定义代理时设定，用于决定在特定情况下使用哪个代理。</li>
+  <li>记忆 - 一个广泛的记忆系统包括短期记忆、长期记忆、实体记忆和结合其他三种记忆的上下文记忆。还有用于偏好和个性化的用户记忆。这就是 Qdrant 发挥作用的地方，它可能被用作长期记忆层。</li>
+</ul>
+
+<p>CrewAI 提供了一套丰富的工具集成到框架中。对于那些希望将 RAG 与代码执行或图像生成等功能结合的用户来说，这可能是一个巨大的优势。</p>
+
+<p>生态系统丰富，但自带工具并非难事，因为 CrewAI 设计为可扩展的。</p>
+
+<p>在 CrewAI 中实现的一个简单的代理 RAG 应用程序可能如下所示：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from crewai import Crew, Agent, Task
+from crewai.memory.entity.entity_memory import EntityMemory
+from crewai.memory.short_term.short_term_memory import ShortTermMemory
+from crewai.memory.storage.rag_storage import RAGStorage
+
+class QdrantStorage(RAGStorage):
+    ...
+
+response_generator_agent = Agent(
+    role="Generate response based on the conversation",
+    goal="Provide the best response, or admit when the response is not available.",
+    backstory=(
+        "I am a response generator agent. I generate "
+        "responses based on the conversation."
+    ),
+    verbose=True,
+)
+
+query_reformulation_agent = Agent(
+    role="Reformulate the query",
+    goal="Rewrite the query to get better results. Fix typos, grammar, word choice, etc.",
+    backstory=(
+        "I am a query reformulation agent. I reformulate the " 
+        "query to get better results."
+    ),
+    verbose=True,
+)
+
+task = Task(
+    description="Let me know why Qdrant is the best vector database out there.",
+    expected_output="3 bullet points",
+    agent=response_generator_agent,
+)
+
+crew = Crew(
+    agents=[response_generator_agent, query_reformulation_agent],
+    tasks=[task],
+    memory=True,
+    entity_memory=EntityMemory(storage=QdrantStorage("entity")),
+    short_term_memory=ShortTermMemory(storage=QdrantStorage("short-term")),
+)
+crew.kickoff()
+</code></pre></div></div>
+
+<ul>
+  <li>免责声明：QdrantStorage 并非 CrewAI 框架的一部分，但此处内容取自 Qdrant 文档中关于如何将 Qdrant 与 CrewAI 集成的说明。*</li>
+</ul>
+
+<p>尽管并非技术优势，CrewAI 却拥有出色的文档。该框架适用于 Python，且易于上手。CrewAI 还提供商业版本——CrewAI Enterprise，它提供了一个用于大规模构建和部署代理的平台。</p>
+
+<h3 id="autogen"><a href="https://qdrant.tech/articles/agentic-rag/#autogen"></a>AutoGen</h3>
+
+<p>AutoGen 强调多代理架构作为基本设计原则。该框架要求任何系统中至少有两个代理才能真正称之为代理应用——通常是一个助手和一个用户代理交换消息以实现共同目标。</p>
+
+<p>也支持与两个以上代理的顺序聊天，以及用于内部对话的群聊和嵌套聊天。</p>
+
+<p>然而，AutoGen 并不假设代理之间传递的是结构化状态，聊天对话是它们之间唯一的沟通方式。</p>
+
+<p>该框架中包含许多有趣的概念，其中一些甚至颇为独特：</p>
+
+<ul>
+  <li>
+    <p>工具/功能 - 代理可用于与外界通信的外部组件。它们被定义为 Python 可调用对象，可用于我们希望代理执行的任何外部交互。</p>
+
+    <p>类型注解用于定义工具的输入和输出，并支持 Pydantic 模型以实现更复杂的类型模式。目前，AutoGen 仅支持 OpenAI 兼容的工具调用 API。</p>
+  </li>
+  <li>
+    <p>代码执行器 - 内置代码执行器包括本地命令、Docker 命令和 Jupyter。代理能够编写并启动代码，因此从理论上讲，代理可以完成 Python 中能做的任何事情。其他框架都没有将代码生成和执行置于如此显著的位置。</p>
+
+    <p>代码执行作为 AutoGen 中的一等公民是一个有趣的概念。</p>
+  </li>
+</ul>
+
+<p>每个 AutoGen 代理至少使用以下组件之一：人机协作、代码执行器、工具执行器或LLM。一个基于两个代理对话的简单代理式 RAG，这两个代理可以从向量数据库中检索文档，或改进查询，可能看起来像这样：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from os import environ
+
+from autogen import ConversableAgent
+from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent
+from qdrant_client import QdrantClient
+
+client = QdrantClient(...)
+
+response_generator_agent = ConversableAgent(
+    name="response_generator_agent",
+    system_message=(
+        "You answer user questions based solely on the provided context. You ask to retrieve relevant documents for "
+        "your query, or reformulate the query, if it is incorrect in some way."
+    ),
+    description="A response generator agent that can answer your queries.",
+    llm_config={"config_list": [{"model": "gpt-4", "api_key": environ.get("OPENAI_API_KEY")}]},
+    human_input_mode="NEVER",
+)
+
+user_proxy = RetrieveUserProxyAgent(
+    name="retrieval_user",
+    llm_config={"config_list": [{"model": "gpt-4", "api_key": environ.get("OPENAI_API_KEY")}]},
+    human_input_mode="NEVER",
+    retrieve_config={
+        "task": "qa",
+        "chunk_token_size": 2000,
+        "vector_db": "qdrant",
+        "db_config": {"client": client},
+        "get_or_create": True,
+        "overwrite": True,
+    },
+)
+
+result = user_proxy.initiate_chat(
+    response_generator_agent,
+    message=user_proxy.message_generator,
+    problem="Why Qdrant is the best vector database out there?",
+    max_turns=10,
+)
+</code></pre></div></div>
+
+<p>对于刚接触代理开发的人员，AutoGen 提供了 AutoGen Studio，这是一个用于代理原型设计的低代码界面。虽然它并非为生产环境设计，但极大地降低了实验代理架构的门槛。</p>
+
+<p><img src="https://qdrant.tech/articles_data/agentic-rag/autogen-studio.png" alt="AutoGen Studio" /></p>
+
+<p>值得注意的是，AutoGen 目前正在进行重大更新，正在开发的 0.4.x 版本与稳定的 0.2.x 版本相比，引入了大量 API 变更。</p>
+
+<p>虽然该框架目前内置的持久化和状态管理功能有限，但这些特性可能会在未来的版本中得到发展。</p>
+
+<h3 id="openai-蜂群"><a href="https://qdrant.tech/articles/agentic-rag/#openai-swarm"></a> OpenAI 蜂群</h3>
+
+<p>与本文中描述的其他框架不同，OpenAI Swarm 是一个教育项目，尚未准备好用于生产环境。不过值得一提的是，它非常轻量级且易于上手。</p>
+
+<p>OpenAI Swarm 是一个实验性框架，用于协调多代理工作流程，专注于通过直接交接而非复杂编排模式来实现代理间的协作。</p>
+
+<p>在这种设置下，代理们只是在聊天中交换消息，可以选择调用一些 Python 函数与外部服务通信，或者在另一个代理似乎更适合回答问题时，将对话转交给该代理。</p>
+
+<p>每个代理都有一个特定的角色，由我们定义的指令来确定。我们需要决定某个代理将使用哪个LLM，以及它可以调用的一组功能。例如，一个检索代理可以使用向量数据库来检索文档，并将结果返回给下一个代理。这意味着，应该有一个函数代表它执行语义搜索，但模型将决定查询的外观。</p>
+
+<p>以下是一个在 OpenAI Swarm 中实现的类似代理 RAG 应用的可能样貌：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from swarm import Swarm, Agent
+
+client = Swarm()
+
+def retrieve_documents(query: str) -&gt; list[str]:
+    """
+    Retrieve documents based on the query.
+    """
+    ...
+
+def transfer_to_query_improve_agent():
+    return query_improve_agent
+
+query_improve_agent = Agent(
+    name="Query Improve Agent",
+    instructions=(
+        "You are a search expert that takes user queries and improves them to get better results. You fix typos and "
+        "extend queries with synonyms, if needed. You never ask the user for more information."
+    ),
+)
+
+response_generation_agent = Agent(
+    name="Response Generation Agent",
+    instructions=(
+        "You take the whole conversation and generate a final response based on the chat history. "
+        "If you don't have enough information, you can retrieve the documents from the knowledge base or "
+        "reformulate the query by transferring to other agent. You never ask the user for more information. "
+        "You have to always be the last participant of each conversation."
+    ),
+    functions=[retrieve_documents, transfer_to_query_improve_agent],
+)
+
+response = client.run(
+    agent=response_generation_agent,
+    messages=[
+        {
+            "role": "user",
+            "content": "Why Qdrant is the best vector database out there?"
+        }
+    ],
+)
+</code></pre></div></div>
+
+<p>即使我们没有明确定义处理图，代理仍然可以决定将处理任务移交给其他代理。这里不存在状态的概念，因此一切都依赖于不同组件之间交换的消息。</p>
+
+<p>OpenAI Swarm 并不专注于与外部工具的集成，因此，如果您希望将语义搜索与 Qdrant 集成，您需要完全自行实现。显然，该库与 OpenAI 模型紧密耦合，尽管使用其他模型是可能的，但这需要一些额外的工作，例如设置一个代理来调整接口以适应 OpenAI API。</p>
+
+<h3 id="胜者是"><a href="https://qdrant.tech/articles/agentic-rag/#the-winner"></a> 胜者是？</h3>
+
+<p>为您的代理 RAG 系统选择最佳框架取决于您现有的技术栈、团队的专业知识以及项目的具体需求。所有描述的工具都是强有力的竞争者，并且它们都在快速发展中。</p>
+
+<p>值得持续关注它们，因为它们很可能会随着时间的推移而不断进化和改进。</p>
+
+<p>最终，你应该能够使用其中任何一种工具构建相同的流程，但其中某些工具可能在特定生态系统中更适合，这个生态系统是你希望代理与之交互的工具集合。</p>
+
+<p>然而，在为您的代理 RAG 系统选择框架时，需要考虑一些重要因素：</p>
+
+<ul>
+  <li>人在回路中 - 尽管我们的目标是构建自主代理，但通常包含人类的反馈至关重要，这样我们的代理就不会执行恶意行为。</li>
+  <li>可观测性 - 调试系统的难易程度，以及理解系统内部运行情况的难易程度。尤其重要，因为我们处理大量LLM提示。</li>
+</ul>
+
+<p>然而，选择合适的工具包取决于您的项目状态以及您所拥有的具体需求。</p>
+
+<p>如果你想将你的代理与多个外部工具集成，CrewAI 可能是最佳选择，因为其开箱即用的集成套件最为丰富。然而，LangGraph 与 LangChain 的集成效果良好，因此如果你熟悉该生态系统，它可能更适合你。</p>
+
+<p>所有框架在构建代理方面都有不同的方法，因此值得尝试所有这些框架，看看哪一个最适合您的需求。LangGraph 和 CrewAI 更为成熟且功能更丰富，而 AutoGen 和 OpenAI Swarm 则更轻量级且更具实验性。</p>
+
+<p>然而，现有框架均未能解决上述所有信息检索问题，因此您仍需构建自己的工具来填补这些空白。</p>
+
+<h2 id="-1"><a href="https://qdrant.tech/articles/agentic-rag/#building-agentic-rag-with-qdrant"></a></h2>
+<p>构建具有代理功能的 Qdrant RAG</p>
+
+<p>无论您选择哪种框架，Qdrant 都是构建智能 RAG 系统的绝佳工具。请查看我们的集成选项，以选择最适合您使用场景和偏好的方案。开始使用 Qdrant 最简便的方式是通过我们的托管服务——Qdrant Cloud。我们提供免费的 1GB 集群，让您能在几分钟内开始构建您的智能 RAG 系统。</p>
+
+<h3 id="延伸阅读"><a href="https://qdrant.tech/articles/agentic-rag/#further-reading"></a> 延伸阅读</h3>
+
+<p>查看 Qdrant 如何集成：</p>
+
+<ul>
+  <li><a href="https://qdrant.tech/documentation/frameworks/autogen/">Autogen</a></li>
+  <li><a href="https://qdrant.tech/documentation/frameworks/crewai/">CrewAI</a></li>
+  <li> <a href="https://qdrant.tech/documentation/frameworks/langgraph/">朗图谱</a></li>
+  <li><a href="https://qdrant.tech/documentation/frameworks/swarm/">Swarm</a></li>
+</ul>
+
+      </section>
+    </div>
+  </body>
+</html>

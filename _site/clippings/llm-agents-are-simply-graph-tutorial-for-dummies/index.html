@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Agents are simply Graph — Tutorial For Dummies</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">LLM Agents are simply Graph — Tutorial For Dummies</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">LLM Agents are simply Graph — Tutorial For Dummies</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> Zachary Huang</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-03-26</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://zacharyhuang.substack.com/p/llm-agent-internal-as-a-graph-tutorial" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F382ea8f1-0610-4cce-b4ef-350a9df68ee0_1050x588.png" alt="" /></p>
+
+<blockquote>
+  <p><em>有没有想过人工智能代理在幕后是如何工作的？本指南将以最简单易懂的方式详细介绍代理系统是如何构建成简单图表的！</em></p>
+
+  <p><em>注意：这是官方 PocketFlow Agent 文档的一个超级友好的、循序渐进的版本。我们用示例和简化的解释扩展了所有概念，使其更易于理解。</em></p>
+</blockquote>
+
+<p>你是否到处都听说过“LLM 智能体”，但却被所有的技术术语搞得一头雾水？你不是一个人！虽然各大公司都在竞相打造像 GitHub Copilot、PerplexityAI 和 AutoGPT 这样日益复杂的人工智能智能体，但大多数解释都让它们听起来像高深莫测的科学。</p>
+
+<p>好消息：它们不是。在本对初学者友好的指南中，你将学到：</p>
+
+<ul>
+  <li>所有人工智能代理背后惊人的简单概念</li>
+  <li>智能体实际上是如何做出决策的（用通俗易懂的英语！）</li>
+  <li>如何只用几行代码构建自己的简单代理</li>
+  <li>为什么大多数框架会把实际发生的事情复杂化</li>
+</ul>
+
+<p>在本教程中，我们将使用 PocketFlow——一个仅有 100 行的微型框架，它去除了所有复杂性，向你展示智能体在幕后是如何真正工作的。与其他隐藏重要细节的框架不同，PocketFlow 让你能够一次性看到整个系统。</p>
+
+<h2 id="为什么使用-pocketflow-学习智能体">为什么使用 PocketFlow 学习智能体？</h2>
+
+<p>大多数智能体框架将实际发生的事情隐藏在复杂的抽象背后，这些抽象看起来令人印象深刻，但却让初学者感到困惑。PocketFlow 采用了不同的方法——它只有 100 行代码，能让你确切地看到智能体是如何工作的！</p>
+
+<p>给初学者的好处：</p>
+
+<ul>
+  <li>清晰透明：没有神秘的黑箱或复杂的抽象概念</li>
+  <li>查看所有内容：整个框架可容纳在一个可读文件中</li>
+  <li>学习基础知识：非常适合理解智能体的实际运作方式</li>
+  <li>无负担：无大量依赖或供应商锁定</li>
+</ul>
+
+<p>PocketFlow 为您提供基础知识，让您能够从头开始构建自己的理解，而不是试图去理解一个包含数千个文件的庞大框架。</p>
+
+<h2 id="简单的构建模块">简单的构建模块</h2>
+
+<p>想象一下我们的智能体系统就像一个厨房：</p>
+
+<ul>
+  <li>节点就像不同的烹饪工位（切菜工位、烹饪工位、摆盘工位）</li>
+  <li>流程就像是告诉你接下来要去哪个工位的指南</li>
+  <li>共享存储就像一个大台面，每个人都可以看到并使用上面的食材</li>
+</ul>
+
+<p>在我们的厨房（智能体系统）：</p>
+
+<ol>
+  <li>每个站点（节点）有三项简单的工作：
+    <ul>
+      <li>准备：从台面上拿取你需要的东西（比如拿取食材）</li>
+      <li>执行：做你的特殊工作（比如烹饪食材）</li>
+      <li>发布：把你的成果放回台面上，告诉大家接下来要做什么（比如上菜以及决定接下来做什么菜）</li>
+    </ul>
+  </li>
+  <li>The recipe (Flow) just tells you which station to visit based on decisions:<br />
+ 该配方（流程）只是根据决策告诉你要访问哪个工位：
+    <ul>
+      <li>“If the vegetables are chopped, go to the cooking station”<br />
+  如果蔬菜切好了，就去烹饪区</li>
+      <li>“If the meal is cooked, go to the plating station”<br />
+  如果饭菜做好了，就去摆盘区</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Let’s see how this works with our research helper!<br />
+让我们看看这在我们的研究助手身上是如何运作的！</p>
+
+<h2 id="whats-an-llm-agent-in-human-terms什么是llm-代理用通俗易懂的话来说">What’s an LLM Agent (In Human Terms)?什么是LLM 代理（用通俗易懂的话来说）？</h2>
+
+<p>An LLM (Large Language Model) agent is basically a smart assistant (like ChatGPT but with the ability to take actions) that can:<br />
+一个LLM（大语言模型）智能体本质上是一个智能助手（类似于 ChatGPT，但具备采取行动的能力），它可以：</p>
+
+<ol>
+  <li>Think about what to do next<br />
+ 想想接下来要做什么</li>
+  <li>Choose from a menu of actions<br />
+ 从操作菜单中选择</li>
+  <li>Actually do something in the real world<br />
+ 在现实世界中真正做点事情</li>
+  <li>See what happened 看看发生了什么</li>
+  <li>Think again…再想想……</li>
+</ol>
+
+<p>Think of it like having a personal assistant managing your tasks:<br />
+把它想象成有一个私人助理来管理你的任务：</p>
+
+<ol>
+  <li>They review your inbox and calendar to understand the situation<br />
+ 他们查看你的收件箱和日程安排以了解情况</li>
+  <li>They decide what needs attention first (reply to urgent email? schedule a meeting?)<br />
+ 他们决定首先需要关注什么（回复紧急邮件？安排会议？）</li>
+  <li>They take action (draft a response, book a conference room)<br />
+ 他们采取行动（起草回复、预订会议室）</li>
+  <li>They observe the result (did someone reply? was the room available?)<br />
+ 他们观察结果（有人回复了吗？房间有空吗？）</li>
+  <li>They plan the next task based on what happened<br />
+ 他们根据已发生的事情来规划下一项任务</li>
+</ol>
+
+<h2 id="the-big-secret-agents-are-just-simple-graphs重大秘密智能体只是简单的图">The Big Secret: Agents Are Just Simple Graphs!重大秘密：智能体只是简单的图！</h2>
+
+<p>Here’s the mind-blowing truth about agents that frameworks overcomplicate:<br />
+以下是关于代理的令人震惊的真相，即框架将其过度复杂化了：</p>
+
+<p><img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc6155038-4ec0-4f88-b44a-2fd596de3a32_800x379.jpeg" alt="Agents Are Just Simple Graphs" /></p>
+
+<p>就是这样！每个智能体都只是一个具有以下内容的图：</p>
+
+<ol>
+  <li>一个分支到不同操作的决策节点</li>
+  <li>执行特定任务的操作节点</li>
+  <li>一个结束流程的终结节点</li>
+  <li>将所有内容连接在一起的边缘</li>
+  <li>将执行带回决策节点的循环</li>
+</ol>
+
+<p>无需复杂的数学，无需神秘的算法——只有节点和箭头！其他一切都只是细节。如果你深入挖掘，就会在过于复杂的框架中发现这些隐藏的图：</p>
+
+<ul>
+  <li>OpenAI 智能体：有关图中工作流程，请查看 run.py#L119 。</li>
+  <li>Pydantic 代理：_agent_graph.py#L779 以图形方式组织步骤。</li>
+  <li>Langchain: agent_iterator.py#L174 展示了循环结构。</li>
+  <li>LangGraph：基于图的方法请参考 agent.py 文件的第 56 行。</li>
+</ul>
+
+<p>让我们通过一个简单的例子来看看这个图表实际上是如何工作的。</p>
+
+<h2 id="让我们构建一个超级简单的研究代理">让我们构建一个超级简单的研究代理</h2>
+
+<p>想象一下，我们想要构建一个能够搜索网页并回答问题的人工智能助手——类似于 Perplexity AI 这样的工具，但要简单得多。我们希望我们的智能体能够：</p>
+
+<ol>
+  <li>从用户读取一个问题</li>
+  <li>决定是否需要搜索信息</li>
+  <li>如有需要，可在网上查找相关内容</li>
+  <li>有足够信息后再给出答案</li>
+</ol>
+
+<p>让我们将我们的智能体分解为各个“工作站”，每个工作站处理一项特定任务。可以将这些工作站想象成装配线上的工人——每个都有自己特定的任务。</p>
+
+<p>这是我们研究代理的简单示意图：</p>
+
+<p><img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84ba6ab0-1c4f-449e-acd2-b2b3f55ddfe2_800x423.jpeg" alt="Diagram of our research agent" /></p>
+
+<p>在此图表中：</p>
+
+<ol>
+  <li>“决定行动”是我们的“思维站”，智能体在这里决定下一步做什么</li>
+  <li>SearchWeb 是我们的“研究站”，智能体在那里查找信息</li>
+  <li>AnswerQuestion 是我们的“回答站”，客服人员在此生成最终答案</li>
+</ol>
+
+<h2 id="在我们编码之前让我们来看一个示例">在我们编码之前：让我们来看一个示例</h2>
+
+<p>想象一下，你问我们的智能体：“谁赢得了 2023 年超级碗？”</p>
+
+<p>以下是一步步将会发生的情况：</p>
+
+<ol>
+  <li>决定行动站：
+    <ul>
+      <li>查看内容：你的问题以及我们目前所了解的情况（目前尚无任何信息）</li>
+      <li>想：“我不知道谁赢得了 2023 年超级碗，我需要搜索一下”</li>
+      <li>决定：搜索“2023 年超级碗冠军”</li>
+      <li>传递至：搜索网站</li>
+    </ul>
+  </li>
+  <li>搜索网站：
+    <ul>
+      <li>查看：搜索查询“2023 年超级碗冠军”</li>
+      <li>功能：在互联网上进行搜索（假设它找到“堪萨斯城酋长队获胜”）</li>
+      <li>保存：我们共享台面上的搜索结果</li>
+      <li>传递至：返回“决定行动”工作站</li>
+    </ul>
+  </li>
+  <li>决定行动站（第二次）：
+    <ul>
+      <li>查看内容：您的问题以及我们目前所了解的信息（搜索结果）</li>
+      <li>心想：“太棒了，现在我知道酋长队赢得了 2023 年超级碗”</li>
+      <li>决定：我们有足够的信息来回答</li>
+      <li>传递至：回答问题站</li>
+    </ul>
+  </li>
+  <li>回答问题站：
+    <ul>
+      <li>查看内容：您的问题以及我们所有的研究</li>
+      <li>功能：使用所有信息创建一个友好的答案</li>
+      <li>保存：最终答案</li>
+      <li>完成：任务已完成！</li>
+    </ul>
+  </li>
+</ol>
+
+<p>这正是我们的代码要做的——只是用编程语言表达出来。</p>
+
+<p>让我们一个一个地建造这些站点，然后将它们连接在一起！</p>
+
+<h3 id="步骤-1构建我们的第一个节点decideaction-">步骤 1：构建我们的第一个节点：DecideAction 🤔</h3>
+
+<p>“DecideAction”节点就像是我们智能体的“大脑”。它的工作很简单：</p>
+
+<ol>
+  <li>查看这个问题以及我们目前收集到的任何信息</li>
+  <li>决定我们是否需要搜索更多信息，或者我们现在是否可以回答</li>
+</ol>
+
+<p>让我们一步一步来构建它：</p>
+
+<pre><code class="language-markup">class DecideAction(Node):
+    def prep(self, shared):
+        # Think of "shared" as a big notebook that everyone can read and write in
+        # It's where we store everything our agent knows
+
+        # Look for any previous research we've done (if we haven't searched yet, just note that)
+        context = shared.get("context", "No previous search")
+
+        # Get the question we're trying to answer
+        question = shared["question"]
+
+        # Return both pieces of information for the next step
+        return question, context
+</code></pre>
+
+<p>首先，我们创建了一个用于收集信息的 <code class="language-plaintext highlighter-rouge">prep</code> 方法。可以把 <code class="language-plaintext highlighter-rouge">prep</code> 想象成厨师在烹饪前收集食材的过程。它所做的只是查看我们已经知道的内容（我们的“上下文”）以及我们试图回答的问题。</p>
+
+<p>现在，让我们构建“思考”部分：</p>
+
+<pre><code class="language-markup">def exec(self, inputs):
+        # This is where the magic happens - the LLM "thinks" about what to do
+        question, context = inputs
+
+        # We ask the LLM to decide what to do next with this prompt:
+        prompt = f"""
+### CONTEXT
+You are a research assistant that can search the web.
+Question: {question}
+Previous Research: {context}
+
+### ACTION SPACE
+[1] search
+  Description: Look up more information on the web
+  Parameters:
+    - query (str): What to search for
+
+[2] answer
+  Description: Answer the question with current knowledge
+  Parameters:
+    - answer (str): Final answer to the question
+
+## NEXT ACTION
+Decide the next action based on the context and available actions.
+Return your response in this format:
+
+\`\`\`yaml
+thinking: |
+    &lt;your step-by-step reasoning process&gt;
+action: search OR answer
+reason: &lt;why you chose this action&gt;
+search_query: &lt;specific search query if action is search&gt;
+\`\`\`"""
+
+        # Call the LLM to make a decision
+        response = call_llm(prompt)
+
+        # Pull out just the organized information part from the LLM's answer
+        # (This is like finding just the recipe part of a cooking video)
+        yaml_str = response.split("\`\`\`yaml")[1].split("\`\`\`")[0].strip()
+        decision = yaml.safe_load(yaml_str)  # Convert the text into a format our program can use
+
+        return decision
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">exec</code> 方法是实际进行“思考”的地方。可以把它想象成厨师烹饪食材的过程。在这里，我们：</p>
+
+<ol>
+  <li>创建一个向LLM解释当前情况的提示</li>
+  <li>请LLM决定是进行搜索还是回答</li>
+  <li>解析响应以获得明确的决策</li>
+</ol>
+
+<p>最后，让我们保存该决策并告知流程接下来要做什么：</p>
+
+<pre><code class="language-markup">def post(self, shared, prep_res, exec_res):
+        # If the LLM decided to search, save the search query
+        if exec_res["action"] == "search":
+            shared["search_query"] = exec_res["search_query"]
+
+        # Return which action to take - this tells our flow where to go next!
+        return exec_res["action"]  # Will be either "search" or "answer"
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">post</code> 方法是我们保存结果并决定下一步操作的地方。可以把它想象成厨师上菜并决定接下来准备什么菜肴。如果需要，我们会保存搜索查询，然后返回 “搜索” 或 “答案”，以告诉我们的流程接下来访问哪个节点。</p>
+
+<h3 id="步骤-2构建我们的第二个节点searchweb-">步骤 2：构建我们的第二个节点：SearchWeb 🔍</h3>
+
+<p>SearchWeb 节点是我们的“研究员”。它唯一的任务是：</p>
+
+<ol>
+  <li>输入一个搜索查询</li>
+  <li>查找它（在这个简单的示例中，我们将伪造结果）</li>
+  <li>保存它找到的内容</li>
+  <li>告诉智能体决定如何处理这条新信息</li>
+</ol>
+
+<p>让我们构建它：</p>
+
+<pre><code class="language-markup">class SearchWeb(Node):
+    def prep(self, shared):
+        # Simply get the search query we saved earlier
+        return shared["search_query"]
+</code></pre>
+
+<p>这里的 <code class="language-plaintext highlighter-rouge">prep</code> 方法只是获取由 DecideAction 节点保存的搜索查询。</p>
+
+<pre><code class="language-markup">def exec(self, search_query):
+        # This is where we'd connect to Google to search the internet
+        # Set up our connection to Google
+        search_client = GoogleSearchAPI(api_key="GOOGLE_API_KEY")
+
+        # Set search parameters
+        search_params = {
+            "query": search_query,
+            "num_results": 3,
+            "language": "en"
+        }
+
+        # Make the API request to Google
+        results = search_client.search(search_params)
+
+        # Format the results into readable text
+        formatted_results = f"Results for: {search_query}\n"
+
+        # Process each search result
+        for result in results:
+            # Extract the title and snippet from each result
+            formatted_results += f"- {result.title}: {result.snippet}\n"
+
+        return formatted_results
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">exec</code> 方法连接到搜索 API，发送查询并格式化结果。在实际实现中，你需要注册一个搜索 API 服务，如 Google 自定义搜索 API，并获取你自己的 API 密钥。</p>
+
+<pre><code class="language-markup">def post(self, shared, prep_res, exec_res):
+        # Store the search results in our shared whiteboard
+        previous = shared.get("context", "")
+        shared["context"] = previous + "\n\nSEARCH: " + shared["search_query"] + "\nRESULTS: " + exec_res
+
+        # Always go back to the decision node after searching
+        return "decide"
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">post</code> 方法通过将搜索结果添加到共享上下文来保存它们。然后它返回 “decide” 以告知我们的流程返回 DecideAction 节点，以便它可以思考如何处理这些新信息。</p>
+
+<h3 id="步骤-3构建我们的第三个节点answerquestion-">步骤 3：构建我们的第三个节点：AnswerQuestion 💬</h3>
+
+<p>AnswerQuestion 节点是我们的“响应器”。它的工作很简单，就是：</p>
+
+<ol>
+  <li>获取我们收集到的所有信息</li>
+  <li>创建一个友好、有用的回答</li>
+  <li>把那个答案留给用户</li>
+</ol>
+
+<p>让我们构建它：</p>
+
+<pre><code class="language-markup">class AnswerQuestion(Node):
+    def prep(self, shared):
+        # Get both the original question and all the research we've done
+        return shared["question"], shared.get("context", "")
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">prep</code> 方法收集了原始问题以及我们收集到的所有研究内容。</p>
+
+<pre><code class="language-markup">def exec(self, inputs):
+        question, context = inputs
+        # Ask the LLM to create a helpful answer based on our research
+        prompt = f"""
+### CONTEXT
+Based on the following information, answer the question.
+Question: {question}
+Research: {context}
+
+## YOUR ANSWER:
+Provide a comprehensive answer using the research results.
+"""
+        return call_llm(prompt)
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">exec</code> 方法要求LLM根据我们的研究创建一个有用的答案。</p>
+
+<pre><code class="language-markup">def post(self, shared, prep_res, exec_res):
+        # Save the answer in our shared whiteboard
+        shared["answer"] = exec_res
+
+        # We're done! No need to continue the flow.
+        return "done"
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">post</code> 方法保存最终答案并返回 “完成” 以表明我们的流程已完成。</p>
+
+<h3 id="步骤-4将所有内容连接在一起-">步骤 4：将所有内容连接在一起！ 🔄</h3>
+
+<p>现在到了有趣的部分——我们需要将所有节点连接在一起，以创建一个可运行的智能体！</p>
+
+<pre><code class="language-markup"># First, create instances of each node
+decide = DecideAction()
+search = SearchWeb()
+answer = AnswerQuestion()
+
+# Now connect them together - this is where the magic happens!
+# Each connection defines where to go based on the action returned by post()
+
+# If DecideAction returns "search", go to SearchWeb
+decide - "search" &gt;&gt; search
+
+# If DecideAction returns "answer", go to AnswerQuestion
+decide - "answer" &gt;&gt; answer
+
+# After SearchWeb completes, go back to DecideAction
+search - "decide" &gt;&gt; decide
+
+# Create our flow, starting with the DecideAction node
+flow = Flow(start=decide)
+</code></pre>
+
+<p>就是这样！我们已经将节点连接成一个完整的流程，该流程可以：</p>
+
+<ol>
+  <li>首先决定要做什么</li>
+  <li>如有需要，请搜索信息</li>
+  <li>循环返回以确定我们是否需要更多信息</li>
+  <li>准备好时再回答问题</li>
+</ol>
+
+<p>把它想象成一个流程图，其中每个框都是一个节点，箭头表示根据沿途做出的决策下一步要去往何处。</p>
+
+<h3 id="让我们运行我们的代理">让我们运行我们的代理！🚀</h3>
+
+<p>现在让我们看看我们的智能体是如何运行的：</p>
+
+<pre><code class="language-markup"># Create a shared whiteboard with just a question
+shared = {"question": "What is the capital of France?"}
+
+# Run our flow!
+flow.run(shared)
+
+# Print the final answer
+print(shared["answer"])
+</code></pre>
+
+<p>以下是我们的智能体运行时会发生的情况：</p>
+
+<h4 id="第一轮初步决定-">第一轮：初步决定 🤔</h4>
+
+<p>首先，我们的智能体思考这个问题：</p>
+
+<pre><code class="language-markup">thinking: |
+  The question is asking about the capital of France. I don't have any prior search results to work with.
+  To answer this question accurately, I should search for information about France's capital.
+action: search
+reason: I need to look up information about the capital of France
+search_query: capital of France
+</code></pre>
+
+<p>我们的智能体判定它目前掌握的信息还不够，所以它需要搜索信息。</p>
+
+<h4 id="第二轮在网络上搜索">第二轮：在网络上搜索🔍</h4>
+
+<p>SearchWeb 节点现在搜索“法国首都”并获得以下结果：</p>
+
+<pre><code class="language-markup">Results for: capital of France
+- The capital of France is Paris
+- Paris is known as the City of Light
+</code></pre>
+
+<p>它将这些结果保存到我们的共享上下文中。</p>
+
+<h4 id="第三轮最终决定">第三轮：最终决定🤔</h4>
+
+<p>我们的智能体再次查看这个问题，但现在它有了一些搜索结果：</p>
+
+<pre><code class="language-markup">thinking: |
+  Now I have search results that clearly state "The capital of France is Paris".
+  This directly answers the question, so I can provide a final answer.
+action: answer
+reason: I now have the information needed to answer the question
+</code></pre>
+
+<p>这次，我们的智能体判定它有足够的信息来回答！</p>
+
+<h4 id="第四轮回答问题">第四轮：回答问题💬</h4>
+
+<p>最后，“回答问题”节点生成一个有用的回复：</p>
+
+<pre><code class="language-markup">The capital of France is Paris, which is also known as the City of Light.
+</code></pre>
+
+<p>然后我们就完成了！我们的智能体已成功：</p>
+
+<ol>
+  <li>意识到需要搜索信息</li>
+  <li>执行了一次搜索</li>
+  <li>决定它已经有足够的信息了</li>
+  <li>生成了一个有用的答案</li>
+</ol>
+
+<h3 id="全过程可视化">全过程可视化：</h3>
+
+<p><img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F34da5ff1-228a-4725-9037-95f9d6931e34_800x552.jpeg" alt="The Whole Process Visualized" /></p>
+
+<h3 id="深入探索探究代码及其他方面">深入探索：探究代码及其他方面</h3>
+
+<p>如果你有一定的技术基础，并且想阅读或试验本教程的完整代码，你可以在这里找到它！</p>
+
+<p>你还可以通过查看这些代码片段，了解这种相同的循环和分支模式在更大的框架中是如何出现的：</p>
+
+<ul>
+  <li>OpenAI 智能体：有关图中工作流程，请查看 run.py#L119 。</li>
+  <li>Pydantic 代理：_agent_graph.py#L779 以图形方式组织步骤。</li>
+  <li>Langchain: agent_iterator.py#L174 展示了循环结构。</li>
+  <li>LangGraph：基于图的方法请参考 agent.py 文件的第 56 行。</li>
+</ul>
+
+<h2 id="结论理解智能体的秘诀">结论：理解智能体的秘诀</h2>
+
+<p>现在你知道秘密了——LLM 特工只是带有分支的循环：</p>
+
+<ol>
+  <li>思考当前状态</li>
+  <li>通过从多个选项中选择一个操作进行分支</li>
+  <li>执行所选操作</li>
+  <li>从该操作中获取结果</li>
+  <li>回头再思考</li>
+</ol>
+
+<p>“思考”发生在提示（我们向LLM询问的内容）中，“分支”是指智能体在可用工具之间进行选择的时候，而“执行”则发生在我们调用外部函数时。其他一切都只是管道工作！</p>
+
+<p>下次当你看到一个有成千上万行代码的复杂代理框架时，记住这个简单的模式，然后问问自己：“这个系统中的决策分支和循环在哪里？”</p>
+
+<p>有了这些知识，无论任何智能体系统表面上看起来多么复杂，你都能够理解它。</p>
+
+<p><em>想了解更多关于构建简单智能体的信息吗？在 GitHub 上查看 PocketFlow！</em></p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的知识库</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <pre><code class="language-dataview">table file.name as name ,file.tags as tags
+from "奇思妙想"
+sort file.mday desc
+limit 10
+</code></pre>
+
+<hr />
+<pre><code class="language-dataview">list from "" where contains(file.name,"习惯")
+</code></pre>
+<hr />
+
+<pre><code class="language-dataview">list from #阅读习惯
+</code></pre>
+
+<hr />
+
+<pre><code class="language-dataview">list from "" 
+where contains(page-title ,"LLM") 
+sort date desc
+</code></pre>
+
+
+      </section>
+    </div>
+  </body>
+</html>

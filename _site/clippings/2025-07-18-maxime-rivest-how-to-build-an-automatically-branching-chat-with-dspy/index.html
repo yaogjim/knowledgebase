@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Build an Automatically Branching Chat with DSPy</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">How to Build an Automatically Branching Chat with DSPy</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">How to Build an Automatically Branching Chat with DSPy</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> Maxime Rivest</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-18</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://maximerivest.com/posts/dspy_ai_program_gem.html" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><img src="https://maximerivest.com/posts/images/conversation_tree.png" alt="" /></p>
+
+<p>前几天我突然想到，大多数构建人工智能产品（类似聊天机器人的体验）的人其实并不是在构建人工智能程序。然后我就想：“要让他们的程序成为一个 <em>人工智能程序</em> ，他们需要构建什么呢？”我认为答案是，他们需要让人工智能对应用程序的控制流有所贡献。一个很好的说明方式是，让人工智能来决定我的提示在不断增长的对话树中的走向，而不是由代码和按钮来决定。</p>
+
+<p>在这篇博客中，我们将构建一个完整且能正常运行的分支聊天应用程序。我的直觉是，这是目前人工智能聊天中缺失的一个重要部分。我不想非得像回到2023年那样去搜索一段对话;)</p>
+
+<p>要构建一个自动分支的聊天机器人，我们需要四个部分。</p>
+
+<ol>
+  <li>我们需要一个能容纳聊天树的数据结构。</li>
+  <li>我们需要一个对话路由器，它能决定用户的提示在树状结构中会连接到哪里。</li>
+  <li>我们需要一个供用户聊天的界面。</li>
+  <li>我们需要一种方法，将相关的对话痕迹重建为适用于大语言模型（LLM）的对话。</li>
+</ol>
+
+<p>设置</p>
+
+<p>在本教程中，你需要安装一些库并设置 LLM 连接。LLM 将负责组织聊天并与你进行对话。如果你使用本地托管的模型，（你可以！）只需跳过 API 密钥的设置。 <a href="https://console.groq.com/keys">点击此处获取密钥</a> 。</p>
+
+<p>在本教程中，我选择了由 Groq 托管的 Kimi-K2。它相当便宜，速度非常快，而且相当智能！</p>
+
+<p>Python 库要求</p>
+
+<p>我喜欢用 uv 来安装我的库。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="n">uv</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">dspy</span> <span class="n">networkx</span> <span class="n">pyvis</span> <span class="n">anytree</span> <span class="n">plotly</span>
+</code></pre></div></div>
+
+<p>API 密钥设置</p>
+
+<p>我通常会永久设置我的密钥，但你也可以只为此时此地进行设置。</p>
+
+<p>使 GROQ_API_KEY 永久有效</p>
+
+<h6 id="linux--macos">Linux / macOS</h6>
+
+<p>Append to your shell start-up file (pick the one you actually use):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"export GROQ_API_KEY='gsk_[REDACTED]'"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="c"># or ~/.zshrc, ~/.profile, etc.</span>
+<span class="nb">source</span> ~/.bashrc   <span class="c"># reload once</span>
+</code></pre></div></div>
+
+<h6 id="windows--cmd">Windows – CMD</h6>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>setx GROQ_API_KEY <span class="s2">"gsk_[REDACTED]"</span>
+</code></pre></div></div>
+
+<p>Close and reopen the terminal.</p>
+
+<h6 id="windows--powershell">Windows – PowerShell</h6>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">Environment</span><span class="p">]::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">"GROQ_API_KEY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"gsk_[REDACTED]"</span><span class="p">,</span><span class="w"> </span><span class="s2">"User"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Refresh with <code class="language-plaintext highlighter-rouge">refreshenv</code> or open a new window.</p>
+
+<h2 id="对话树">对话树</h2>
+
+<p>本节与人工智能和 DSPy 无关，我们只是要创建我们的对话树数据结构。</p>
+
+<p>在其核心部分，每个提示-响应对将被独立保存到一个 Turn 对象中。这个对象还将持有它自己的 id、其父对象的 id 以及其子对象的 id（以列表形式）。</p>
+
+<p>它看起来是这样的：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pydantic</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="k">class</span> <span class="nc">Turn</span><span class="p">(</span><span class="n">pydantic</span><span class="p">.</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">turn_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">parent_turn_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">user</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">assistant</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">children_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">pydantic</span><span class="p">.</span><span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="n">turn_i</span> <span class="o">=</span> <span class="n">Turn</span><span class="p">(</span>
+    <span class="n">turn_id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="n">parent_turn_id</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> 
+    <span class="n">user</span> <span class="o">=</span> <span class="s">"Help me understand gravity."</span><span class="p">,</span>
+    <span class="n">assistant</span> <span class="o">=</span> <span class="s">"Gravity is the force that pulls any two pieces of matter toward each other. On Earth, it gives objects weight and keeps us on the ground. In space, it keeps the Moon orbiting Earth and the planets orbiting the Sun. According to Einstein, massive objects actually bend the fabric of space-time, and what we feel as gravity is simply objects following the curved paths created by that bending."</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">turn_i</span><span class="p">.</span><span class="n">model_dump_json</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="s">"turn_id"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s">"parent_turn_id"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"user"</span><span class="p">:</span> <span class="s">"Help me understand gravity."</span><span class="p">,</span>
+  <span class="s">"assistant"</span><span class="p">:</span> <span class="s">"Gravity is the force that pulls any two pieces of matter toward each other. On Earth, it gives objects weight and keeps us on the ground. In space, it keeps the Moon orbiting Earth and the planets orbiting the Sun. According to Einstein, massive objects actually bend the fabric of space-time, and what we feel as gravity is simply objects following the curved paths created by that bending."</span><span class="p">,</span>
+  <span class="s">"children_ids"</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>如你所见，它可以有一个为空的父轮次 ID。我们将使用 <code class="language-plaintext highlighter-rouge">parent_turn_id == None</code> 来识别一个轮次是否是新的聊天（即根聊天）。</p>
+
+<p>为了在构建程序时了解它是如何工作的，我们将立即创建并填充一个对话树。让我们使用与上面图片中相同的对话树。</p>
+
+<p>在这里，我们正在创建一个对话树对象，以帮助我们查找提示、根节点，并从一个提示收集轮次，直到达到某个深度。如果你跟着操作，你需要复制、粘贴并运行它们，但要理解本教程并不需要理解这些代码。</p>
+
+<p>定义 ConversationTree 对象</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pydantic</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="k">class</span> <span class="nc">Turn</span><span class="p">(</span><span class="n">pydantic</span><span class="p">.</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">turn_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">parent_turn_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">user</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">assistant</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">children_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">pydantic</span><span class="p">.</span><span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">ConversationTree</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">turns</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Turn</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">add_turn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn</span><span class="p">:</span> <span class="n">Turn</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">turns</span><span class="p">[</span><span class="n">turn</span><span class="p">.</span><span class="n">turn_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">turn</span>
+        <span class="k">if</span> <span class="n">turn</span><span class="p">.</span><span class="n">parent_turn_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">parent_turn</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">turns</span><span class="p">[</span><span class="n">turn</span><span class="p">.</span><span class="n">parent_turn_id</span><span class="p">]</span>
+            <span class="n">parent_turn</span><span class="p">.</span><span class="n">children_ids</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">turn</span><span class="p">.</span><span class="n">turn_id</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">create_turn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">assistant</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="s">"""
+        Convenience method to create and add a new turn with auto-generated turn_id.
+        
+        Args:
+            user: The user's message
+            assistant: The assistant's response
+            parent_turn_id: Optional parent turn ID (None for root turns)
+            
+        Returns:
+            The generated turn_id of the newly created turn
+        """</span>
+        <span class="c1"># Generate new turn_id
+</span>        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">turns</span><span class="p">:</span>
+            <span class="n">new_turn_id</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">turns</span><span class="p">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_turn_id</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="c1"># Create and add the turn
+</span>        <span class="n">turn</span> <span class="o">=</span> <span class="n">Turn</span><span class="p">(</span>
+            <span class="n">turn_id</span><span class="o">=</span><span class="n">new_turn_id</span><span class="p">,</span>
+            <span class="n">parent_turn_id</span><span class="o">=</span><span class="n">parent_turn_id</span><span class="p">,</span>
+            <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">assistant</span><span class="o">=</span><span class="n">assistant</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">add_turn</span><span class="p">(</span><span class="n">turn</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_turn_id</span>
+        
+    <span class="k">def</span> <span class="nf">get_turn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Turn</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">turns</span><span class="p">[</span><span class="n">turn_id</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_root_turns</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Turn</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">turn</span> <span class="k">for</span> <span class="n">turn</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">turns</span><span class="p">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">turn</span><span class="p">.</span><span class="n">parent_turn_id</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_leaf_turns</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Turn</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">turn</span> <span class="k">for</span> <span class="n">turn</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">turns</span><span class="p">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">turn</span><span class="p">.</span><span class="n">children_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">trace_upward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Turn</span><span class="p">]:</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">get_turn</span><span class="p">(</span><span class="n">turn_id</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">depth</span><span class="p">:</span>
+            <span class="n">trace</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">current</span><span class="p">.</span><span class="n">parent_turn_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">get_turn</span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="n">parent_turn_id</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">trace</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># reverse to get root to leaf order
+</span>
+    <span class="k">def</span> <span class="nf">trace_downward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turn_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Turn</span><span class="p">]]:</span>
+        <span class="n">traces</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">current_id</span><span class="p">,</span> <span class="n">current_trace</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_trace</span><span class="p">)</span> <span class="o">==</span> <span class="n">depth</span><span class="p">:</span>
+                <span class="n">traces</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_trace</span><span class="p">[:])</span>
+                <span class="k">return</span>
+            <span class="n">current_turn</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">get_turn</span><span class="p">(</span><span class="n">current_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">current_turn</span><span class="p">.</span><span class="n">children_ids</span><span class="p">:</span>
+                <span class="n">traces</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_trace</span><span class="p">[:])</span>
+                <span class="k">return</span>
+            <span class="k">for</span> <span class="n">child_id</span> <span class="ow">in</span> <span class="n">current_turn</span><span class="p">.</span><span class="n">children_ids</span><span class="p">:</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">child_id</span><span class="p">,</span> <span class="n">current_trace</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">get_turn</span><span class="p">(</span><span class="n">child_id</span><span class="p">)])</span>
+
+        <span class="n">dfs</span><span class="p">(</span><span class="n">turn_id</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">get_turn</span><span class="p">(</span><span class="n">turn_id</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="n">traces</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conversation_tree</span> <span class="o">=</span> <span class="n">ConversationTree</span><span class="p">()</span>
+
+<span class="n">conversations</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">"Help me understand gravity."</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">"Gravity is the force..."</span><span class="p">),</span>
+    <span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">"What's the difference between Newton's and Einstein's theories of gravity?"</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">"Newton pictured gravity..."</span><span class="p">),</span>
+    <span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">"Is gravity a force or something else?"</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">"It depends on the theory..."</span><span class="p">),</span>
+    <span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">"you said Gravity is the force that pulls any two pieces of matter, can you show me the formula"</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">"Newton’s universal law..."</span><span class="p">),</span>
+    <span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">"Give me a good recipe for a vegan pasta sauce."</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">"Creamy Tomato-Basil Vegan Pasta Sauce..."</span><span class="p">),</span>
+    <span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">"For the recipe, I don't like onion can you improve"</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">"Creamy Tomato-Basil Vegan Pasta Sauce (No-Onion Version)..."</span><span class="p">),</span>
+    <span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">"Who coined the word gravity?"</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">"Isaac Newton first used..."</span><span class="p">),</span>
+    <span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">"How old was he?"</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">"Isaac Newton was 44–45 years old..."</span><span class="p">),</span>
+    <span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">"Where did he live?"</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">"He lived in England..."</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">conv</span> <span class="ow">in</span> <span class="n">conversations</span><span class="p">:</span>
+    <span class="n">conversation_tree</span><span class="p">.</span><span class="n">add_turn</span><span class="p">(</span><span class="n">conv</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>既然我们已经有了一个数据结构（轮次和树），那么我们就可以专注于有趣的部分，即对话路由器！</p>
+
+<h2 id="对话路由器">对话路由器</h2>
+
+<p>对话路由器负责获取我们的提示和对话树，并找到我们的提示应附加到树的哪个位置。</p>
+
+<p>在我原来的系统中，我使用了某种竞赛机制，并对根节点和叶节点的相关性进行加权，对于最相关的前 X 个对话轨迹，我会深入对话内部，试图找到连接点。像那样进行分层处理有助于解决方案扩展到非常大的树结构。在这里，我们将保持 <em>非常</em> 简单；我们将一次性对最多 3 轮的所有可能对话轨迹的相关性进行排序和评估（采用一种滑动窗口的方式）。</p>
+
+<h3 id="收集并将追踪信息渲染为字符串">收集并将追踪信息渲染为字符串</h3>
+
+<p>在我们上面的`conversation_tree`类定义中，我们创建了一个方法来收集给定轮次之上的轮次，所以我们在这里也可以这么做。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">traces</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">i_turn</span><span class="p">)</span> <span class="ow">in</span> <span class="n">conversation_tree</span><span class="p">.</span><span class="n">turns</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">traces</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">conversation_tree</span><span class="p">.</span><span class="n">trace_upward</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">traces</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">'Help me understand gravity.'</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">'Gravity is the force...'</span><span class="p">,</span> <span class="n">children_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])]</span>
+</code></pre></div></div>
+
+<p>在第一条踪迹（就在此处上方打印的那条）的情况下，所讨论的轮次没有父轮次，因此返回了一个单轮次的踪迹。这正是我们想要的。后续轮次是紧挨着轮次0下方的轮次，所以在该踪迹中我们得到了两个轮次：轮次0和轮次1，树中的所有轮次都是如此。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">traces</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">'Help me understand gravity.'</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">'Gravity is the force...'</span><span class="p">,</span> <span class="n">children_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">"What's the difference between Newton's and Einstein's theories of gravity?"</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">'Newton pictured gravity...'</span><span class="p">,</span> <span class="n">children_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])]</span>
+</code></pre></div></div>
+
+<p>我们或许可以把这些展示给大语言模型（LLM），但我觉得我们可以把它们处理得更具可读性。比如这样：</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;trace</span> <span class="na">id=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+
+## User: 
+    Help me understand gravity.
+
+## Assistant: 
+    Gravity is the force...
+
+## User: 
+    you said Gravity is the force that pulls any two pieces of matter, can you show me the formula
+
+## Assistant: 
+    Newton’s universal law...
+<span class="nt">&lt;/trace&gt;</span>
+
+<span class="nt">&lt;trace</span> <span class="na">id=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+
+## User: 
+    Give me a good recipe for a vegan pasta sauce.
+
+## Assistant: 
+    Creamy Tomato-Basil Vegan Pasta Sauce...
+
+## User: 
+    For the recipe, I don't like onion can you improve
+
+## Assistant: 
+    Creamy Tomato-Basil Vegan Pasta Sauce (No-Onion Version)...
+<span class="nt">&lt;/trace&gt;</span>
+</code></pre></div></div>
+
+<p>以下是一次性对所有这些进行操作并为语言模型（LLM）获取一个大字符串的代码。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">format_trace</span><span class="p">(</span><span class="n">trace</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Turn</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">trace_string</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="k">for</span> <span class="n">turn</span> <span class="ow">in</span> <span class="n">trace</span><span class="p">:</span>
+        <span class="n">trace_string</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">## User: </span><span class="se">\n\t</span><span class="s">"</span> <span class="o">+</span> <span class="n">turn</span><span class="p">.</span><span class="n">user</span> <span class="o">+</span> \
+                        <span class="s">"</span><span class="se">\n\n</span><span class="s">## Assistant: </span><span class="se">\n\t</span><span class="s">"</span> <span class="o">+</span> <span class="n">turn</span><span class="p">.</span><span class="n">assistant</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+    <span class="k">return</span> <span class="n">trace_string</span>
+
+<span class="k">def</span> <span class="nf">format_traces_with_id</span><span class="p">(</span><span class="n">traces</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">all_traces_string</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="k">for</span> <span class="n">trace</span> <span class="ow">in</span> <span class="n">traces</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">all_traces_string</span> <span class="o">+=</span> <span class="sa">f</span><span class="s">"&lt;trace_id = </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s">&gt;</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> \
+                                    <span class="n">format_trace</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span><span class="o">+</span> \
+                             <span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">&lt;/trace_id = </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s">&gt;</span><span class="se">\n</span><span class="s">"</span>
+    <span class="k">return</span> <span class="n">all_traces_string</span> 
+    
+<span class="n">stringi_traces</span> <span class="o">=</span> <span class="n">format_traces_with_id</span><span class="p">(</span><span class="n">traces</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="构建排名程序">构建排名程序</h3>
+
+<p>既然我们已经拥有了所有的对话片段（痕迹），就可以根据相关性对它们进行排序。</p>
+
+<p>我们会将用户提示和所有片段输入到语言模型中，并要求返回三样东西：一个排名（1 为最佳）、一个 0 到 1 之间的相关性得分，以及一个临时追踪 ID，以便我们知道哪个得分属于哪个片段。</p>
+
+<p>这就给了我们：</p>
+
+<ul>
+  <li>Inputs:
+    <ul>
+      <li>当前用户提示（字符串）</li>
+      <li>跟踪信息（字符串）</li>
+    </ul>
+  </li>
+  <li>输出：
+    <ul>
+      <li>一个已排序的评估列表，每个评估都包含排名（整数）、追踪 ID（整数）、相关度得分（0 到 1 之间的浮点数）</li>
+    </ul>
+  </li>
+</ul>
+
+<p>让我们把这个变成一个 DSPy 程序。首先，定义一个类，它能准确地告诉 DSPy 和 LLM 返回什么。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SegmentEvaluation</span><span class="p">(</span><span class="n">pydantic</span><span class="p">.</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">trace_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">relevance_to_prompt</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">ranked_relevance_to_prompt</span><span class="p">:</span> <span class="nb">int</span>
+</code></pre></div></div>
+
+<p>现在我们 <strong>终于要使用 DSPy 了</strong> ！</p>
+
+<p>让我们导入它：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">dspy</span>
+</code></pre></div></div>
+
+<p>在这里，我们将程序的指令、输入和输出编写为一个 DSPy 签名。在 DSPy 中，签名取代了 <em>通常的</em> 提示。在签名中，我们可以使用文档字符串来给出指令。在调用 LLM 之前，这条指令将在后台添加到系统提示中 <a href="https://maximerivest.com/posts/dspy_ai_program_gem.html#fn1"><sup>1</sup></a> 。除了签名之外，还有输入和输出。通过在正在创建的类中创建属性并将这些属性设置为等于 <code class="language-plaintext highlighter-rouge">InputField</code> 或 <code class="language-plaintext highlighter-rouge">OutputField</code> 来定义它们。你给属性起的名字将显示给 LLM。这些属性将被添加到系统提示中，在那里它们的名称、类型和描述会被详细说明。它们也将用于用户消息中，并且会指示 LLM 使用它们 <a href="https://maximerivest.com/posts/dspy_ai_program_gem.html#fn2"><sup>2</sup></a> 。</p>
+
+<p><sup>1</sup> 虽然在本教程中我们不会运行任何 DSPy 优化器，但签名的指令部分是优化器可以修改和改进的主要元素</p>
+
+<p><sup>2</sup> DSPy 优化器不会修改输入和输出字段，它们只是由 DSPy 的适配器“渲染”成文本提示</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">EvaluateSegments</span><span class="p">(</span><span class="n">dspy</span><span class="p">.</span><span class="n">Signature</span><span class="p">):</span>
+    <span class="s">"""Evaluate a conversation segments for relevance to a new prompt.
+
+    For each segment, identify if has topical connection to the user prompt. Consider if the prompt is:
+    - A direct follow-up question.
+    - A request for clarification.
+    - An exploration of a related sub-topic.
+    - A completely different subject.
+    
+    Assign a relevance score from 0.0 (completely irrelevant) to 1.0 (a direct continuation of the topic).
+    You will also rank the segments where 1 is the most relevant of the group
+    """</span>
+    <span class="c1">#Inputs
+</span>    <span class="n">user_prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">InputField</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">"The new user prompt to be integrated."</span><span class="p">)</span>
+    <span class="n">segments_to_evaluate</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">InputField</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">"A stringified list of conversation segments, each with its trace_id and content."</span><span class="p">)</span>
+    
+    <span class="c1">#Outputs
+</span>    <span class="n">evaluations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SegmentEvaluation</span><span class="p">]</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">OutputField</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">"A list of evaluations, one for each segment, including detailed reasoning."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>现在要使该签名可调用，我们必须将其转换为一个模块 <a href="https://maximerivest.com/posts/dspy_ai_program_gem.html#fn3"><sup>3</sup></a> 。最简单的是 dspy.Predict，我们就用这个。</p>
+
+<p><sup>3</sup> DSPy 中有许多现成的模块，你可以、应该并且将会定义自己的模块。模块是你定义围绕大语言模型（LLM）调用的逻辑和控制流的地方。模块通常被称为程序，DSPy 的优化器可以优化整个模块以及模块内的子模块，依此类推，一直到最底层。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">relevance_evaluator</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">Predict</span><span class="p">(</span><span class="n">EvaluateSegments</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>我们几乎准备好调用人工智能了，但首先我们需要设置我们的语言模型。</p>
+
+<p>在 DSPy 中连接到不同的模型和提供方非常简单。你只需将 <code class="language-plaintext highlighter-rouge">groq/moonshotai/kimi-k2-instruct</code> 替换为你想要的提供方和模型的路径即可。在幕后，DSPy 使用 litellm，所以这个路径是一个适用于 litellm 的路径 <a href="https://maximerivest.com/posts/dspy_ai_program_gem.html#fn4"><sup>4</sup></a></p>
+
+<p><sup>4</sup>  例如，你可以使用 <code class="language-plaintext highlighter-rouge">gpt-4.1</code> ，或者 <code class="language-plaintext highlighter-rouge">ollama/&lt;ollama_model&gt;</code></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lm</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">LM</span><span class="p">(</span><span class="s">"groq/moonshotai/kimi-k2-instruct"</span><span class="p">)</span>
+<span class="n">dspy</span><span class="p">.</span><span class="n">configure</span><span class="p">(</span><span class="n">lm</span> <span class="o">=</span> <span class="n">lm</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">evaluation</span> <span class="o">=</span> <span class="n">relevance_evaluator</span><span class="p">(</span>
+    <span class="n">user_prompt</span> <span class="o">=</span> <span class="s">"how much salt should I use?"</span><span class="p">,</span>
+    <span class="n">segments_to_evaluate</span> <span class="o">=</span> <span class="n">format_traces_with_id</span><span class="p">(</span><span class="n">traces</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">evaluation</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Prediction</span><span class="p">(</span>
+    <span class="n">evaluations</span><span class="o">=</span><span class="p">[</span><span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">9</span><span class="p">),</span> <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span> <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span> <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span> <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span> <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span> <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>DSPy 总是返回一个 <code class="language-plaintext highlighter-rouge">Prediction</code> <a href="https://maximerivest.com/posts/dspy_ai_program_gem.html#fn5"><sup>5</sup></a> 。让我们从 <code class="language-plaintext highlighter-rouge">evaluation</code> 中获取评估列表。由于我们使用了类型提示来告诉 DSPy 我们想要 <code class="language-plaintext highlighter-rouge">List[SegmentEvaluation]</code> ，所以它确保我们得到的就是这个 <a href="https://maximerivest.com/posts/dspy_ai_program_gem.html#fn6"><sup>6</sup></a></p>
+
+<p><sup>5</sup> 预测是必要的，因为有些程序会增加你的输出，而且你可能会有多个输出</p>
+
+<p><sup>6</sup>  如果你使用的是较小的模型，该模型可能难以输出所需的结构，使用 TwoStepAdapter 可能会有所帮助 <code class="language-plaintext highlighter-rouge">dspy.configure(lm = lm, adapter = dspy.TwoStepAdapter(lm))</code></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">evaluation</span><span class="p">.</span><span class="n">evaluations</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">9</span><span class="p">),</span>
+ <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span>
+ <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span>
+ <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+ <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+ <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+ <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+ <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+ <span class="n">SegmentEvaluation</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<p>现在让我们找到最相关的轮次</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">best_eval</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">evaluation</span><span class="p">.</span><span class="n">evaluations</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">relevance_to_prompt</span><span class="p">)</span>
+<span class="n">most_relevevant_turn</span> <span class="o">=</span> <span class="n">traces</span><span class="p">[</span><span class="n">best_eval</span><span class="p">.</span><span class="n">trace_id</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">most_relevevant_turn</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Turn</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">"For the recipe, I don't like onion can you improve"</span><span class="p">,</span> <span class="n">assistant</span><span class="o">=</span><span class="s">'Creamy Tomato-Basil Vegan Pasta Sauce (No-Onion Version)...'</span><span class="p">,</span> <span class="n">children_ids</span><span class="o">=</span><span class="p">[])</span>
+</code></pre></div></div>
+
+<p>我们有了第一批由大语言模型生成的数据！</p>
+
+<h3 id="连接决策">连接决策</h3>
+
+<p>现在我们将在程序逻辑和控制流中使用它。我们总是可以附加到最相关的部分，但有时我们实际上是在开始一个新的对话。那么让我们创建第二个程序，它将查看最相关的对话片段，并决定是附加到那里还是开始一个新的对话。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">NewChatDecision</span><span class="p">(</span><span class="n">dspy</span><span class="p">.</span><span class="n">Signature</span><span class="p">):</span>
+    <span class="s">"""
+    You are a classifier inside of an automatically branching chat application.
+    The most relevant branch in a conversation tree has been identified. 
+    Given that conversation and a user prompt, you must decide if we should start a new conversation
+    or if we should attach the prompt the most relevant conversation.
+    """</span>
+    <span class="n">user_prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">InputField</span><span class="p">()</span>
+    <span class="n">relevance_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">InputField</span><span class="p">()</span>
+    <span class="n">conversation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">InputField</span><span class="p">()</span>
+    <span class="n">decision</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">OutputField</span><span class="p">(</span><span class="n">desc</span> <span class="o">=</span> <span class="s">"Return true for a new conversation, false to attach to this conversation"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>就像对于对话相关性排序器一样，我们使用 <code class="language-plaintext highlighter-rouge">Predict</code> 将我们的签名转换为一个可调用的程序，然后运行该程序。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_chat_decider</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">Predict</span><span class="p">(</span><span class="n">NewChatDecision</span><span class="p">)</span>
+<span class="n">decision</span> <span class="o">=</span> <span class="n">new_chat_decider</span><span class="p">(</span>
+    <span class="n">user_prompt</span> <span class="o">=</span> <span class="s">"how much salt should I use?"</span><span class="p">,</span>
+    <span class="n">relevance_score</span> <span class="o">=</span> <span class="n">best_eval</span><span class="p">.</span><span class="n">relevance_to_prompt</span><span class="p">,</span>
+    <span class="n">conversation</span> <span class="o">=</span> <span class="n">format_trace</span><span class="p">(</span><span class="n">conversation_tree</span><span class="p">.</span><span class="n">trace_upward</span><span class="p">(</span><span class="n">most_relevevant_turn</span><span class="p">.</span><span class="n">turn_id</span><span class="p">,</span> <span class="mi">100</span><span class="p">)),</span> 
+<span class="p">)</span>
+<span class="n">decision</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Prediction</span><span class="p">(</span>
+    <span class="n">decision</span><span class="o">=</span><span class="bp">False</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>我们的人工智能 Kimi-K2 建议不要开启新对话。这样我们就会将当前提示添加到该对话记录中，并将查询发送到一个简单的聊天程序。</p>
+
+<h3 id="聊天机器人">聊天机器人</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ChatBot</span><span class="p">(</span><span class="n">dspy</span><span class="p">.</span><span class="n">Signature</span><span class="p">):</span>
+    <span class="s">"""You are a helpful assistant"""</span>
+    <span class="n">history</span><span class="p">:</span> <span class="n">dspy</span><span class="p">.</span><span class="n">History</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">InputField</span><span class="p">()</span>
+    <span class="n">user_prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">InputField</span><span class="p">()</span>
+    <span class="n">assistant_response</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">OutputField</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>我们的聊天机器人需要对话历史来正确回复，所以让我们创建一个消息列表。DSPy 提供了 <code class="language-plaintext highlighter-rouge">History</code> ，这是一种 DSPy 类型来帮助我们实现这一点。即使我们没有使用预期的角色名称，它也会为我们将历史转换为实际的用户和助手消息。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">chat</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">Predict</span><span class="p">(</span><span class="n">ChatBot</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">chat</span><span class="p">(</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">History</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">),</span>
+    <span class="n">user_prompt</span> <span class="o">=</span> <span class="s">"how much salt should I use?"</span>
+<span class="p">)</span>
+<span class="n">response</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Prediction</span><span class="p">(</span>
+    <span class="n">assistant_response</span><span class="o">=</span><span class="s">'For the no-onion creamy tomato-basil vegan pasta sauce we’ve been working on, start with **½ teaspoon of fine sea salt** when you first add the tomatoes. After the sauce has simmered for 10 minutes and the flavors have melded, taste it and adjust—most people end up adding **an additional ¼ to ½ teaspoon**, depending on how acidic the tomatoes are and how salty the plant milk you used is. If you’re serving the sauce with salted pasta water (about 1 tablespoon of salt per 4 quarts of water), err on the lighter side so the finished dish isn’t over-salted.'</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>耶！我们终于做到了！我们已经具备了与人工智能聊天的所有要素，并且能够让我们的提示自动被路由到并扩展对话树！</p>
+
+<p>现在让我们看看我们的对话树。</p>
+
+<p>visualize_conversation_tree 的代码（来自 gemini-2.5-pro + o3）</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="n">nx</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="n">go</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+
+<span class="c1"># Assuming the ConversationTree and Turn classes are defined as you provided.
+</span>
+<span class="k">def</span> <span class="nf">visualize_conversation_tree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">save_html</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="bp">None</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="s">"""
+    Generates an interactive, hierarchical visualization of a conversation tree,
+    correctly handling multiple separate conversation threads by creating a common root.
+
+    Args:
+        tree: A ConversationTree object.
+        save_html (str | None): Optional. File path to save the plot as an HTML file.
+    """</span>
+    
+    <span class="c1"># 1. Build the graph, identifying separate conversation roots
+</span>    <span class="n">graph</span><span class="p">,</span> <span class="n">node_texts</span><span class="p">,</span> <span class="n">root_ids</span> <span class="o">=</span> <span class="n">_build_graph_from_tree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+
+    <span class="c1"># 2. Calculate node positions using a virtual root for layout
+</span>    <span class="n">positions</span> <span class="o">=</span> <span class="n">_calculate_hierarchical_layout</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">root_ids</span><span class="p">)</span>
+
+    <span class="c1"># 3. Create Plotly traces for edges and all node types (root, user, assistant)
+</span>    <span class="n">traces</span> <span class="o">=</span> <span class="n">_create_plotly_traces</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">node_texts</span><span class="p">)</span>
+
+    <span class="c1"># 4. Assemble the figure and display it
+</span>    <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">Figure</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">traces</span><span class="p">,</span>
+        <span class="n">layout</span><span class="o">=</span><span class="n">go</span><span class="p">.</span><span class="n">Layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s">"Conversation Tree (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">turns</span><span class="p">)</span><span class="si">}</span><span class="s"> turns)"</span><span class="p">,</span>
+            <span class="n">hovermode</span><span class="o">=</span><span class="s">"closest"</span><span class="p">,</span>
+            <span class="n">showlegend</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s">"white"</span><span class="p">,</span>
+            <span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">40</span><span class="p">),</span>
+            <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">zeroline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">showticklabels</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+            <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">zeroline</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">showticklabels</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">save_html</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">.</span><span class="n">write_html</span><span class="p">(</span><span class="n">save_html</span><span class="p">,</span> <span class="n">include_plotlyjs</span><span class="o">=</span><span class="s">"cdn"</span><span class="p">)</span>
+        
+    <span class="n">fig</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">_build_graph_from_tree</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="s">"""Creates a NetworkX DiGraph, adding a virtual root for multiple conversations."""</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="n">DiGraph</span><span class="p">()</span>
+    <span class="n">node_texts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">root_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Process all turns to build the main graph components
+</span>    <span class="k">for</span> <span class="n">tid</span><span class="p">,</span> <span class="n">turn</span> <span class="ow">in</span> <span class="n">tree</span><span class="p">.</span><span class="n">turns</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">user_node</span><span class="p">,</span> <span class="n">assistant_node</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"U</span><span class="si">{</span><span class="n">tid</span><span class="si">}</span><span class="s">"</span><span class="p">,</span> <span class="sa">f</span><span class="s">"A</span><span class="si">{</span><span class="n">tid</span><span class="si">}</span><span class="s">"</span>
+        
+        <span class="n">node_texts</span><span class="p">[</span><span class="n">user_node</span><span class="p">]</span> <span class="o">=</span> <span class="s">"&lt;br&gt;"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">textwrap</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="sa">f</span><span class="s">"&lt;b&gt;User:&lt;/b&gt;&lt;br&gt;</span><span class="si">{</span><span class="n">turn</span><span class="p">.</span><span class="n">user</span><span class="si">}</span><span class="s">"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">))</span>
+        <span class="n">node_texts</span><span class="p">[</span><span class="n">assistant_node</span><span class="p">]</span> <span class="o">=</span> <span class="s">"&lt;br&gt;"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">textwrap</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="sa">f</span><span class="s">"&lt;b&gt;Assistant:&lt;/b&gt;&lt;br&gt;</span><span class="si">{</span><span class="n">turn</span><span class="p">.</span><span class="n">assistant</span><span class="si">}</span><span class="s">"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">))</span>
+        
+        <span class="n">graph</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">user_node</span><span class="p">,</span> <span class="n">assistant_node</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">turn</span><span class="p">.</span><span class="n">parent_turn_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">parent_assistant_node</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"A</span><span class="si">{</span><span class="n">turn</span><span class="p">.</span><span class="n">parent_turn_id</span><span class="si">}</span><span class="s">"</span>
+            <span class="n">graph</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">parent_assistant_node</span><span class="p">,</span> <span class="n">user_node</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">root_ids</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">tid</span><span class="p">)</span>
+
+    <span class="c1"># Add a single virtual root node to connect all separate trees
+</span>    <span class="n">graph</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">"ROOT"</span><span class="p">)</span>
+    <span class="n">node_texts</span><span class="p">[</span><span class="s">"ROOT"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"All Conversations"</span>
+    <span class="k">for</span> <span class="n">rid</span> <span class="ow">in</span> <span class="n">root_ids</span><span class="p">:</span>
+        <span class="n">graph</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s">"ROOT"</span><span class="p">,</span> <span class="sa">f</span><span class="s">"U</span><span class="si">{</span><span class="n">rid</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="n">graph</span><span class="p">,</span> <span class="n">node_texts</span><span class="p">,</span> <span class="n">root_ids</span>
+
+<span class="k">def</span> <span class="nf">_calculate_hierarchical_layout</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">root_ids</span><span class="p">,</span> <span class="n">v_space</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">h_space</span><span class="o">=</span><span class="mf">2.0</span><span class="p">):</span>
+    <span class="s">"""Calculates node (x, y) positions for a top-down tree layout using a virtual root."""</span>
+    <span class="n">VIRTUAL_ROOT_ID</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">children_map</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    
+    <span class="c1"># Build children map from the original tree structure
+</span>    <span class="k">for</span> <span class="n">tid</span><span class="p">,</span> <span class="n">turn</span> <span class="ow">in</span> <span class="n">tree</span><span class="p">.</span><span class="n">turns</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">turn</span><span class="p">.</span><span class="n">parent_turn_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">children_map</span><span class="p">[</span><span class="n">turn</span><span class="p">.</span><span class="n">parent_turn_id</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">tid</span><span class="p">)</span>
+
+    <span class="c1"># Connect the actual roots to the virtual root in the map
+</span>    <span class="n">children_map</span><span class="p">[</span><span class="n">VIRTUAL_ROOT_ID</span><span class="p">]</span> <span class="o">=</span> <span class="n">root_ids</span>
+    
+    <span class="n">hierarchy_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="n">DiGraph</span><span class="p">(</span><span class="n">children_map</span><span class="p">)</span>
+    
+    <span class="c1"># The entire layout is now one big tree starting from the virtual root
+</span>    <span class="n">post_order_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="p">.</span><span class="n">dfs_postorder_nodes</span><span class="p">(</span><span class="n">hierarchy_graph</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">VIRTUAL_ROOT_ID</span><span class="p">))</span>
+    <span class="n">depths</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="n">shortest_path_length</span><span class="p">(</span><span class="n">hierarchy_graph</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">VIRTUAL_ROOT_ID</span><span class="p">)</span>
+
+    <span class="n">turn_positions</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">leaf_x_counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Assign positions bottom-up based on the unified tree structure
+</span>    <span class="k">for</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">post_order_nodes</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">children_map</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">tid</span><span class="p">):</span>  <span class="c1"># It's a leaf node
+</span>            <span class="n">turn_x</span> <span class="o">=</span> <span class="n">leaf_x_counter</span> <span class="o">*</span> <span class="n">h_space</span>
+            <span class="n">leaf_x_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># It's a parent node
+</span>            <span class="n">child_x_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">turn_positions</span><span class="p">[</span><span class="n">child_tid</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">child_tid</span> <span class="ow">in</span> <span class="n">children_map</span><span class="p">[</span><span class="n">tid</span><span class="p">]]</span>
+            <span class="n">turn_x</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">child_x_coords</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">child_x_coords</span><span class="p">)</span>
+        
+        <span class="n">turn_y</span> <span class="o">=</span> <span class="n">depths</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">tid</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">turn_positions</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">turn_x</span><span class="p">,</span> <span class="n">turn_y</span><span class="p">)</span>
+
+    <span class="c1"># Expand turn positions to final node positions for Plotly
+</span>    <span class="n">final_positions</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">tid</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span> <span class="ow">in</span> <span class="n">turn_positions</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">tid</span> <span class="o">==</span> <span class="n">VIRTUAL_ROOT_ID</span><span class="p">:</span>
+            <span class="n">final_positions</span><span class="p">[</span><span class="s">'ROOT'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">final_positions</span><span class="p">[</span><span class="sa">f</span><span class="s">"U</span><span class="si">{</span><span class="n">tid</span><span class="si">}</span><span class="s">"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">depth</span> <span class="o">*</span> <span class="n">v_space</span><span class="p">)</span>
+            <span class="n">final_positions</span><span class="p">[</span><span class="sa">f</span><span class="s">"A</span><span class="si">{</span><span class="n">tid</span><span class="si">}</span><span class="s">"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">depth</span> <span class="o">*</span> <span class="n">v_space</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="n">final_positions</span>
+
+<span class="k">def</span> <span class="nf">_create_plotly_traces</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">node_texts</span><span class="p">):</span>
+    <span class="s">"""Creates the edge and node traces for the Plotly figure."""</span>
+    <span class="n">edge_trace</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">Scatter</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">pos</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">.</span><span class="n">edges</span><span class="p">()</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">],</span> <span class="n">positions</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="mi">0</span><span class="p">],</span> <span class="bp">None</span><span class="p">)],</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">pos</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">.</span><span class="n">edges</span><span class="p">()</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">1</span><span class="p">],</span> <span class="n">positions</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="mi">1</span><span class="p">],</span> <span class="bp">None</span><span class="p">)],</span>
+        <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'#888'</span><span class="p">),</span> <span class="n">hoverinfo</span><span class="o">=</span><span class="s">'none'</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">'lines'</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Prepare lists for different node types
+</span>    <span class="n">nodes_data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">.</span><span class="n">nodes</span><span class="p">():</span>
+        <span class="n">node_type</span> <span class="o">=</span> <span class="s">"ROOT"</span> <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="s">"ROOT"</span> <span class="k">else</span> <span class="s">"U"</span> <span class="k">if</span> <span class="n">node</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">"U"</span><span class="p">)</span> <span class="k">else</span> <span class="s">"A"</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+        <span class="n">nodes_data</span><span class="p">[</span><span class="n">node_type</span><span class="p">][</span><span class="s">'x'</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">nodes_data</span><span class="p">[</span><span class="n">node_type</span><span class="p">][</span><span class="s">'y'</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">nodes_data</span><span class="p">[</span><span class="n">node_type</span><span class="p">][</span><span class="s">'text'</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">node</span> <span class="k">if</span> <span class="n">node_type</span> <span class="o">!=</span> <span class="s">"ROOT"</span> <span class="k">else</span> <span class="s">"★"</span><span class="p">)</span>
+        <span class="n">nodes_data</span><span class="p">[</span><span class="n">node_type</span><span class="p">][</span><span class="s">'hover'</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">node_texts</span><span class="p">[</span><span class="n">node</span><span class="p">])</span>
+
+    <span class="c1"># Create traces
+</span>    <span class="n">common_text_style</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s">'markers+text'</span><span class="p">,</span> <span class="n">textposition</span><span class="o">=</span><span class="s">'middle center'</span><span class="p">,</span> <span class="n">textfont</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s">'white'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s">'Arial'</span><span class="p">),</span> <span class="n">hoverinfo</span><span class="o">=</span><span class="s">'text'</span><span class="p">)</span>
+    
+    <span class="n">user_trace</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'U'</span><span class="p">][</span><span class="s">'x'</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'U'</span><span class="p">][</span><span class="s">'y'</span><span class="p">],</span> <span class="n">text</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'U'</span><span class="p">][</span><span class="s">'text'</span><span class="p">],</span> <span class="n">hovertext</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'U'</span><span class="p">][</span><span class="s">'hover'</span><span class="p">],</span>
+                            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"black"</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">"#4E86E8"</span><span class="p">),</span> <span class="o">**</span><span class="n">common_text_style</span><span class="p">)</span>
+
+    <span class="n">assistant_trace</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'A'</span><span class="p">][</span><span class="s">'x'</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'A'</span><span class="p">][</span><span class="s">'y'</span><span class="p">],</span> <span class="n">text</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'A'</span><span class="p">][</span><span class="s">'text'</span><span class="p">],</span> <span class="n">hovertext</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'A'</span><span class="p">][</span><span class="s">'hover'</span><span class="p">],</span>
+                                 <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"black"</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">"#D4A35D"</span><span class="p">),</span> <span class="o">**</span><span class="n">common_text_style</span><span class="p">)</span>
+    
+    <span class="n">root_trace</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'ROOT'</span><span class="p">][</span><span class="s">'x'</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'ROOT'</span><span class="p">][</span><span class="s">'y'</span><span class="p">],</span> <span class="n">text</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'ROOT'</span><span class="p">][</span><span class="s">'text'</span><span class="p">],</span> <span class="n">hovertext</span><span class="o">=</span><span class="n">nodes_data</span><span class="p">[</span><span class="s">'ROOT'</span><span class="p">][</span><span class="s">'hover'</span><span class="p">],</span>
+                            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"black"</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">"#C70039"</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s">'star'</span><span class="p">),</span> <span class="o">**</span><span class="n">common_text_style</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">[</span><span class="n">edge_trace</span><span class="p">,</span> <span class="n">user_trace</span><span class="p">,</span> <span class="n">assistant_trace</span><span class="p">,</span> <span class="n">root_trace</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">visualize_conversation_tree</span><span class="p">(</span><span class="n">conversation_tree</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>相当酷！</p>
+
+<h2 id="demo">Demo</h2>
+
+<p>现在让我们从头开始。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conversation_tree</span> <span class="o">=</span> <span class="n">ConversationTree</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prompt</span> <span class="o">=</span> <span class="s">"What is the meaning of life, be brief."</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">chat</span><span class="p">(</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">History</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">),</span>
+    <span class="n">user_prompt</span> <span class="o">=</span> <span class="n">prompt</span>
+<span class="p">)</span>
+
+<span class="n">conversation_tree</span><span class="p">.</span><span class="n">create_turn</span><span class="p">(</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">,</span>
+    <span class="n">assistant</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">assistant_response</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">visualize_conversation_tree</span><span class="p">(</span><span class="n">conversation_tree</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">decision</span> <span class="o">=</span> <span class="n">new_chat_decider</span><span class="p">(</span>
+    <span class="n">user_prompt</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">,</span>
+    <span class="n">relevance_score</span> <span class="o">=</span> <span class="n">best_eval</span><span class="p">.</span><span class="n">relevance_to_prompt</span><span class="p">,</span>
+    <span class="n">conversation</span> <span class="o">=</span> <span class="n">format_trace</span><span class="p">(</span><span class="n">conversation_tree</span><span class="p">.</span><span class="n">trace_upward</span><span class="p">(</span><span class="n">most_relevevant_turn</span><span class="p">.</span><span class="n">turn_id</span><span class="p">,</span> <span class="mi">100</span><span class="p">)),</span> 
+<span class="p">)</span>
+<span class="n">decision</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Prediction</span><span class="p">(</span>
+    <span class="n">decision</span><span class="o">=</span><span class="bp">False</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="ow">not</span> <span class="n">decision</span><span class="p">.</span><span class="n">decision</span><span class="p">:</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">turn</span> <span class="ow">in</span> <span class="n">conversation_tree</span><span class="p">.</span><span class="n">trace_upward</span><span class="p">(</span><span class="n">most_relevevant_turn</span><span class="p">.</span><span class="n">turn_id</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+        <span class="n">messages</span><span class="p">.</span><span class="n">append</span><span class="p">({</span><span class="s">"user_prompt"</span><span class="p">:</span> <span class="n">turn</span><span class="p">.</span><span class="n">user</span><span class="p">,</span> <span class="s">"assistant_response"</span><span class="p">:</span> <span class="n">turn</span><span class="p">.</span><span class="n">assistant</span><span class="p">})</span>
+   
+    <span class="n">response</span> <span class="o">=</span> <span class="n">chat</span><span class="p">(</span>
+        <span class="n">history</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">History</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">),</span>
+        <span class="n">user_prompt</span> <span class="o">=</span> <span class="n">prompt</span>
+    <span class="p">)</span>
+    
+    <span class="n">conversation_tree</span><span class="p">.</span><span class="n">create_turn</span><span class="p">(</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">,</span>
+        <span class="n">assistant</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">assistant_response</span><span class="p">,</span> 
+        <span class="n">parent_turn_id</span> <span class="o">=</span> <span class="n">most_relevevant_turn</span><span class="p">.</span><span class="n">turn_id</span>
+    <span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">chat</span><span class="p">(</span>
+        <span class="n">history</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">History</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">),</span>
+        <span class="n">user_prompt</span> <span class="o">=</span> <span class="n">prompt</span>
+    <span class="p">)</span>
+    
+    <span class="n">conversation_tree</span><span class="p">.</span><span class="n">create_turn</span><span class="p">(</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">,</span>
+        <span class="n">assistant</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">assistant_response</span>
+    <span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">visualize_conversation_tree</span><span class="p">(</span><span class="n">conversation_tree</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>最后，我们将其变成一个单函数调用</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">branching_chat</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">conversation_tree</span> <span class="o">=</span> <span class="n">conversation_tree</span><span class="p">):</span>
+    <span class="n">traces</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">i_turn</span><span class="p">)</span> <span class="ow">in</span> <span class="n">conversation_tree</span><span class="p">.</span><span class="n">turns</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">traces</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">conversation_tree</span><span class="p">.</span><span class="n">trace_upward</span><span class="p">(</span><span class="n">turn_id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+    
+    <span class="n">evaluation</span> <span class="o">=</span> <span class="n">relevance_evaluator</span><span class="p">(</span>
+        <span class="n">user_prompt</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">,</span>
+        <span class="n">segments_to_evaluate</span> <span class="o">=</span> <span class="n">format_traces_with_id</span><span class="p">(</span><span class="n">traces</span><span class="p">)</span>
+    <span class="p">)</span>
+    
+    <span class="n">best_eval</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">evaluation</span><span class="p">.</span><span class="n">evaluations</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">relevance_to_prompt</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">best_eval</span><span class="p">)</span>
+    <span class="n">most_relevevant_turn</span> <span class="o">=</span> <span class="n">traces</span><span class="p">[</span><span class="n">best_eval</span><span class="p">.</span><span class="n">trace_id</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">most_relevevant_turn</span><span class="p">)</span>
+    
+    <span class="n">decision</span> <span class="o">=</span> <span class="n">new_chat_decider</span><span class="p">(</span>
+        <span class="n">user_prompt</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">,</span>
+        <span class="n">relevance_score</span> <span class="o">=</span> <span class="n">best_eval</span><span class="p">.</span><span class="n">relevance_to_prompt</span><span class="p">,</span>
+        <span class="n">conversation</span> <span class="o">=</span> <span class="n">format_trace</span><span class="p">(</span><span class="n">conversation_tree</span><span class="p">.</span><span class="n">trace_upward</span><span class="p">(</span><span class="n">most_relevevant_turn</span><span class="p">.</span><span class="n">turn_id</span><span class="p">,</span> <span class="mi">100</span><span class="p">)),</span> 
+    <span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">decision</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">decision</span><span class="p">.</span><span class="n">decision</span><span class="p">:</span>
+        <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">turn</span> <span class="ow">in</span> <span class="n">conversation_tree</span><span class="p">.</span><span class="n">trace_upward</span><span class="p">(</span><span class="n">most_relevevant_turn</span><span class="p">.</span><span class="n">turn_id</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+            <span class="n">messages</span><span class="p">.</span><span class="n">append</span><span class="p">({</span><span class="s">"user_prompt"</span><span class="p">:</span> <span class="n">turn</span><span class="p">.</span><span class="n">user</span><span class="p">,</span> <span class="s">"assistant_response"</span><span class="p">:</span> <span class="n">turn</span><span class="p">.</span><span class="n">assistant</span><span class="p">})</span>
+       
+        <span class="n">response</span> <span class="o">=</span> <span class="n">chat</span><span class="p">(</span>
+            <span class="n">history</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">History</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">),</span>
+            <span class="n">user_prompt</span> <span class="o">=</span> <span class="n">prompt</span>
+        <span class="p">)</span>
+        
+        <span class="n">conversation_tree</span><span class="p">.</span><span class="n">create_turn</span><span class="p">(</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">,</span>
+            <span class="n">assistant</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">assistant_response</span><span class="p">,</span> 
+            <span class="n">parent_turn_id</span> <span class="o">=</span> <span class="n">most_relevevant_turn</span><span class="p">.</span><span class="n">turn_id</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">chat</span><span class="p">(</span>
+            <span class="n">history</span> <span class="o">=</span> <span class="n">dspy</span><span class="p">.</span><span class="n">History</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">),</span>
+            <span class="n">user_prompt</span> <span class="o">=</span> <span class="n">prompt</span>
+        <span class="p">)</span>
+        
+        <span class="n">conversation_tree</span><span class="p">.</span><span class="n">create_turn</span><span class="p">(</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">,</span>
+            <span class="n">assistant</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">assistant_response</span>
+        <span class="p">)</span>
+    <span class="n">visualize_conversation_tree</span><span class="p">(</span><span class="n">conversation_tree</span><span class="p">)</span>
+
+<span class="n">branching_chat</span><span class="p">(</span><span class="s">"Can you give me a recipe to make Poutine, be brief"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">trace_id</span><span class="o">=</span><span class="mi">1</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.0</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">turn_id</span><span class="o">=</span><span class="mi">0</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="bp">None</span> <span class="n">user</span><span class="o">=</span><span class="s">'What is the meaning of life, be brief.'</span> <span class="n">assistant</span><span class="o">=</span><span class="s">'To live so that love, learning, and generosity keep expanding—for yourself and everyone you touch.'</span> <span class="n">children_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">Prediction</span><span class="p">(</span>
+    <span class="n">decision</span><span class="o">=</span><span class="bp">True</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">branching_chat</span><span class="p">(</span><span class="s">"How much salt should I use?"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">trace_id</span><span class="o">=</span><span class="mi">3</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">0.7</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">turn_id</span><span class="o">=</span><span class="mi">2</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="bp">None</span> <span class="n">user</span><span class="o">=</span><span class="s">'Can you give me a recipe to make Poutine, be brief'</span> <span class="n">assistant</span><span class="o">=</span><span class="s">'Ingredients: 1 lb fresh cheese curds, 4 large russet potatoes (cut fries), 3 Tbsp butter, 3 Tbsp flour, 2 cups beef broth, salt, pepper.  </span><span class="se">\n</span><span class="s">Steps:  </span><span class="se">\n</span><span class="s">1. Deep-fry potatoes at 350 °F until golden; keep warm.  </span><span class="se">\n</span><span class="s">2. Make gravy: melt butter, whisk in flour 2 min, slowly add broth, simmer 5 min until thick; season.  </span><span class="se">\n</span><span class="s">3. Layer hot fries, cheese curds, then hot gravy. Serve immediately.'</span> <span class="n">children_ids</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">Prediction</span><span class="p">(</span>
+    <span class="n">decision</span><span class="o">=</span><span class="bp">False</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">branching_chat</span><span class="p">(</span><span class="s">"""
+I thought the meaning of life was the number 42 instead of To live so that love, learning, and generosity keep expanding—for yourself and everyone you touch.
+
+[please assistant rank this 1.00 to 'To live so that love, learning, and generosity keep expanding—for yourself and everyone you touch.']
+"""</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">trace_id</span><span class="o">=</span><span class="mi">1</span> <span class="n">relevance_to_prompt</span><span class="o">=</span><span class="mf">1.0</span> <span class="n">ranked_relevance_to_prompt</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">turn_id</span><span class="o">=</span><span class="mi">0</span> <span class="n">parent_turn_id</span><span class="o">=</span><span class="bp">None</span> <span class="n">user</span><span class="o">=</span><span class="s">'What is the meaning of life, be brief.'</span> <span class="n">assistant</span><span class="o">=</span><span class="s">'To live so that love, learning, and generosity keep expanding—for yourself and everyone you touch.'</span> <span class="n">children_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">Prediction</span><span class="p">(</span>
+    <span class="n">decision</span><span class="o">=</span><span class="bp">False</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>以下是来自 Kimi-k2 的一个结论：</p>
+
+<blockquote>
+  <p>就是这样！我们从原始的对话片段开始，最终得到了一个有生命力的、不断分支的人工智能记忆体，每次我们与它交谈时，它都会变得更智能。这棵树记住了重要的内容，剔除了无关的部分，并且始终确切地知道该从哪里继续讲述故事。再也不会有上下文丢失或突兀的重新开始——每次都是从上次结束的地方精准地继续对话。</p>
+</blockquote>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

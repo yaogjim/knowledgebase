@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Architecture Behind Lovable and Bolt • Beam</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">The Architecture Behind Lovable and Bolt • Beam</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">The Architecture Behind Lovable and Bolt • Beam</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> Beam</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-18</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://www.beam.cloud/blog/agentic-apps" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <h2 id="可爱多与博尔特背后的架构">可爱多与博尔特背后的架构</h2>
+
+<p>卢克·隆巴迪</p>
+
+<p>2025年7月3日</p>
+
+<p>教程</p>
+
+<p><img src="https://cdn.sanity.io/images/eb1odxxp/blogs/bd4fcdaac28d920fac6b0b6c958c25b344849337-2400x1350.jpg" alt="" /></p>
+
+<p>人工智能编码应用程序正在迅速发展。</p>
+
+<p>有一天，我们看到一家人工智能编码初创公司给出的一张荒唐的营收图表，然后心想： <em>这背后到底是怎么回事</em> ？</p>
+
+<p>如果你从事软件行业，今年你可能已经尝试过人工智能应用程序构建器了。也许你试用过 <a href="https://lovable.dev/">Lovable</a> 、 <a href="https://bolt.new/">Bolt</a> 或 <a href="https://v0.dev/">v0</a> 。</p>
+
+<p>这些应用程序的突然爆火，不只是因为模型更出色。而是因为我们这个行业终于弄清楚了实用的智能应用背后的工程原理（ <em>提示</em> ：这更多是软件工程，而非人工智能魔法）。</p>
+
+<p>我们想要深入了解在现实世界中构建这类应用程序所使用的具体工作流程，所以我们创建了自己的 Lovable 克隆版本来一探究竟。</p>
+
+<p><em>在 Beam，我们为人工智能应用程序提供了一个无服务器基础设施平台。一个常见的用例是使用我们的 <a href="https://docs.beam.cloud/v2/sandbox/overview">沙盒</a> 功能安全地运行由 LLM 生成的代码，该功能为我们将在下面构建的应用程序提供支持。</em></p>
+
+<p><img src="https://cdn.sanity.io/images/eb1odxxp/blogs/ec0f6933353bb44601a737b681eea578be1c43a5-2360x1422.png" alt="content-image" /></p>
+
+<h2 id="代理应用程序的实际工作原理">代理应用程序的实际工作原理</h2>
+
+<p>一个人工智能编码应用程序有四个组件：</p>
+
+<ol>
+  <li><strong>模型客户端。</strong> 可以将提示视为远程过程调用（RPC）。</li>
+  <li><strong>一个供用户/模型进行交互的环境</strong> 。这通常采用代码沙盒（小型虚拟机或容器）+ MCP 服务器的形式（本质上是另一个 RPC 框架，带有一些元数据，能为模型提供更多关于 <em>如何</em> 与之交互的上下文信息）</li>
+  <li><strong>智能体。</strong> 一个维护状态、将用户输入路由到模型并协调前端、提示和执行环境之间交互的循环。</li>
+  <li><strong>一个前端。</strong> 通常通过实时协议（如 WebSocket）连接到“代理”。</li>
+</ol>
+
+<p>在这种情况下，由于我们正在构建一个类似 Lovable 的克隆产品，其用户体验如下：</p>
+
+<ul>
+  <li>用户输入他们想要构建的内容</li>
+  <li>模型接收提示，尝试为其实现代码</li>
+  <li>在“预览”iframe 中渲染网站</li>
+  <li>重复操作，直到用户对该网站满意为止
+<img src="https://cdn.sanity.io/images/eb1odxxp/blogs/ba562a3f524eaad6003ebc7dafcbd944a1d18faf-1746x1130.png" alt="content-image" /></li>
+</ul>
+
+<h2 id="使用-baml-进行提示工程">使用 BAML 进行提示工程</h2>
+
+<p>让我们从提示开始。我们将提示视为一个具有逻辑和状态的函数。</p>
+
+<p>我们正在使用 <a href="https://github.com/BoundaryML/baml">BAML</a> ，这是一种与模型无关的领域特定语言（DSL），它能帮助我们以简化的方式迭代提示。在 BAML 中，一个提示只是一个函数。</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">class File {</span>
+  <span class="s">path string</span>
+  <span class="s">content string</span>
+  <span class="s">@@stream.done</span>
+<span class="err">}</span>
+
+<span class="s">class Message {</span>
+  <span class="s">role string</span>
+  <span class="s">content string</span>
+<span class="err">}</span>
+
+<span class="s">class CodeChanges {</span>
+  <span class="s">plan string @stream.with_state</span>
+  <span class="s">files File[]</span>
+  <span class="s">package_json string</span>
+<span class="err">}</span>
+
+<span class="s">client&lt;llm&gt; OpenAIClient {</span>
+  <span class="s">provider openai</span>
+  <span class="s">options {</span>
+    <span class="s">model o4-mini</span>
+    <span class="s">api_key env.OPENAI_API_KEY</span>
+  <span class="s">}</span>
+<span class="err">}</span>
+
+<span class="s">function EditCode(</span>
+  <span class="s">history</span><span class="err">:</span> <span class="s">Message[],</span>
+  <span class="s">feedback</span><span class="err">:</span> <span class="s">string,</span>
+  <span class="s">code_files</span><span class="err">:</span> <span class="s">File[],</span>
+  <span class="s">package_json</span><span class="err">:</span> <span class="s">string</span>
+<span class="s">) -&gt; CodeChanges {</span>
+  <span class="s">client OpenAIClient</span>
+  <span class="s">prompt</span> <span class="c1">#"</span>
+<span class="na">You are BeamO. Given the feedback</span><span class="pi">:</span> <span class="err">,</span> <span class="s">update the code files.</span>
+
+
+
+<span class="na">Use only dependencies from</span><span class="pi">:</span>
+
+
+<span class="na">Conversation history</span><span class="pi">:</span>
+
+
+<span class="s">Return a plan and updated files.</span>
+<span class="s2">"</span><span class="s">#</span>
+<span class="s">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>你可以在此处查看 <a href="https://gist.github.com/mernit/86d34644096518db97709eadf9aa8622">完整提示</a> 。</p>
+</blockquote>
+
+<p>请注意，我们可以编写测试用例，这使我们能够在继续并开始将其集成到智能体循环之前，对提示进行反复改进。</p>
+
+<p>核心思想是传入一堆带分隔符的代码，并告诉模型根据用户反馈进行修改。还有一些额外的指导方针，试图引导模型使用正确的依赖项、样式等。</p>
+
+<h2 id="启动-mcp-服务器">启动 MCP 服务器</h2>
+
+<p>一旦我们有了一个可行的提示，下一步就是围绕它构建基础设施。</p>
+
+<p>我们将使用 <a href="https://github.com/jlowin/fastmcp">FastMCP</a> （一个用于构建 MCP 服务器的轻量级框架）以及 Beam 在云端无服务器地托管计算服务器。</p>
+
+<p>这里的流程是：</p>
+
+<ul>
+  <li>用户在文本输入框中输入他们想要构建的内容</li>
+  <li>启动一个 Beam 沙盒计算环境，并克隆一个基本模板存储库以便开始工作（使用 MCP 服务器）</li>
+  <li>该智能体与其他工具进行交互，这些工具将使模型能够在沙盒中下载和编辑代码。</li>
+</ul>
+
+<p>要以编程方式设置沙盒环境，我们将使用一个 <a href="https://docs.beam.cloud/v2/sandbox/overview">Beam 沙盒</a> ：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">beam</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">Sandbox</span>
+<span class="kn">from</span> <span class="nn">beam.integrations</span> <span class="kn">import</span> <span class="n">MCPServer</span>
+<span class="kn">from</span> <span class="nn">fastmcp</span> <span class="kn">import</span> <span class="n">FastMCP</span>
+
+<span class="n">mcp</span> <span class="o">=</span> <span class="n">FastMCP</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">"lovable-mcp"</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="p">(</span>
+   <span class="n">Image</span><span class="p">()</span>
+   <span class="p">.</span><span class="n">from_registry</span><span class="p">(</span><span class="s">"node:20"</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">add_commands</span><span class="p">(</span>
+       <span class="p">[</span>
+           <span class="s">"apt-get update &amp;&amp; apt-get install -y git curl"</span><span class="p">,</span>
+           <span class="s">"git clone https://github.com/beam-cloud/react-vite-shadcn-ui.git /app"</span><span class="p">,</span>
+           <span class="s">"cd /app &amp;&amp; rm -f pnpm-lock.yaml &amp;&amp; npm install &amp;&amp; echo 'npm install done'"</span><span class="p">,</span>
+           <span class="s">"cd /app &amp;&amp; npm install @tanstack/react-query react-router-dom recharts sonner zod react-hook-form @hookform/resolvers date-fns uuid"</span><span class="p">,</span>
+       <span class="p">]</span>
+   <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">DEFAULT_CODE_PATH</span> <span class="o">=</span> <span class="s">"/app/src"</span>
+<span class="n">DEFAULT_PROJECT_ROOT</span> <span class="o">=</span> <span class="s">"/app"</span>
+
+<span class="o">@</span><span class="n">mcp</span><span class="p">.</span><span class="n">tool</span>
+<span class="k">def</span> <span class="nf">create_app_environment</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+   <span class="k">print</span><span class="p">(</span><span class="s">"Creating app environment..."</span><span class="p">)</span>
+
+   <span class="n">sandbox</span> <span class="o">=</span> <span class="n">Sandbox</span><span class="p">(</span>
+       <span class="n">name</span><span class="o">=</span><span class="s">"lovable-clone"</span><span class="p">,</span>
+       <span class="n">cpu</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+       <span class="n">memory</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>
+       <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">,</span>
+       <span class="n">keep_warm_seconds</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+   <span class="p">).</span><span class="n">create</span><span class="p">()</span>
+
+   <span class="n">url</span> <span class="o">=</span> <span class="n">sandbox</span><span class="p">.</span><span class="n">expose_port</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+   <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"React app created and started successfully! Access it at: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+   <span class="n">sandbox</span><span class="p">.</span><span class="n">process</span><span class="p">.</span><span class="k">exec</span><span class="p">(</span>
+       <span class="s">"sh"</span><span class="p">,</span>
+       <span class="s">"-c"</span><span class="p">,</span>
+       <span class="s">"cd /app &amp;&amp; __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=.beam.cloud npm run dev -- --host :: --port 3000"</span><span class="p">,</span>
+   <span class="p">)</span>
+
+   <span class="k">print</span><span class="p">(</span><span class="s">"Created app environment..."</span><span class="p">)</span>
+   <span class="k">return</span> <span class="p">{</span>
+       <span class="s">"url"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
+       <span class="s">"sandbox_id"</span><span class="p">:</span> <span class="n">sandbox</span><span class="p">.</span><span class="n">sandbox_id</span><span class="p">(),</span>
+   <span class="p">}</span>
+</code></pre></div></div>
+
+<p>你可以在 Github 上 <a href="https://github.com/beam-cloud/lovable-clone/blob/main/src/tools.py">此处</a> 查看 MCP 服务器的其余代码。</p>
+
+<h2 id="部署一个功能性人工智能应用构建器">部署一个功能性人工智能应用构建器</h2>
+
+<p>最后一个组件是代理本身，它只是一个处理来自客户端事件的 WebSocket 服务器。</p>
+
+<blockquote>
+  <p>在这里查看代理的代码 <a href="https://github.com/beam-cloud/lovable-clone/blob/main/src/agent.py">此处</a> 。</p>
+</blockquote>
+
+<p>当客户端/用户连接到 WebSocket 服务器时，我们将为预览环境启动一个新的沙盒。</p>
+
+<p>当用户消息传入时，我们将持续调用 <code class="language-plaintext highlighter-rouge">EditCode</code> 提示/RPC，并更新 <a href="https://docs.beam.cloud/v2/sandbox/overview">沙盒</a> 中的代码。</p>
+
+<p>这是通过添加一个 <a href="https://docs.beam.cloud/v2/endpoint/realtime#realtime-and-streaming"><code class="language-plaintext highlighter-rouge">@realtime</code></a> 装饰器创建的，它只是一个简单的装饰器，可让您在云中启动一个无服务器的 WebSocket 服务器。</p>
+
+<h2 id="成品">成品</h2>
+
+<p>前端运行起来后，我们将得到一个功能完备的人工智能应用构建器。</p>
+
+<p>其结果是一个完全交互式的应用程序构建器，它能实时响应用户反馈并即时生成实时预览。</p>
+
+<p>用户可以输入一个提示（“为我构建一个 YouTube 克隆版”），然后获得一个可运行的实时 Web 应用程序，该应用程序托管在云端的 HTTP URL 后面。</p>
+
+<p><a href="https://website-builder-demo-f5340af-v7.app.beam.cloud/">在这里自己试试。</a></p>
+
+<p><img src="https://cdn.sanity.io/images/eb1odxxp/blogs/8208cd12a530ce9ac2ccd483b1b65f6e4d4d0960-3120x1532.png" alt="content-image" /></p>
+
+<h2 id="我们学到了什么">我们学到了什么</h2>
+
+<p>在构建这个之前，我们认为可爱风格的应用是可行的，因为模型在不断改进。但结果发现这只是其中很小的一部分原因。以下是我们学到的最重要的几点见解：</p>
+
+<ul>
+  <li><strong>提示工程很重要。</strong> 你可以使用 <a href="https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools/">这份系统提示列表</a> 找到优秀提示的示例。</li>
+  <li><strong>上下文工程更为重要。</strong> 没有正确的上下文，一个好的提示词是无用的。像 Lovable 这样的应用程序需要长上下文才能良好运行。使这些应用程序发挥作用的不是大语言模型（LLMs），而是用诸如带有 BAML 的类型化提示词、测试和重试等护栏将它们包裹起来。</li>
+  <li><strong>像对待代码一样测试提示被低估了。</strong> BAML 是一个非常强大的工具，因为它使迭代提示变得容易，并且可以像测试驱动开发一样对待提示工程。</li>
+</ul>
+
+<p>人工智能编码应用背后的架构是可重复的。</p>
+
+<p>要构建一个人工智能编码应用程序，你不需要更好的模型，而是需要更好的系统设计：提示结构、上下文管理、沙盒化以及一个良好的测试框架。</p>
+
+<p>这就是像 Lovable 这样的应用程序能够真正运行的原因。</p>
+
+<p>这不是魔法。这只是软件工程。</p>
+
+<p>本文的代码可在 <a href="https://github.com/beam-cloud/lovable-clone">GitHub 上获取</a> 。如果你使用此架构构建了什么东西，我们很乐意 <a href="https://join.slack.com/t/beam-cloud/shared_invite/zt-2uiks0hc6-UbBD97oZjz8_YnjQ2P7BEQ">收到你的消息</a> ！</p>
+
+<h2 id="notes">Notes</h2>
+
+<p>感谢德克斯特·霍西（Dexter Horthy）和维巴夫·古普塔（Vaibhav Gupta）为本文提供建议。</p>
+
+<h3 id="继续阅读">继续阅读</h3>
+
+<p><a href="https://www.beam.cloud/blog/top-comfyui-workflows"><img src="https://cdn.sanity.io/images/eb1odxxp/blogs/53bd8d69ff7d598a50ce0d01c267e42fafc67c14-2400x1350.jpg" alt="card-cover-image" /></a></p>
+
+<p>教程</p>
+
+<h2 id="顶级-comfyui-工作流程">顶级 ComfyUI 工作流程</h2>
+
+<p>探索 ComfyUI 中最佳的工作流程</p>
+
+<p>莉亚·蔡尔德斯</p>
+
+<p><a href="https://www.beam.cloud/blog/how-to-use-comfyui"><img src="https://cdn.sanity.io/images/eb1odxxp/blogs/0e535689776ef886fa80ca17908db7e4b24c9d83-2400x1350.jpg" alt="card-cover-image" /></a></p>
+
+<p>教程</p>
+
+<h2 id="如何使用-comfyui">如何使用 ComfyUI</h2>
+
+<p>一份关于使用 ComfyUI 的完整指南，涵盖从安装说明到参数及工作流程优化的内容。</p>
+
+<p>莉亚·蔡尔德斯</p>
+
+<h2 id="在几分钟内部署您的应用程序">在几分钟内部署您的应用程序</h2>
+
+<p>获得30美元免费信用额度，开启体验之旅</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

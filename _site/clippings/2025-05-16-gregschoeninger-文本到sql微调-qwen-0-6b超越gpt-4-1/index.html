@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本到SQL微调：Qwen-0.6B超越GPT-4.1</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">文本到SQL微调：Qwen-0.6B超越GPT-4.1</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">文本到SQL微调：Qwen-0.6B超越GPT-4.1</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @gregschoeninger</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-05-16</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/gregschoeninger/status/1922781767720706151" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>Greg Schoeninger</strong> @gregschoeninger <a href="https://x.com/gregschoeninger/status/1922781767720706151">2025-05-14</a></p>
+
+<p>我花了大约 10 分钟在 Text2SQL 上对 Qwen-0.6B 进行微调，并在同一任务上超过了 GPT-4.1 的准确率。</p>
+
+<p>Qwen 是个虽小却强大的王者 👑</p>
+
+<p><img src="https://pbs.twimg.com/media/Gq8XHddXoAAT3ht?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>Greg Schoeninger</strong> @gregschoeninger <a href="https://x.com/gregschoeninger/status/1922781769650114847">2025-05-14</a></p>
+
+<p>如果你想知道为什么总体准确率如此之低，文本到 SQL 是一项有点困难且微妙的任务</p>
+
+<blockquote>
+  <p>2025-05-14</p>
+
+  <p>评估文本到 SQL 有点难，不声张地说</p>
+
+  <p><img src="https://pbs.twimg.com/media/Gq8Jnr-aAAAUGJR?format=png&amp;name=large" alt="Image" /></p>
+</blockquote>
+
+<hr />
+
+<p><strong>Greg Schoeninger</strong> @gregschoeninger <a href="https://x.com/gregschoeninger/status/1922781771432652899">2025-05-14</a></p>
+
+<p>博客文章即将发布 👀</p>
+
+<hr />
+
+<p><strong>DeGao</strong> @MrDeGao <a href="https://x.com/MrDeGao/status/1923235855474233764">2025-05-16</a></p>
+
+<p>如果你感兴趣，我们一起做个实验吧。我们一起试试 DLM，看看它能不能更高？</p>
+
+<hr />
+
+<p><strong>Greg Schoeninger</strong> @gregschoeninger <a href="https://x.com/gregschoeninger/status/1923240112982294648">2025-05-16</a></p>
+
+<p>一个扩散语言模型听起来很有趣，很想尝试一下</p>
+
+<hr />
+
+<p><strong>熊布朗</strong> @Stephen4171127 <a href="https://x.com/Stephen4171127/status/1923016808501539275">2025-05-15</a></p>
+
+<p>期待你的博客！我真的很喜欢你上周在巴黎的分享</p>
+
+<hr />
+
+<p><strong>Caleb</strong> @calebfahlgren <a href="https://x.com/calebfahlgren/status/1923014500921249870">2025-05-15</a></p>
+
+<p>很棒！要是能在 @huggingface 中心看到一篇帖子就好了。我觉得社区会很喜欢这个的！</p>
+
+<hr />
+
+<p><strong>Greg Schoeninger</strong> @gregschoeninger <a href="https://x.com/gregschoeninger/status/1923048694720401870">2025-05-15</a></p>
+
+<p>当博客文章完成后我会通知你，然后我们可以进行交叉发布 🤝</p>
+
+<hr />
+
+<p><strong>Shailesh</strong> @0xThoughtVector <a href="https://x.com/0xThoughtVector/status/1923060418467025047">2025-05-15</a></p>
+
+<p>如果有的话，你能简要描述一下你的秘诀是什么吗？</p>
+
+<hr />
+
+<p><strong>Greg Schoeninger</strong> @gregschoeninger <a href="https://x.com/gregschoeninger/status/1923062056565002437">2025-05-15</a></p>
+
+<p>老实说，没什么特别的诀窍，只是使用 transformers 库进行了一次标准的微调。我会整理一篇包含数据和代码的博客文章，这样任何人都可以复现。</p>
+
+<hr />
+
+<p><strong>atharva</strong> @k7agar <a href="https://x.com/k7agar/status/1922963629055541618">2025-05-15</a></p>
+
+<p>我喜欢他们为此设计的小型模型；用于试验和部署既快速又极其便宜</p>
+
+<hr />
+
+<p><strong>Greg Schoeninger</strong> @gregschoeninger <a href="https://x.com/gregschoeninger/status/1923046088522543313">2025-05-15</a></p>
+
+<p>到目前为止，和它们一起玩非常有趣，豆包团队干得很棒</p>
+
+<hr />
+
+<p><strong>ibrahim.demirci.com</strong> @iedmrc <a href="https://x.com/iedmrc/status/1923071366347075730">2025-05-15</a></p>
+
+<p>你是使用你微调时所用的同一个数据集进行测试的吗？</p>
+
+<hr />
+
+<p><strong>Greg Schoeninger</strong> @gregschoeninger <a href="https://x.com/gregschoeninger/status/1923074716786393475">2025-05-15</a></p>
+
+<p>使用训练集/验证集/测试集划分</p>
+
+<hr />
+
+<p><strong>Reinaldo Sotillo</strong> @reynald76165051 <a href="https://x.com/reynald76165051/status/1923031020258893915">2025-05-15</a></p>
+
+<p>尝试 GPT4.1 纳米微调</p>
+
+<hr />
+
+<p><strong>Greg Schoeninger</strong> @gregschoeninger <a href="https://x.com/gregschoeninger/status/1923045982477992331">2025-05-15</a></p>
+
+<p>哦，那会是个有趣的比较！</p>
+
+<hr />
+
+<p><strong>winston</strong> @winston178 <a href="https://x.com/winston178/status/1923079052656591223">2025-05-15</a></p>
+
+<p>不过是哪种 SQL 语言呢？</p>
+
+<hr />
+
+<p><strong>Greg Schoeninger</strong> @gregschoeninger <a href="https://x.com/gregschoeninger/status/1923079990830047644">2025-05-15</a></p>
+
+<p>此示例的 PostgreSQL 语法</p>
+
+<hr />
+
+<p><strong>Aakash</strong> @a_void_sky <a href="https://x.com/a_void_sky/status/1923004056680731030">2025-05-15</a></p>
+
+<p>用于训练的硬件？</p>
+
+<hr />
+
+<p><strong>Greg Schoeninger</strong> @gregschoeninger <a href="https://x.com/gregschoeninger/status/1923015519327654301">2025-05-15</a></p>
+
+<p>你不需要太多资源，进行完整的微调只需要几 GB 的 VRAM。我最后在一台笔记本电脑上使用了一块 A10G 显卡，网址是 http://Oxen.ai</p>
+
+<p>https:// 文档.oxen.ai/功能/笔记簿 s…</p>
+
+<hr />
+
+<p><strong>Peter Haider</strong> @pepehaider <a href="https://x.com/pepehaider/status/1923268633758700023">2025-05-16</a></p>
+
+<p>对于微调过程，你有一些好的建议吗，比如代码库之类的？我想针对特定行业的 XML 格式微调一个编码模型，但真的不知道从哪里开始。</p>
+
+<hr />
+
+<p><strong>Farseen CK</strong> @itsfarseen <a href="https://x.com/itsfarseen/status/1923331452998975668">2025-05-16</a></p>
+
+<p>你使用什么硬件进行微调？</p>
+
+<p>有没有可能使用配备 RTX 3060 6GB 的游戏笔记本电脑来实现这一点？</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@gregschoeninger</span>
+            
+          
+            
+              <span class="tag">#文本到SQL</span>
+            
+          
+            
+              <span class="tag">#微调</span>
+            
+          
+            
+              <span class="tag">#Qwen</span>
+            
+          
+            
+              <span class="tag">#GPT-4.1</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

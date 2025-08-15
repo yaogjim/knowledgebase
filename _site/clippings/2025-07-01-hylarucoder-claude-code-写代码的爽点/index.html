@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code 写代码的爽点</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Claude Code 写代码的爽点</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Claude Code 写代码的爽点</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @hylarucoder</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-01</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/hylarucoder/status/1931383154134401131" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931383154134401131">2025-06-07</a></p>
+
+<p>最近用 Claude Code 写代码很上瘾, 开个长帖记录 Vibe Coding 的爽点.</p>
+
+<p>先说结论: 强烈建议开 claude max, 比 cursor 值, 比 cursor 爽.</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931384611629842472">2025-06-07</a></p>
+
+<p>1) Claude Code 最爽的就是执行任务贼丝滑 —— 自动拆解任务 → 逐步执行 → lint/compile → 出错就自己修复，整个流程行云流水</p>
+
+<p>那种简单但超繁琐的批量任务，手动搞估计得两三小时，现在下达指令就完了!</p>
+
+<p><img src="https://pbs.twimg.com/media/Gs2nU1zbkAAH0sR?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931385265085657108">2025-06-07</a></p>
+
+<p>2) TypeScript 又名 AnyScript</p>
+
+<p>遇到类型错误时，程序员的经典操作：</p>
+
+<p>❌ 认真修类型</p>
+
+<p>✅ 直接 @ts-ignore / as any</p>
+
+<p>Claude Code：一行 prompt 解决你不想碰的类型地狱</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931388836820766798">2025-06-07</a></p>
+
+<p>3) 下达命令要分两步走</p>
+
+<p>1️⃣ 先问它的建议和理解</p>
+
+<p>2️⃣ 确认无误后再让它执行</p>
+
+<p>千万别觉得你的能把很多任务表达清楚</p>
+
+<p>模糊指令直接执行 = 踩坑预定</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931390949521072368">2025-06-07</a></p>
+
+<p>4) Claude Code 技巧 CC喜欢扫描文件前15行 想要效率最大化？</p>
+
+<p>把重要文档/说明写在文件开头15行内可以节约很多扫文件时间.</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931393271408017578">2025-06-07</a></p>
+
+<p>5) Cursor 最蛋疼的是按次数计费，Claude Code 按 token 限额就友好多了</p>
+
+<p>我写不那么重要的模块时会先确保「模块间保持清晰，模块内先快速完成任务」。</p>
+
+<p>任务完成后再批量优化 —— 加文档、检查 interface 命名规范等等.</p>
+
+<p>这种后期批量处理的场景，Claude Code 的计费模式明显更划算 💰</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931394772226482547">2025-06-07</a></p>
+
+<p>6) 计算机世界最难的两件事：命名和缓存 👨‍💻</p>
+
+<p>良好的命名 = 成功的一半 很多时候糊出来的代码，需要更清晰的命名才能让程序员真正理解模块边界</p>
+
+<p>策略：非 critical 系统可以先糊代码，再让 AI 批量死磕命名</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931395763508334593">2025-06-07</a></p>
+
+<p>7) 在 prompt 中直接敲 commit 就可以完成代码提交.</p>
+
+<p>写得比我好多了……</p>
+
+<p><img src="https://pbs.twimg.com/media/Gs2yGt1acAAAJfd?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931398807012663500">2025-06-07</a></p>
+
+<p>8) 和 Claude Code 协作有个磨合期</p>
+
+<p>实用技巧：</p>
+
+<p>1️⃣ 项目中直接 /init 让它生成 claudemd 规范</p>
+
+<p>2️⃣ 遇到不听话的时候：「请把这条规则加到你的规范中」 3️⃣ 慢慢调教出专属你的工作流</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931399764844916779">2025-06-07</a></p>
+
+<p>9) Claude Code 自己也会”言出法随”</p>
+
+<p>明明可以直接修改文件，但有的时候他会选择： 生成 Python 脚本 → 执行脚本 → 修改源码</p>
+
+<p>这种”绕一圈”但结果正确的感觉真的妙不可言</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931404574214250727">2025-06-07</a></p>
+
+<p>10) 有人说 Vibe Coding 的这不行那不行，完全搞错重点了.</p>
+
+<p>算笔账：原来繁琐但简单的任务需要3小时，现在5分钟做到80分 —— 为什么不选后者？</p>
+
+<p>你只需要动脑 5分钟，就省下了半天脑力, 这点脑力可以去攻坚更难的问题.</p>
+
+<p>既然驴能拉磨，人类为什么要和驴比谁更能拉磨？</p>
+
+<p>人应该去做人更值得做的事情.</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931405115254358334">2025-06-07</a></p>
+
+<p>11) Claude Code 有的时候也会出 BUG 比如将 here document 语法写到文件里</p>
+
+<p>不过概率比较低.</p>
+
+<p><img src="https://pbs.twimg.com/media/Gs26kiPbgAAzuJs?format=png&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931406203013443905">2025-06-07</a></p>
+
+<p>12) 缺点2: 只有一个终端，无法像 Cursor 那样直接选中代码</p>
+
+<p>依赖语言描述定位代码，虽然大多数时候很准确，但偶尔会定位错误，需要来回澄清 🎯</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931411945984553281">2025-06-07</a></p>
+
+<p>13) 缺点3: 不能像 Jetbrain 家移动目录/重命名这么干净无污染.</p>
+
+<p>如果你有一个工具函数被10来个模块依赖. 你想重命名. 相信我, 这方面JB家还是你大爷.</p>
+
+<p>LLM 的局限性这个时候就暴露出来了.</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931413214367191532">2025-06-07</a></p>
+
+<p>14) 缺点4: 搜索比较依赖 grep/ag , 有点是快, 缺点是还是依据文本局限性很明显, 不够懂程序.</p>
+
+<p>不过话说回来, 如果海老师的 ast-grep 能勾搭上 rust 版本的openai codex 的话是不是可以雄起一波</p>
+
+<p>cc @hd_nvim</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931430985981415626">2025-06-07</a></p>
+
+<p>15) 缺点5: 复杂度比较高的时候不是100%稳定</p>
+
+<p>当你的操作比较复杂的时候, 尽量只做”加法”，少做“变动”“减法”, 比如, 尽量减少超多的文件移动/重命名, 这些是不稳定操作，如果你这么做后面肯定要二次调整. 更好的做法：让 Claude Code 按固定格式填充注释，然后在 JetBrains 里检索+手动微调, 重构,</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931440154360877315">2025-06-07</a></p>
+
+<p>16) git commit 和注释 有的时候是中文, 有的时候是英文…….</p>
+
+<p>建议把对 commit 和 注释的语言要求写到 claudemd 里面.</p>
+
+<hr />
+
+<p><strong>海拉鲁编程客</strong> @hylarucoder <a href="https://x.com/hylarucoder/status/1931441728508273079">2025-06-07</a></p>
+
+<p>17) Claude Code + WebStorm 的组合意外称手</p>
+
+<p>用 CC 的第一天我想的是：WebStorm 要完了</p>
+
+<p>用 CC 的第四天我回过味来: WebStorm 不会完，Cursor 反而危险了.</p>
+
+<p>逻辑很简单：Claude Code 解决了编辑器智能的问题，这时 Cursor 要解决的问题. 剩下来的编辑体验只能从工程上下手, 而这是 JB 家的强项.</p>
+
+<p>如果 Cursor 不能收购 JetBrains 或被 Claude 收购，处境会很尴尬.</p>
+
+<p>至少, 这几天我发现我很少打开 Cursor</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@hylarucoder</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

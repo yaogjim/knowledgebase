@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工作流 与 Agent</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">工作流 与 Agent</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">工作流 与 Agent</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @dotey</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-29</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/dotey/status/1949852823891431839" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>宝玉</strong> @dotey 2025-07-09</p>
+
+<p>最近我也在思考 Workflow 和 Agent 到底什么关系，我的一个初步想法：</p>
+
+<p>Workflow 本质上是工具，只是工具中用到了 AI 能力，所有能被定义成 Work Flow 的就应该能被做成工具。</p>
+
+<p>Agent 更像是 AI，它能主动规划、去调用工具，Workflow 应该是 Agent 的一个可以被调用的工具。</p>
+
+<p>你怎么看？</p>
+
+<blockquote>
+  <p>2025-07-09</p>
+
+  <p>之前在团队内讨论时写的一段话：Agentic 和 Workflow 不是非黑即白的开关，而是一个连续的光谱。我们的架构要提供可持续的迭代能力，从而在 LLM 能力足够的地方更自主化，在 LLM 还不太擅长的地方通过固定编排把专家经验固定下来，随着模型的进化可以低成本的替换节点实现逻辑。</p>
+</blockquote>
+
+<hr />
+
+<p><strong>宝玉</strong> @dotey <a href="https://x.com/dotey/status/1949853975580234032">2025-07-28</a></p>
+
+<p>@frxiaobei 的观点：</p>
+
+<blockquote>
+  <p>2025-07-28</p>
+
+  <p>现实中最靠谱的路径就是 agent 和 workflow 就是这种组合优化。</p>
+
+  <p>哪里擅长自动就让模型顶上，哪里风险高就继续靠规则兜底，这才是可持续演化的方式。</p>
+
+  <p>但也点出了未来智能系统架构的演进：以编排承载的经验最终会被模型逐步吞噬。 x.com/atian25/status…</p>
+</blockquote>
+
+<hr />
+
+<p><strong>宝玉</strong> @dotey <a href="https://x.com/dotey/status/1949854096707481999">2025-07-28</a></p>
+
+<p>@wwwgoubuli 的观点</p>
+
+<blockquote>
+  <p>2025-07-08</p>
+
+  <p>其实吧，workflow 才是 agent 的高级和成熟形式。</p>
+
+  <p>不要想着拿现在已有的workflow和agent来对比，都还处在不成熟的阶段。我描述的不是目前已有的场景。</p>
+</blockquote>
+
+<hr />
+
+<p><strong>宝玉</strong> @dotey <a href="https://x.com/dotey/status/1949894464719274392">2025-07-28</a></p>
+
+<p>马老师的定义，Agent 有能力自己动态的临时构建 flow</p>
+
+<blockquote>
+  <p>2025-04-22</p>
+
+  <p>「Multi-Agent, Reasoning」论文</p>
+
+  <p>FlowReasoner: Reinforcing Query-Level Meta-Agents</p>
+
+  <p>轻云顺风即变，FlowReasoner 使 multi-agent workflow 随query应变于瞬息之间。</p>
+
+  <p>这篇论文十分精彩，作者瞄准“one system per user query”的目标：为每一条用户 query 即时推理出一个专属的multi-agent</p>
+
+  <p><img src="https://pbs.twimg.com/media/GpKtuTwXYAAlSui?format=jpg&amp;name=large" alt="Image" /></p>
+</blockquote>
+
+<hr />
+
+<p><strong>宝玉</strong> @dotey <a href="https://x.com/dotey/status/1949894656113987768">2025-07-28</a></p>
+
+<p>雷总：主agent的这些query和执行就是一套workflow。</p>
+
+<blockquote>
+  <p>2025-07-28</p>
+
+  <p>以让agent买机票为例，</p>
+
+  <p>一个正常的流程是，用户跟agent说你帮我订一张下周五去London，下下周三返回的经济舱，直飞机票。</p>
+
+  <p>主agent收到后，首先像一堆agent 发消息，谁能查票？</p>
+
+  <p>一堆agent返回说，我我我。</p>
+
+  <p>主agent把消息扔给说可以查票的agent。</p>
+
+  <p>然后等各家回消息。 x.com/wwwgoubuli/sta…</p>
+</blockquote>
+
+<hr />
+
+<p><strong>宝玉</strong> @dotey <a href="https://x.com/dotey/status/1949895011241464291">2025-07-28</a></p>
+
+<p>@cryptonerdcn： workflow迟早会内化进agent的概念里。</p>
+
+<blockquote>
+  <p>2025-07-28</p>
+
+  <p>在这里不能讨论 狭义or前LLM时代workflow：定义死的一段流程，和agent差别很大。</p>
+
+  <p>但后llm时代这俩可难以分清了。</p>
+
+  <p>虽然@dotey 提到的根据anthropic定义，一个是定义好的流程中用到agent，一个是让agent自由发挥。</p>
+
+  <p>但 @dongxi_nlp x.com/dongxi_nlp/sta…</p>
+</blockquote>
+
+<hr />
+
+<p><strong>宝玉</strong> @dotey <a href="https://x.com/dotey/status/1949940870003773482">2025-07-28</a></p>
+
+<p>@eraera: agent/workflow是工作自动化的延续，agent描述工作顺序的逻辑判断，workflow描述工作依赖关系的空间结构。二者的关系类比代数和几何，是对逻辑结构的不同描述方式。</p>
+
+<blockquote>
+  <p>2025-07-28</p>
+
+  <p>试着以回答一组问题的方式，来阐述对agent/workflow的看法。缘起是这个 https://x.com/eraera/status/1949902260785598475… 问题1.文档的目的是什么。文档是人类的外存，很多文档都有记录当前状态的功能，相当多的文档还包括执行指令，也就是从当前状态迁移到下一个状态的指令。</p>
+</blockquote>
+
+<hr />
+
+<p><strong>宝玉</strong> @dotey <a href="https://x.com/dotey/status/1949941176443732383">2025-07-28</a></p>
+
+<p>@TaNGSoFT: 随着llm的生成能力的提升，完全可以由agent来生成workflow。类似flowreasoner的方向。</p>
+
+<blockquote>
+  <p>2025-07-28</p>
+
+  <p>非常棒的讨论。必须要mark。</p>
+
+  <p>agent和workflow并不互斥，可以并存，我倾向于是嵌套的关系，agent&gt;workflow，确定性的、经常重复的过程可以固化下来成为workflow，为agent解决问题所用。</p>
+
+  <p>我觉得随着llm的生成能力的提升，完全可以由agent来生成workflow。类似flowreasoner的方向。 x.com/dotey/status/1…</p>
+</blockquote>
+
+<hr />
+
+<p><strong>Yangyi</strong> @Yangyixxxx <a href="https://x.com/Yangyixxxx/status/1949974992818442321">2025-07-28</a></p>
+
+<p>我的理解👇</p>
+
+<blockquote>
+  <p>2025-05-25</p>
+
+  <p>如果你搞不懂什么是Agent / workflow / Agentic / ReACT</p>
+
+  <p>那可以看看我的大白话注释：</p>
+
+  <p>-—————</p>
+
+  <p>Agent ， 广泛意义上讲，是一个智能黑盒，你给一个input，Agent识别意图，按照它自己的设定去给你一个output</p>
+</blockquote>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@dotey</span>
+            
+          
+            
+              <span class="tag">#工作流</span>
+            
+          
+            
+              <span class="tag">#Agent</span>
+            
+          
+            
+              <span class="tag">#AI</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

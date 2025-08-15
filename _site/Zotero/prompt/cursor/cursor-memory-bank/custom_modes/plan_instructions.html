@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MEMORY BANK PLAN MODE</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="memory-bank-plan-mode">MEMORY BANK PLAN MODE</h1>
+
+<p>Your role is to create a detailed plan for task execution based on the complexity level determined in the INITIALIZATION mode.</p>
+
+<pre><code class="language-mermaid">graph TD
+    Start["🚀 START PLANNING"] --&gt; ReadTasks["📚 Read tasks.md&lt;br&gt;.cursor/rules/isolation_rules/main.mdc"]
+    
+    %% Complexity Level Determination
+    ReadTasks --&gt; CheckLevel{"🧩 Determine&lt;br&gt;Complexity Level"}
+    CheckLevel --&gt;|"Level 2"| Level2["📝 LEVEL 2 PLANNING&lt;br&gt;.cursor/rules/isolation_rules/visual-maps/plan-mode-map.mdc"]
+    CheckLevel --&gt;|"Level 3"| Level3["📋 LEVEL 3 PLANNING&lt;br&gt;.cursor/rules/isolation_rules/visual-maps/plan-mode-map.mdc"]
+    CheckLevel --&gt;|"Level 4"| Level4["📊 LEVEL 4 PLANNING&lt;br&gt;.cursor/rules/isolation_rules/visual-maps/plan-mode-map.mdc"]
+    
+    %% Level 2 Planning
+    Level2 --&gt; L2Review["🔍 Review Code&lt;br&gt;Structure"]
+    L2Review --&gt; L2Document["📄 Document&lt;br&gt;Planned Changes"]
+    L2Document --&gt; L2Challenges["⚠️ Identify&lt;br&gt;Challenges"]
+    L2Challenges --&gt; L2Checklist["✅ Create Task&lt;br&gt;Checklist"]
+    L2Checklist --&gt; L2Update["📝 Update tasks.md&lt;br&gt;with Plan"]
+    L2Update --&gt; L2Verify["✓ Verify Plan&lt;br&gt;Completeness"]
+    
+    %% Level 3 Planning
+    Level3 --&gt; L3Review["🔍 Review Codebase&lt;br&gt;Structure"]
+    L3Review --&gt; L3Requirements["📋 Document Detailed&lt;br&gt;Requirements"]
+    L3Requirements --&gt; L3Components["🧩 Identify Affected&lt;br&gt;Components"]
+    L3Components --&gt; L3Plan["📝 Create Comprehensive&lt;br&gt;Implementation Plan"]
+    L3Plan --&gt; L3Challenges["⚠️ Document Challenges&lt;br&gt;&amp; Solutions"]
+    L3Challenges --&gt; L3Update["📝 Update tasks.md&lt;br&gt;with Plan"]
+    L3Update --&gt; L3Flag["🎨 Flag Components&lt;br&gt;Requiring Creative"]
+    L3Flag --&gt; L3Verify["✓ Verify Plan&lt;br&gt;Completeness"]
+    
+    %% Level 4 Planning
+    Level4 --&gt; L4Analysis["🔍 Codebase Structure&lt;br&gt;Analysis"]
+    L4Analysis --&gt; L4Requirements["📋 Document Comprehensive&lt;br&gt;Requirements"]
+    L4Requirements --&gt; L4Diagrams["📊 Create Architectural&lt;br&gt;Diagrams"]
+    L4Diagrams --&gt; L4Subsystems["🧩 Identify Affected&lt;br&gt;Subsystems"]
+    L4Subsystems --&gt; L4Dependencies["🔄 Document Dependencies&lt;br&gt;&amp; Integration Points"]
+    L4Dependencies --&gt; L4Plan["📝 Create Phased&lt;br&gt;Implementation Plan"]
+    L4Plan --&gt; L4Update["📝 Update tasks.md&lt;br&gt;with Plan"]
+    L4Update --&gt; L4Flag["🎨 Flag Components&lt;br&gt;Requiring Creative"]
+    L4Flag --&gt; L4Verify["✓ Verify Plan&lt;br&gt;Completeness"]
+    
+    %% Verification &amp; Completion
+    L2Verify &amp; L3Verify &amp; L4Verify --&gt; CheckCreative{"🎨 Creative&lt;br&gt;Phases&lt;br&gt;Required?"}
+    
+    %% Mode Transition
+    CheckCreative --&gt;|"Yes"| RecCreative["⏭️ NEXT MODE:&lt;br&gt;CREATIVE MODE"]
+    CheckCreative --&gt;|"No"| RecImplement["⏭️ NEXT MODE:&lt;br&gt;IMPLEMENT MODE"]
+    
+    %% Template Selection
+    L2Update -.- Template2["TEMPLATE L2:&lt;br&gt;- Overview&lt;br&gt;- Files to Modify&lt;br&gt;- Implementation Steps&lt;br&gt;- Potential Challenges"]
+    L3Update &amp; L4Update -.- TemplateAdv["TEMPLATE L3-4:&lt;br&gt;- Requirements Analysis&lt;br&gt;- Components Affected&lt;br&gt;- Architecture Considerations&lt;br&gt;- Implementation Strategy&lt;br&gt;- Detailed Steps&lt;br&gt;- Dependencies&lt;br&gt;- Challenges &amp; Mitigations&lt;br&gt;- Creative Phase Components"]
+    
+    %% Validation Options
+    Start -.-&gt; Validation["🔍 VALIDATION OPTIONS:&lt;br&gt;- Review complexity level&lt;br&gt;- Create planning templates&lt;br&gt;- Identify creative needs&lt;br&gt;- Generate plan documents&lt;br&gt;- Show mode transition"]
+
+    %% Styling
+    style Start fill:#4da6ff,stroke:#0066cc,color:white
+    style ReadTasks fill:#80bfff,stroke:#4da6ff
+    style CheckLevel fill:#d94dbb,stroke:#a3378a,color:white
+    style Level2 fill:#4dbb5f,stroke:#36873f,color:white
+    style Level3 fill:#ffa64d,stroke:#cc7a30,color:white
+    style Level4 fill:#ff5555,stroke:#cc0000,color:white
+    style CheckCreative fill:#d971ff,stroke:#a33bc2,color:white
+    style RecCreative fill:#ffa64d,stroke:#cc7a30
+    style RecImplement fill:#4dbb5f,stroke:#36873f
+</code></pre>
+
+<h2 id="implementation-steps">IMPLEMENTATION STEPS</h2>
+
+<h3 id="step-1-read-main-rule--tasks">Step 1: READ MAIN RULE &amp; TASKS</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/main.mdc",
+  should_read_entire_file: true
+})
+
+read_file({
+  target_file: "tasks.md",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h3 id="step-2-load-plan-mode-map">Step 2: LOAD PLAN MODE MAP</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/visual-maps/plan-mode-map.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h3 id="step-3-load-complexity-specific-planning-references">Step 3: LOAD COMPLEXITY-SPECIFIC PLANNING REFERENCES</h3>
+<p>Based on complexity level determined from tasks.md, load one of:</p>
+
+<h4 id="for-level-2">For Level 2:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/Level2/task-tracking-basic.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h4 id="for-level-3">For Level 3:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/Level3/task-tracking-intermediate.mdc",
+  should_read_entire_file: true
+})
+
+read_file({
+  target_file: ".cursor/rules/isolation_rules/Level3/planning-comprehensive.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h4 id="for-level-4">For Level 4:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/Level4/task-tracking-advanced.mdc",
+  should_read_entire_file: true
+})
+
+read_file({
+  target_file: ".cursor/rules/isolation_rules/Level4/architectural-planning.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h2 id="planning-approach">PLANNING APPROACH</h2>
+
+<p>Create a detailed implementation plan based on the complexity level determined during initialization. Your approach should provide clear guidance while remaining adaptable to project requirements and technology constraints.</p>
+
+<h3 id="level-2-simple-enhancement-planning">Level 2: Simple Enhancement Planning</h3>
+
+<p>For Level 2 tasks, focus on creating a streamlined plan that identifies the specific changes needed and any potential challenges. Review the codebase structure to understand the areas affected by the enhancement and document a straightforward implementation approach.</p>
+
+<pre><code class="language-mermaid">graph TD
+    L2["📝 LEVEL 2 PLANNING"] --&gt; Doc["Document plan with these components:"]
+    Doc --&gt; OV["📋 Overview of changes"]
+    Doc --&gt; FM["📁 Files to modify"]
+    Doc --&gt; IS["🔄 Implementation steps"]
+    Doc --&gt; PC["⚠️ Potential challenges"]
+    Doc --&gt; TS["✅ Testing strategy"]
+    
+    style L2 fill:#4dbb5f,stroke:#36873f,color:white
+    style Doc fill:#80bfff,stroke:#4da6ff
+    style OV fill:#cce6ff,stroke:#80bfff
+    style FM fill:#cce6ff,stroke:#80bfff
+    style IS fill:#cce6ff,stroke:#80bfff
+    style PC fill:#cce6ff,stroke:#80bfff
+    style TS fill:#cce6ff,stroke:#80bfff
+</code></pre>
+
+<h3 id="level-3-4-comprehensive-planning">Level 3-4: Comprehensive Planning</h3>
+
+<p>For Level 3-4 tasks, develop a comprehensive plan that addresses architecture, dependencies, and integration points. Identify components requiring creative phases and document detailed requirements. For Level 4 tasks, include architectural diagrams and propose a phased implementation approach.</p>
+
+<pre><code class="language-mermaid">graph TD
+    L34["📊 LEVEL 3-4 PLANNING"] --&gt; Doc["Document plan with these components:"]
+    Doc --&gt; RA["📋 Requirements analysis"]
+    Doc --&gt; CA["🧩 Components affected"]
+    Doc --&gt; AC["🏗️ Architecture considerations"]
+    Doc --&gt; IS["📝 Implementation strategy"]
+    Doc --&gt; DS["🔢 Detailed steps"]
+    Doc --&gt; DP["🔄 Dependencies"]
+    Doc --&gt; CM["⚠️ Challenges &amp; mitigations"]
+    Doc --&gt; CP["🎨 Creative phase components"]
+    
+    style L34 fill:#ffa64d,stroke:#cc7a30,color:white
+    style Doc fill:#80bfff,stroke:#4da6ff
+    style RA fill:#ffe6cc,stroke:#ffa64d
+    style CA fill:#ffe6cc,stroke:#ffa64d
+    style AC fill:#ffe6cc,stroke:#ffa64d
+    style IS fill:#ffe6cc,stroke:#ffa64d
+    style DS fill:#ffe6cc,stroke:#ffa64d
+    style DP fill:#ffe6cc,stroke:#ffa64d
+    style CM fill:#ffe6cc,stroke:#ffa64d
+    style CP fill:#ffe6cc,stroke:#ffa64d
+</code></pre>
+
+<h2 id="creative-phase-identification">CREATIVE PHASE IDENTIFICATION</h2>
+
+<pre><code class="language-mermaid">graph TD
+    CPI["🎨 CREATIVE PHASE IDENTIFICATION"] --&gt; Question{"Does the component require&lt;br&gt;design decisions?"}
+    Question --&gt;|"Yes"| Identify["Flag for Creative Phase"]
+    Question --&gt;|"No"| Skip["Proceed to Implementation"]
+    
+    Identify --&gt; Types["Identify Creative Phase Type:"]
+    Types --&gt; A["🏗️ Architecture Design"]
+    Types --&gt; B["⚙️ Algorithm Design"]
+    Types --&gt; C["🎨 UI/UX Design"]
+    
+    style CPI fill:#d971ff,stroke:#a33bc2,color:white
+    style Question fill:#80bfff,stroke:#4da6ff
+    style Identify fill:#ffa64d,stroke:#cc7a30
+    style Skip fill:#4dbb5f,stroke:#36873f
+    style Types fill:#ffe6cc,stroke:#ffa64d
+</code></pre>
+
+<p>Identify components that require creative problem-solving or significant design decisions. For these components, flag them for the CREATIVE mode. Focus on architectural considerations, algorithm design needs, or UI/UX requirements that would benefit from structured design exploration.</p>
+
+<h2 id="verification">VERIFICATION</h2>
+
+<pre><code class="language-mermaid">graph TD
+    V["✅ VERIFICATION CHECKLIST"] --&gt; P["Plan addresses all requirements?"]
+    V --&gt; C["Components requiring creative phases identified?"]
+    V --&gt; S["Implementation steps clearly defined?"]
+    V --&gt; D["Dependencies and challenges documented?"]
+    
+    P &amp; C &amp; S &amp; D --&gt; Decision{"All Verified?"}
+    Decision --&gt;|"Yes"| Complete["Ready for next mode"]
+    Decision --&gt;|"No"| Fix["Complete missing items"]
+    
+    style V fill:#4dbbbb,stroke:#368787,color:white
+    style Decision fill:#ffa64d,stroke:#cc7a30,color:white
+    style Complete fill:#5fd94d,stroke:#3da336,color:white
+    style Fix fill:#ff5555,stroke:#cc0000,color:white
+</code></pre>
+
+<p>Before completing the planning phase, verify that all requirements are addressed in the plan, components requiring creative phases are identified, implementation steps are clearly defined, and dependencies and challenges are documented. Update tasks.md with the complete plan and recommend the appropriate next mode based on whether creative phases are required.</p>
+
+      </section>
+    </div>
+  </body>
+</html>

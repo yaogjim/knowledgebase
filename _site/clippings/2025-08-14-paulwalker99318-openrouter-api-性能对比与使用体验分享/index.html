@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenRouter API 性能对比与使用体验分享</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">OpenRouter API 性能对比与使用体验分享</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">OpenRouter API 性能对比与使用体验分享</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @paulwalker99318</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-08-14</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/paulwalker99318/status/1955153786978308557" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>Bruce</strong> @paulwalker99318 <a href="https://x.com/paulwalker99318/status/1955153786978308557">2025-08-12</a></p>
+
+<p>使用的主力翻译模型改成了gpt-oss-120b，原因是翻译效果更好、价格实惠、速度更快、延迟更低。此前用的是更便宜的qwen/qwen3-235b-a22b-thinking-2507，之所以切换，主要是发现qwen-3在翻译Agent/Agentic相关的技术文档时效果不够好，不如gpt-oss-120b。</p>
+
+<p>OpenRouter上有十几家API供应商，价格、上下文、延迟、速度都有差异。OpenRouter官方说的是自动路由到最优的厂商，但实际上看了一下，调用的随机概率很大。</p>
+
+<p>虽然Cerebras的速度遥遥领先，但实际调用的结果是Groq更快，能到2110 tokens/s，延迟也更低。综合下来还是Groq最强。</p>
+
+<p><img src="https://pbs.twimg.com/media/GyIXpmtaEAIAIRW?format=jpg&amp;name=large" alt="Image" /> <img src="https://pbs.twimg.com/media/GyIYOeaaoAAjFlt?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>Bruce</strong> @paulwalker99318 <a href="https://x.com/paulwalker99318/status/1955432724950642992">2025-08-13</a></p>
+
+<p>补充：截图没说清楚，图 1 是调用OpenRouter API的真实数据，图 2 是OpenRouter模型详细给出的理论性能。Cerebras的峰值比较高，但使用下来Groq能稳定在500+ tokens/s。</p>
+
+<p>另外：gpt-oss-120b似乎与GPT-5类似，对prompt非常敏感，所以大家使用的时候可能要注意，prompt不是越多越好，也不是越详细越好。</p>
+
+<hr />
+
+<p><strong>Bruce</strong> @paulwalker99318 <a href="https://x.com/paulwalker99318/status/1955527246325969086">2025-08-13</a></p>
+
+<p>在OpenRouter上选模型要小心，可能贵10倍！</p>
+
+<p>models页面的票价像极了某宝的套路，标的往往是最低价格，但实际上你使用的往往是随机路由的。</p>
+
+<p>以 DeepSeek-R1 0528 为例（目前看到差价最大的）：</p>
+
+<p>- models页面标价：input 0.18$, output 0.72$</p>
+
+<p>- 实际调用的价格可能是8$, 贵了整整10倍！</p>
+
+<p><img src="https://pbs.twimg.com/media/GyNs_ljaEAAdP0n?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>DeGao</strong> @MrDeGao <a href="https://x.com/MrDeGao/status/1955301727210705301">2025-08-12</a></p>
+
+<p>我做了DLM，扩散，可以到2800 Tps，是不是可以蒸馏下120b？</p>
+
+<hr />
+
+<p><strong>Bruce</strong> @paulwalker99318 <a href="https://x.com/paulwalker99318/status/1955302347187556567">2025-08-12</a></p>
+
+<p>🐮 在什么显卡上跑的？</p>
+
+<hr />
+
+<p><strong>Michael Anti</strong> @mranti <a href="https://x.com/mranti/status/1955450854980669498">2025-08-13</a></p>
+
+<p>qwen3-235b-a22b-thinking-2507是thinking模式，本身就是慢响应的，qwen3-235b-a22b-2507这个才快。</p>
+
+<hr />
+
+<p><strong>Bruce</strong> @paulwalker99318 <a href="https://x.com/paulwalker99318/status/1955465165295775858">2025-08-13</a></p>
+
+<p>好像打错了，就是非思考模型。速度跟gpt-oss还是差一些</p>
+
+<hr />
+
+<p><strong>akazwz</strong> @akazwz_ <a href="https://x.com/akazwz_/status/1955218042302107720">2025-08-12</a></p>
+
+<p>Grok is too fast!<br />
+Grok 速度太快了！</p>
+
+<hr />
+
+<p><strong>Bruce</strong> @paulwalker99318 <a href="https://x.com/paulwalker99318/status/1955236172965482928">2025-08-12</a></p>
+
+<p>是的，cerebras官网的速度也能到2000 tokens/s，但是API没那么快</p>
+
+<hr />
+
+<p><strong>Denis Wang</strong> @wangyg <a href="https://x.com/wangyg/status/1955337748736512087">2025-08-12</a></p>
+
+<p>Groq也不能绑定大陆的信用卡吧？</p>
+
+<hr />
+
+<p><strong>Bruce</strong> @paulwalker99318 <a href="https://x.com/paulwalker99318/status/1955412008041582706">2025-08-12</a></p>
+
+<p>用的OpenRouter API<br />
+使用的 OpenRouter API</p>
+
+<hr />
+
+<p><strong>Tom Q</strong> @TomQ296214 <a href="https://x.com/TomQ296214/status/1955437942069178821">2025-08-13</a></p>
+
+<p>qwen-mt和gpt-5-nano对比过吗，哪种会更好呢</p>
+
+<hr />
+
+<p><strong>Bruce</strong> @paulwalker99318 <a href="https://x.com/paulwalker99318/status/1955468953364599013">2025-08-13</a></p>
+
+<p>qwen-mt没试过，不过既然是翻译专用模型，效果应该不差。gpt-5-nano效果还行，看价格和定位应该是用于取代gpt-4.1-mini的，与gemini-2.5-flash-lite相当，一般的翻译场景够用了。</p>
+
+<hr />
+
+<p><strong>老鬼</strong> @laogui <a href="https://x.com/laogui/status/1955296940998205929">2025-08-12</a></p>
+
+<p>翻译几十 b 就够了，主要看并发限制</p>
+
+<hr />
+
+<p><strong>Bruce</strong> @paulwalker99318 <a href="https://x.com/paulwalker99318/status/1955412637115990261">2025-08-12</a></p>
+
+<p>不同场景的翻译质量要求也不一样，我翻译网面的时候用mini或者Dia浏览器默认的chatgpt-4.1，技术文档的翻译会用好的模型以追求更好的效果。</p>
+
+<hr />
+
+<p><strong>RockCat</strong> @HunterRockCat <a href="https://x.com/HunterRockCat/status/1955430875291877827">2025-08-13</a></p>
+
+<p>客户端用什么？</p>
+
+<hr />
+
+<p><strong>Bruce</strong> @paulwalker99318 <a href="https://x.com/paulwalker99318/status/1955464785945878583">2025-08-13</a></p>
+
+<p>用的沉浸式翻译（虽然最近闹了点风波，但还是很推荐）</p>
+
+<hr />
+
+<p><strong>Li God</strong> @rx541359627 <a href="https://x.com/rx541359627/status/1955306751345168475">2025-08-12</a></p>
+
+<p>gpt-oss-120b有deep seek-v3好吗？<br />
+gpt-oss-120b 比深寻 v3 好吗？</p>
+
+<hr />
+
+<p><strong>Bruce</strong> @paulwalker99318 <a href="https://x.com/paulwalker99318/status/1955411865120678001">2025-08-12</a></p>
+
+<p>主观感觉是略好于deepseek-v3，OpenAI的模型做翻译都不错，而且速度比deepseek-v3快多了。</p>
+
+<hr />
+
+<p><strong>就这样</strong> @zhaogua61654931 <a href="https://x.com/zhaogua61654931/status/1955194539653861644">2025-08-12</a></p>
+
+<p>qwen3里处理文字最好的是30B的模型，你可以试试，235B比较偏向深度技术向了，越是技术问题越好用，闲聊和翻译这种任务不如30B</p>
+
+<hr />
+
+<p><strong>Laisky</strong> @LaiskyCai <a href="https://x.com/LaiskyCai/status/1955462109040652636">2025-08-13</a></p>
+
+<p>我最近也很喜欢这个模型，实在太快了，开着深度思考，上千 tokens 也能在 1s 内响应。</p>
+
+<p><img src="https://pbs.twimg.com/media/GyMyS1IaEAUtY69?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>notice_u</strong> @ID_CKChen <a href="https://x.com/ID_CKChen/status/1955351174154162351">2025-08-12</a></p>
+
+<p>@readwise save thread<br />
+@readwise 保存线程</p>
+
+<hr />
+
+<p><strong>Whitmore</strong> @zhaopengme <a href="https://x.com/zhaopengme/status/1955466511591813435">2025-08-13</a></p>
+
+<p>qwen4b那个挺不错的</p>
+
+<hr />
+
+<p><strong>isaced</strong> @isacedx <a href="https://x.com/isacedx/status/1955560566816415791">2025-08-13</a></p>
+
+<p>有试过 qwen-mt 翻译模型吗</p>
+
+<hr />
+
+<p><strong>Zynelia</strong> @Zyneliaofficial</p>
+
+<p>Built to withstand endless playtime and tough chewing adventures.</p>
+
+<p>Order: https://zynelia.com/ONSY?twclid=22or1yj7uind3r9b72otx1p12<br />
+专为承受无尽的玩耍时间和激烈的啃咬冒险而设计。</p>
+
+<p>订单： https://zynelia.com/ONSY?twclid=22or1yj7uind3r9b72otx1p12</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@paulwalker99318</span>
+            
+          
+            
+              <span class="tag">#翻译</span>
+            
+          
+            
+              <span class="tag">#OpenRouter</span>
+            
+          
+            
+              <span class="tag">#GPT-OSS</span>
+            
+          
+            
+              <span class="tag">#Groq</span>
+            
+          
+            
+              <span class="tag">#Cerebras</span>
+            
+          
+            
+              <span class="tag">#模型选择</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

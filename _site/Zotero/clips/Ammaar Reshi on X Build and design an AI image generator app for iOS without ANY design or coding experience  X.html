@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的知识库</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <p>我们正处在一个令人惊叹的时代，将创意变为现实正变得越来越简单。你所需要的只是一个清晰的愿景，知道自己想要创造什么，并能将其描述出来——如今的 AI 工具将助你完成其余工作。</p>
+
+<p>起初，我们看到了一些端倪，当时我们正使用 GPT-4 编写非常基础的游戏，如贪吃蛇和乒乓球</p>
+
+<p>Ammaar Reshi</p>
+
+<p><img src="https://pbs.twimg.com/profile_images/1590865996532912131/Tkgaw9L1_bigger.jpg" alt="" /></p>
+
+<p>GPT-4 能为你编写整个游戏吗？是的，它可以。以下是我如何使用 Chat GPT-4 和 <a href="https://x.com/Replit">@Replit</a> 在完全不懂 Javascript 的情况下，在不到 20 分钟内重新创建了一个在你的浏览器中运行的贪吃蛇游戏 <img src="https://abs-0.twimg.com/emoji/v2/svg/1f9f5.svg" alt="🧵" title="Thread" /> 。</p>
+
+<p>到现在，你甚至不需要知道如何组织一个复杂的 iPhone 应用程序项目，让 AI 和像 Cursor 这样的工具为你完成一切。</p>
+
+<p>上周末，我再次被震撼了——我甚至不需要学习如何设计应用程序，只需描述我想要的应用类型，Figma AI 就准确地提供了我所需的内容。然后，仅凭几句话和提示，我便能将那个应用程序变为现实。</p>
+
+<p>本教程将引导您完成以下过程：如何将您的创意通过描述进行设计（尽管我会教您一些基础知识），然后利用 Cursor 和 Clause 的 3.5 版本将该创意转化为一个功能齐全的应用程序，您可以通过 TestFlight 与朋友分享，并发布到 App Store。</p>
+
+<p>本教程将详细介绍我为实现这一目标所采取的每一个步骤。过程中难免会遇到陷阱和错误（AI 并非完美无缺），但美好之处在于，这仅仅是一个开始，最糟糕的情况也不过如此。</p>
+
+<p>那么，接下来让我们一起探索如何在没有设计或编程经验的情况下，为 iOS 打造自己的 AI 图像生成器。</p>
+
+<p>为什么？这里就是我们进行所有“编码”的地方（虽然实际上更多的是关于提示！😄）</p>
+
+<p>要使用一个名为“Composer”的功能——但这就是神奇之处所在。它允许你只需通过与它聊天就能从头开始创建应用程序，包括为你创建和编辑所有必要的文件！下载并安装后，进入设置并启用 Composer。下载 Cursor，你需要一个 Pro 账户。</p>
+
+<p>为什么？这就是我们将运行、测试并发布 iPhone 应用的地方</p>
+
+<p>你需要这个来制作 iOS 应用。从 Mac App Store 下载 Xcode。设置过程相当直接——只需从 App Store 安装它，启动后，它会询问你是否要安装 iOS SDK，只需勾选这些选项并点击安装即可。如果在此过程中遇到任何问题，请回复，我会提供帮助。</p>
+
+<p>我们将使用 Figma AI 来为我们制作模型，我还会向你展示一些其他功能的使用技巧，这些功能将帮助你调整和完善它所创建的内容。</p>
+
+<p>为什么？这是我们的应用程序将用于使用 AI 生成图像的内容</p>
+
+<p>我们将使用 EverArt 作为此应用的首选 API——为什么呢？我认为这是集成一系列优秀图像生成模型的最简便方式，无需您在设置上花费过多精力。它涵盖了 Stable Diffusion、FluX，甚至包括您为自定义图像模型所训练的任何内容！</p>
+
+<p>在我们开始之前，退一步思考你想要构建的应用类型是很有帮助的。在这种情况下，我已经在考虑为 iPhone 制作一个 AI 图像生成器，但我知道在本地运行模型并不会带来理想的体验。因此，我需要一个能完美适配我使用场景的 API。</p>
+
+<p>我发现这种思维方式通常非常有帮助：首先，从你要解决的问题入手，然后看看是否存在相关的 API。这样，你的创造力不会被现有的事物所束缚，而在寻找能够支持构建它的东西时，你可以创造性地绕过限制（或者在这种情况下，找到一个完美契合的 API）。</p>
+
+<p>通常，我也会建议你从设计开始。但这次不同，因为这是一个相当简单的应用，我想采取不同的方式。我们首先要为 Cursor 编写一组指令，帮助它构建我们应用的基础。我们需要的基本功能包括：描述图像、生成图像，然后看到它在你的手机上显示。一旦这些功能到位，我们再进行设计，使其外观出色。接着，进一步增强体验，将应用提升到新的高度。</p>
+
+<p>这有点反其道而行之，我通常会先设计，然后再着手制作应用程序。但在使用 AI 提示和编码时，我认为先搭建一个功能性的基础架构，再开始添加各种精美的设计元素，也是非常有帮助的。</p>
+
+<p>你要做的第一件事是启动 Xcode 并创建你的项目，这将生成我们在 Cursor 中工作所需的所有必要文件。这样做的好处是，与我的上一个教程不同：</p>
+
+<p>Ammaar Reshi</p>
+
+<p><img src="https://pbs.twimg.com/profile_images/1590865996532912131/Tkgaw9L1_bigger.jpg" alt="" /></p>
+
+<p><img src="https://pbs.twimg.com/media/GV7SzQcXYAAhm1e?format=jpg&amp;name=medium" alt="Article cover image" /></p>
+
+<p>使用 Cursor Composer 和 Claude 创建完整的 Mac 应用——无需任何编程知识！</p>
+
+<p>认识 ElevenLabs 助手：直接从菜单栏生成语音，轻松拖拽至视频编辑器中，实现流畅的 AI 配音。这是我一直想制作的应用，因为它感觉就像…</p>
+
+<p>您无需来回复制粘贴任何代码，而是通过提示，Cursor 将直接为您编辑、创建和管理文件。</p>
+
+<p><img src="https://pbs.twimg.com/ext_tw_video_thumb/1860457698048753664/pu/img/GkgtrVV3YjkLfhdT.jpg" alt="" /></p>
+
+<p>在 Xcode 中创建好项目后，接下来转到 Cursor 并打开它。这将打开所有必要的文件，供你进行操作，包括我们的主文件（ContentView.swift），它用于在 iPhone 上显示你的应用程序。如果这些内容对你来说还不甚明了，不必担心——你其实不需要了解太多，这正是整个体验的神奇之处。</p>
+
+<p><img src="https://pbs.twimg.com/ext_tw_video_thumb/1860458802052554753/pu/img/YzTpJkt2Rg8Eq5tz.jpg" alt="" /></p>
+
+<p>然后我们将创建一个名为“Instructions.txt”的文件。我发现这是一种很好的方式，可以让 Cursor 确切地了解项目计划，并在我们开发应用程序时引导它遵循该计划。</p>
+
+<p>为其提供一份带有 Instructions.txt 的路线图。</p>
+
+<p>以下是我如何概述我的 instructions.txt 文件，并在此处获取您的 EverArt API 密钥（是的，我已经删除了我的密钥！）</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- We are going to make an AI image generator in SwiftUI using the EverArt API
+- The EverArt API is provided in the "EverArtOpenAPIspec.txt" file
+- The flow is as follows:
+    - Our app loads and fetches the models available using the EverArt API
+    - The user can select a model and then enter a text prompt for the image they want to generate
+    - The app then generates an image using the selected model and the text prompt
+    - The user can then tap and save the generated images
+- My EverArt API key is: YOUR-API-KEY-HERE
+</code></pre></div></div>
+
+<p>然后，向它提供关于 EverArt API 所需的所有信息。这一点很重要，因为在此情况下，Cursor 或 Sonnet 3.5 并不了解 EverArt API 的工作原理。您可以前往 EverArt API 网站下载 API 规范，这将提供它正确编写代码所需的所有知识。您只需将下载的文件拖入该文件夹，接下来我们将在下一步中引用它。</p>
+
+<p><img src="https://pbs.twimg.com/ext_tw_video_thumb/1860462685319569408/pu/img/ruUW3N3887AXheiN.jpg" alt="" /></p>
+
+<p>随着我们的设置完成，让我们开始构建并学习如何有效地进行提示！</p>
+
+<p>在您的 ContentView.swift 文件上按下 Command+I，调出 Composer，并在此描述任务及需要注意的地方。请注意，我正在使用”@”命令提及每个需要关注的文件。这为 Composer 提供了执行我们项目所需的环境。</p>
+
+<p>我们的指令相当直接，它们将为我们提供一个可操作的基础，供我们调试和玩耍。我并不指望它第一次就能完美地制作出一个功能齐全的应用程序。事实上，由于它在不完全了解如何响应我们的图像生成请求的情况下与 EverArt API 进行对话，可能会产生许多错误。这没关系。这里的一部分魔法在于，你只需将这些错误复制粘贴来回，直到它修复为止。而这种来回操作并不像听起来那么糟糕或痛苦，正如你将在下面看到的。</p>
+
+<p>因此，在上述视频中——我们按照第一组指令构建了应用程序，但正如您所注意到的——我们首先遇到了一系列需要解决的错误，不过这并不算太糟糕，我们只需选中所有三个错误，右键点击，复制，然后将它们粘贴到 Composer 中，告诉它需要修复的内容，它确实在第一次尝试时就修复了这些错误。然而，正如之后所见，尽管应用程序加载了并成功加载了我 EverArt 账户中的所有模型（所以它在工作！），但它无法生成图像。现在，让我们来解决这个问题。</p>
+
+<ul>
+  <li>
+    <p>首先，我们发现点击按钮后应用并未生成任何内容，要解决这个问题，我们只需告诉 Composer 我们观察到的行为。注意我是如何告知它模型正在加载的，这一点很重要，因为它向 Composer 表明应用实际上在运行，只是某些部分尚未完成。</p>
+  </li>
+  <li>
+    <p>然后它告诉我们，它将向控制台添加一些内容，我们需要将其粘贴回去，以便它了解哪里出了问题。于是我们让它添加调试代码，并重新构建应用程序再次尝试。</p>
+  </li>
+  <li>
+    <p>在控制台中，我们看到状态显示为“成功”，但我们的应用显然缺少某些内容。将其粘贴回 Composer 后，它意识到这个 API 的工作方式是发送一个生成图像的请求，但这并非即时完成，因此需要持续检查 API 或“轮询”API 以查看进度。当图像准备就绪时，它会获取 API 提供的图像 URL 并在应用中显示，否则将显示一个旋转图标以表示正在加载。</p>
+  </li>
+  <li>
+    <p>瞧！经过一番来回操作，我们就有了一个可用的图像生成器！</p>
+  </li>
+</ul>
+
+<p>这是对此处预期动态的一个良好总结。你的角色是成为一名出色的测试者——你精确描述你在应用中看到的内容以及作为用户遇到的问题，然后 Composer 可以利用所有这些信息，与其合作修复并改进应用，直至其按你的预期运行。因此，它并非完美无缺——如同人类一样，它会犯错，但如果你引导它，你将获得正确的结果，它完全有能力达到那个目标。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Follow the instructions in @Instructions.txt and create an iOS SwiftUI AI image generator app that uses the EverArt API included in @EverArtOpenAPIspec.txt 
+
+- Ok I tried to build the app but I get these errors:
+/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/ContentView.swift:19:21 Generic struct 'Picker' requires that 'ImageGeneratorViewModel.Model' conform to 'Hashable'/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/ContentView.swift:19:21 Initializer 'init(_:selection:content:)' requires that 'ImageGeneratorViewModel.Model' conform to 'Hashable'/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/ContentView.swift:20:48 Referencing instance method 'tag(_:includeOptional:)' on 'Optional' requires that 'ImageGeneratorViewModel.Model' conform to 'Hashable'- Ok the app now builds successfully and loads all of the models, but I can't see any images when I hit generate, the app does nothing when I tap that button
+- Still no image but what I am getting in the console is:
+Response: {"success":true,"generations":[{"id":"211217252635254784","model_id":"202548620120178688","status":"STARTING","image_url":null,"type":"txt2img","createdAt":"2024-11-23T23:38:40.969Z","updatedAt":"2024-11-23T23:38:40.969Z","created_at":"2024-11-23T23:38:40.969Z","updated_at":"2024-11-23T23:38:40.969Z"}],"requestId":"211217252714946560"}
+</code></pre></div></div>
+
+<p>恭喜！您现在拥有了自己的第一个功能齐全的 iOS 图像生成器应用！而且我们仅用了不到 5 个提示就完成了这一壮举——真是不可思议！但仅凭经验，我们还能将它提升到更高的层次。以下是我对此的思考：</p>
+
+<ol>
+  <li>
+    <p>我们正在开发一款 AI 图像生成器，尽管身处这一领域可能已让我们习以为常，但这实际上是一次神奇的体验，我们可以让它显得如此。</p>
+  </li>
+  <li>
+    <p>图片应成为我们当前应用的核心；图片现在几乎像是事后才想到的，出现在底部。相反，图片应该是应用的核心所在，因此我们需要以此为出发点进行设计。</p>
+  </li>
+  <li>
+    <p>提示框应非常易于触及，因此与其位于应用顶部，不如将其置于底部可能看起来更佳。这样一来，开始输入变得非常简单，而图像则可以占据我们剩余的屏幕空间。</p>
+  </li>
+  <li>
+    <p>模型选择，无需过于显眼；只需在提示框上方做一个简洁的小预览即可。这样一来，所有控制选项都位于底部，而图像则保持在顶部。</p>
+  </li>
+</ol>
+
+<p>所以，牢记这一点，让我们启动 Figma，实现它。</p>
+
+<p><img src="https://pbs.twimg.com/ext_tw_video_thumb/1860482984136130560/pu/img/exjxzPUklv7qa8aP.jpg" alt="" /></p>
+
+<p>使用 Figma AI 及其他技巧的 Figma 教程</p>
+
+<p>现在，是时候将我们的设计从 Figma 中取出，并通过 Composer 使其变为现实。正如您在此过程中所注意到的，存在大量的反复。它将带您走完大部分路程，然后您需要描述那些细微的细节，以达到您所追求的完美状态。</p>
+
+<p>让我们从第一个视频开始，它将引导您如何初步应用该设计。接着，第二个视频将指导您如何将其调整至我们满意的程度，即从 Figma 设计到实际实现的转换。</p>
+
+<p><img src="https://pbs.twimg.com/ext_tw_video_thumb/1860491661291253760/pu/img/agtErfDD974jMWTj.jpg" alt="" /></p>
+
+<p>因此，如上所述，我们导出了设计，将其粘贴到 Composer 中，描述了其工作原理（至关重要），然后进行了一些调整。现在让我们深入了解一些重要细节：</p>
+
+<ul>
+  <li>
+    <p>首先你会注意到，我没有简单地粘贴设计，我还加入了所有我希望包含的内容。这些内容包括：声明应用为暗黑 UI 模式，底部附近有一个提示字段，虽然原型中没有，但我要求增加一个画廊标签以备未来功能之需（你很快就会明白原因），解释了图像处于中心位置，以及模型表的工作方式（需要点击它才会弹出表单）。</p>
+  </li>
+  <li>
+    <p>这一点很重要，因为您明确了 Composer 构建过程中许多步骤的细节，确保其正确执行。这样，您就能尽可能接近预期结果，避免偏离太远。</p>
+  </li>
+  <li>
+    <p>然后正如我们所见，问题出现了！我们需要移除标签栏的重叠，因此我们描述了这个问题，图片可以占用更多空间，所以我们解决了，模型在表单中无法加载，所以我们不得不告知这一点</p>
+  </li>
+  <li>
+    <p>上述内容呼应了我之前所说的，你是测试者，需要检查一切是否按预期运行，然后将问题分解出来供 Composer 修复</p>
+  </li>
+</ul>
+
+<p>现在，虽然这让我们接近目标，但仍存在一些问题。图像仍在 UI 中拉伸，间距有些偏差，尚未完全到位，这引导我们进入下一组关于如何达到目标的提示：</p>
+
+<p><img src="https://pbs.twimg.com/ext_tw_video_thumb/1860493051795283968/pu/img/QbyOHmZ68mSRSPdm.jpg" alt="" /></p>
+
+<ul>
+  <li>
+    <p>我们向 Composer 详细说明了拉伸行为并提供了截图，这意味着它确切地知道需要修复什么（并且确实修复了！）</p>
+  </li>
+  <li>
+    <p>然后我也有了一个以上的领悟：我一直要求它“改善间距”，但实际上，我可以更技术性地具体化。于是我接着要求它实际保持页面元素之间均匀的 16px 间距——为什么是 16，只是用 4 像素的倍数来保持均匀。你可以尝试其他数字，4、8、12 等，以便事物整齐有序——但通过具体化，你为设计者消除了猜测，使其能正确执行。Figma 对此有一个不错的指南。</p>
+  </li>
+  <li>
+    <p>然后一旦间距调整完毕，我们请求进行最后的润色，即图像需要填充屏幕上剩余的可用高度，这意味着要将图像占据所有空间，减去为我们的控件和标签栏留出美观布局所需的空间</p>
+  </li>
+</ul>
+
+<p>瞧——虽然有些来回调整，但我们现在有了一个满意的布局，可以进入下一阶段了。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Ok amazing, now it's time to make the UI sexy, let's do follow the mock I provided: in it - 
+1. The app has a dark UI 
+2. There is a prompt field near the bottom of the screen as shown and then a tab bar with two options a home page and a gallery page where all previous generations live 
+3. The image takes center stage in the app as shown, throw a placeholder there when the image isn't ready and when it is, have it appear in that frame
+4. There is a model selection button above the prompt area, when tapped it brings up a sheet with all the model options- Ok great! a few tweaks I'd like to make:
+1. the gap between the image area and the model selector is pretty big, let's keep those evenly spaced between
+2. When I tap the select a model button, the sheet doesn't load any models- Ok there are still a few bugs:
+1. The tab bar is still overlapping on top of the prompt box area, have that fixed to the bottom of the screen, and resize the image area so that we can fit model selection and prompt area in properly
+2. When the image is generated, the whole app UI breaks and everything stretches across, instead, just fit the generated image within the image view you have it in. I would have it FILL so that it fills the entire area it has rather than stretching outside of it- Ok this is better but we still have a few issues:
+1. The gap is still too big between the image area and the controls at the bottom, I would ensure that there's just a 16px gap between all of these 3 things
+2. When the image loads the UI still breaks, contain the image within the image view, right now as shown in the screenshot above, everything stretches across from the screen when the image loads- Great job! Now the only layout tweak I would make is, I want the image view area to fill all of the available height on the screen and the controls and tabbar only take the height they need. With the padding we already mentioned
+</code></pre></div></div>
+
+<p>等待图片加载并盯着旋转器看可能会相当无聊，但我们可以将这一体验提升到新的高度。在 iOS 18 中，您拥有令人惊叹的 Metal 着色器动画，这些动画允许您对渐变等进行动画处理，从而使您的应用体验真正脱颖而出。要求 Sonnet 自行尝试解决这个问题可能有些过分，因此再次强调，正如我们为 EverArt 提供了 API 参考以便其了解如何工作一样，我们将为它提供来自不同应用的示例代码，展示如何使用网格渐变，然后我们将要求它将这一想法以独特的方式引入我们的应用中。在这种情况下，当图片加载时，我们希望展示这一酷炫的动画，而当图片加载完成后，该动画便消失。</p>
+
+<p>@mengto 是我最喜欢的创作者之一，他有一系列关于如何编写这些动画的教程，并在此提供了免费示例代码供你在自己的项目中使用。</p>
+
+<p>所以我拿了这个带有网格渐变的项目（SiriAnimation.zip），并将其中所有的代码粘贴到一个文件中，这样一来，我们可以轻松地告诉 Composer 它需要引用什么，就像我们处理 Instructions.txt 和 EverArt API 规范时所做的那样。</p>
+
+<p>[</p>
+
+<p><img src="https://pbs.twimg.com/media/GdHQ7GDWgAAyCxj?format=jpg&amp;name=large" alt="Image" /></p>
+
+<p>](https://x.com/ammaar/article/1860767695135973842/media/1860497834736254976)</p>
+
+<p>将项目中所有.swift 文件的代码复制到一个文件中，以便在 Composer 中引用。</p>
+
+<p><img src="https://pbs.twimg.com/ext_tw_video_thumb/1860515545646272512/pu/img/r3Ewho1aWKDJeCrO.jpg" alt="" /></p>
+
+<p>正如你所见——这需要大量的反复沟通，并且在过程中犯了许多错误，其中一些值得注意的细节：</p>
+
+<ul>
+  <li>
+    <p>这是一些它不太熟悉的代码和框架——Metal 动画刚刚推出，我怀疑 Sonnet 的训练数据中对它们的涉及还不多</p>
+  </li>
+  <li>
+    <p>因此，重要的是要不断参考我们的文件，以便它知道要紧密跟随，而不是试图自行发挥</p>
+  </li>
+  <li>
+    <p>正如您在视频中可能注意到的，有一次我不得不威胁说要解雇它😂 我保证我对我的 AI 很友好（请在达到 AGI 时不要来找我麻烦），但有时这种威胁确实能迫使它真正集中注意力，正如您在上文所见，当我们这样做时，它确实成功解决了所有错误</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Ok we are going to add some metal shader animations to our app now where you need to FULLY READ and reference what is happening in @animatedeffects.md 
+
+So how it will work is:
+- When we tap the generate button, the image view will change into an animated mesh gradient like we see in @animatedeffects.md while the image loads. This will use the "thinking" effect that is being applied in @animatedeffects.md 
+- When the image is loaded, the animation goes away
+- We could also apply an effect to the border of the image view while it's loading so that it is animated and feels magical - Ok we have a few errors before we can build it:
+/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:10:14 Cannot convert value of type 'Double' to expected element type 'SIMD2&lt;Float&gt;.ArrayLiteralElement' (aka 'Float')/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:11:14 Cannot convert value of type 'Double' to expected element type 'SIMD2&lt;Float&gt;.ArrayLiteralElement' (aka 'Float')/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:12:14 Cannot convert value of type 'Double' to expected element type 'SIMD2&lt;Float&gt;.ArrayLiteralElement' (aka 'Float')/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:13:14 Cannot convert value of type 'Double' to expected element type 'SIMD2&lt;Float&gt;.ArrayLiteralElement' (aka 'Float')/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:14:14 Cannot convert value of type 'Double' to expected element type 'SIMD2&lt;Float&gt;.ArrayLiteralElement' (aka 'Float')/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:15:14 Cannot convert value of type 'Double' to expected element type 'SIMD2&lt;Float&gt;.ArrayLiteralElement' (aka 'Float')
+- One more error:
+/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradient.swift:12:44 Type '(UnsafeMutablePointer&lt;time_t&gt;?) -&gt; time_t' (aka '(Optional&lt;UnsafeMutablePointer&lt;Int&gt;&gt;) -&gt; Int') cannot conform to 'BinaryFloatingPoint'- Another error:
+/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradient.swift:15:32 Type 'GraphicsContext.Filter' has no member 'shader'PLEASE make sure you are reading @animatedeffects.md as well to do this properly- SO MANY ERRORS YOU NEED TO FIX THESE OTHERWISE YOU WILL GET FIRED:/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:8:21 Extra arguments at positions #1, #2, #3, #4 in call/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:12:22 Missing argument labels 'repeating:count:' in call/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:12:35 Missing argument labels 'repeating:count:' in call/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:12:50 Missing argument labels 'repeating:count:' in call/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:21:18 Reference to member 'blue' cannot be resolved without a contextual type/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:21:25 Reference to member 'purple' cannot be resolved without a contextual type/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:21:34 Reference to member 'indigo' cannot be resolved without a contextual type/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:22:18 Reference to member 'orange' cannot be resolved without a contextual type/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:22:27 Reference to member 'white' cannot be resolved without a contextual type/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:22:35 Reference to member 'blue' cannot be resolved without a contextual type/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:23:18 Reference to member 'yellow' cannot be resolved without a contextual type/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:23:27 Reference to member 'purple' cannot be resolved without a contextual type/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:23:36 Reference to member 'mint' cannot be resolved without a contextual type/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/MeshGradientView.swift:25:19 Cannot convert value of type 'Float' to expected argument type 'Timer?'
+- Ok this is nice but I don't like the colors as much as the ones that are in @animatedeffects.md make sure you follow those more closely - and can we add a blur or Ripple to it so that it ripples out like in @animatedeffects.md when the image loads!- One error:
+/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/RippleEffect.swift:50:18 Type 'Shader' has no member 'wave'PLEASE GET THIS RIGHT OTHERWISE ITS OVER @animatedeffects.md for reference again- Errors:
+/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Shaders/Ripple.metal:7:5 Use of undeclared identifier 'SwiftUI'
+/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/Views/RippleEffect.swift:50:18 Type 'Shader' has no member 'wave'
+</code></pre></div></div>
+
+<p>太好了，现在我们有了一些网格渐变动画——让我们使用另一个新的 iOS 18 功能——文字效果，来添加最后一个动画！</p>
+
+<p>所以，你可能会想“作为一个完全的新手，我怎么会知道这些呢”，答案其实很简单，就是去搜索现有的资源！我是通过搜索苹果开发者大会 WWDC 的最新内容了解到文字效果的，我的搜索词是“iOS 动画 WWDC”——这基本上会返回苹果在开发者大会上宣布的所有新内容，然后我在这个视频中发现了他们也宣布了“文字效果”以及如何编写它们。</p>
+
+<p>但再次强调，我并不打算亲自编写这些代码——相反，我直接从视频中复制了所有的代码示例</p>
+
+<p>[</p>
+
+<p><img src="https://pbs.twimg.com/media/GdHglRFWoAALpE7?format=jpg&amp;name=medium" alt="Image" /></p>
+
+<p>](https://x.com/ammaar/article/1860767695135973842/media/1860515051926364160)</p>
+
+<p>[</p>
+
+<p><img src="https://pbs.twimg.com/media/GdHgrANWkAArCIh?format=jpg&amp;name=medium" alt="Image" /></p>
+
+<p>](https://x.com/ammaar/article/1860767695135973842/media/1860515150475726848)</p>
+
+<p>合并为一个名为 metalshadertutorial.md 的文本文件</p>
+
+<p>[</p>
+
+<p><img src="https://pbs.twimg.com/media/GdHgyNcX0AAES2R?format=jpg&amp;name=medium" alt="Image" /></p>
+
+<p>](https://x.com/ammaar/article/1860767695135973842/media/1860515274287468544)</p>
+
+<p>这样，当我们在 Composer 中引用这个时，它将确切地知道需要什么代码，视频中关于代码的说明，以便了解如何使用它，然后我们就能将其整合到我们的应用中！</p>
+
+<p><img src="https://pbs.twimg.com/ext_tw_video_thumb/1860515830255026176/pu/img/biVfKri2mjWPMtE1.jpg" alt="" /></p>
+
+<ul>
+  <li>
+    <p>我们提供了完整的文件以供参考</p>
+  </li>
+  <li>
+    <p>布局弄错了，所以我们得告诉它文字需要放在动画上方，而不是下方</p>
+  </li>
+  <li>
+    <p>它搞错了循环逻辑，因此为了修复这个问题，我们不得不转到它新创建的代码文件“TextEffect.swift”，查找包含动画时序的那部分代码，并指导它如何修正循环行为：“这里有问题，因为当我反转文本时，它只消失了一半就卡在中间不停动画，而不是完整地执行整个循环。”但通过给它指定要关注的代码块，它就不会尝试去做那些可能不熟悉编写的代码的傻事了。</p>
+  </li>
+</ul>
+
+<p>于是，在我们等待图片加载的过程中，一个非常漂亮的加载动画就出现了。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Ok now when the image is loading, I want to add one more effect. Let's use text effects that are in @metal-shader-tutorial.md and have the text "Creating your masterpiece" animate in on a loop while the image is loading
+
+- Not quite - the text "creating your masterpiece" needs to be ON TOP OF our mesh gradient loader, and then it needs to animate in as shown in@metal-shader-tutorial.md MAKE SURE YOU FOLLOW THE DOC AS IS WHEN IT COMES TO TEXT EFFECTS FOR iOS 18 AS THEY OUTLINED- Something is wrong here because when im reversing the text it disappears only half way and then gets stuck animating in the middle rather than playnig out the whole loop     var body: some View {
+        VStack {
+            if isVisible || isReversing {
+                let creating = Text("Creating")
+                    .customAttribute(EmphasisAttribute())
+                    .foregroundStyle(.white)
+                    .bold()                let your = Text("your")
+                    .customAttribute(EmphasisAttribute())
+                    .foregroundStyle(.white)
+                    .bold()                let masterpiece = Text("masterpiece")
+                    .customAttribute(EmphasisAttribute())
+                    .foregroundStyle(.white)
+                    .bold()                Text("\(creating) \(your) \(masterpiece)")
+                    .font(.system(.title, design: .rounded, weight: .semibold))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 250)
+                    .transition(TextTransition())
+            }
+        }
+        .onAppear {
+            startAnimation()            // Setup timer for looping
+            timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in
+                reverseAnimation()
+            }
+        }
+        .onDisappear {
+            timer?.invalidate()
+        }
+    }    private func startAnimation() {
+        isReversing = false
+        withAnimation(.linear(duration: 0.9)) {
+            isVisible = true
+        }
+    }    private func reverseAnimation() {
+        isReversing = true
+        withAnimation(.linear(duration: 2.0)) {
+            isVisible = false
+        }        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+            isReversing = false
+            withAnimation(.linear(duration: 2.0)) {
+                isVisible = false
+            }
+        }
+    }
+}
+</code></pre></div></div>
+
+<p>好的，既然我们已经花了（太多）时间在动画上，让我们让应用变得更加实用。拥有一个图片库会很有趣，改进模型的外观，甚至增加保存功能！</p>
+
+<p>对于本节内容，我录制了带有配音的视频，以便您能轻松跟随学习。同时，我还包含了所有犯过的错误和失误，这样您就能看到当事情第一次不可避免地无法完美运行时，来回调整的过程是怎样的。</p>
+
+<p><img src="https://pbs.twimg.com/ext_tw_video_thumb/1860739655160713216/pu/img/-AGlg1fDmniVcozX.jpg" alt="" /></p>
+
+<p>这使得我们的应用程序在视觉上更具吸引力，并改进了我们在 EverArt 上创建的图像模型在应用程序中的显示效果</p>
+
+<p><img src="https://pbs.twimg.com/ext_tw_video_thumb/1860745305605431296/pu/img/g4UYBrzpdN1jV36p.jpg" alt="" /></p>
+
+<p>综上所述，我附上了一份未经编辑的完整版本，因为我想展示有时 Composer 可能会在一个问题上陷入困境，直到你尝试从不同角度解释时，它才能真正理解如何解决。最终，我们达到了目标，本可以一次提示就解决问题，但随着提示的深入，其上下文窗口被耗尽，它往往会忘记一些事情，这时就需要我们介入帮助它回忆。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Check out @EverArtOpenAPIspec.txt and in it, it supports image URLs for the models that we are fetching, let's update our model selection sheet so that it shows the images of each model in a nice image grid instead, and then it includes the title and type of model (object, style, etc.) as supporting text for each item
+
+- I have two errors:
+/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/ViewModels/ImageGeneratorViewModel.swift:202:20 Type 'ImageGeneratorViewModel.ModelsResponse' does not conform to protocol 'Decodable'/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/ViewModels/ImageGeneratorViewModel.swift:202:20 Type 'ImageGeneratorViewModel.ModelsResponse' does not conform to protocol 'Encodable'
+- Still have one more error! 
+/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/ContentView.swift:195:16 Cannot find type 'AIModel' in scopeAnd check to see you are doing this correctly @ImageGeneratorViewModel.swift - Awesome! Now in the model selector on the main page, let's also include the selected model's thumbnail instead of the placeholder image icon- Great! Now I want to save every image that's generated on our gallery tab, again it needs to show an image grid of the images generated, and I would like them to persist even when we restart the app.- @GalleryView.swift I am getting these errors, you might have written overlapping code/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/ContentView.swift:135:18 Value of type 'GalleryView' has no member 'tabItem'/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/ContentView.swift:286:8 Invalid redeclaration of 'GalleryView'/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/ContentView.swift:305:29 'GalleryImageItem' initializer is inaccessible due to 'private' protection level/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/ContentView.swift:316:8 Invalid redeclaration of 'GalleryImageItem'/Users/ammaar/Development/CursoriOS Projects/ImageGeneratorAppDemo/ImageGeneratorAppDemo/ContentView.swift:365:8 Invalid redeclaration of 'ImageDetailView'- Amazing! The images generate and save to the gallery, the full screen view on @GalleryView.swift look great but I am getting spinners on the saved images when they have definitely saved since they show up in the full screen view - So old images are loading fine but new ones are now displaying a warning icon instead, again when I tap full screen though, it works- There is still a mistake—when an image is generated and being displayed both successfully on our generation page and in the full screen view, the thumbnail in gallery view is not loading—look into this this should be fine since it is loading in other places perfectly, why does it require loading if it's downloaded already? - Ok so when I close the app and reload it the image loads fine but when I switch to the tab right after generation, the image errors out! PLEASE FIX THIS OR YOU WILL BE FIRED @GalleryView.swift - OK that worked — now we want to be able to save any generated images from the full screen view, so when I am in the full screen view, include a download icon/button in the header that saves it to my photo album on iOS
+</code></pre></div></div>
+
+<p><img src="https://pbs.twimg.com/ext_tw_video_thumb/1860746502181650432/pu/img/llSXmK8st34T6I2U.jpg" alt="" /></p>
+
+<p>最后，我们将快速创建一个应用图标并添加到应用中，更改应用的显示名称和 App Store 名称，并提交审核！</p>
+
+<p>于是，从构思出发，我们打造了一款功能完备的图像生成应用，随后仅凭描述进一步设计，将其转化为可运行的代码，继而通过动画、更多功能扩展应用，并完成 App Store 提交准备。这一切，无需亲手编写代码，仅在 Figma 上稍作操作。</p>
+
+<p>我们正处于一个可以自由构建创意的时代，你将没有任何障碍去实现它（除了大量的调试和偶尔威胁要解雇克劳德😂）。</p>
+
+<p>感谢您抽出时间阅读本文，希望它对您有所帮助和启发。如果您还在犹豫是否开始应用开发之旅，我衷心希望这篇文章能成为您所需的催化剂。如果在过程中遇到任何问题或有疑问，我随时恭候您的@回复。</p>
+
+      </section>
+    </div>
+  </body>
+</html>

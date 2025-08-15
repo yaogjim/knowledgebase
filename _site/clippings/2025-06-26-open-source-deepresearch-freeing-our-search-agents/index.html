@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open-source DeepResearch – Freeing our search agents</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Open-source DeepResearch – Freeing our search agents</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Open-source DeepResearch – Freeing our search agents</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-06-26</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://huggingface.co/blog/open-deep-research" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><a href="https://huggingface.co/blog">返回文章</a></p>
+
+<h2 id="开源深度研究解放我们的搜索代理">开源深度研究——解放我们的搜索代理</h2>
+
+<p>发布于2025年2月4日</p>
+
+<p><a href="https://github.com/huggingface/blog/blob/main/open-deep-research.md">GitHub 上的更新</a></p>
+
+<h2 id="tldr">TLDR</h2>
+
+<p>昨天，OpenAI 发布了《深度研究》，这是一个通过浏览网页来总结内容并基于总结回答问题的系统。该系统令人印象深刻，我们首次试用时就被它震撼到了。</p>
+
+<p>这篇博客文章的主要成果之一是在通用人工智能助手基准测试（GAIA）中性能有了显著提升，这也是我们最近一直在研究的一个基准测试。在该测试中，他们平均在单样本情况下成功达到了近 67%的正确答案率，在特别具有挑战性的涉及多步推理和工具使用的“3 级”问题上达到了 47.6%的正确率（有关 GAIA 的介绍见下文）。</p>
+
+<p>DeepResearch 由一个大语言模型（LLM）（可以从 OpenAI 提供的当前大语言模型列表中选择，如 4o、o1、o3 等）和一个内部“智能体框架”组成，该框架引导大语言模型使用网络搜索等工具，并按步骤组织其行动。</p>
+
+<p>虽然强大的语言模型（LLMs）现在在开源领域可以免费获取（例如，参见最近的 DeepSeek R1 模型），但 OpenAI 并未过多披露 Deep Research 背后的智能体框架……</p>
+
+<p>于是我们决定展开一场为期24小时的任务，重现他们的研究成果，并在此过程中开源所需的框架！</p>
+
+<p>时间紧迫，我们走吧！⏱️</p>
+
+<h2 id="目录">目录</h2>
+
+<ul>
+  <li><a href="https://huggingface.co/blog/#open-source-deepresearch--freeing-our-search-agents">开源深度研究——解放我们的搜索代理</a>
+    <ul>
+      <li><a href="https://huggingface.co/blog/#tldr">TLDR</a></li>
+      <li><a href="https://huggingface.co/blog/#table-of-contents">目录</a></li>
+      <li><a href="https://huggingface.co/blog/#what-are-agent-frameworks-and-why-they-matter">什么是智能体框架以及它们为何重要？</a></li>
+      <li><a href="https://huggingface.co/blog/#the-gaia-benchmark">GAIA 基准测试</a></li>
+      <li><a href="https://huggingface.co/blog/#building-an-open-deep-research">构建一个开放的深度研究</a>
+        <ul>
+          <li><a href="https://huggingface.co/blog/#using-a-codeagent">使用代码智能体</a></li>
+          <li><a href="https://huggingface.co/blog/#making-the-right-tools-%EF%B8%8F">打造合适的工具 🛠️</a></li>
+        </ul>
+      </li>
+      <li><a href="https://huggingface.co/blog/#results-">结果 🏅</a></li>
+      <li><a href="https://huggingface.co/blog/#community-reproductions">社区复现</a></li>
+      <li><a href="https://huggingface.co/blog/#most-important-next-steps">最重要的后续步骤</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="什么是智能体框架以及它们为何重要">什么是智能体框架以及它们为何重要？</h2>
+
+<blockquote>
+  <p>智能体框架是位于大语言模型（LLM）之上的一层，用于使该大语言模型执行操作（如浏览网页或读取 PDF 文档），并将其操作组织成一系列步骤。如需快速了解智能体，请查看 <a href="https://youtu.be/sal78ACtGTc?feature=shared&amp;t=52">吴恩达的这篇精彩访谈</a> 以及我们关于 smolagents 库的 <a href="https://huggingface.co/blog/smolagents">介绍博客文章</a> 。如需更深入地了解智能体，你可以订阅我们即将在几天内开课的智能体课程： <a href="https://huggingface.us17.list-manage.com/subscribe?u=7f57e683fa28b51bfc493d048&amp;id=9ed45a3ef6">此处链接</a> 。</p>
+</blockquote>
+
+<p>几乎每个人都已经通过与聊天机器人互动体验到了大语言模型（LLMs）的强大之处。然而，并非每个人都意识到，将这些大语言模型集成到智能体系统中可以赋予它们真正的超能力！</p>
+
+<p>以下是一个近期的例子，比较了几个前沿的大语言模型（LLMs）在有无智能体框架（在这种情况下是简单的 <a href="https://github.com/huggingface/smolagents">smolagents</a> 库）时的性能——使用智能体框架可将性能提升多达 60 分！</p>
+
+<p><a href="https://huggingface.co/datasets/huggingface/documentation-images/resolve/6c7ed2035810565043c92b472d5564c3f1fa4d7e/blog/open-deep-research/benchmarks.png"><img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/6c7ed2035810565043c92b472d5564c3f1fa4d7e/blog/open-deep-research/benchmarks.png" alt="Benchmarks" /></a></p>
+
+<p>事实上，OpenAI 也在其发布的博客文章中强调了 Deep Research 在知识密集型的“人类最后一场考试”基准测试中，表现比独立的大语言模型（LLMs）好得多。</p>
+
+<p>那么，当我们将当前顶级的语言模型集成到一个智能体框架中，以朝着“开源深度研究”的目标努力时，会发生什么呢？</p>
+
+<p><strong>快速说明：</strong> 我们将在相同的 GAIA 挑战上对结果进行基准测试，但请记住，这仍在进行中。深度研究是一项巨大的成就，对其进行开源复现需要时间。特别是，要实现完全对等，需要改进浏览器的使用和交互，就像 OpenAI Operator 所提供的那样，即超越我们在第一步中探索的当前仅文本的网络交互。</p>
+
+<p>让我们首先了解一下挑战的范围：GAIA。</p>
+
+<h2 id="gaia-基准测试">GAIA 基准测试</h2>
+
+<p><a href="https://huggingface.co/datasets/gaia-benchmark/GAIA">GAIA</a> 可以说是针对智能体最全面的基准测试。它的问题非常难，涉及基于大语言模型（LLM）系统的诸多挑战。以下是一个难题示例：</p>
+
+<blockquote>
+  <p>在2008年画作《乌兹别克斯坦刺绣》中展示的水果中，哪些是1949年10月那艘远洋客轮早餐菜单的一部分？那艘客轮后来被用作电影《最后航程》的水上道具。请以逗号分隔的列表形式给出这些水果，按照它们在画作中从12点位置开始顺时针排列的顺序。每个水果都使用复数形式。</p>
+</blockquote>
+
+<p>你可以看到这个问题涉及几个挑战：</p>
+
+<ul>
+  <li>以受限格式回答</li>
+  <li>利用多模态功能（从图像中提取成果）</li>
+  <li>收集多条信息，其中一些信息依赖于其他信息：
+    <ul>
+      <li>识别图片上的水果</li>
+      <li>找出哪艘远洋客轮被用作电影《最后航程》的浮动道具</li>
+      <li>查找上述远洋客轮1949年10月的早餐菜单</li>
+    </ul>
+  </li>
+  <li>以正确的顺序将解决问题的轨迹串联起来。</li>
+</ul>
+
+<p>要解决这个问题，既需要高层次的规划能力，也需要严谨的执行能力，而这两个方面恰恰是 LLMs 单独使用时所难以应对的。</p>
+
+<p>所以它对智能体系统来说是一个很棒的测试集！</p>
+
+<p>在 GAIA 的 <a href="https://huggingface.co/spaces/gaia-benchmark/leaderboard">公开排行榜</a> 上，当没有任何智能体设置时，GPT-4 在验证集上的得分甚至未达到 7%。而在另一端，通过深度研究，OpenAI 在验证集上达到了 67.36%的分数，整整高出一个数量级！（不过我们不知道它们在私人测试集上的实际表现如何。）</p>
+
+<p>让我们看看能否借助开源工具做得更好！</p>
+
+<h2 id="构建一个开放的深度研究">构建一个开放的深度研究</h2>
+
+<h3 id="使用代码智能体">使用代码智能体</h3>
+
+<p>我们要解决的对传统人工智能代理系统的第一个改进是使用所谓的“代码代理”。正如王等人（2024年）所表明的，让代理用代码来表达其行动有几个优点，但最显著的是，**代码是专门设计用来表达复杂的行动序列的**。</p>
+
+<p>考虑王等人给出的这个例子：</p>
+
+<p><a href="https://huggingface.co/datasets/huggingface/documentation-images/resolve/6c7ed2035810565043c92b472d5564c3f1fa4d7e/blog/open-deep-research/code_agent.png"><img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/6c7ed2035810565043c92b472d5564c3f1fa4d7e/blog/open-deep-research/code_agent.png" alt="Code Agent" /></a></p>
+
+<p>这凸显了使用代码的几个优点：</p>
+
+<ul>
+  <li>代码操作比 JSON <strong>简洁得多</strong> 。
+    <ul>
+      <li>需要运行 4 个并行流，每个流包含 5 个连续动作？在 JSON 中，你需要生成 20 个 JSON 块，每个块在单独的步骤中；而在代码中，这只需要 1 步。</li>
+      <li>该论文平均表明，代码操作所需的步骤比 JSON 少 30%，这相当于生成的令牌数量也减少了相同比例。由于大语言模型（LLM）调用通常是智能体系统的成本决定因素，这意味着你的智能体系统运行成本降低了约 30%。</li>
+    </ul>
+  </li>
+  <li>代码能够复用通用库中的工具</li>
+  <li>在基准测试中表现更佳，原因有二：
+    <ul>
+      <li>表达动作的更直观方式</li>
+      <li>在训练中让语言模型大量接触代码</li>
+    </ul>
+  </li>
+</ul>
+
+<p>上述优势在我们对 <a href="https://github.com/aymeric-roucher/agent_reasoning_benchmark">agent_reasoning_benchmark</a> 进行的实验中得到了证实。</p>
+
+<p>通过构建 <code class="language-plaintext highlighter-rouge">smolagents</code> ，我们还可以列举一个显著的额外优势，即对状态的处理更好：这在多模态任务中尤其有用。需要存储此图像/音频/其他内容以供后续使用？没问题，只需将其作为状态中的变量进行赋值，如果需要，4 步之后就可以重新使用它。在 JSON 中，你必须让 LLM 在字典键中为其命名，并相信 LLM 之后会明白它仍然可以使用该内容。</p>
+
+<h3 id="打造合适的工具-️">打造合适的工具 🛠️</h3>
+
+<p>现在我们需要为智能体提供正确的工具集。</p>
+
+<p><strong>1.</strong> 一个网络浏览器。虽然要实现全面性能需要像 <a href="https://openai.com/index/introducing-operator/">Operator</a> 这样功能完备的网络浏览器交互，但目前我们为首个概念验证构建了一个极其简单的基于文本的网络浏览器。你可以 <a href="https://github.com/huggingface/smolagents/tree/main/examples/open_deep_research/scripts/text_web_browser.py">在此处</a> 找到代码。</p>
+
+<p><strong>2.</strong> 一个简单的文本检查器，能够 <strong>读取一堆文本文件格式</strong> ，可在此处 <a href="https://github.com/huggingface/smolagents/tree/main/examples/open_deep_research/scripts/text_inspector_tool.py">找到它</a> 。</p>
+
+<p>这些工具取自微软研究院出色的 <a href="https://www.microsoft.com/en-us/research/articles/magentic-one-a-generalist-multi-agent-system-for-solving-complex-tasks/">Magentic-One</a> 智能体，向他们致敬！我们对其改动不大，因为我们的目标是以尽可能低的复杂度获得尽可能高的性能。</p>
+
+<p>以下是我们认为能切实提升这些工具性能的简短改进路线图（欢迎随时提交拉取请求并做出贡献！）：</p>
+
+<ul>
+  <li>扩展可读取的文件格式数量。</li>
+  <li>提出对文件进行更细粒度的处理。</li>
+  <li>用基于视觉的浏览器取代网络浏览器，我们已经在[此处](a id=0)开始这样做了。</li>
+</ul>
+
+<h2 id="结果-">结果 🏅</h2>
+
+<p>在我们长达 24 小时以上的复制冲刺过程中，我们已经看到我们的智能体在 GAIA 上的性能稳步提升！</p>
+
+<p>我们已经迅速从之前使用开源框架的最优技术水平（Magentic-One 约为 46%）提升到了我们目前在验证集上 55.15%的性能。</p>
+
+<p>性能的提升主要归功于让我们的智能体用代码编写它们的行动！实际上，当切换到一个用 JSON 而不是代码编写行动的标准智能体时，相同设置在验证集上的性能立即下降到平均 33%。</p>
+
+<p><a href="https://github.com/huggingface/smolagents/tree/main/examples/open_deep_research">这是最终的智能体系统。</a></p>
+
+<p>我们在此为您设置了一个实时演示 <a href="https://m-ric-open-deep-research.hf.space/">（点击此处查看）</a> ，供您试用！</p>
+
+<p>然而，这仅仅是个开始，还有很多需要改进的地方！我们的开源工具可以变得更好，smolagents 框架也可以进行优化，并且我们很乐意探索性能更优的开源模型来支持智能体。</p>
+
+<p>我们欢迎社区加入我们的这项事业，这样我们就可以共同利用开放研究的力量，构建一个出色的开源智能体框架！这将使任何人都能够在家中使用自己喜欢的模型，通过完全本地化和定制化的方式运行类似 DeepResearch 的智能体！</p>
+
+<h2 id="社区复现">社区复现</h2>
+
+<p>当我们致力于此并专注于 GAIA 时，社区中出现了其他出色的深度研究开源实现，特别是来自于</p>
+
+<ul>
+  <li><a href="https://x.com/dzhng/status/1886603396578484630">dzhng</a>,</li>
+  <li><a href="https://github.com/assafelovic/gpt-researcher">阿萨费洛维奇</a> ，</li>
+  <li><a href="https://github.com/nickscamara/open-deep-research">nickscamara</a> ，</li>
+  <li><a href="https://github.com/jina-ai/node-DeepResearch">豆包</a> 和</li>
+  <li><a href="https://x.com/mattshumer_/status/1886558939434664404">mshumer</a> 。 （这里的“mshumer”看起来像是一个特定名称，未进行翻译，保留原样）</li>
+</ul>
+
+<p>这些实现中的每一个都使用不同的库来索引数据、浏览网页和查询大语言模型（LLMs）。在这个项目中，我们希望<强 id="0">重现 OpenAI 提出的基准测试（通过率@1 平均分数），对切换到开源大语言模型（如百川 R1）进行基准测试并记录我们的发现，使用视觉大语言模型，针对代码原生智能体对传统工具调用进行基准测试。</强></p>
+
+<h2 id="接下来最重要的步骤">接下来最重要的步骤</h2>
+
+<p>OpenAI 的深度研究可能得益于他们随 <a href="https://openai.com/index/introducing-operator/">Operator</a> 推出的出色网络浏览器。</p>
+
+<p>所以我们接下来就要解决这个问题！在一个更普遍的问题上：我们要构建图形用户界面代理，即“能够查看你的屏幕并可直接通过鼠标和键盘进行操作的代理”。如果你对这个项目感到兴奋，并且想通过开源帮助每个人都能获得如此酷炫的功能，我们非常欢迎你的贡献！</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

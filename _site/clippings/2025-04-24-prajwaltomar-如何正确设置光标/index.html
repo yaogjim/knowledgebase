@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提取中文标题</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">提取中文标题</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">提取中文标题</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @PrajwalTomar_</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-24</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/PrajwalTomar_/status/1912513810575097900/?rw_tt_thread=True" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>Prajwal Tomar</strong> @PrajwalTomar_ <a href="https://x.com/PrajwalTomar_/status/1912513810575097900">2025-04-16</a></p>
+
+<p>如何正确设置光标</p>
+
+<p>游标规则已过时。项目规则才是目前的正确方式。</p>
+
+<p>以下是它为何重要以及如何正确设置它的原因：</p>
+
+<p><img src="https://pbs.twimg.com/media/GoqYJH2XwAA9YmP?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>Prajwal Tomar</strong> @PrajwalTomar_ <a href="https://x.com/PrajwalTomar_/status/1912513814207295655">2025-04-16</a></p>
+
+<p>1. 为什么.cursorrules 还不够</p>
+
+<p>游标最初在项目根目录使用单个.cursorrules 文件，但这种方法存在严重问题：</p>
+
+<p>有限控制</p>
+
+<p>→ 一个规则文件应用于整个项目，即使不相关时也是如此。</p>
+
+<p>上下文过载</p>
+
+<p>→ 光标必须</p>
+
+<hr />
+
+<p><strong>Prajwal Tomar</strong> @PrajwalTomar_ <a href="https://x.com/PrajwalTomar_/status/1912513817394966616">2025-04-16</a></p>
+
+<p>2. 介绍 Cursor 的项目规则（.mdc 文件）</p>
+
+<p>通过引入项目规则，Cursor 解决了所有这些问题，这些规则以模块化的.mdc 文件形式存储在.cursor/rules/目录中。</p>
+
+<p>这使您能够针对每个文件类型、模块或功能应用规则，而不是针对一个大文件。</p>
+
+<p>为什么项目规则更好：</p>
+
+<hr />
+
+<p><strong>Prajwal Tomar</strong> @PrajwalTomar_ <a href="https://x.com/PrajwalTomar_/status/1912513820511105231">2025-04-16</a></p>
+
+<p>3. 逐步设置</p>
+
+<p>以下是正确设置项目规则的方法：</p>
+
+<hr />
+
+<p><strong>Prajwal Tomar</strong> @PrajwalTomar_ <a href="https://x.com/PrajwalTomar_/status/1912513826555326773">2025-04-16</a></p>
+
+<p>步骤 1：一般规则（general.mdc）</p>
+
+<p>此规则适用于整个项目中的所有文件。</p>
+
+<p>范围：*（所有文件）</p>
+
+<p>内容：</p>
+
+<p>- 所有开发都使用 TypeScript。</p>
+
+<p>- 优先考虑可读性和可维护性。</p>
+
+<p>- 使用清晰、具描述性的名称。</p>
+
+<p>- 为复杂内容添加有意义的注释</p>
+
+<p><img src="https://pbs.twimg.com/media/GoqYOvdWkAAxZcE?format=png&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>Prajwal Tomar</strong> @PrajwalTomar_ <a href="https://x.com/PrajwalTomar_/status/1912513832607707370">2025-04-16</a></p>
+
+<p>步骤 2：前端规则（frontend.mdc）</p>
+
+<p>这些规则仅适用于前端文件（.tsx）。</p>
+
+<p>范围：*.tsx（React 组件）</p>
+
+<p>内容：</p>
+
+<p>- 使用函数式 React 组件。</p>
+
+<p>- 应用 Tailwind CSS；避免内联样式。</p>
+
+<p>- 组件应该是模块化且可复用的。</p>
+
+<p>- 保持一致</p>
+
+<p><img src="https://pbs.twimg.com/media/GoqYSkEWgAAWOaH?format=png&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>Prajwal Tomar</strong> @PrajwalTomar_ <a href="https://x.com/PrajwalTomar_/status/1912513836458078289">2025-04-16</a></p>
+
+<p>步骤 3：后端规则（backend.mdc）</p>
+
+<p>这些规则仅适用于后端逻辑（.ts API 和数据库文件）。</p>
+
+<p>范围：api/**/*.ts（所有后端 API 文件）</p>
+
+<p>内容：</p>
+
+<p>- 始终验证 API 输入。</p>
+
+<p>- 始终一致地使用 async/await。</p>
+
+<p>- 遵循 RESTful 约定。</p>
+
+<p>- 针对……优化查询</p>
+
+<hr />
+
+<p><strong>Prajwal Tomar</strong> @PrajwalTomar_ <a href="https://x.com/PrajwalTomar_/status/1912513839213765105">2025-04-16</a></p>
+
+<p>4. 我所在机构发生了什么变化</p>
+
+<p>切换到项目规则产生了实际影响：</p>
+
+<p>更少的人工智能错误</p>
+
+<p>→ 光标更精确地遵循作用域规则。</p>
+
+<p>不再有重复的修正</p>
+
+<p>→ 人工智能会记住你的标准并自动应用它们。</p>
+
+<p>更简洁、更一致的代码</p>
+
+<p>→ 每个人</p>
+
+<hr />
+
+<p><strong>Prajwal Tomar</strong> @PrajwalTomar_ <a href="https://x.com/PrajwalTomar_/status/1912513842619560085">2025-04-16</a></p>
+
+<p>5. 项目规则的最佳实践</p>
+
+<p>要充分利用.mdc：</p>
+
+<p>保持规则模块化：</p>
+
+<p>- 分离前端、后端和数据库逻辑。</p>
+
+<p>使用精确的范围：</p>
+
+<p>- .tsx → React 组件</p>
+
+<p>- api/**/*.ts → 后端应用程序编程接口</p>
+
+<p>- */*.sql → SQL 查询</p>
+
+<p>定期完善规则：</p>
+
+<p>- 如果一条规则是</p>
+
+<hr />
+
+<p><strong>Prajwal Tomar</strong> @PrajwalTomar_ <a href="https://x.com/PrajwalTomar_/status/1912513845597507632">2025-04-16</a></p>
+
+<p>6. 最终要点：项目规则是一个改变游戏规则的因素</p>
+
+<p>光标项目规则比.cursorrules 有了巨大改进：</p>
+
+<p>- 人工智能生成的代码更准确且遵循最佳实践。</p>
+
+<p>- 规则更易于管理、更新，并在各个项目中进行扩展。</p>
+
+<p>- 减少修复所花费的时间</p>
+
+<hr />
+
+<p><strong>Prajwal Tomar</strong> @PrajwalTomar_ <a href="https://x.com/PrajwalTomar_/status/1912513848965484982">2025-04-16</a></p>
+
+<p>Cursor 不仅仅是一个由人工智能驱动的集成开发环境，它是一个在正确设置时能适应您的编码标准的工具。</p>
+
+<p>如果你仍在使用.cursorrules，那你就在限制 Cursor 的潜力。</p>
+
+<p>立即开始使用项目规则，全面掌控人工智能生成的代码。</p>
+
+<p>有什么问题吗？让我们</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@PrajwalTomar_</span>
+            
+          
+            
+              <span class="tag">提取带有</span>
+            
+          
+            
+          
+            
+              <span class="tag">的中文标签</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision Language Model Alignment in TRL</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Vision Language Model Alignment in TRL</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Vision Language Model Alignment in TRL</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-08-08</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://huggingface.co/blog/trl-vlm-alignment" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><a href="https://huggingface.co/blog">Back to Articles</a></p>
+
+<h2 id="trl-中的视觉语言模型对齐-️">TRL 中的视觉语言模型对齐 ⚡️</h2>
+
+<p>发布于2025年8月7日</p>
+
+<p><a href="https://github.com/huggingface/blog/blob/main/trl-vlm-alignment.md">Update on GitHub</a></p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>视觉语言模型（VLM）正在变得更强大，但使它们与人类偏好保持一致仍然很重要。在 TRL 中，我们已经展示了如何通过【监督微调（SFT）】和【直接偏好优化（DPO）】对 VLM 进行训练后调整。这次，我们将更进一步。</p>
+
+<p>**总结**：我们在 TRL 中添加了两种新的多模态对齐方法：**组相对策略优化（GRPO）**、其变体**组序列策略优化（GSPO）**以及**混合偏好优化（MPO）**。所有这些方法都能让你超越成对的 DPO，从偏好数据中提取更多信号，并能更好地与现代视觉语言模型（VLM）进行扩展。我们发布了训练脚本和演示笔记本，以便轻松上手！</p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="https://huggingface.co/blog/#multimodal-alignment-for-vlms-in-trl-%EF%B8%8F">TRL ⚡️ 中用于视觉语言模型的多模态对齐</a>
+    <ul>
+      <li><a href="https://huggingface.co/blog/#introduction">Introduction</a></li>
+      <li><a href="https://huggingface.co/blog/#alignment-for-vision-language-models">视觉语言模型对齐</a>
+        <ul>
+          <li><a href="https://huggingface.co/blog/#mixed-preference-optimization-mpo">混合偏好优化（MPO）</a></li>
+          <li><a href="https://huggingface.co/blog/#multimodal-group-relative-policy-optimization-grpo">多模态组相对策略优化（GRPO）</a></li>
+          <li><a href="https://huggingface.co/blog/#group-sequence-policy-optimization-gspo">组序列策略优化（GSPO）</a></li>
+          <li><a href="https://huggingface.co/blog/#comparison">Comparison</a></li>
+        </ul>
+      </li>
+      <li><a href="https://huggingface.co/blog/#vllm-integration-in-trl">TRL 中的 vLLM 集成</a></li>
+      <li><a href="https://huggingface.co/blog/#useful-resources">Useful Resources</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="视觉语言模型的对齐">视觉语言模型的对齐</h2>
+
+<p>传统上，你会采用一个基础模型，应用监督微调（SFT）来遵循指令，然后应用直接偏好优化（DPO）使其与偏好数据对齐。此前， <a href="https://huggingface.co/blog/dpo_vlm">我们将这种方法应用于视觉语言模型（VLM）</a> ，并在 IDEFICS2 上进行了验证，结果显示模型响应有所改进。</p>
+
+<p>DPO 的工作原理是使用对比损失来优化模型响应之间的偏好：你有一个选定的答案和一个被拒绝的答案，然后根据你想要和不想要的内容来优化你的偏好。</p>
+
+<p>但在过去一年中，新的多模态对齐方法，如 GRPO 和 MPO，开始流行起来，这些方法可以进一步提升视觉语言模型（VLM）的性能。在博客文章末尾，你可以找到一个展示模型响应差异的表格。</p>
+
+<h3 id="混合偏好优化mpo">混合偏好优化（MPO）</h3>
+
+<p>由于分布偏移，将多模态模型与监督微调（SFT）对齐以执行推理任务存在不足。同时，与近端策略优化对偶（DPO）对齐的模型无法生成连贯的推理依据，并且可能会生成重复的回答。为了解决这个问题，有一种专门为多模态模型设计的新技术，称为混合偏好优化（MPO）。这种方法本质上是 DPO 的扩展，具有多种损失：来自 DPO 的偏好损失（sigmoid）、来自二元分类器优化（BCO）的质量损失以及来自 SFT 的生成损失。根据论文，简单地切换到这种组合损失会使 MathVista 的性能提高 6.2 分！</p>
+
+<p><a href="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/trl-vlm/image_1.png"><img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/trl-vlm/image_1.png" alt="MPO" /></a></p>
+
+<p>由于这只是在修改损失，我们在 TRL 的 <code class="language-plaintext highlighter-rouge">DPOTrainer</code> 类中添加了对组合损失的支持。要使用它，你可以按如下方式初始化 <code class="language-plaintext highlighter-rouge">DPOConfig</code> ：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mpo_config</span> <span class="o">=</span> <span class="n">DPOConfig</span><span class="p">(</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="n">tmp_dir</span><span class="p">,</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">9e-1</span><span class="p">,</span>
+    <span class="n">loss_type</span><span class="o">=</span><span class="p">[</span><span class="s">"sigmoid"</span><span class="p">,</span> <span class="s">"bco_pair"</span><span class="p">,</span> <span class="s">"sft"</span><span class="p">],</span> <span class="c1"># Loss types to combine, as used in the MPO paper
+</span>    <span class="n">loss_weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="c1"># Corresponding weights, as used in the MPO paper
+</span>    <span class="n">report_to</span><span class="o">=</span><span class="s">"none"</span><span class="p">,</span>
+    <span class="n">bf16</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">fp16</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">use_cpu</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">max_steps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>然后初始化 <code class="language-plaintext highlighter-rouge">DPOTrainer</code> ：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mpo_trainer</span> <span class="o">=</span> <span class="n">DPOTrainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model_id</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">mpo_config</span><span class="p">,</span>
+    <span class="n">processing_class</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">mpo_trainer</span><span class="p">.</span><span class="n">train</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>就是这样！如果你想进一步探索，可以 <a href="https://huggingface.co/learn/cookbook/fine_tuning_vlm_mpo">在这里</a> 找到一个完整的笔记本示例。</p>
+
+<h3 id="多模态组相对策略优化grpo">多模态组相对策略优化（GRPO）</h3>
+
+<p>分组相对策略优化（GRPO）是一种前沿的对齐方法，最初在《DeepSeek Math》论文中提出，后来被集成到具有开创性的大语言模型（LLM）DeepSeek R1 中。它是近端策略优化（PPO）的扩展，其策略更新是在组（代表对话展开方式的一批轨迹）上进行的。此特性使其对奖励噪声更具鲁棒性，因为噪声在组内会相互抵消。由于模型学习的是对良好响应的更广泛理解，而非单个高奖励样本，所以这种方法也使模型具有很高的性能。</p>
+
+<p><a href="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/trl-vlm/image_2.png"><img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/trl-vlm/image_2.png" alt="GRPO" /></a></p>
+
+<p>在 TRL 中，我们现在引入了对视觉语言模型的 GRPO 支持。我们不会提供完整的训练脚本示例，因为你可以在笔记本中找到它。相反，我们将专注于突出关键组件和概念。</p>
+
+<p>为了使训练脚本有效运行，我们需要验证答案格式是否正确以及解决方案本身是否与已完成部分接近，因此我们编写了两个奖励函数。为了真正看到后一个奖励的改进，你需要一个相当极端的设置，即拥有相对较大的模型、大量的生成结果以及高质量、多样化的数据集。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">math_verify</span> <span class="kn">import</span> <span class="n">LatexExtractionConfig</span><span class="p">,</span> <span class="n">parse</span><span class="p">,</span> <span class="n">verify</span>
+
+<span class="k">def</span> <span class="nf">format_reward</span><span class="p">(</span><span class="n">completions</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="s">"""Reward function that checks if the completion has a specific format."""</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"^&lt;think&gt;.*?&lt;/think&gt;\s*&lt;answer&gt;.*?&lt;/answer&gt;$"</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span> <span class="k">for</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">completions</span><span class="p">]</span>
+    <span class="n">rewards_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="mf">0.0</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">]</span>
+    <span class="n">rewards</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="mf">0.0</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">completions</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rewards</span>
+
+<span class="k">def</span> <span class="nf">accuracy_reward</span><span class="p">(</span><span class="n">completions</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="s">"""Reward function that checks if the completion is the same as the ground truth."""</span>
+    <span class="n">solutions</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">'solution'</span><span class="p">]</span>
+    <span class="n">completion_contents</span> <span class="o">=</span> <span class="p">[</span><span class="n">completion</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">"content"</span><span class="p">]</span> <span class="k">for</span> <span class="n">completion</span> <span class="ow">in</span> <span class="n">completions</span><span class="p">]</span>
+    <span class="n">rewards</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">content</span><span class="p">,</span> <span class="n">solution</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">completion_contents</span><span class="p">,</span> <span class="n">solutions</span><span class="p">):</span>
+        <span class="n">gold_parsed</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">extraction_mode</span><span class="o">=</span><span class="s">"first_match"</span><span class="p">,</span> <span class="n">extraction_config</span><span class="o">=</span><span class="p">[</span><span class="n">LatexExtractionConfig</span><span class="p">()])</span>
+        <span class="n">answer_parsed</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">extraction_mode</span><span class="o">=</span><span class="s">"first_match"</span><span class="p">,</span> <span class="n">extraction_config</span><span class="o">=</span><span class="p">[</span><span class="n">LatexExtractionConfig</span><span class="p">()])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gold_parsed</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">rewards</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">verify</span><span class="p">(</span><span class="n">answer_parsed</span><span class="p">,</span> <span class="n">gold_parsed</span><span class="p">)))</span>
+            <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
+                <span class="n">rewards</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rewards</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rewards</span>
+</code></pre></div></div>
+
+<p>然后，你可以初始化 GRPOConfig 和 GRPOTrainer，传入我们上面定义的奖励函数，并调用 train()开始训练。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">trl</span> <span class="kn">import</span> <span class="n">GRPOConfig</span>
+
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">GRPOConfig</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">remove_unused_columns</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">max_prompt_length</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="p">..</span> <span class="c1"># setup other params of choice here
+</span><span class="p">)</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">GRPOTrainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">reward_funcs</span><span class="o">=</span><span class="p">[</span><span class="n">format_reward</span><span class="p">,</span> <span class="n">accuracy_reward</span><span class="p">],</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">training_args</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span>
+    <span class="n">processing_class</span><span class="o">=</span><span class="n">processor</span>
+<span class="p">)</span>
+<span class="n">trainer</span><span class="p">.</span><span class="n">train</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>在此处探索完整的笔记本示例 <a href="https://huggingface.co/learn/cookbook/fine_tuning_vlm_grpo_trl">此处</a> 。</p>
+
+<h3 id="组序列策略优化gspo">组序列策略优化（GSPO）</h3>
+
+<p><a href="https://huggingface.co/papers/2507.18071">组序列策略优化</a> （GSPO）是字节跳动公司最近发布的一种强化学习对齐算法，它克服了 GRPO 的一些局限性。它在序列级别而不是逐个 token 地实现了更稳定的训练计算重要性采样权重。其优势在混合专家（MoE）风格的模型中更为 <a href="https://github.com/volcengine/verl/pull/2775#issuecomment-3134375131">显著</a> 。</p>
+
+<p>最新的 TRL 还引入了对 GSPO 的支持，由于它是 GRPO 损失的一个变体，因此具备多模态支持。要创建训练器，过程与 GRPO 相同，但需添加以下额外参数（值取自论文）。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">trl</span> <span class="kn">import</span> <span class="n">GRPOConfig</span>
+
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">GRPOConfig</span><span class="p">(</span>
+        <span class="p">...</span>
+    <span class="n">importance_sampling_level</span><span class="o">=</span><span class="s">"sequence"</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mf">3e-4</span><span class="p">,</span>
+    <span class="n">epsilon_high</span><span class="o">=</span><span class="mf">4e-4</span><span class="p">,</span>
+    <span class="n">beta</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">loss_type</span><span class="o">=</span><span class="s">"grpo"</span><span class="p">,</span>
+    <span class="n">steps_per_generation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">steps_per_generation</span><span class="o">=</span><span class="mi">4</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="comparison">Comparison</h3>
+
+<p>以下是一个表格，总结了使用上述技术微调后的 Qwen2.5VL-3B 的模型输出。请注意，我们仅在数据集子集上进行了少量运行，并且模型是在不同数据集上进行微调的，因此该比较仅用于初步检验。</p>
+
+<p>在这里查看答案</p>
+
+<p><strong>Image:</strong><a href="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/vlm_math_question.png"><img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/vlm_math_question.png" alt="Image" /></a></p>
+
+<p><strong>Question:</strong> In the given figure, if the angle APO is 25.0 degrees, what is the measure of angle AOB? Choices: A: 140° B: 130° C: 120° D: 110°</p>
+
+<p><strong>Answer in the Dataset:</strong> To find the measure of angle AOB, we can use the property that the sum of the interior angles of a quadrilateral is equal to 360 degrees. Applying this property, we can calculate angle AOB as 360 - angle OAP - angle OBP - angle P. Since angle OAP and angle OBP are both 90 degrees, and angle P is given as 50 degrees, we can substitute these values into the equation to get angle AOB = 360 - 90 - 90 - 50 = 130 degrees. Therefore, the measure of angle AOB is 130 degrees. Therefore, the answer is option B. Answer:B</p>
+
+<p><strong>Base Model Output:</strong> To find the measure of angle AOB, we need to use the properties of angles subtended by the same arc in a circle. Specifically, the angle subtended by an arc at the center of the circle (angle AOB) is twice the angle subtended by the same arc at any point on the circumference (angle APO).Given that angle APO = 25°, we can calculate angle AOB as follows: Since angle AOB is twice angle APO, we have:[ Angle AOB = 2 * Angle APO ][ Angle AOB = 2 * 25° ][ Angle AOB = 50° ]However, this calculation seems incorrect based on the provided choices. Let’s re-evaluate using the correct property.The correct property states that the angle subtended by an arc at the center of the circle is twice the angle subtended by the same arc at any point on the circumference. Therefore, the correct calculation should be: Angle AOB = 2 * Angle APO = 2 * 25° = 50°But since this does not match the given choices, let’s consider another approach. If angle APO is 25°, and considering the properties of cyclic quadrilaterals or the fact that the sum of opposite angles in a cyclic quadrilateral is 180°, we might need to look at the supplementary angles formed by the arc and the chord.Let’s assume the correct interpretation involves finding the supplementary angle to the given angle APO which would give us the measure of angle AOB. Angle AOB = 180° - Angle APO = 180° - 25° = 155°This still doesn’t match the choices. Given the choices provided, it seems there might be a misunderstanding or a different interpretation needed. However, based on standard geometric principles, the correct answer should be: Angle AOB = 2 * Angle APO = 2 * 25° = 50° If this is not the case, please provide additional context or clarify the problem statement.</p>
+
+<p><strong>MPO Output:</strong> To find the measure of angle AOB, we need to use the properties of angles subtended by the same arc in a circle. Specifically, the angle subtended by an arc at the center of the circle (angle AOB) is twice the angle subtended by the same arc at any point on the circumference (angle APO).Given that angle APO = 25°, we can calculate angle AOB as follows: Since angle AOB is twice the angle APO, we have:[ Angle AOB = 2 * Angle APO ][ Angle AOB = 2 * 25° ][ Angle AOB = 50° ]However, this calculation seems incorrect based on the provided choices. Let’s re-evaluate using the correct property.The correct property states that the angle subtended by an arc at the center of the circle is twice the angle subtended by the same arc at any point on the circumference. Therefore, the correct calculation should be: Angle AOB = 2 * Angle APO = 2 * 25° = 50°But since this does not match the given choices, let’s consider another approach. If we look at the triangle OAP, angle AOP is 90° because it is a right angle (as it is inscribed in a semicircle). Now, angle APO is given as 25°, so angle AOA would be 65° (since it is supplementary to angle APO). Therefore, angle AOB would be half of this, which is 32.5°. However, this also doesn’t match the choices.Let’s consider the possibility that the problem might involve a different interpretation or a different geometric configuration. Given the choices, let’s assume there might be a mistake in the problem statement or the choices themselves. If we were to choose from the given options, none of them seem to fit correctly based on standard geometric principles for this type of problem.</p>
+
+<p><strong>GRPO Output</strong>: To find the measure of angle AOB, we need to understand that angle AOB is an inscribed angle that intercepts the same arc as the central angle AOP. According to the Inscribed Angle Theorem, the measure of an inscribed angle is half the measure of the central angle that subtends the same arc.Given:- Angle APO = 25.0 degreesSince angle AOB is an inscribed angle intercepting the same arc as the central angle AOP, we can use the Inscribed Angle Theorem:The measure of angle AOB is half the measure of angle AOP.Therefore, the measure of angle AOB is 130 degrees.</p>
+
+<p><strong>GSPO Output:</strong> To find the measure of angle AOB, we need to understand that angle AOB is an inscribed angle that intercepts the same arc as the central angle AOP. According to the Inscribed Angle Theorem, the measure of an inscribed angle is half the measure of the central angle that subtends the same arc.Given:- Angle APO = 25.0 degreesSince angle AOB is an inscribed angle that intercepts the same arc as the central angle AOP, we can use the Inscribed Angle Theorem to find the measure of angle AOB:The measure of angle AOB is half the measure of angle AOP.Therefore, the answer is B: 130°.</p>
+
+<h2 id="trl-中的-vllm-集成">TRL 中的 vLLM 集成</h2>
+
+<p>vLLM 已集成到 TRL 中，以支持在线对齐方法，即在训练期间需要生成样本的情况。运行如下示例脚本可启用 vLLM：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span>1,2 python3 examples/scripts/grpo_vlm.py     <span class="nt">--model_name_or_path</span>   Qwen/Qwen2.5-VL-3B-Instruct    …   <span class="nt">--log_completions</span> <span class="nt">--use_vllm</span> <span class="nt">--vllm_mode</span> colocate
+</code></pre></div></div>
+
+<p>主要有两种模式： <code class="language-plaintext highlighter-rouge">colocate</code> 和 <code class="language-plaintext highlighter-rouge">server</code> 。 <a href="https://huggingface.co/blog/vllm-colocate"><code class="language-plaintext highlighter-rouge">colocate</code></a> 在与训练循环相同的进程中运行 vLLM，在训练和生成之间共享同一个 GPU，在 <code class="language-plaintext highlighter-rouge">GRPOTrainer</code> 内部创建一个 vLLM LLM 实例。同时， <code class="language-plaintext highlighter-rouge">server</code> 要求你在一个不同的进程中单独为 vLLM 提供服务，在那里你可以访问该服务器。你可以使用以下命令启动此服务器：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>trl vllm-serve <span class="nt">--model</span> Qwen/Qwen2.5-VL-3B-Instruct <span class="nt">--tensor-parallel-size</span> 1
+</code></pre></div></div>
+
+<p>然后你可以按如下方式运行该脚本。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span>1,2 python3 examples/scripts/grpo_vlm.py     <span class="nt">--model_name_or_path</span>   Qwen/Qwen2.5-VL-3B-Instruct    …   <span class="nt">--log_completions</span> <span class="nt">--use_vllm</span> <span class="nt">--vllm_mode</span> server
+</code></pre></div></div>
+
+<p>另一个提示：我们在 TRL 中添加了对使用带有 transformers 后端的 vLLM 的支持。你可以在使用 colocate 运行脚本时或通过传递 <code class="language-plaintext highlighter-rouge">--vllm_model_impl transformers</code> 标志来服务模型时启用它。</p>
+
+<p>你可以在 <a href="https://huggingface.co/docs/trl/en/vllm_integration">此处</a> 阅读更多关于 TRL 中 vLLM 集成的内容。</p>
+
+<h2 id="useful-resources">Useful Resources</h2>
+
+<p>在下方，你可以找到一系列资源，用于详细探索视觉语言模型（VLM）的对齐情况。尽情享受吧！</p>
+
+<ul>
+  <li><a href="https://huggingface.co/blog/vlms-2025"><strong>视觉语言模型（更好、更快、更强）</strong></a></li>
+  <li><a href="https://huggingface.co/papers/2411.10442"><strong>通过混合偏好优化增强多模态大语言模型的推理能力</strong></a> （ <strong>MPO 论文</strong> ）</li>
+  <li><a href="https://huggingface.co/papers/2402.03300"><strong>深寻数学：在开放语言模型中突破数学推理的极限</strong></a> （ <strong>GRPO 论文</strong> ）</li>
+  <li><a href="https://github.com/huggingface/open-r1"><strong>Open-R1</strong></a> <strong>仓库</strong> 以及 <a href="https://github.com/huggingface/open-r1/blob/main/src/open_r1/rewards.py"><strong>Open-R1 奖励函数</strong></a></li>
+  <li><a href="https://huggingface.co/docs/trl/en/index"><strong>TRL 文档</strong></a> 和 <a href="https://github.com/huggingface/trl"><strong>TRL 代码库</strong></a></li>
+  <li><a href="https://huggingface.co/learn/cookbook/fine_tuning_vlm_mpo"><strong>MPO VLM recipe</strong></a></li>
+  <li><a href="https://huggingface.co/learn/cookbook/fine_tuning_vlm_grpo_trl"><strong>GRPO VLM recipe</strong></a></li>
+  <li><a href="https://huggingface.co/learn/cookbook/index"><strong>更多多模态对齐方法</strong></a></li>
+  <li><a href="https://github.com/huggingface/trl/tree/main/examples/scripts"><strong>TRL 多模态训练脚本</strong></a></li>
+  <li><a href="https://huggingface.co/docs/trl/en/vllm_integration"><strong>trl 文档中的 vLLM 集成</strong></a></li>
+  <li><a href="https://blog.vllm.ai/2025/04/11/transformers-backend.html"><strong>vLLM 中的 Transformer 后端集成</strong></a></li>
+</ul>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

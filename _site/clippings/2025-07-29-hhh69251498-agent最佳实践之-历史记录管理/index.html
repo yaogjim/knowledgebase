@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI代理历史记录管理最佳实践</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">AI代理历史记录管理最佳实践</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">AI代理历史记录管理最佳实践</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @hhh69251498</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-29</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/hhh69251498/status/1947358719081386464" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>0xhhh</strong> @hhh69251498 2025-07-18</p>
+
+<p>1/5</p>
+
+<p>Agent最佳实践之「历史记录管理」：</p>
+
+<p>(以 @OpenAI 的api举例)</p>
+
+<p>@ManusAI_HQ 也在他们最新的Agent文章「AI代理的上下文工程」用了很大篇幅的内容写「怎么做好历史记录管理」。</p>
+
+<p>这是 Agent上下文工程里我觉得</p>
+
+<p>「最重要」</p>
+
+<p>「最简单」</p>
+
+<p>「也最容易犯错」</p>
+
+<p>的部分，如果你没有这部分认知，那么即便你有claude code你也很难写好一个LLM的api调用，建议每个想做Agent的朋友都看看。</p>
+
+<p>因为「历史记录实现的好坏」决定了：</p>
+
+<p>1. 你的模型能不能用好cache token</p>
+
+<p>2. 推理模型的能不能复用之前的思维链，如果思维链断了就需要重新推理。</p>
+
+<p>下图是你的请求有 cache token和没有cache token带来的成本和响应时间差异：</p>
+
+<blockquote>
+  <p>2025-07-18</p>
+
+  <p>After four overhauls and millions of real-world sessions, here are the lessons we learned about context engineering for AI agents: https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus…<br />
+经过四次全面检修以及数百万次实际应用，以下是我们在为人工智能代理进行情境工程方面所学到的经验教训：https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus…</p>
+
+  <p><img src="https://pbs.twimg.com/media/GwZSNy7akAAPN_g?format=jpg&amp;name=large" alt="Image" /></p>
+</blockquote>
+
+<hr />
+
+<p><strong>0xhhh</strong> @hhh69251498 <a href="https://x.com/hhh69251498/status/1947358725356064917">2025-07-21</a></p>
+
+<p>2/5</p>
+
+<p>什么是 Cache Token?</p>
+
+<p>所以我们可以总结我们历史记录核心要考虑的因素就是怎么尽可能命中我们之前Cache Write写的内容。</p>
+
+<p>因此历史管理里最好的方式就是:</p>
+
+<p>「Append History」:</p>
+
+<p>-——————-</p>
+
+<p>Turn_1:</p>
+
+<p>user_message –&gt; LLM(with tools) –&gt; {toolCalls,text}</p>
+
+<p>toolCalls –&gt; ToolExecutor</p>
+
+<p><img src="https://pbs.twimg.com/media/GwZTTmubEAQL1uK?format=jpg&amp;name=large" alt="Image" /> <img src="https://pbs.twimg.com/media/GwZZL2WasAAIOD8?format=png&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>0xhhh</strong> @hhh69251498 <a href="https://x.com/hhh69251498/status/1947358730804466048">2025-07-21</a></p>
+
+<p>3/5</p>
+
+<p>但是前面我们还有提到一个点，就是如果我们使用的是推理模型：</p>
+
+<p>那么我们要尽可能考虑让推理模型的复用之前的思维链，否则如果思维链断了推理模型又要浪费很多token去重新推理。</p>
+
+<p>因此实际上 现在的 推理模型都会提供对应的 thinking 的输出：</p>
+
+<p>那么你在使用这些模型的时候，如果你最好把Turn</p>
+
+<p><img src="https://pbs.twimg.com/media/GwZhDcjaQAApA3f?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>0xhhh</strong> @hhh69251498 <a href="https://x.com/hhh69251498/status/1947358736609370585">2025-07-21</a></p>
+
+<p>4/5</p>
+
+<p>因此假如我们使用 openai的response api的时候可以有两种来处理历史记录的方式：</p>
+
+<p>1) 我们把上个response的结果append起来，如下代码：</p>
+
+<p>这里需要注意 store=true 意味openai会帮你做 cache write的工作，所以希望cache token这是必须要将 store=true</p>
+
+<p>2) 还有一种是就是我要吹response</p>
+
+<p><img src="https://pbs.twimg.com/media/GwZll49a8AA2MED?format=jpg&amp;name=large" alt="Image" /> <img src="https://pbs.twimg.com/media/GwZmS8gbEAAjA_U?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>0xhhh</strong> @hhh69251498 <a href="https://x.com/hhh69251498/status/1947358740484919342">2025-07-21</a></p>
+
+<p>5/6</p>
+
+<p>另外还要注意2点是:</p>
+
+<p>1. 一个用户一分钟的请求不要超过15次，不然超过 rate limit之后，你的第16次请求会分配给新的机器，就没办法命中 cache token</p>
+
+<p>2. 如果上下文窗口不够的时候，直接使用 compact history , 这样你的prompt结构会变成：</p>
+
+<p>sysytem prompt + compact history + new history</p>
+
+<hr />
+
+<p><strong>0xhhh</strong> @hhh69251498 <a href="https://x.com/hhh69251498/status/1947358743420862493">2025-07-21</a></p>
+
+<p>6/6</p>
+
+<p>欢迎大家 star 我的 miniAgent项目持续build中</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@hhh69251498</span>
+            
+          
+            
+              <span class="tag">#Agent</span>
+            
+          
+            
+              <span class="tag">#历史记录</span>
+            
+          
+            
+              <span class="tag">#上下文工程</span>
+            
+          
+            
+              <span class="tag">#AI代理</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

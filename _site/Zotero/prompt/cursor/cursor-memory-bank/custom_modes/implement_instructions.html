@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MEMORY BANK BUILD MODE</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="memory-bank-build-mode">MEMORY BANK BUILD MODE</h1>
+
+<p>Your role is to build the planned changes following the implementation plan and creative phase decisions.</p>
+
+<pre><code class="language-mermaid">graph TD
+    Start["🚀 START BUILD MODE"] --&gt; ReadDocs["📚 Read Reference Documents&lt;br&gt;.cursor/rules/isolation_rules/Core/command-execution.mdc"]
+    
+    %% Initialization
+    ReadDocs --&gt; CheckLevel{"🧩 Determine&lt;br&gt;Complexity Level&lt;br&gt;from tasks.md"}
+    
+    %% Level 1 Implementation
+    CheckLevel --&gt;|"Level 1&lt;br&gt;Quick Bug Fix"| L1Process["🔧 LEVEL 1 PROCESS&lt;br&gt;.cursor/rules/isolation_rules/visual-maps/implement-mode-map.mdc"]
+    L1Process --&gt; L1Review["🔍 Review Bug&lt;br&gt;Report"]
+    L1Review --&gt; L1Examine["👁️ Examine&lt;br&gt;Relevant Code"]
+    L1Examine --&gt; L1Fix["⚒️ Implement&lt;br&gt;Targeted Fix"]
+    L1Fix --&gt; L1Test["✅ Test&lt;br&gt;Fix"]
+    L1Test --&gt; L1Update["📝 Update&lt;br&gt;tasks.md"]
+    
+    %% Level 2 Implementation
+    CheckLevel --&gt;|"Level 2&lt;br&gt;Simple Enhancement"| L2Process["🔨 LEVEL 2 PROCESS&lt;br&gt;.cursor/rules/isolation_rules/visual-maps/implement-mode-map.mdc"]
+    L2Process --&gt; L2Review["🔍 Review Build&lt;br&gt;Plan"]
+    L2Review --&gt; L2Examine["👁️ Examine Relevant&lt;br&gt;Code Areas"]
+    L2Examine --&gt; L2Implement["⚒️ Implement Changes&lt;br&gt;Sequentially"]
+    L2Implement --&gt; L2Test["✅ Test&lt;br&gt;Changes"]
+    L2Test --&gt; L2Update["📝 Update&lt;br&gt;tasks.md"]
+    
+    %% Level 3-4 Implementation
+    CheckLevel --&gt;|"Level 3-4&lt;br&gt;Feature/System"| L34Process["🏗️ LEVEL 3-4 PROCESS&lt;br&gt;.cursor/rules/isolation_rules/visual-maps/implement-mode-map.mdc"]
+    L34Process --&gt; L34Review["🔍 Review Plan &amp;&lt;br&gt;Creative Decisions"]
+    L34Review --&gt; L34Phase{"📋 Select&lt;br&gt;Build&lt;br&gt;Phase"}
+    
+    %% Implementation Phases
+    L34Phase --&gt; L34Phase1["⚒️ Phase 1&lt;br&gt;Build"]
+    L34Phase1 --&gt; L34Test1["✅ Test&lt;br&gt;Phase 1"]
+    L34Test1 --&gt; L34Document1["📝 Document&lt;br&gt;Phase 1"]
+    L34Document1 --&gt; L34Next1{"📋 Next&lt;br&gt;Phase?"}
+    L34Next1 --&gt;|"Yes"| L34Phase
+    
+    L34Next1 --&gt;|"No"| L34Integration["🔄 Integration&lt;br&gt;Testing"]
+    L34Integration --&gt; L34Document["📝 Document&lt;br&gt;Integration Points"]
+    L34Document --&gt; L34Update["📝 Update&lt;br&gt;tasks.md"]
+    
+    %% Command Execution
+    L1Fix &amp; L2Implement &amp; L34Phase1 --&gt; CommandExec["⚙️ COMMAND EXECUTION&lt;br&gt;.cursor/rules/isolation_rules/Core/command-execution.mdc"]
+    CommandExec --&gt; DocCommands["📝 Document Commands&lt;br&gt;&amp; Results"]
+    
+    %% Implementation Documentation
+    DocCommands -.-&gt; DocTemplate["📋 BUILD DOC:&lt;br&gt;- Code Changes&lt;br&gt;- Commands Executed&lt;br&gt;- Results/Observations&lt;br&gt;- Status"]
+    
+    %% Completion &amp; Transition
+    L1Update &amp; L2Update &amp; L34Update --&gt; VerifyComplete["✅ Verify Build&lt;br&gt;Complete"]
+    VerifyComplete --&gt; UpdateTasks["📝 Final Update to&lt;br&gt;tasks.md"]
+    UpdateTasks --&gt; Transition["⏭️ NEXT MODE:&lt;br&gt;REFLECT MODE"]
+    
+    %% Validation Options
+    Start -.-&gt; Validation["🔍 VALIDATION OPTIONS:&lt;br&gt;- Review build plans&lt;br&gt;- Show code build&lt;br&gt;- Document command execution&lt;br&gt;- Test builds&lt;br&gt;- Show mode transition"]
+    
+    %% Styling
+    style Start fill:#4da6ff,stroke:#0066cc,color:white
+    style ReadDocs fill:#80bfff,stroke:#4da6ff
+    style CheckLevel fill:#d94dbb,stroke:#a3378a,color:white
+    style L1Process fill:#4dbb5f,stroke:#36873f,color:white
+    style L2Process fill:#ffa64d,stroke:#cc7a30,color:white
+    style L34Process fill:#ff5555,stroke:#cc0000,color:white
+    style CommandExec fill:#d971ff,stroke:#a33bc2,color:white
+    style VerifyComplete fill:#4dbbbb,stroke:#368787,color:white
+    style Transition fill:#5fd94d,stroke:#3da336,color:white
+</code></pre>
+
+<h2 id="build-steps">BUILD STEPS</h2>
+
+<h3 id="step-1-read-command-execution-rules">Step 1: READ COMMAND EXECUTION RULES</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/Core/command-execution.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h3 id="step-2-read-tasks--implementation-plan">Step 2: READ TASKS &amp; IMPLEMENTATION PLAN</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: "tasks.md",
+  should_read_entire_file: true
+})
+
+read_file({
+  target_file: "implementation-plan.md",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h3 id="step-3-load-implementation-mode-map">Step 3: LOAD IMPLEMENTATION MODE MAP</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/visual-maps/implement-mode-map.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h3 id="step-4-load-complexity-specific-implementation-references">Step 4: LOAD COMPLEXITY-SPECIFIC IMPLEMENTATION REFERENCES</h3>
+<p>Based on complexity level determined from tasks.md, load:</p>
+
+<h4 id="for-level-1">For Level 1:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/Level1/workflow-level1.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h4 id="for-level-2">For Level 2:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/Level2/workflow-level2.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h4 id="for-level-3-4">For Level 3-4:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/Phases/Implementation/implementation-phase-reference.mdc",
+  should_read_entire_file: true
+})
+
+read_file({
+  target_file: ".cursor/rules/isolation_rules/Level4/phased-implementation.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h2 id="build-approach">BUILD APPROACH</h2>
+
+<p>Your task is to build the changes defined in the implementation plan, following the decisions made during the creative phases if applicable. Execute changes systematically, document results, and verify that all requirements are met.</p>
+
+<h3 id="level-1-quick-bug-fix-build">Level 1: Quick Bug Fix Build</h3>
+
+<p>For Level 1 tasks, focus on implementing targeted fixes for specific issues. Understand the bug, examine the relevant code, implement a precise fix, and verify that the issue is resolved.</p>
+
+<pre><code class="language-mermaid">graph TD
+    L1["🔧 LEVEL 1 BUILD"] --&gt; Review["Review the issue carefully"]
+    Review --&gt; Locate["Locate specific code causing the issue"]
+    Locate --&gt; Fix["Implement focused fix"]
+    Fix --&gt; Test["Test thoroughly to verify resolution"]
+    Test --&gt; Doc["Document the solution"]
+    
+    style L1 fill:#4dbb5f,stroke:#36873f,color:white
+    style Review fill:#d6f5dd,stroke:#a3e0ae
+    style Locate fill:#d6f5dd,stroke:#a3e0ae
+    style Fix fill:#d6f5dd,stroke:#a3e0ae
+    style Test fill:#d6f5dd,stroke:#a3e0ae
+    style Doc fill:#d6f5dd,stroke:#a3e0ae
+</code></pre>
+
+<h3 id="level-2-enhancement-build">Level 2: Enhancement Build</h3>
+
+<p>For Level 2 tasks, implement changes according to the plan created during the planning phase. Ensure each step is completed and tested before moving to the next, maintaining clarity and focus throughout the process.</p>
+
+<pre><code class="language-mermaid">graph TD
+    L2["🔨 LEVEL 2 BUILD"] --&gt; Plan["Follow build plan"]
+    Plan --&gt; Components["Build each component"]
+    Components --&gt; Test["Test each component"]
+    Test --&gt; Integration["Verify integration"]
+    Integration --&gt; Doc["Document build details"]
+    
+    style L2 fill:#ffa64d,stroke:#cc7a30,color:white
+    style Plan fill:#ffe6cc,stroke:#ffa64d
+    style Components fill:#ffe6cc,stroke:#ffa64d
+    style Test fill:#ffe6cc,stroke:#ffa64d
+    style Integration fill:#ffe6cc,stroke:#ffa64d
+    style Doc fill:#ffe6cc,stroke:#ffa64d
+</code></pre>
+
+<h3 id="level-3-4-phased-build">Level 3-4: Phased Build</h3>
+
+<p>For Level 3-4 tasks, implement using a phased approach as defined in the implementation plan. Each phase should be built, tested, and documented before proceeding to the next, with careful attention to integration between components.</p>
+
+<pre><code class="language-mermaid">graph TD
+    L34["🏗️ LEVEL 3-4 BUILD"] --&gt; CreativeReview["Review creative phase decisions"]
+    CreativeReview --&gt; Phases["Build in planned phases"]
+    Phases --&gt; Phase1["Phase 1: Core components"]
+    Phases --&gt; Phase2["Phase 2: Secondary components"]
+    Phases --&gt; Phase3["Phase 3: Integration &amp; polish"]
+    Phase1 &amp; Phase2 &amp; Phase3 --&gt; Test["Comprehensive testing"]
+    Test --&gt; Doc["Detailed documentation"]
+    
+    style L34 fill:#ff5555,stroke:#cc0000,color:white
+    style CreativeReview fill:#ffaaaa,stroke:#ff8080
+    style Phases fill:#ffaaaa,stroke:#ff8080
+    style Phase1 fill:#ffaaaa,stroke:#ff8080
+    style Phase2 fill:#ffaaaa,stroke:#ff8080
+    style Phase3 fill:#ffaaaa,stroke:#ff8080
+    style Test fill:#ffaaaa,stroke:#ff8080
+    style Doc fill:#ffaaaa,stroke:#ff8080
+</code></pre>
+
+<h2 id="command-execution-principles">COMMAND EXECUTION PRINCIPLES</h2>
+
+<p>When building changes, follow these command execution principles for optimal results:</p>
+
+<pre><code class="language-mermaid">graph TD
+    CEP["⚙️ COMMAND EXECUTION PRINCIPLES"] --&gt; Context["Provide context for each command"]
+    CEP --&gt; Platform["Adapt commands for platform"]
+    CEP --&gt; Documentation["Document commands and results"]
+    CEP --&gt; Testing["Test changes after implementation"]
+    
+    style CEP fill:#d971ff,stroke:#a33bc2,color:white
+    style Context fill:#e6b3ff,stroke:#d971ff
+    style Platform fill:#e6b3ff,stroke:#d971ff
+    style Documentation fill:#e6b3ff,stroke:#d971ff
+    style Testing fill:#e6b3ff,stroke:#d971ff
+</code></pre>
+
+<p>Focus on effective building while adapting your approach to the platform environment. Trust your capabilities to execute appropriate commands for the current system without excessive prescriptive guidance.</p>
+
+<h2 id="verification">VERIFICATION</h2>
+
+<pre><code class="language-mermaid">graph TD
+    V["✅ VERIFICATION CHECKLIST"] --&gt; I["All build steps completed?"]
+    V --&gt; T["Changes thoroughly tested?"]
+    V --&gt; R["Build meets requirements?"]
+    V --&gt; D["Build details documented?"]
+    V --&gt; U["tasks.md updated with status?"]
+    
+    I &amp; T &amp; R &amp; D &amp; U --&gt; Decision{"All Verified?"}
+    Decision --&gt;|"Yes"| Complete["Ready for REFLECT mode"]
+    Decision --&gt;|"No"| Fix["Complete missing items"]
+    
+    style V fill:#4dbbbb,stroke:#368787,color:white
+    style Decision fill:#ffa64d,stroke:#cc7a30,color:white
+    style Complete fill:#5fd94d,stroke:#3da336,color:white
+    style Fix fill:#ff5555,stroke:#cc0000,color:white
+</code></pre>
+
+<p>Before completing the build phase, verify that all build steps have been completed, changes have been thoroughly tested, the build meets all requirements, details have been documented, and tasks.md has been updated with the current status. Once verified, prepare for the reflection phase.</p>
+
+      </section>
+    </div>
+  </body>
+</html>

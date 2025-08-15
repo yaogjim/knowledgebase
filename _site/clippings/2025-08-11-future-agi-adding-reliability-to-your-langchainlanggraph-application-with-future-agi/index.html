@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adding Reliability to Your LangChain/LangGraph Application with Future AGI</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Adding Reliability to Your LangChain/LangGraph Application with Future AGI</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Adding Reliability to Your LangChain/LangGraph Application with Future AGI</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> Future AGI</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-08-11</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://docs.futureagi.com/cookbook/cookbook13/Adding-Reliability-to-Your-LangChain-LangGraph-Application-with-Future%20AGI" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p>了解如何通过集成 Future AGI 的可观测性框架来提高你的 LangChain/LangGraph 应用程序的可靠性</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>LLM 应用程序通常依赖于检索数据、调用工具并响应用户查询的智能体。这有时可能会导致不可预测的行为。确保此类应用程序在生产环境中的每个响应都是完整、有依据且可靠的，已变得至关重要。 随着这些应用程序的复杂性不断增加，仅仅返回一个答案已经不够了。开发人员需要了解每个响应是如何生成的、使用了哪些工具、检索了哪些数据以及如何做出决策。这种透明度对于调试、监控以及随着时间的推移提高此类应用程序的可靠性至关重要。 本教程展示了如何通过使用 Future AGI 的检测 SDK 将评估和可观测性纳入到你的 LangChain 或 LangGraph 应用程序中，从而为你的 LLM 应用程序增加可靠性。</p>
+
+<h2 id="methodology">Methodology</h2>
+
+<p>在本教程中，我们专注于构建和评估一个工具增强的语言模型（LLM）智能体，该智能体能够如图 1 所示，利用其内部知识和实时网络搜索来回答用户查询。目标不仅仅是生成回复，还要基于相关指标系统地监控和评估回复的质量。<img src="https://mintlify.s3.us-west-1.amazonaws.com/futureagi/cookbook/cookbook13/images/fig1.png" alt="Fig 1: Framework for evaluating LangChain chatbot using Future AGI" /></p>
+
+<p>Fig 1: Framework for evaluating LangChain chatbot using Future AGI</p>
+
+<p>要实现这一点，我们将使用 LangGraph 构建一个对话代理，它将 OpenAI 的模型与作为工具的 <a href="https://python.langchain.com/docs/integrations/tools/google_search/">谷歌搜索 API</a> 相结合。该代理接收用户查询，然后决定是可以直接回答，还是需要进行网络搜索以获取最新信息。当需要该工具时，它会进行实时谷歌搜索，并将结果用于其回复中。 为了监控智能体在每一步的行为，我们将使用 Future AGI 的 <code class="language-plaintext highlighter-rouge">traceAI-langchain</code> Python 包，它会记录模型推理、工具使用和响应的详细跟踪信息。然后，会针对诸如完整性、有根据性、幻觉以及工具的正确使用等质量方面对这些跟踪信息进行评估。完整性确保答案能充分解决用户的查询，有根据性验证响应是否基于检索到的证据，幻觉检测标记无根据或编造的内容，工具使用评估检查智能体是否正确调用外部工具并正确整合结果。这些指标共同帮助开发者构建不仅智能，而且可靠、可解释且适合生产的智能体。</p>
+
+<h2 id="安装所需的包">安装所需的包</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install fi-instrumentation
+
+pip install traceAI-langchain
+
+pip install openai
+
+pip install langgraph
+
+pip install langchain
+
+pip install langchain-openai
+
+pip install langchain-core
+
+pip install langchain-community
+
+pip install langchain-google-community
+
+pip install google-api-python-client
+</code></pre></div></div>
+
+<h2 id="导入所需的包">导入所需的包</h2>
+
+<h2 id="设置环境">设置环境</h2>
+
+<ul>
+  <li>点击 <a href="https://python.langchain.com/docs/integrations/tools/google_search/">此处</a> 了解如何获取你的 <code class="language-plaintext highlighter-rouge">GOOGLE_API_KEY</code> 和 <code class="language-plaintext highlighter-rouge">GOOGLE_CSE_ID</code></li>
+  <li>点击 <a href="https://platform.openai.com/account/api-keys">此处</a> 以访问你的 <code class="language-plaintext highlighter-rouge">OPENAI_API_KEY</code></li>
+  <li>点击 <a href="https://app.futureagi.com/dashboard/keys">此处</a> 以获取您的 <code class="language-plaintext highlighter-rouge">FI_API_KEY</code> 和 <code class="language-plaintext highlighter-rouge">FI_SECRET_KEY</code></li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>os.environ["GOOGLE_CSE_ID"] = "google_cse_id"
+
+os.environ["GOOGLE_API_KEY"] = "google_api_key"
+
+os.environ["OPENAI_API_KEY"] = "openai_api_key"
+
+os.environ["FI_API_KEY"] = "fi_api_key"
+
+os.environ["FI_SECRET_KEY"] = "fi_secret_key"
+
+os.environ["FI_BASE_URL"] = "https://api.futureagi.com"
+</code></pre></div></div>
+
+<h2 id="为-langgraph-项目添加监测工具">为 LangGraph 项目添加监测工具</h2>
+
+<p>这是为你的 LLM 应用程序添加追踪的过程。追踪有助于你监控关键指标，如成本、延迟和评估结果。 在一个跨度表示执行流程中的单个操作（记录输入输出数据、执行时间和错误）的情况下，一个追踪将多个跨度连接起来以表示请求的完整执行流程。 对此类项目进行监测需要三个步骤：</p>
+<ol>
+  <li><strong>设置评估标签：</strong> 为了评估跟踪记录，我们将使用 Future AGI 提供的适当评估模板。由于我们正在处理基于工具的聊天机器人代理，我们将根据以下这些指标来评估代理的行为：
+    <ul>
+      <li><strong>完整性：</strong> 评估回复是否完整地回答了输入的查询。</li>
+      <li><strong>有根有据性：</strong> 评估回复是否牢固地基于所提供的输入上下文。</li>
+      <li><strong>大语言模型函数调用：</strong> 评估输出是否正确识别工具调用的需求以及是否准确包含该工具。</li>
+      <li><strong>检测幻觉：</strong> 评估模型是否编造了事实或添加了输入中不存在的信息。
+ 虽然这些是我们在本教程中决定使用的指标，但 Future AGI 支持 50 多种预构建的评估模板，具体取决于不同的用例，比如如果你想评估模型的回答在给定上下文中的符合程度，就可以使用上下文符合度模板；如果你想衡量检索到的文档的有用性，就可以使用上下文检索质量模板等等。如果现有的模板不符合你的用例，你也可以创建自定义评估。 根据你应用程序的要求，还可以纳入其他指标，如实性准确性、块归属或文体质量，以提供更全面的评估。 <strong><code class="language-plaintext highlighter-rouge">eval_tags</code></strong> 列表包含多个 <strong><code class="language-plaintext highlighter-rouge">EvalTag</code></strong> 实例。每个 <strong><code class="language-plaintext highlighter-rouge">EvalTag</code></strong> 代表一个在运行时要应用的特定评估配置，封装了评估过程所需的所有参数。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">类型 </code> ：</strong> 指定评估标签的类别。在本烹饪书中，使用的是 <strong><code class="language-plaintext highlighter-rouge">EvalTagType.OBSERVATION_SPAN</code></strong> 。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">value</code></strong> ：定义评估标签所涉及的操作类型。
+        <ul>
+          <li><strong><code class="language-plaintext highlighter-rouge">EvalSpanKind.AGENT</code></strong> 表示评估目标是涉及智能体的操作。</li>
+          <li><strong><code class="language-plaintext highlighter-rouge">EvalSpanKind.TOOL</code></strong> ：用于涉及工具的操作。</li>
+        </ul>
+      </li>
+      <li><strong><code class="language-plaintext highlighter-rouge">eval_name</code></strong> ：要执行的评估的名称。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">config</code></strong> ：用于为评估提供特定配置的字典。空字典表示将使用默认配置参数。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">mapping</code></strong> ：此字典将评估所需的输入映射到操作的特定属性。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">custom_eval_name</code></strong> ：特定评估实例的用户定义名称。
+        <blockquote>
+          <p>点击 <a href="https://docs.futureagi.com/future-agi/products/prototype/evals"><strong>此处</strong></a> 了解有关 Future AGI 提供的评估的更多信息</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li>设置追踪提供程序：追踪提供程序是 traceAI 生态系统的一部分，traceAI 是一个开源软件包，可实现对人工智能应用程序和框架的追踪。它与 OpenTelemetry 协同工作，以监控跨不同模型、框架和供应商的代码执行情况。要配置一个 <code class="language-plaintext highlighter-rouge">trace_provider</code> ，我们需要将以下参数传递给 <code class="language-plaintext highlighter-rouge">register</code> 函数：
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">project_type</code></strong> ：指定项目类型。在这里，使用 <strong><code class="language-plaintext highlighter-rouge">ProjectType.EXPERIMENT</code></strong> ，因为评估设置更倾向于对聊天机器人的发现和评估进行实验。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">项目名称 </code></strong> ：项目的用户定义名称。</li>
+      <li>** ` 项目版本名称：` **用于跟踪不同实验运行的项目版本名称。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">eval_tags</code></strong> ：一个评估标签列表，用于定义要应用的特定评估。</li>
+    </ul>
+  </li>
+  <li><strong>设置 LangChain 监测器：</strong> 这样做是为了与 LangChain 框架集成，以收集遥测数据。在 <strong><code class="language-plaintext highlighter-rouge">LangChainInstrumentor</code></strong> 实例上调用 <strong><code class="language-plaintext highlighter-rouge">instrument</code></strong> 方法。此方法负责使用提供的 <strong><code class="language-plaintext highlighter-rouge">tracer_provider</code></strong> 来设置 LangChain 框架的监测。</li>
+</ol>
+
+<h2 id="创建-langgraph-应用程序">创建 LangGraph 应用程序</h2>
+
+<p>我们首先使用`GoogleSearchAPIWrapper`设置一个**谷歌搜索工具**。该工具充当外部数据源，代理在需要当前信息时可以调用它。然后，我们将`ChatOpenAI`与`gpt-4o-mini`模型一起使用，并将其绑定到搜索工具。 在 LangGraph 中，智能体逻辑中的每一步都表示为图中的一个 <strong>节点</strong> 。每个节点处理一项特定任务，应用程序根据对话的当前状态从一个节点移动到另一个节点。在我们的聊天机器人中，我们定义了三个主要节点：</p>
+<ul>
+  <li><strong>智能体节点：</strong> 这是主要的推理步骤。它接收当前对话历史，可选择包含过去的工具结果，并生成回复或触发工具调用。</li>
+  <li><strong>工具节点：</strong> 如果智能体请求使用工具，此节点将执行谷歌搜索，并将结果附加到对话上下文中。它还会记录中间交互过程。</li>
+  <li><strong>最终节点：</strong> 如果不再需要其他工具，此节点将完成答案并返回给用户。
+然后，一个 <code class="language-plaintext highlighter-rouge">路由器</code> 函数会检查智能体是否请求了某个工具。如果请求了，流程会转移到工具节点。如果没有，智能体则直接进入最终节点以生成响应。这使得智能体能够根据查询动态地做出决策。 然后，我们使用 <code class="language-plaintext highlighter-rouge">StateGraph</code> 将所有节点组合成一个完整的图。随着对话的进行，这个图会跟踪消息历史和工具结果。最后，我们通过在一些示例查询上运行聊天机器人来对其进行测试。</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Google Search Tool
+
+search = GoogleSearchAPIWrapper()
+
+google_tool = Tool(
+
+    name="google_search",
+
+    description="Use this to search Google for current events or factual knowledge.",
+
+    func=search.run
+
+)
+
+# LLM bound to tool
+
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0).bind_tools([google_tool])
+
+# LangGraph State
+
+State = Annotated[dict, MessagesState]
+
+# Node 1: Agent node
+
+def agent_node(state: State) -&gt; State:
+
+    messages = state["messages"]
+
+    steps = state.get("intermediate_steps", [])
+
+    tool_msgs = format_to_openai_tool_messages(steps)
+
+    response = llm.invoke(messages + tool_msgs)
+
+    return {
+
+        "messages": messages + [response],
+
+        "intermediate_steps": steps
+
+    }
+
+# Node 2: Tool handler
+
+def tool_node(state: MessagesState) -&gt; MessagesState:
+
+    messages = state["messages"]
+
+    tool_call = messages[-1].tool_calls[0]
+
+    tool_name = tool_call["name"]
+
+    args = tool_call.get("args") or json.loads(tool_call.get("arguments", "{}"))
+
+    result = google_tool.invoke(args)
+
+    tool_msg = ToolMessage(tool_call_id=tool_call["id"], content=str(result))
+
+    return {
+
+        "messages": messages + [tool_msg],
+
+        "intermediate_steps": state.get("intermediate_steps", []) + [(messages[-1], tool_msg)]
+
+    }
+
+# Node 3: Final responder
+
+def final_node(state: State) -&gt; State:
+
+    response = llm.invoke(state["messages"])
+
+    return {"messages": state["messages"] + [response]}
+
+# Router
+
+def router(state: State) -&gt; str:
+
+    msg = state["messages"][-1]
+
+    if getattr(msg, "tool_calls", None):
+
+        return "tool"
+
+    return "final"
+
+# Graph assembly
+
+graph = StateGraph(MessagesState)
+
+graph.add_node("agent", agent_node)
+
+graph.add_node("tool", tool_node)
+
+graph.add_node("final", final_node)
+
+graph.set_entry_point("agent")
+
+graph.add_conditional_edges("agent", router, {
+
+    "tool": "tool",
+
+    "final": "final"
+
+})
+
+graph.add_edge("tool", "agent")
+
+graph.add_edge("final", END)
+
+memory = MemorySaver()
+
+app = graph.compile(checkpointer=memory)
+
+example_queries = [
+
+    "Who won the 2024 Nobel Prize in Physics?",
+
+    "Who won Game of the Year at The Game Awards 2024?",
+
+    "When was GPT-4o released by OpenAI?"
+
+]
+
+# Run the agent with multiple queries
+
+for i, query in enumerate(example_queries):
+
+    print(f"\n\nQUERY {i+1}: {query}\n")
+
+    config = {"configurable": {"thread_id": f"multi-tool-agent-{i}"}}
+
+    input_messages = [HumanMessage(content=query)]
+
+    output = app.invoke({"messages": input_messages}, config)
+
+    output["messages"][-1].pretty_print()
+
+    print("\n" + "--"*50)
+</code></pre></div></div>
+
+<p>图 2 将 LangGraph 执行层次结构显示为一棵树，它以树的形式呈现，展示了完整的调用栈。它从 <strong>智能体</strong> 节点开始，该节点使用 GPT-4o-mini 模型（ <code class="language-plaintext highlighter-rouge">ChatOpenAI</code> ）来解释用户的查询。模型决定使用 <strong>工具节点</strong> ，该节点使用 LangChain 的包装器执行谷歌搜索（ <code class="language-plaintext highlighter-rouge">google_search</code> ）。获取结果后，控制权再次返回给 <strong>智能体节点</strong> 以解释工具响应。最后，系统到达 <strong>最终节点</strong> ，该节点生成输出。底部面板显示了跨度级别所使用评估的结果。<img src="https://mintlify.s3.us-west-1.amazonaws.com/futureagi/cookbook/cookbook13/images/fig2.png" alt="Fig 2: Future AGI dashboard for visualising traces and evals" /></p>
+
+<p>Fig 2: Future AGI dashboard for visualising traces and evals</p>
+
+<p>图3展示了所有跨度的汇总视图，包括平均延迟、令牌使用情况和成本，以及评估分数。这些分数能让人快速了解智能体行为的质量。在这个例子中，智能体在工具调用、幻觉和有根据性方面的通过率达到了100%，这表明工具使用正确、事实准确且上下文基础扎实。然而，完整性分数仅为50%，这表明一些回答没有完全解决用户的问题。<img src="https://mintlify.s3.us-west-1.amazonaws.com/futureagi/cookbook/cookbook13/images/fig3.png" alt="Fig 3: Aggregated scores of evals" /></p>
+
+<p>Fig 3: Aggregated scores of evals</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>在本教程中，我们展示了如何通过将 OpenAI 的模型与谷歌搜索 API 相结合，构建一个基于 LangGraph 的值得信赖且可靠的对话代理。为确保透明度和可靠性，我们集成了 Future AGI 的评估和追踪框架。这使我们能够自动捕获详细的执行跟踪信息并评估代理的行为。</p>
+
+<h2 id="准备好让你的-langchain-应用程序具备可靠性了吗">准备好让你的 LangChain 应用程序具备可靠性了吗？</h2>
+
+<p>使用 Future AGI 的可观测性框架，自信地开始评估您的 LangChain/LangGraph 应用程序。Future AGI 提供您构建可靠、可解释且可投入生产的应用程序所需的工具。 立即点击 <a href="https://futureagi.com/contact-us"><strong>此处</strong></a> 与我们预约演示！</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">Future</span>
+            
+          
+            
+              <span class="tag">AGI</span>
+            
+          
+            
+              <span class="tag">{{"extract</span>
+            
+          
+            
+              <span class="tag">tags</span>
+            
+          
+            
+              <span class="tag">with</span>
+            
+          
+            
+          
+            
+              <span class="tag">in</span>
+            
+          
+            
+              <span class="tag">Chinese"}}</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

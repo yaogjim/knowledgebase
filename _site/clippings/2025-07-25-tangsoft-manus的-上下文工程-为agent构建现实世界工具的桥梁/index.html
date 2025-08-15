@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manus的“上下文工程”：构建AI Agent的六大铁律</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Manus的“上下文工程”：构建AI Agent的六大铁律</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Manus的“上下文工程”：构建AI Agent的六大铁律</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @TaNGSoFT</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-25</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/TaNGSoFT/status/1947941448437092375" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>𝙩𝙮≃𝙛{𝕩}^A𝕀²·ℙarad𝕚g𝕞</strong> @TaNGSoFT <a href="https://x.com/TaNGSoFT/status/1947941448437092375">2025-07-23</a></p>
+
+<p>原来以为manus的通用agent，只是套个壳，看了最近@peakji的博客，才体会都是为LLM套上脚手架的上下文血泪工程。</p>
+
+<p>我们原来以为的“套壳agent”是这样的：</p>
+
+<p>一个UI界面 + 一个精心设计的System Prompt + 一个ReAct循环 = 一个Agent。</p>
+
+<p>我们以为只是给一个聪明的“大脑”（LLM）设计一套“衣服”和“对话脚本”，而Manus的血泪史告诉我们，现实是这样的：</p>
+
+<p>真正的Agent = 一个围绕LLM构建的、极其精密的、外部化的“脚手架系统”。</p>
+
+<p>包括：</p>
+
+<p>稳固的地基（KV-Cache设计）：确保每一次能量输出都建立在稳定、高效的基础上，而不是流沙。</p>
+
+<p>清晰的蓝图和安全绳（复述机制 &amp; 文件系统）：时刻提醒能量源要往哪里去，并给它一个可以存放工具和草稿的工作台。</p>
+
+<p>精确的轨道和限位器（屏蔽而非删除）：规定能量在特定时刻只能朝特定的方向涌动，而不是四处溅射。</p>
+
+<p>一个自带“事故分析”功能的反馈回路（保留错误信息）：把每一次小型的“能量泄露”或“计算错误”，都变成加固整个系统的宝贵数据。</p>
+
+<hr />
+
+<p><strong>𝙩𝙮≃𝙛{𝕩}^A𝕀²·ℙarad𝕚g𝕞</strong> @TaNGSoFT <a href="https://x.com/TaNGSoFT/status/1947941796866298295">2025-07-23</a></p>
+
+<p>本质上还是为了克服LLM的上下文窗口有限以及单轮次交互的激活路径单一性问题，为LLM驱动的agent解决具体问题提供一个包括记忆与行动的可反馈的交互环境。而这种语言认知智能的agent的价值体现还是需要回到语用哲学层面。</p>
+
+<p>“语用哲学”（Pragmatics）研究的核心，恰恰就不是语言的语法（Syntax）或语义（Semantics），而是“在特定语境中，人如何使用语言来行动和达成目的”：</p>
+
+<p>言语即行动（Speech-Act Theory）： 语用学认为，说话不仅仅是描述事实，更是一种行动（如承诺、命令、请求）。Manus的Agent完美体现了这一点：LLM生成的不再是“聊天的话”，而是&lt;tool_code&gt;这样的“行动指令”。语言直接引发了世界（环境）的改变。</p>
+
+<p>语境决定意义（Context is Everything）： 一句话的真正意思，完全取决于它所处的语境。Manus的“上下文工程”做的所有事，本质上都是在为LLM的下一次“说话”（生成行动指令）构建一个极其丰富且精确的语境。这个语境包含了历史、目标、成功经验、失败教训，从而让LLM的输出具有了明确的、服务于最终目标的“语用意义”。</p>
+
+<p>意图是核心（Intention-driven）： 我们评判一个Agent的好坏，最终不是看它说的话多漂亮（语义），也不是看它的代码有没有语法错误（语法），而是看它有没有成功地理解并完成我们的“意图”（语用）。Manus用http://todo.md这样的机制，就是为了让Agent时刻不忘最初的“语用目标”。</p>
+
+<hr />
+
+<p><strong>𝙩𝙮≃𝙛{𝕩}^A𝕀²·ℙarad𝕚g𝕞</strong> @TaNGSoFT <a href="https://x.com/TaNGSoFT/status/1947992158457249866">2025-07-23</a></p>
+
+<p>“如果模型的进步是上涨的潮水，我们希望Manus是那艘船，而不是被淹没的、固定在海床上的柱子。” —@peakji</p>
+
+<hr />
+
+<p><strong>𝙩𝙮≃𝙛{𝕩}^A𝕀²·ℙarad𝕚g𝕞</strong> @TaNGSoFT <a href="https://x.com/TaNGSoFT/status/1947992486007206090">2025-07-23</a></p>
+
+<p>铁律一：为KV-Cache而设计！你上下文里的每个字都在烧钱</p>
+
+<p>这是生产级Agent最重要的指标，没有之一：KV-Cache命中率。</p>
+
+<p>你的Agent每执行一步，上下文都在疯狂增长，而输出（通常是工具调用）却很短。在Manus，这个输入输出Token比例是100:1。每一次缓存失效，都意味着成本暴增10倍（以Claude Sonnet为例）。</p>
+
+<p>血泪教训： 你在系统提示里加一个随时变化的时间戳，看起来很智能，实际上是亲手把KV-Cache命中率降到了零，每一次请求都在烧钱。你用不稳定的JSON序列化，键的顺序每次都变，缓存被悄无声息地击穿，而你却浑然不觉。</p>
+
+<p>唯一正道：</p>
+
+<p>保持Prompt前缀绝对稳定： 一个字符的变动都会让缓存全盘失效。</p>
+
+<p>上下文必须“只进不出”（Append-only）： 绝不修改历史步骤。</p>
+
+<p>序列化必须是确定性的： 确保每次生成的上下文文本完全一致。</p>
+
+<p>把你的上下文当成数据库索引来优化，这才是专业玩家的素养。</p>
+
+<hr />
+
+<p><strong>𝙩𝙮≃𝙛{𝕩}^A𝕀²·ℙarad𝕚g𝕞</strong> @TaNGSoFT <a href="https://x.com/TaNGSoFT/status/1947993003832074555">2025-07-23</a></p>
+
+<p>铁律二：要“屏蔽”，不要“删除”！别把Agent自己搞糊涂</p>
+
+<p>当Agent的工具库越来越大，它就越来越“蠢”，因为它会选错工具。一个自然的想法是动态加载工具，只给它当前需要的。</p>
+
+<p>血泪教训： 我们试过，这是个巨坑。原因有二：1. 任何对工具定义的改变，都会让处在Prompt前部的它，导致后续所有KV-Cache全部失效。2. 当历史步骤里还引用着一个你现在已经“删除”的工具时，模型会彻底精神错乱，因为它看到了一段无法理解的历史。</p>
+
+<p>唯一正道：屏蔽，而不是移除（Mask, Don’t Remove）。</p>
+
+<p>把所有工具定义都留在原地，但在解码（Decoding）阶段，通过“屏蔽Token Logits”的技术，动态地禁止或强制模型选择某个工具。比如，利用function calling的required或specified模式，甚至可以设计一套工具前缀命名法（如browser_*），从而在不改变上下文的情况下，精准控制模型的行为空间。这才是外科手术式的优雅。</p>
+
+<hr />
+
+<p><strong>𝙩𝙮≃𝙛{𝕩}^A𝕀²·ℙarad𝕚g𝕞</strong> @TaNGSoFT <a href="https://x.com/TaNGSoFT/status/1947993293184487674">2025-07-23</a></p>
+
+<p>铁律三：把“文件系统”当成无限大的上下文</p>
+
+<p>128K甚至1M的上下文窗口听起来很大？在真实Agent场景里，一个网页或PDF就能轻易撑爆它。而且模型在长上下文下的表现会下降。</p>
+
+<p>血泪教训： 靠粗暴地截断或压缩上下文来解决问题，是饮鸩止渴。你无法预知10步之后，哪一段被你丢掉的信息会成为任务的关键。这种不可逆的压缩，风险极高。</p>
+
+<p>唯一正道：把文件系统视为终极上下文。</p>
+
+<p>它是无限大的、持久的，并且Agent可以自己操作。教会它write和read。网页内容太长？从上下文中删掉，但保留URL。文档太长？删掉内容，但保留文件路径。这种“可恢复式压缩”，既减小了上下文长度，又没有永久丢失信息。这才是可扩展的思路。</p>
+
+<hr />
+
+<p><strong>𝙩𝙮≃𝙛{𝕩}^A𝕀²·ℙarad𝕚g𝕞</strong> @TaNGSoFT <a href="https://x.com/TaNGSoFT/status/1948172928576614517">2025-07-24</a></p>
+
+<p>铁律四：用“复述”这根缰绳，强制操控模型注意力</p>
+
+<p>一个复杂任务可能需要50次工具调用。在这么长的链条里，模型极易“跑偏”或“遗忘”最初的目标，这就是“大海捞针”（Lost-in-the-middle）问题。</p>
+
+<p>￼</p>
+
+<p>血泪教训： 你在系统提示里苦口婆心，模型却我行我素，因为关键指令早就沉没在长篇大论的上下文里了。</p>
+
+<p>唯一正道：通过“复述”来操控注意力（Manipulate Attention Through Recitation）。</p>
+
+<p>让Agent在执行复杂任务时，自己创建一个http://todo.md文件，每完成一步，就重写一遍这个文件，划掉完成项。这个行为，等于不断地把全局计划“复述”到上下文的末尾，从而将核心目标推到模型最近的注意力范围内。这是用自然语言给模型戴上的“缰绳”。</p>
+
+<hr />
+
+<p><strong>𝙩𝙮≃𝙛{𝕩}^A𝕀²·ℙarad𝕚g𝕞</strong> @TaNGSoFT <a href="https://x.com/TaNGSoFT/status/1948173177240371630">2025-07-24</a></p>
+
+<p>铁律五：把错误和失败，原封不动地塞回去</p>
+
+<p>Agent犯错时，我们的本能是把这些“不光彩”的记录清理掉，然后重试。</p>
+
+<p>￼</p>
+
+<p>血泪教训： 你删掉了失败证据，模型就永远无法从失败中学习。它没有记忆，你抹掉了它的“伤疤”，它下次还会被同一块石头绊倒。你等于在花钱请它不断重复犯错。</p>
+
+<p>唯一正道：保留那些错误的东西（Keep the Wrong Stuff In）。</p>
+
+<p>当一个动作失败，把返回的错误信息、堆栈跟踪（Stack Trace）完整地、清晰地作为“观察结果”保留在上下文中。当模型看到“我上次尝试A，结果失败了，错误是XXX”，它才可能在下一次决策中“反思”并选择B。失败不是bug，失败是反馈，是训练数据。</p>
+
+<hr />
+
+<p><strong>𝙩𝙮≃𝙛{𝕩}^A𝕀²·ℙarad𝕚g𝕞</strong> @TaNGSoFT <a href="https://x.com/TaNGSoFT/status/1948173415933972652">2025-07-24</a></p>
+
+<p>铁律六：扔掉“少样本”的拐杖！别把通才教成偏才</p>
+
+<p>少样本（Few-shot）提示是把双刃剑。在Agent系统里，它往往是毒药。</p>
+
+<p>￼</p>
+
+<p>血泪教训： 模型是出色的模仿者。当你的上下文中充满了格式统一的、重复性的成功案例时（比如，连续处理20份简历），模型会陷入一种“思维定势”，只会机械地模仿这个模式，即便情况已经变化。它会变得极其脆弱和僵化。</p>
+
+<p>唯一正道：别被“少样本”绑架（Don’t Get Few-Shotted）。</p>
+
+<p>你需要主动地、有控制地在上下文中引入“结构化的变体”。比如，用不同的序列化模板，或者在措辞上引入微小的、无伤大雅的“噪音”。这种“受控的随机性”会打破模型的模仿定势，迫使它回归真正的推理，而不是路径依赖。</p>
+
+<hr />
+
+<p><strong>𝙩𝙮≃𝙛{𝕩}^A𝕀²·ℙarad𝕚g𝕞</strong> @TaNGSoFT <a href="https://x.com/TaNGSoFT/status/1948174025643212940">2025-07-24</a></p>
+
+<p>铁律零：Agent的本质是REPLoop，不是大脑</p>
+
+<p>这是原文隐含的、贯穿全文的、却最容易被忽视的元认知。我们必须从根本上转变对Agent的看法。</p>
+
+<p>它不是一个拥有自由意志的“大脑”，它是一个超级强大的REPL（读取-求值-打印循环）。</p>
+
+<p>◦读取（Read）： 你精心构建的上下文。</p>
+
+<p>◦求值（Eval）： 它基于上下文，决定下一步行动。</p>
+
+<p>◦打印（Print）： 它将行动和结果，“打印”回上下文，开启下一轮循环。</p>
+
+<p>你不是在“教”一个学生，你是在为一台超级计算机编写输入脚本。你的所有工作，都应该围绕这个循环，让它的每一步都变得清晰、可预测、可调试。</p>
+
+<p>终极范式：上下文工程 = 记忆 + 环境 + 反馈</p>
+
+<p>总结起来，Manus AI揭示的Agent构建终极范式，就是围绕三大支柱进行系统性的“上下文工程”：</p>
+
+<p>◦记忆（Memory）： 如何高效存取成功和失败的经验，并与KV-Cache协同工作。</p>
+
+<p>◦环境（Environment）： 为Agent提供一个可交互、可持久化的工作空间，如文件系统。</p>
+
+<p>◦反馈（Feedback）： 将行为的结果（无论成败）作为输入，注入下一次决策循环。</p>
+
+<p>说起来，都是血和泪啊…</p>
+
+<p>这就是Manus随波逐浪套壳的代价！</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@TaNGSoFT</span>
+            
+          
+            
+              <span class="tag">#AI</span>
+            
+          
+            
+              <span class="tag">#Agent</span>
+            
+          
+            
+              <span class="tag">#上下文工程</span>
+            
+          
+            
+              <span class="tag">#LLM</span>
+            
+          
+            
+              <span class="tag">#人工智能</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

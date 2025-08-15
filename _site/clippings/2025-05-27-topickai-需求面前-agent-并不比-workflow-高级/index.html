@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>需求面前，Agent 并不比 workflow 高级</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">需求面前，Agent 并不比 workflow 高级</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">需求面前，Agent 并不比 workflow 高级</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @topickai</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-05-27</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/topickai/status/1926608188649976236" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>BillyHe</strong> @topickai <a href="https://x.com/topickai/status/1926608188649976236">2025-05-25</a></p>
+
+<p>需求面前，Agent 并不比 workflow 高级</p>
+
+<p>（这边的讨论氛围太好了，拜几位大 V 转发，这个号算是冷启了。也发发我在其他平台的一些旧文）</p>
+
+<p>一位刚融资的 AI 创业朋友夜里两点给我发微信：”我们团队争论一整天了，投资人希望看到更’高级’的 agent，但我们现在的 workflow 方案其实更实用…你说我们该怎么选？”</p>
+
+<p>你看，搞 AI 的人人都在 FOMO（Fear Of Missing Out，害怕错过）——仿佛不做 agent 就落伍了，做了 workflow 就没有故事可讲。</p>
+
+<p>概念与需求的错位</p>
+
+<p>如今，”agent”已经成为智力上限突破的代名词。越是自发自动、高自由度的 AI，就越被认为是技术前沿。创业路演中，”自主决策”、”自动执行”、”智能规划”这些词汇成了标配。</p>
+
+<p>但现实很残酷 —— 高级的锤子也需要适配合适的钉子。</p>
+
+<p>在用户的实际问题（钉子）没变得足够复杂之前，过于高级的解决方案（锤子）很可能是一种资源浪费。上周我参观的一家 AI 创业公司，花了 4 个月开发了一个”全自主思考”的 agent，结果用户最常用的功能竟然是”帮我整理这份会议记录”。</p>
+
+<p>预期管理是最大挑战</p>
+
+<p>当下 AI 应用落地的最大难题之一，就是如何控制用户预期。</p>
+
+<p>agent 的全自动预期真的能在短期内实现吗？更关键的是，全自动真的能处理所有那些棘手的 Corner case（边缘情况）吗？</p>
+
+<p>仔细想想，当这些 Corner case 需要反复微调，且调整起来未必能精准命中时，是不是预先设计好的 workflow 反而更可靠？</p>
+
+<p>认识到一个团队上个月做了个难受的测试：同一组任务，分别用”智能 agent”和”固定 workflow”解决：</p>
+
+<p>agent 方案：完成率 76%，平均耗时 13.5 分钟，用户满意度 6.8/10</p>
+
+<p>workflow 方案：完成率 94%，平均耗时 7.2 分钟，用户满意度 8.5/10</p>
+
+<p>这结果说明了什么？那些看似”低级”的脏活累活，恰恰可能是最有价值的壁垒。难道只有高概念、高智能才算是竞争优势？这或许只是面向投资人的故事，而非面向用户的价值。</p>
+
+<p>榜单背后的市场选择</p>
+
+<p>第三个现象更耐人寻味：去看看 Product Hunt 等产品榜单，稳定的头部产品几乎都是 workflow 类，真正的 agent 产品寥寥无几。为什么会这样？</p>
+
+<p>因为需求本质没有变。</p>
+
+<p>大模型公司确实有话语权，它们需要讲述足够宏大的故事，构建更具想象力的生态。媒体也需要新概念和新噱头来吸引眼球。这些我都理解。</p>
+
+<p>但当浮躁的概念退去，留下的仍是用户最基础的需求。”帮我解决问题，省时省力”—— 这才是产品存在的根本理由。</p>
+
+<p>从概念回归价值</p>
+
+<p>当开发者们争论”agent vs workflow”时，我建议从三个维度重新审视：</p>
+
+<p>需求主导技术不该问”我是做 agent 还是 workflow”，而应该问”用户的痛点是什么，哪种方案能更可靠地解决”。在面对”我要赚钱”的投资人和”我要解决问题”的用户时，明智的创业者知道该听谁的。</p>
+
+<p>可靠性胜过智能性一个可靠解决 80% 场景的半自动化产品，往往比一个时灵时不灵的”全能 agent”更有商业价值。用户容忍的不是功能上限，而是下限。</p>
+
+<p>解决问题比讲故事重要投资人喜欢故事，但用户只在乎结果。在炒作”全能 agent”概念的同时，有多少团队真正关注过用户反馈？</p>
+
+<p>上个月我与一位做 AI 文档处理的创始人交流，他的产品表面上像 workflow，背后却有 agent 的思想。他说：”与其自称 agent 但做不到，不如默默做好 workflow 但超出预期。前者失望，后者惊喜。”</p>
+
+<p>这话说到了点子上。</p>
+
+<p>说到底，真正的技术壁垒不是概念有多前沿，而是解决问题有多彻底。</p>
+
+<p>需求面前，没有高级不高级，只有有用和没用。那些能扎扎实实降低用户成本、提高工作效率的产品，无论叫什么名字，最终都会赢得市场认可。</p>
+
+<hr />
+
+<p><strong>fin</strong> @fi56622380 <a href="https://x.com/fi56622380/status/1927199653302301055">2025-05-27</a></p>
+
+<p>个人观点，对特定领域task，workflow可能会一直会比agent flow表现更好</p>
+
+<p>目前的AI最大的长处在于封闭式问题，短板在于开放式问题，agent本质就是在和开放性作斗争</p>
+
+<p>workflow这样的半自动本质上把开放性减小了很多，和agent比相当于收敛了搜索空间，表现自然要更好一些</p>
+
+<p>就算以后agent发展的更好，workflow也很容易做的更好</p>
+
+<p>就像通用LLM和特定领域LLM比较一样的道理</p>
+
+<hr />
+
+<p><strong>UserInterface</strong> @SeketAanru</p>
+
+<p>Let’s talk about building businesses, #investing, #entrepreneurship &amp; #crypto. https://userinterface.us/Seket?twclid=25chwpn81ngphwhnd5o57wz2o4<br />
+让我们来谈谈创业， #investing 、 #entrepreneurship 和 #crypto 。 https://userinterface.us/Seket?twclid=25chwpn81ngphwhnd5o57wz2o4</p>
+
+<hr />
+
+<p><strong>c guilin</strong> @superlaoge <a href="https://x.com/superlaoge/status/1926871192759046165">2025-05-26</a></p>
+
+<p>对投资人演示用agent版本，交付用workflow版</p>
+
+<hr />
+
+<p><strong>BillyHe</strong> @topickai <a href="https://x.com/topickai/status/1926939052768411945">2025-05-26</a></p>
+
+<p>学习了</p>
+
+<hr />
+
+<p><strong>Shelly</strong> @0xShellywang <a href="https://x.com/0xShellywang/status/1926947276963926274">2025-05-26</a></p>
+
+<p>现在workflow确实更好用，但这不代表agent没有价值，而是说明当前的agent还不够好。</p>
+
+<p>workflow的优势建立在任务相对固定的前提下，但用户需求会变化。当用户的需求变得更复杂、更个性化时，预设的workflow就会变成束缚。就像当年的批处理系统确实比早期的交互式系统更稳定，但最终被淘汰了。</p>
+
+<p>“agent vs workflow”本身就是个伪命题——好的agent应该内置workflow的稳定性，好的workflow也应该有agent的灵活性。</p>
+
+<p>问题不在于选择agent还是workflow，而在于如何让AI系统的行为可预测、可调试、可迭代。用户害怕的不是AI不够聪明，而是AI的行为无法控制。</p>
+
+<p>最成功的AI产品会是那些表面简单但内核复杂的系统。对用户来说，它看起来像workflow——清晰的输入输出，可预期的结果。但对开发者来说，它有agent的能力——能处理变化，能学习优化。</p>
+
+<hr />
+
+<p><strong>elimach</strong> @elimach01 <a href="https://x.com/elimach01/status/1926799727997190593">2025-05-26</a></p>
+
+<p>两者并不需要绝对的去拆分，结合起来才有更大能力。workflow 提高了确定性，但灵活性不足。全自动的agent 提供了泛化能力，但结果不可预期。</p>
+
+<hr />
+
+<p><strong>Tian :D</strong> @daitian <a href="https://x.com/daitian/status/1926841054675738633">2025-05-26</a></p>
+
+<p>很赞同。实际上现在模型发展都有拿着锤子找钉子的嫌疑。应该说绝大多需求实际上都可以简化为workflow。我司收集需求后来发现95%收集上来的全都是报表类需求workflow足以解决了。</p>
+
+<p>这里面的重大鸿沟就是资源投入产出比，为了解决最后可能的10%需求是否要值的80%的投入？</p>
+
+<hr />
+
+<p><strong>水工</strong> @dayujun88 <a href="https://x.com/dayujun88/status/1926613200637706254">2025-05-25</a></p>
+
+<p>agent更好融资</p>
+
+<p>workflow更好赚钱</p>
+
+<hr />
+
+<p><strong>hooxing</strong> @hooxingzhao <a href="https://x.com/hooxingzhao/status/1926634164754801134">2025-05-25</a></p>
+
+<p>只要能解决客户需求，半人半 AI 又如何？🤔</p>
+
+<hr />
+
+<p><strong>jason</strong> @disunlimited <a href="https://x.com/disunlimited/status/1927216942139470006">2025-05-27</a></p>
+
+<p>嚴格流程標準規範時用人，兩個都是垃圾。</p>
+
+<p>不太嚴格時用workflow。沒有時用agent。</p>
+
+<hr />
+
+<p><strong>AI读书笔记</strong> @quingsong2 <a href="https://x.com/quingsong2/status/1927257398869139534">2025-05-27</a></p>
+
+<p>说得米错，但是，能否开发个Agent，可以向下兼容已有工作流，这样很多应用可以平滑过渡，满足投资人的焦虑，享有未来AI要求的可扩展和弹性，又不影响现在的工作。</p>
+
+<hr />
+
+<p><strong>siyingwang</strong> @redwsy27 <a href="https://x.com/redwsy27/status/1927209921835139565">2025-05-27</a></p>
+
+<p>主要看这个场景是否需要更高的智能上限才有商业价值；如果追求固定workflow就是个效率工具场景，但有些场景是不满足于此的，必须有增量收益才值得干，那就更适合打磨一款agent。</p>
+
+<hr />
+
+<p><strong>马修 Matthew</strong> @mmzhu365 <a href="https://x.com/mmzhu365/status/1927238050075070951">2025-05-27</a></p>
+
+<p>自动降智匹配任务难度，客户要的是结果，成本和统一入口</p>
+
+<hr />
+
+<p><strong>重粒子 baryon</strong> @lilong <a href="https://x.com/lilong/status/1926934577488044177">2025-05-26</a></p>
+
+<p>谁给钱听谁的。</p>
+
+<hr />
+
+<p><strong>zhu</strong> @liliangzhu <a href="https://x.com/liliangzhu/status/1927212774007996827">2025-05-27</a></p>
+
+<p>从技术层面谈agent和workflow（rule, route…)没意义，agent的先进性在于，哪怕是一个很小，很简单的流程，agent可以完全替代人类来完成，很多时候用workflow实现即可。而workflow的定位始终是辅助人类。</p>
+
+<p>反之，如果不能替换下人，agent再智能也没有意义。</p>
+
+<p>最终的闭环是，使用方建立了对agent的信任</p>
+
+<hr />
+
+<p><strong>wsun</strong> @stoneskin_gmail <a href="https://x.com/stoneskin_gmail/status/1927213996400169232">2025-05-27</a></p>
+
+<p>在workflow 上套壳， 宣传说这是我们的agent</p>
+
+<hr />
+
+<p><strong>freedom isn’t a faith</strong> @gldif28315 <a href="https://x.com/gldif28315/status/1926842012633850006">2025-05-26</a></p>
+
+<p>很實在</p>
+
+<hr />
+
+<p><strong>KingKong-AI</strong> @FPoet41619 <a href="https://x.com/FPoet41619/status/1927135496775291338">2025-05-26</a></p>
+
+<p>这种情况，就是让售前把agent的表情贴到workflow上面去。</p>
+
+<hr />
+
+<p><strong>AIkémon</strong> @evo__daily <a href="https://x.com/evo__daily/status/1926694025156841558">2025-05-25</a></p>
+
+<p>Agent不就是带有工作流的大模型应用吗</p>
+
+<hr />
+
+<p><strong>stony</strong> @chinagelandesp1 <a href="https://x.com/chinagelandesp1/status/1927178979695280232">2025-05-27</a></p>
+
+<p>在agent里面调工作流</p>
+
+<hr />
+
+<p><strong>Dalin Huang</strong> @DalinHuang <a href="https://x.com/DalinHuang/status/1927205551710068739">2025-05-27</a></p>
+
+<p>Agent 也可以调用workflow 监督进度… 通过对话创建workflow 并不冲突？</p>
+
+<hr />
+
+<p><strong>BillyHe</strong> @topickai <a href="https://x.com/topickai/status/1927206215785886047">2025-05-27</a></p>
+
+<p>只是在说一种创投圈厚此薄彼的现象。并非拉踩agent。</p>
+
+<hr />
+
+<p><strong>Dalin Huang</strong> @DalinHuang <a href="https://x.com/DalinHuang/status/1927214053601989073">2025-05-27</a></p>
+
+<p>市场总是对的，今年在做agents，投资人确实更渴望足够智能、能够不断积累和进化的agent，这需要用到知识库和长期记忆来支持决策，所以先做一些可靠的workflow让agents选择使用，将来再看怎么更智能🥲</p>
+
+<hr />
+
+<p><strong>Freesolo</strong> @L3Lom0 <a href="https://x.com/L3Lom0/status/1927144995812692109">2025-05-26</a></p>
+
+<p>我们团队其实遇到了一样的问题，大部分事情其实通过workflow完成的又准又好，但是上面的意思是要造agent😇</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@topickai</span>
+            
+          
+            
+              <span class="tag">#AI</span>
+            
+          
+            
+              <span class="tag">#Agent</span>
+            
+          
+            
+              <span class="tag">#workflow</span>
+            
+          
+            
+              <span class="tag">#技术</span>
+            
+          
+            
+              <span class="tag">#创业</span>
+            
+          
+            
+              <span class="tag">#投资</span>
+            
+          
+            
+              <span class="tag">#产品</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

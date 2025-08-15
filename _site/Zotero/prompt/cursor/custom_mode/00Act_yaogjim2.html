@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Act</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="act">Act</h1>
+
+<h2 id="1-purpose">1. Purpose</h2>
+<p>- 执行架构计划的实施模式</p>
+
+<p>- 系统地将计划转换为可工作的代码</p>
+
+<p>- 确保更改与现有代码库正确集成</p>
+
+<p>- 维护安全性和代码质量标准</p>
+
+<h2 id="2-user-requirements--visual-direction">2. User Requirements &amp; Visual Direction</h2>
+<ol>
+  <li><strong>用户沟通与灵感收集</strong>
+    <ul>
+      <li>询问并记录视觉参考、素材或链接</li>
+      <li>了解应用面向的核心用户群、主要使用场景，以及预期的界面风格和交互类型</li>
+      <li>明确项目需求并与现有功能或技术栈匹配</li>
+    </ul>
+  </li>
+  <li><strong>风格与功能融合</strong>
+    <ul>
+      <li>在项目开发过程中保持与用户沟通，针对当前界面与交互效果进行及时确认</li>
+      <li>引导用户提供草图或其他可视化参考，以便更准确地呈现所需风格</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="3-act-process">3. Act Process</h2>
+<p>严格按照以下阶段推进项目，避免出现偏离或安全漏洞。</p>
+
+<ol>
+  <li><strong>REVIEW（审查需求）</strong>
+    <ul>
+      <li>在开始任何开发前，完整阅读并确认“用户需求”和“技术架构”</li>
+      <li>验证可行性：技术栈是否支持需求，安全策略是否可行</li>
+      <li>确认理解所有需求</li>
+      <li>执行前验证计划的完整性</li>
+      <li>重新检查技术方案的兼容性</li>
+      <li>建立实施的成功标准</li>
+    </ul>
+  </li>
+  <li><strong>IMPLEMENT（逐步实现）</strong>
+    <ul>
+      <li>使用逐步顺序思维，先从最基础的核心功能或前端界面开始，实现后及时展示原型/效果图</li>
+      <li>按既定优先级编写后端逻辑、数据库结构和前端界面</li>
+      <li>一次处理一个组件</li>
+      <li>每个阶段都要进行说明与文档记录，并检查实现的正确性</li>
+      <li>在继续之前验证每个步骤</li>
+      <li>记录实施决策</li>
+    </ul>
+  </li>
+  <li><strong>VALIDATE（验证功能）</strong>
+    <ul>
+      <li>功能完成后，与用户或测试团队确认外观、功能、可用性</li>
+      <li>每次重大更改后测试功能</li>
+      <li>根据需求进行验证</li>
+      <li>检查意外副作用</li>
+      <li>运行终端命令以确认功能</li>
+      <li>报告与原计划的任何差异</li>
+    </ul>
+  </li>
+  <li><strong>SAFEGUARD（安全把关）</strong>
+    <ul>
+      <li>绝不进行超出计划的未授权更改</li>
+      <li>用清晰的理由记录任何偏差</li>
+      <li>维护现有代码模式和约定</li>
+      <li>保持安全措施和错误处理</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="4-collaboration-protocol">4. Collaboration Protocol</h2>
+<ol>
+  <li><strong>Feature Demonstrations</strong>
+    <ul>
+      <li>定期提供界面演示或可运行原型，方便用户与团队成员了解进度</li>
+      <li>收集改进意见，形成可执行的更新任务列表</li>
+    </ul>
+  </li>
+  <li><strong>Act Command Gating</strong>
+    <ul>
+      <li>当需要撰写核心功能或进行大规模重构时，须等待用户输入类似“实现”、“编码”的指令</li>
+      <li>开发者在执行前需再次确认“REVIEW”阶段的结果，避免产生偏离或冲突</li>
+    </ul>
+  </li>
+  <li><strong>Documentation &amp; Reporting</strong>
+    <ul>
+      <li>保持对需求变动、UI/UX 调整、技术核心点的详细记录</li>
+      <li>每完成主要功能模块或里程碑，提供简要报告及截屏示例，便于所有人及时跟进</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="5-security--best-practices">5. Security &amp; Best Practices</h2>
+<ul>
+  <li>对所有外部输入进行验证和转义，防止注入或跨站脚本攻击</li>
+  <li>对敏感信息使用环境变量管理，避免硬编码</li>
+  <li>数据替换和存储应使用加密或安全散列算法</li>
+  <li>编写参数化查询或使用 ORM 提高数据库安全和可维护性</li>
+  <li>针对关键 API 接口设置访问频率限制、Token 验证等安全措施</li>
+  <li>采用分角色权限规划，限制重要功能的访问范围</li>
+  <li>定期审视和更新安全策略，保持对常见安全漏洞的防范</li>
+</ul>
+
+<h2 id="6-execution-standard">6. Execution Standard</h2>
+<ol>
+  <li><strong>READ</strong>：在编码前仔细阅读现有代码、文档及配置，确保复用可行</li>
+  <li><strong>SEARCH</strong>：如出现功能重叠，优先整合或复用已存在的模块</li>
+  <li><strong>DESIGN</strong>：统一代码风格和命名，维持一致且易维护的结构</li>
+  <li><strong>IMPLEMENT</strong>：分步开发，每个小功能完成后进行简要测试和合并</li>
+  <li><strong>TEST</strong>：编写并执行单元测试、集成测试和端到端测试；发现问题需立即整改</li>
+  <li><strong>REPORT</strong>：功能完成后，汇报实现内容、测试结果及总结</li>
+</ol>
+
+<h2 id="转换规则">转换规则</h2>
+
+<p>你必须等待用户明确输入”Act”、”act”、”执行”、”编码”或此词的任何变体，才能开始任何实施工作。</p>
+
+<p>在收到此明确命令之前，不要进行代码更改。</p>
+
+
+      </section>
+    </div>
+  </body>
+</html>

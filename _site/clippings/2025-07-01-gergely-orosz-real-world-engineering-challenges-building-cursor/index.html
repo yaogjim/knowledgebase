@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-world engineering challenges: building Cursor</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Real-world engineering challenges: building Cursor</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Real-world engineering challenges: building Cursor</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> Gergely Orosz</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-01</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://newsletter.pragmaticengineer.com/p/cursor?utm_campaign=post&utm_medium=web" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <h3 id="cursor-在短短一年内负载增长了-100-倍其数据层的每秒查询率qps超过-100-万并且每天提供数十亿次代码补全与联合创始人苏莱赫阿西夫一起深入了解它是如何构建的">Cursor 在短短一年内负载增长了 100 倍，其数据层的每秒查询率（QPS）超过 100 万，并且每天提供数十亿次代码补全。与联合创始人苏莱赫·阿西夫一起深入了解它是如何构建的。</h3>
+
+<p>Cursor 是一款由人工智能驱动的集成开发环境，似乎是工程师们最喜欢的。在 <a href="https://blog.pragmaticengineer.com/ide-that-software-engineers-love/">我们去年进行的一项调查</a> 中，对于 <a href="https://blog.pragmaticengineer.com/ide-that-software-engineers-love/">“你最喜欢的具有能帮助你工作的生成式人工智能功能的编辑器是什么？”</a> 这个问题，Cursor 是最常见的答案。</p>
+
+<p>Anysphere 是 Cursor 背后的初创公司，成立于 2022 年，Cursor 的第一个版本于两年前，即 2023 年 3 月发布。上周，Anysphere 宣布他们已经筹集了 9 亿美元的 C 轮融资，公司估值达到 99 亿美元（！！）。该业务的年收入已超过 5 亿美元（！！），这可能是一项纪录：据我所知，没有其他开发工具公司在推出首款产品后的两年内达到这一里程碑。财富 500 强中 500 家最大的科技公司中有一半以上在使用 Cursor，这也有所帮助。</p>
+
+<p>同样在上周，该公司发布了 <a href="https://www.cursor.com/changelog">Cursor 1.0</a> ，这是一个重大版本：显著的新增功能包括人工智能代码审查（通过一个名为 BugBot 的工具）、后台代理以及对内存的支持（记住过去聊天的细节）。</p>
+
+<p>我与 Cursor 联合创始人苏莱赫·阿西夫（Sualeh Asif）坐下来，了解 Cursor 的工作原理以及团队如何构建这个工具，他分享了其内部的新细节：</p>
+
+<ol>
+  <li><strong>技术栈</strong> 。TypeScript 和 Rust、云服务提供商、Turbopuffer、Datadog、PagerDuty 等等。</li>
+  <li><strong>自动完成功能的工作原理。</strong> 一个低延迟同步引擎将加密后的上下文传递给服务器，服务器在其上运行推理。</li>
+  <li><strong>聊天功能如何在不将代码存储在服务器上的情况下运行。</strong> 巧妙运用默克尔树，避免在服务器上存储源代码，同时能够使用嵌入技术搜索源代码。</li>
+  <li><strong>Anyrun：Cursor 的编排器服务。</strong> 一个 Rust 服务负责在云端启动代理，利用亚马逊 EC2 和 AWS Firecracker，安全地并以正确的进程隔离方式进行。</li>
+  <li><strong>工程挑战。</strong> 使用模式决定了技术选择、扩展问题、冷启动问题、分片挑战以及难以发现的故障。</li>
+  <li><strong>因必要而进行的数据库迁移。</strong> Cursor 如何以及为何从 Yugabyte（一个本应能无限扩展的数据库）迁移到 PostgresSQL。此外，在一次大型索引中断期间，在数小时内迁移到 Turbopuffer 的艰巨努力。</li>
+  <li><strong>工程文化与流程。</strong> 每 2 至 4 周发布一次，异常保守的功能特性标记，有一个专门的基础设施团队，一种实验文化，以及他们所面临的一个有趣的工程挑战。</li>
+</ol>
+
+<p><em>本集是 <a href="https://newsletter.pragmaticengineer.com/t/real-world-engineering-challenges">《现实世界工程挑战》系列</a> 的一部分。阅读 <a href="https://newsletter.pragmaticengineer.com/t/real-world-engineering-challenges">其他类似的深度剖析</a> 。</em></p>
+
+<hr />
+
+<h4 id="按数字解读-cursor">按数字解读 Cursor</h4>
+
+<p>在深入探讨技术栈之前，让我们先从一些关于 Cursor 的数字背景开始：</p>
+
+<ul>
+  <li><strong>50</strong> ：参与 Cursor 项目的工程师人数</li>
+  <li>每秒100万次交易，峰值时更高</li>
+  <li><strong>100 倍：</strong> 12 个月内用户量和负载增长 100 倍，有时环比翻倍。</li>
+  <li><strong>1 亿多行</strong> ：企业客户（如英伟达、优步、条纹支付、生鲜配送平台 Instacart、电商平台 Shopify、金融科技公司 Ramp、数据监控平台 Datadog 等）每天使用 Cursor 编写的企业代码行数。Cursor 称，美国最大的 1000 家公司中有超过 50%使用其产品。</li>
+  <li><strong>超过 5 亿美元</strong> ：年度营收运行率。5 月初时为 3 亿美元 <a href="https://www.lennysnewsletter.com/p/the-rise-of-cursor-michael-truell">，</a> 1 月份时为 1 亿美元 <a href="https://x.com/AnjneyMidha/status/1879306784525222193">，而一年前还为零。Cursor 会创造营收增长记录吗？</a></li>
+  <li><strong>十亿：</strong> 企业用户和非企业用户每天使用 Cursor 编写的代码行数略少于这个数字</li>
+  <li><strong>数百太字节</strong> ：Cursor 数据库中存储的索引规模。 <em>这可能看起来不如其他数字那么令人印象深刻，但与图像和视频相比，代码本身在存储方面占用空间相当小。此外，这不是代码本身，而是嵌入向量，因为 Cursor 不在其数据库中存储代码。</em></li>
+</ul>
+
+<p>据路透社报道，Cursor 在创收方面可能正在追赶 GitHub Copilot <a href="https://www.reuters.com/business/ai-vibe-coding-startups-burst-onto-scene-with-sky-high-valuations-2025-06-03/">报道称</a> GitHub Copilot 在 2024 年可能创造了 5 亿美元的收入。目前，Cursor 有望在 2025 年实现同样的收入，如果以目前的速度持续增长，甚至可能更多。</p>
+
+<h2 id="1-技术栈">1. 技术栈</h2>
+
+<p>关于 Cursor 背后这个诞生还不到三年的代码库的一些数据：</p>
+
+<ul>
+  <li><strong>25,000</strong> 个文件</li>
+  <li><strong>700 万</strong> 行代码</li>
+</ul>
+
+<p><strong>编辑器</strong> 是 Visual Studio Code 的一个分支，这意味着它与 VS Code 拥有相同的技术栈：</p>
+
+<ul>
+  <li><strong>TypeScript</strong> ：大部分业务逻辑用这种语言编写</li>
+  <li><strong>电子</strong> ：Cursor 所使用的框架</li>
+</ul>
+
+<p>在创办公司时，他们必须决定是像 <a href="https://zed.dev/">Zed</a> 那样从头开始构建编辑器，还是从一个分支版本起步。苏莱解释了这个决定：</p>
+
+<blockquote>
+  <p>我们需要自主拥有编辑器，而不能“仅仅”是一个扩展程序，因为我们想要改变人们的编程方式。这意味着我们要么需要构建一个全新的集成开发环境（IDE），要么从现有的编辑器进行分支开发。</p>
+
+  <p>我们决定进行复刻，因为一切从头开始的话，光是构建一个稳定的编辑器就会耗费巨大精力。我们的价值主张不是构建一个稳定的编辑器，而是改变开发者的编程方式，以渐进的方式来实现。例如，不进行复刻的话，构建神奇的“标签模型”会非常困难，而复刻之后就轻而易举了。复刻让我们能够专注于体验，而非编辑器本身。</p>
+</blockquote>
+
+<p><strong>后端</strong></p>
+
+<ul>
+  <li><strong>TypeScript</strong> ：大部分业务逻辑用它编写。</li>
+  <li><strong>Rust</strong> ：所有对性能要求严苛的组件都使用这种语言。下面要讨论的编排器就是一个例子。</li>
+  <li><strong>从 Node API 到 Rust：</strong> 大部分业务逻辑用 TypeScript 编写，性能密集型部分则用 Rust 编写，因此存在一座桥梁，可通过 Node.js 从 TypeScript 调用 Rust 代码。一个例子是调用大量使用此桥梁的索引逻辑（用 Rust 编写）。</li>
+  <li><strong>单体应用：</strong> 后端服务大多是一个大型单体应用，并作为一个整体进行部署。 <em>这提醒我们，单体应用对于早期创业公司来说运行得相当不错，并且可以帮助团队快速行动。</em></li>
+</ul>
+
+<p><strong>数据库：</strong></p>
+
+<ul>
+  <li><strong><a href="https://turbopuffer.com/">TurboPuffer</a></strong> ：一个多租户数据库，用于存储加密文件和工作区的默克尔树，如下所述。团队因其可扩展性而更喜欢这个数据库，并且无需像以前那样处理 <a href="https://en.wikipedia.org/wiki/Shard_\(database_architecture\)">数据库分片</a> 的复杂性。我们在下面的“工程挑战”中介绍挑战。</li>
+  <li><strong><a href="https://pinecone.io/">松果体（Pinecone）</a> ：</strong> 一个向量数据库，用于存储一些文档的嵌入向量</li>
+</ul>
+
+<p><strong>数据流</strong></p>
+
+<ul>
+  <li><strong><a href="https://www.warpstream.com/">Warpstream</a></strong> ：一个兼容 Apache Kafka 的数据流服务</li>
+</ul>
+
+<p><strong>工具：</strong></p>
+
+<ul>
+  <li><strong><a href="https://www.datadoghq.com/">Datadog</a></strong> ：用于日志记录和监控。苏莱赫表示他们是重度用户，并且发现 Datadog 的开发者体验比其他竞品要好得多</li>
+  <li><strong><a href="https://www.pagerduty.com/">PagerDuty</a></strong> ：用于值班管理，与他们的 Slack 集成</li>
+  <li><strong><a href="https://slack.com/intl/en-gb/">Slack</a></strong> ：内部通信与聊天工具</li>
+  <li><strong><a href="https://sentry.io/">哨兵</a></strong> ：错误监控</li>
+  <li><strong><a href="https://amplitude.com/">幅度</a></strong> ：分析</li>
+  <li><strong><a href="https://stripe.com/en-nl">Stripe</a></strong> ：使用 Cursor 购买计划时的计费和支付。</li>
+  <li><strong><a href="https://workos.com/">WorkOS</a>:</strong> 登录 Cursor 时的身份验证，例如使用 GitHub 或 Google Workspace 登录</li>
+  <li><strong><a href="https://vercel.com/">Vercel</a></strong> ：Cursor.com 网站所托管的平台</li>
+  <li><strong><a href="https://linear.app/">线性的</a></strong> ：用于管理工作</li>
+  <li><strong>Cursor</strong> - 自然而然！团队使用 Cursor 来构建 Cursor。最终，每位工程师都要对自己签入的代码负责，无论这些代码是他们亲手编写的，还是由 Cursor 生成的。</li>
+</ul>
+
+<p><strong>模型训练：</strong> Cursor 使用多个供应商来训练自己的模型并微调现有模型：</p>
+
+<ul>
+  <li><strong><a href="https://www.voltagepark.com/">电压园区</a></strong></li>
+  <li><strong><a href="https://www.databricks.com/blog/databricks-mosaicml">Databricks MosaicML</a></strong></li>
+  <li><strong><a href="https://mlfoundry.com/">Foundry</a></strong></li>
+</ul>
+
+<h4 id="物理基础设施">物理基础设施</h4>
+
+<p>所有基础设施都运行在云服务提供商上。苏莱赫说：</p>
+
+<blockquote>
+  <p>我们是一家非常典型的“云服务公司”。我们主要依赖亚马逊云服务（AWS），推理环节则主要依靠微软云服务（Azure）。我们也会使用其他一些较新的 GPU 云服务。</p>
+</blockquote>
+
+<p>大部分 CPU 基础设施在 AWS 上运行。他们还运营着数万台英伟达 H100 GPU。相当一部分 GPU 在 Azure 中运行。</p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/3ab72d5b-860d-4271-be74-c64a2c7669d5_1536x847.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:803,%22width%22:1456,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<p>微软 Azure 数据中心内的 20 块英伟达 H100 GPU。Cursor 的计算需求相当于数千个这样的机架。来源：英伟达</p>
+
+<p><strong>推理</strong> 是 Cursor 目前最大的 GPU 使用场景，这意味着生成下一个标记，无论是作为自动完成，还是完整的代码块。实际上，Azure GPU 仅用于推理，而不用于其他与大语言模型（LLM）相关的工作，如微调模型和训练模型。</p>
+
+<p><strong><a href="https://developer.hashicorp.com/terraform">Terraform</a></strong> 是 Cursor 用于管理诸如 GPU 和虚拟机（如 EC2 实例）等基础设施的工具。</p>
+
+<h2 id="2-cursor-的自动完成功能是如何工作的">2. Cursor 的自动完成功能是如何工作的</h2>
+
+<p>为了了解构建 Cursor 所面临的一些技术挑战，让我们看看首次启动编辑器时会发生什么。</p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/242912d9-7577-4f8d-85e6-e03fbe6f1b3a_1600x1112.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:1012,%22width%22:1456,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<p>使用项目打开 Cursor</p>
+
+<h4 id="低延迟同步引擎自动完成建议">低延迟同步引擎：自动完成建议</h4>
+
+<p>打开项目或文件夹后，你可能会直接进入文件编辑。这意味着 Cursor 需要生成自动完成建议，Cursor 团队将其称为标签建议。</p>
+
+<p><strong>一个低延迟同步引擎为“标签模型”提供动力。</strong> 这会生成呈灰色显示的建议，按下“Tab”键即可接受这些建议。这些建议需要在理想情况下不到一秒的时间内快速生成。以下是幕后发生的情况：</p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/583f8775-d894-4cb5-aa20-940b8284c864_1558x1348.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:1260,%22width%22:1456,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<p>Cursor 的“标签建议”是如何工作的</p>
+
+<p>它的工作原理：</p>
+
+<ol>
+  <li>客户端会在本地收集当前上下文窗口（代码）的一小部分</li>
+  <li>代码已加密</li>
+  <li>加密代码/上下文被发送到后端</li>
+  <li>后端对代码/上下文进行解密</li>
+  <li>使用 Cursor 的内部 LLM 模型生成一条建议</li>
+  <li>建议被退回</li>
+  <li>集成开发环境（IDE）会显示该建议。按下“Tab”键可接受该建议。</li>
+  <li>……该过程会对下一个建议重复进行。</li>
+</ol>
+
+<p>这种“标签模型”必须尽可能快，数据传输要尽可能低。在要发送多少上下文以及建议的质量之间总是存在权衡：Cursor 能发送的相关上下文越多，建议就越好。然而，发送大量上下文会减慢建议的显示速度，所以把握好这一点是 Cursor 工程师面临的一项挑战。</p>
+
+<h2 id="3-cursor-的聊天功能如何在不将代码存储在服务器上的情况下运行">3. Cursor 的聊天功能如何在不将代码存储在服务器上的情况下运行</h2>
+
+<p>Cursor 支持一种聊天模式，用于询问代码库相关问题、与代码库“聊天”，或者要求 Cursor 执行一些操作，这些操作会启动一个代理来进行重构、添加某些功能、修改方法等。后端不存储任何源代码，但所有大语言模型（LLM）操作都在后端进行。它管理这些操作的方式是通过代码库的索引。其工作原理如下：</p>
+
+<p><strong>在聊天模式下提问：</strong> 我们以询问 createTodo()方法为例，它是代码库的一部分，在 server.js 中定义。 <em>为了使事情更复杂，我在 index.html 中内联定义了一个类似的方法 addTodo()。让我们看看 Cursor 如何处理这个！</em></p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/343ce691-1072-42b0-b066-e051f767d6a5_958x194.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:194,%22width%22:958,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<p>向 Cursor 提供与代码库相关的提示</p>
+
+<p>该提示被发送到 Cursor 服务器，在那里它会对其进行解释，并决定需要执行一次代码库搜索：</p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/89b78ca0-5680-4739-8f16-190320090835_974x180.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:180,%22width%22:974,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<p>搜索开始：</p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/c89f983a-87d8-4b88-9510-aec3db4ca8e3_966x186.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:186,%22width%22:966,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<p><strong>搜索是使用代码库索引完成的</strong> 。代码库索引是之前创建的嵌入。它尝试使用向量搜索来定位与上下文最匹配的嵌入。在这种情况下，向量搜索返回了两个非常接近的结果：在 server.js 和 index.html 中。</p>
+
+<p><strong>从客户端请求代码：</strong> 服务器不存储任何源代码，但现在要从 <a href="http://server.js/">server.js</a> 和 index.html 请求源代码，以便它可以对两者进行分析并确定哪一个是相关的：</p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/fad62e93-ffab-4615-b5d9-56b63b7569ae_962x334.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:334,%22width%22:962,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<p>最后，在进行向量搜索并向客户端请求相关源代码之后，服务器便拥有了回答问题所需的上下文：</p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/e263225e-bae9-42a4-a649-b17990c57a1d_950x920.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:920,%22width%22:950,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<p>Cursor 在幕后做了一些事情，以使这类搜索能够正常工作。</p>
+
+<h4 id="带有代码块的语义索引代码">带有代码块的语义索引代码</h4>
+
+<p>为了像上述情况那样允许使用嵌入进行向量搜索，Cursor 首先需要将代码分解成更小的块，创建嵌入，并将这些嵌入存储在服务器上。以下是它的实现方式：</p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/05e037ae-80cb-48a4-873e-9ddf25de77fe_1318x1322.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:1322,%22width%22:1318,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<ol>
+  <li><strong>创建代码块。</strong> Cursor 会将文件内容切割成更小的部分。每个部分稍后都将成为一个嵌入。</li>
+  <li><strong>创建嵌入，而不存储文件名或代码。</strong> Cursor 甚至不想在服务器上存储文件名，因为这可能被视为机密信息。相反，它会将混淆后的文件名和加密的代码块发送到服务器。服务器对代码进行解密，使用 <a href="https://platform.openai.com/docs/guides/embeddings">OpenAI 的嵌入模型</a> 或其自己的模型之一创建嵌入，并将嵌入存储在其向量数据库 Turbopuffer 中。</li>
+</ol>
+
+<p>创建嵌入在计算上成本高昂，这也是它在 Cursor 后端使用云端 GPU 来完成的原因之一。对于中等规模的代码库，索引通常耗时不到一分钟，而对于大型代码库则可能需要几分钟甚至更长时间。你可以在 Cursor 中，通过“Cursor 设置”→“索引”来查看索引状态：</p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/be0b36de-c456-45d4-816b-b3784d5f3517_1326x692.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:692,%22width%22:1326,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<h4 id="使用默克尔树保持索引最新">使用默克尔树保持索引最新</h4>
+
+<p>当你使用 Cursor 或其他 IDE 编辑代码库时，Cursor 的服务器端索引会过时。一个简单的解决方案是每隔几分钟运行一次重新索引操作。然而，由于索引在计算方面成本很高，并且会通过传输加密代码块消耗带宽，所以这并不理想。相反，Cursor 巧妙地利用了默克尔树和一个高延迟同步引擎（同步引擎每 3 分钟运行一次）来保持服务器端索引的最新状态。</p>
+
+<p>A <a href="https://en.wikipedia.org/wiki/Merkle_tree">默克尔树</a> 是一种树状结构，其每个叶子节点都是底层文件的加密哈希值（例如文件 main.js 的哈希值）。并且每个节点都是其子节点哈希值的组合。一个包含四个文件的简单项目的默克尔树如下所示：</p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/714edd02-f202-4cbb-a442-60c09d06ad14_1600x889.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:809,%22width%22:1456,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<p>基于代码库中代码的默克尔树</p>
+
+<p>这个默克尔树的工作原理如下：</p>
+
+<ul>
+  <li>每个文件都会根据其内容生成一个哈希值。树的叶子节点就是文件。</li>
+  <li>每个文件夹都会根据其子文件夹的哈希值生成一个哈希值。</li>
+</ul>
+
+<p>Cursor 使用了一个与此非常相似的默克尔树，只是它使用了混淆后的文件名。Cursor 客户端基于本地文件创建一个默克尔树，服务器也基于其已完成索引的文件创建一个默克尔树。这意味着客户端和服务器都存储它们各自的默克尔树。</p>
+
+<p><strong>Cursor 每 3 分钟进行一次索引同步。</strong> 为了确定哪些文件需要重新索引，它会比较两个默克尔树；一个是客户端上作为真相来源的默克尔树，另一个是服务器上作为索引状态的默克尔树。让我们以客户端上的“index.html”发生变化为例：</p>
+
+<p><img src="https://newsletter.pragmaticengineer.com/p/%7B%22src%22:%22https://substack-post-media.s3.amazonaws.com/public/images/4eef44d8-4fee-436b-9bc6-d5840e2d18a2_1460x1452.png%22,%22srcNoWatermark%22:null,%22fullscreen%22:null,%22imageSize%22:null,%22height%22:1448,%22width%22:1456,%22resizeWidth%22:null,%22bytes%22:null,%22alt%22:null,%22title%22:null,%22type%22:null,%22href%22:null,%22belowTheFold%22:true,%22topImage%22:false,%22internalRedirect%22:null,%22isProcessing%22:false,%22align%22:null,%22offset%22:false%7D" alt="" /></p>
+
+<p>客户端和服务器端的默克尔树不同步。Cursor 使用了混淆的文件名，上面的实际文件名仅为简化起见。</p>
+
+<p><strong>树遍历用于定位需要重新索引的位置。</strong> 树遍历并非我们开发者经常实现的功能，但对于此用例，Cursor 工程师必须这样做。默克尔树使树遍历变得高效，因为从根节点开始，很容易判断哈希值是否匹配。在哈希值存在差异的地方，也很容易找到需要同步的文件。同样重要的是，默克尔树将同步操作最小化，仅针对已更改的文件。</p>
+
+<p>这种默克尔树结构非常适合 Cursor 在实际中的使用。例如，在一天结束时关闭计算机，然后在第二天从 git 仓库获取更新来开始新的一天，这是很常见的操作。在一个团队中，到第二天早上有一堆文件发生变化也是很常见的。有了这种默克尔树，Cursor 尽可能少地进行重新索引，在客户端节省时间，并在服务器端尽可能高效地使用计算资源。</p>
+
+<h4 id="安全索引">安全索引</h4>
+
+<p>尽管 Cursor 不在服务器端存储代码，但代码库中仍有一些敏感部分，即使加密后发送也不是个好主意。敏感数据包括密钥、API 密钥和密码。</p>
+
+<p><strong>使用.gitignore 和.cursorignore 是确保索引安全的最佳方法。</strong> 密钥、API 密钥、密码和其他敏感信息不应上传到版本控制系统，通常存储为局部变量，或存储在添加到.gitgnore 的本地环境文件（.env 文件）中。Cursor 尊重.gitignore，不会索引其中列出的文件，也不会将这些文件的内容发送到服务器。此外，它还提供了一个.cursorignore 文件，应在其中添加要被 Cursor 忽略的文件。</p>
+
+<p>在上传代码块进行索引之前，Cursor 还会扫描代码块中是否存在可能的机密信息或敏感数据，并且不会发送这些数据。</p>
+
+<h4 id="索引超大型代码库">索引超大型代码库</h4>
+
+<p>对于庞大的代码库（通常是有数千万行代码的单一仓库），对整个代码库进行索引极其耗时，会占用大量 Cursor 的计算资源，而且通常没有必要。在这种情况下，使用.cursorignore 文件是明智的做法。文档提供了更多指导。</p>
+
+<h2 id="4-anyruncursor-的编排器服务">4. Anyrun：Cursor 的编排器服务</h2>
+
+<p>Anyrun 是 Cursor 编排器组件的名称，并且完全用 Rust 编写。 <em>有趣的事实：“Anyrun”是对 Cursor 的公司名称 Anysphere 的致敬。</em> Anyrun 负责以下事项：</p>
+
+<h2 id="此帖子仅限付费订阅者阅读">此帖子仅限付费订阅者阅读</h2>
+
+<p><a href="https://substack.com/sign-in?redirect=%2Fp%2Fcursor%3Futm_campaign%3Dpost%26utm_medium%3Dweb&amp;for_pub=pragmaticengineer&amp;change_user=false">已经是付费订阅用户了？ <strong>登录</strong></a></p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

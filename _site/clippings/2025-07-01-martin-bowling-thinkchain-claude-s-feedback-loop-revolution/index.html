@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThinkChain: Claude&#39;s Feedback Loop Revolution</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">ThinkChain: Claude's Feedback Loop Revolution</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">ThinkChain: Claude's Feedback Loop Revolution</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> Martin Bowling</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-01</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://martinbowling.com/thinkchain-when-claudes-thinking-meets-tool-feedback-loops" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1749932448899/a719ff62-a2b8-4022-a52e-d57d0c99baf2.png?w=1600&amp;h=840&amp;fit=crop&amp;crop=entropy&amp;auto=compress,format&amp;format=webp" alt="ThinkChain: When Claude's Thinking Meets Tool Feedback Loops" /></p>
+
+<p>ThinkChain: When Claude’s Thinking Meets Tool Feedback Loops</p>
+
+<h2 id="思维链当-claude-的思考遇上工具反馈循环">思维链：当 Claude 的思考遇上工具反馈循环</h2>
+<h2 id="灵感">灵感！</h2>
+
+<p>我看到了 <a href="https://x.com/skirano/status/1933208161244086430">彼得罗·希拉诺（Pietro Schirano）关于他的“工具链”的推文</a> ，立刻就想——我一定要打造这个！你瞧，最近我一直痴迷于 Claude 的工具使用能力，尤其是在 Anthropic 发布他们的交错式思考功能之后。我所见过的大多数 Claude 集成都是将工具视为黑箱——调用一个工具，得到一个结果，然后继续。但要是工具结果能够实时反馈到 Claude 的思考过程中会怎样呢？</p>
+
+<p>那个简单的问题将我引入了一个无底洞，最终催生了 <strong>思维链</strong> ——一个思维、工具执行和推理形成连续反馈循环的系统。与传统的“调用工具→获取结果→回应”线性流程不同，思维链创造了更强大的东西：“思考→调用工具→思考结果→智能回应”。</p>
+
+<p>我的发现让我感到惊讶。当你将工具结果反馈回 Claude 的思维流中时，它不仅会使用工具，而且在如何使用工具方面会变得极其智能。以下是我构建的内容、学到的东西，以及为什么这会改变人工智能工具集成的一切。</p>
+
+<h2 id="核心创新工具结果注入">核心创新：工具结果注入</h2>
+
+<p>让我用一个实际例子向你展示其中的区别。向传统的 Claude 集成询问“旧金山的天气如何，我在那里应该去哪里吃晚餐？”，你会得到如下流程：</p>
+
+<p><strong>传统方法：</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User Question → Claude thinks → Calls weather tool → Gets result
+               → Calls restaurant tool → Gets result → Combines results
+</code></pre></div></div>
+
+<p><strong>思链方法：</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User Question → Claude thinks → Calls weather tool → Thinks about weather
+               → Calls restaurant tool with weather context → Thinks about both
+               → Synthesizes intelligent response
+</code></pre></div></div>
+
+<p>神奇之处发生在工具执行后的那些思考步骤中。以下是实现这一点的实际技术实现方式：</p>
+
+<p>这就创建了一个反馈循环，在这个循环中，Claude 的初始思考会导致工具的使用，工具的结果为持续思考提供信息，而最终的回答则融合了推理和工具的结果。这不仅仅是更智能——而是 **更明智地思考**。</p>
+
+<h2 id="架构深度剖析其工作原理全解析">架构深度剖析：其工作原理全解析</h2>
+
+<p>构建 ThinkChain 让我明白，真正的力量不在于拥有大量工具，而在于工具如何相互发现、高效执行并智能地反馈结果。以下是我对它的架构设计：</p>
+
+<h3 id="工具发现系统">工具发现系统</h3>
+
+<p>我希望开发者只需将一个 Python 文件丢到一个文件夹里，它就能运行起来。无需注册，也无需复杂的设置。以下是发现流程：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Local Tools (/tools/*.py) → Validation → Registry
+                                         ↓
+MCP Servers (config.json) → Connection → Registry → Unified Tool List → Claude API
+</code></pre></div></div>
+
+<p>每个工具都实现了这个简单的接口：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">tools.base</span> <span class="kn">import</span> <span class="n">BaseTool</span>
+
+<span class="k">class</span> <span class="nc">WeatherTool</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">"weathertool"</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s">"""
+    Gets current weather information for any location worldwide.
+
+    Use this tool when users ask about:
+    - Current weather in any city/location
+    - Temperature anywhere
+    - "What's the weather like in [location]?"
+    """</span>
+
+    <span class="n">input_schema</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"type"</span><span class="p">:</span> <span class="s">"object"</span><span class="p">,</span>
+        <span class="s">"properties"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"location"</span><span class="p">:</span> <span class="p">{</span><span class="s">"type"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span> <span class="s">"description"</span><span class="p">:</span> <span class="s">"City and state/country"</span><span class="p">},</span>
+            <span class="s">"units"</span><span class="p">:</span> <span class="p">{</span><span class="s">"type"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span> <span class="s">"enum"</span><span class="p">:</span> <span class="p">[</span><span class="s">"fahrenheit"</span><span class="p">,</span> <span class="s">"celsius"</span><span class="p">],</span> <span class="s">"default"</span><span class="p">:</span> <span class="s">"fahrenheit"</span><span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">"required"</span><span class="p">:</span> <span class="p">[</span><span class="s">"location"</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">location</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"location"</span><span class="p">)</span>
+        <span class="c1"># Hit wttr.in API for real weather data
+</span>        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s">"https://wttr.in/</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s">?format=j1"</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="c1"># Format for Claude
+</span>        <span class="k">return</span> <span class="sa">f</span><span class="s">"🌤️ Weather for </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s">:</span><span class="se">\n</span><span class="s">Temperature: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s">'current_condition'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">'temp_F'</span><span class="p">]</span><span class="si">}</span><span class="s">°F</span><span class="se">\n</span><span class="s">..."</span>
+</code></pre></div></div>
+
+<p>美妙之处在于，工具只是具有四样东西的类：一个名称、描述、输入模式和执行方法。将文件放入 <code class="language-plaintext highlighter-rouge">/tools/</code> 中，ThinkChain 会自动发现它。</p>
+
+<h3 id="实际示例流程">实际示例流程</h3>
+
+<p>让我给你展示一下当有人问“旧金山天气如何以及在那里找好餐厅”时会发生什么：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[thinking] I need to check the weather first, then find restaurants that might be good for those conditions.
+
+[tool_use:weathertool] ▶ {"location": "San Francisco, CA"}
+[tool_result] 🌤️ Weather for San Francisco, CA:
+Temperature: 62°F (feels like 62°F)
+Conditions: Partly cloudy
+Humidity: 38%
+Wind: 5 mph WSW
+
+[thinking] It's a pleasant 62°F and partly cloudy - perfect weather for outdoor dining or walking to restaurants. I should look for places with outdoor seating or patios.
+
+[tool_use:duckduckgotool] ▶ {"query": "best restaurants San Francisco outdoor seating patio"}
+[tool_result] [Restaurant results with outdoor dining options...]
+
+[thinking] Given the nice weather, I can recommend these outdoor-friendly restaurants...
+</code></pre></div></div>
+
+<p>看看天气结果如何影响餐厅搜索？这就是工具结果注入的力量——Claude 不仅仅是按顺序调用工具，它还会思考结果并做出更明智的决策。</p>
+
+<h2 id="构建实用工具从概念到代码">构建实用工具：从概念到代码</h2>
+
+<p>当我开始为 ThinkChain 构建工具时，我了解到描述与实现同样重要。Claude 不仅需要理解你的工具做什么，还需要知道何时使用它。</p>
+
+<p>以下是结合我所学内容完成的 weathertool 实现：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">tools.base</span> <span class="kn">import</span> <span class="n">BaseTool</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">class</span> <span class="nc">WeatherTool</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">"weathertool"</span>
+
+    <span class="c1"># This description is crucial - it helps Claude decide when to use the tool
+</span>    <span class="n">description</span> <span class="o">=</span> <span class="s">"""
+    Gets current weather information for any location worldwide. Returns temperature, 
+    weather conditions, humidity, wind speed and direction.
+
+    Use this tool when users ask about:
+    - Current weather in any city/location
+    - Temperature anywhere  
+    - Weather conditions (sunny, cloudy, rainy, etc.)
+    - "What's the weather like in [location]?"
+    """</span>
+
+    <span class="c1"># JSON Schema for input validation
+</span>    <span class="n">input_schema</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"type"</span><span class="p">:</span> <span class="s">"object"</span><span class="p">,</span>
+        <span class="s">"properties"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"location"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s">"type"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span>
+                <span class="s">"description"</span><span class="p">:</span> <span class="s">"The city and state/country (e.g., 'San Francisco, CA' or 'London, UK')"</span>
+            <span class="p">},</span>
+            <span class="s">"units"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s">"type"</span><span class="p">:</span> <span class="s">"string"</span><span class="p">,</span> 
+                <span class="s">"description"</span><span class="p">:</span> <span class="s">"Temperature units"</span><span class="p">,</span>
+                <span class="s">"enum"</span><span class="p">:</span> <span class="p">[</span><span class="s">"fahrenheit"</span><span class="p">,</span> <span class="s">"celsius"</span><span class="p">,</span> <span class="s">"kelvin"</span><span class="p">],</span>
+                <span class="s">"default"</span><span class="p">:</span> <span class="s">"fahrenheit"</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">"required"</span><span class="p">:</span> <span class="p">[</span><span class="s">"location"</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">location</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"location"</span><span class="p">)</span>
+        <span class="n">units</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"units"</span><span class="p">,</span> <span class="s">"fahrenheit"</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Use wttr.in - free weather API, no key needed
+</span>            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s">"https://wttr.in/</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s">?format=j1"</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+
+            <span class="n">current</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'current_condition'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">temp_c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">current</span><span class="p">[</span><span class="s">'temp_C'</span><span class="p">])</span>
+            <span class="n">temp_f</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">current</span><span class="p">[</span><span class="s">'temp_F'</span><span class="p">])</span>
+
+            <span class="c1"># Format based on requested units
+</span>            <span class="k">if</span> <span class="n">units</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">"celsius"</span><span class="p">:</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">temp_c</span><span class="si">}</span><span class="s">°C"</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># Default to fahrenheit
+</span>                <span class="n">temp</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">temp_f</span><span class="si">}</span><span class="s">°F"</span>
+
+            <span class="c1"># Return formatted result that Claude can easily understand
+</span>            <span class="k">return</span> <span class="sa">f</span><span class="s">"""🌤️ Weather for </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s">:
+Temperature: </span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s">
+Conditions: </span><span class="si">{</span><span class="n">current</span><span class="p">[</span><span class="s">'weatherDesc'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">'value'</span><span class="p">]</span><span class="si">}</span><span class="s">
+Humidity: </span><span class="si">{</span><span class="n">current</span><span class="p">[</span><span class="s">'humidity'</span><span class="p">]</span><span class="si">}</span><span class="s">%
+Wind: </span><span class="si">{</span><span class="n">current</span><span class="p">[</span><span class="s">'windspeedMiles'</span><span class="p">]</span><span class="si">}</span><span class="s"> mph </span><span class="si">{</span><span class="n">current</span><span class="p">[</span><span class="s">'winddir16Point'</span><span class="p">]</span><span class="si">}</span><span class="s">"""</span>
+
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Always return string errors - Claude can handle them gracefully
+</span>            <span class="k">return</span> <span class="sa">f</span><span class="s">"❌ Error fetching weather data: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s">"</span>
+</code></pre></div></div>
+
+<h3 id="我发现的关键模式">我发现的关键模式</h3>
+
+<p><strong>丰富描述获胜</strong> ：你向 Claude 提供的关于何时使用你的工具的上下文信息越多，它的表现就越好。包括示例查询、应触发它的关键词以及特定用例。</p>
+
+<p><strong>错误处理很重要</strong> ：始终捕获异常并返回字符串错误消息。当你向 Claude 提供关于出错原因的明确信息时，它在优雅地处理错误方面表现得惊人地出色。</p>
+
+<p><strong>Claude 的格式要求</strong> ：组织你的输出以便于解析。使用表情符号、清晰的标签和一致的格式。Claude 在处理结构良好的数据时表现更佳。</p>
+
+<p><strong>输入验证</strong> ：使用全面的 JSON 模式。它们可防止错误，并帮助 Claude 准确了解你的工具期望的参数。</p>
+
+<h2 id="mcp-集成超越本地工具">MCP 集成：超越本地工具</h2>
+
+<p>最令人兴奋的发现之一是与 MCP（模型上下文协议）服务器集成。MCP 使你能够连接到提供工具的外部服务器，极大地扩展了可能性。</p>
+
+<p>以下是我添加 SQLite 数据库操作的方法：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"sqlite"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uvx"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"mcp-server-sqlite"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--db-path"</span><span class="p">,</span><span class="w"> </span><span class="s2">"./database.db"</span><span class="p">],</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SQLite database operations"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>仅通过添加该配置并运行 <code class="language-plaintext highlighter-rouge">uvx install mcp-server-sqlite</code> ，ThinkChain 就获得了 6 个新工具：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">mcp_sqlite_read_query</code> - 执行 SELECT 查询</li>
+  <li><code class="language-plaintext highlighter-rouge">mcp_sqlite_write_query</code> - 执行插入/更新/删除</li>
+  <li><code class="language-plaintext highlighter-rouge">mcp_sqlite_create_table</code> - 创建数据库表</li>
+  <li><code class="language-plaintext highlighter-rouge">mcp_sqlite_list_tables</code> - 列出所有表</li>
+  <li><code class="language-plaintext highlighter-rouge">mcp_sqlite_describe_table</code> - 获取表架构</li>
+  <li><code class="language-plaintext highlighter-rouge">mcp_sqlite_append_insight</code> - 添加业务洞察</li>
+</ul>
+
+<p>这种能力源于生态系统的整合。现在我可以这样提问：“从数据库中查询我们办公地点的天气，然后找出每个地点附近的餐厅”，Claude 能够无缝地同时使用本地工具（天气）和 MCP 工具（数据库）。</p>
+
+<p>让我惊讶的是 Claude 将这些如此自然地串联在一起。它并没有看出本地 Python 工具和远程 MCP 服务器之间的区别——它们在它的工具集中都只是工具而已。</p>
+
+<h2 id="增强的用户界面使其美观">增强的用户界面：使其美观</h2>
+
+<p>以下是我很早就学到的一点：如果你在构建开发者工具，体验和功能同样重要。我本可以停留在一个基本的命令行界面，但我希望 ThinkChain 能给人一种与实际智能程度相符的感觉。</p>
+
+<p>所以我构建了两个接口：</p>
+
+<p><strong><a href="http://thinkchain.py/">thinkchain.py</a></strong> - 具备丰富格式设置、进度条和交互功能的完整体验 <strong>thinkchain_</strong> <strong><a href="http://cli.py/">cli.py</a></strong> - 仅在需要其运行时使用的极简命令行界面 <strong><a href="http://run.py/">run.py</a></strong> - 智能启动器，可检测可用库并选择最佳选项</p>
+
+<p>以下是增强版用户界面启动时的样子：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>╔═══════════════════════════════════════════════════════════════════╗
+║  ████████╗██╗  ██╗██╗███╗   ██╗██╗  ██╗ ██████╗██╗  ██╗ █████╗ ██╗███╗   ██╗  ║
+║  ╚══██╔══╝██║  ██║██║████╗  ██║██║ ██╔╝██╔════╝██║  ██║██╔══██╗██║████╗  ██║  ║
+║     ██║   ███████║██║██╔██╗ ██║█████╔╝ ██║     ███████║███████║██║██╔██╗ ██║  ║
+║     ██║   ██╔══██║██║██║╚██╗██║██╔═██╗ ██║     ██╔══██║██╔══██║██║██║╚██╗██║  ║
+║     ██║   ██║  ██║██║██║ ╚████║██║  ██╗╚██████╗██║  ██║██║  ██║██║██║ ╚████║  ║
+║     ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝  ║
+║          🧠 Claude Chat with Advanced Tool Integration &amp; Thinking 💭          ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+Claude Tool Discovery Chat
+🔧 Local: 11 tools │ 🌐 MCP: 6 servers │ 💭 Thinking: ON │ 🔋 Ready
+</code></pre></div></div>
+
+<p>但真正神奇的事情发生在对话过程中。看看当 Claude 使用工具时会发生什么：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>👤 You: What's the weather in Cross Lanes, WV?
+
+💭 Thinking: I'll check the current weather in Cross Lanes, WV for you.
+
+🔧 Tool Use: weathertool
+
+🔧 Executing: weathertool
+╭───────────────────────── Arguments for weathertool ──────────────────────────╮
+│ {                                                                            │
+│   "location": "Cross Lanes, WV"                                              │
+│ }                                                                            │
+╰──────────────────────────────────────────────────────────────────────────────╯
+🔧 weathertool: Executing...
+🔧 weathertool: Completed (0.8s)
+╭────────────────────────── Result from weathertool ───────────────────────────╮
+│ 🌤️ Weather for Cross Lanes, WV:                                               │
+│ Temperature: 73°F (feels like 77°F)                                          │
+│ Conditions: Heavy rain with thunderstorm                                     │
+│ Humidity: 79%                                                                │
+│ Wind: 2 mph WSW                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+🔄 Continuing with tool results...
+
+💭 Thinking: The current weather in Cross Lanes, WV shows stormy conditions...
+
+🤖 Claude: The current weather in Cross Lanes, WV is stormy with heavy rain and thunderstorms...
+</code></pre></div></div>
+
+<p>每一步都可视化呈现：思考内容以斜体蓝色显示，工具执行过程会显示进度及时间，结果则以美观的方框进行格式化。你实际上可以“观看”Claude 思考问题的过程。</p>
+
+<h3 id="技术实现">技术实现</h3>
+
+<p>增强的用户界面是使用 Rich 库构建的，但巧妙之处在于：它能优雅地降级显示：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">rich.console</span> <span class="kn">import</span> <span class="n">Console</span>
+    <span class="kn">from</span> <span class="nn">rich.panel</span> <span class="kn">import</span> <span class="n">Panel</span>
+    <span class="kn">from</span> <span class="nn">rich.progress</span> <span class="kn">import</span> <span class="n">Progress</span>
+    <span class="kn">from</span> <span class="nn">ui_components</span> <span class="kn">import</span> <span class="n">ui</span>  <span class="c1"># Enhanced UI components
+</span>    <span class="n">UI_AVAILABLE</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="k">except</span> <span class="nb">ImportError</span><span class="p">:</span>
+    <span class="n">UI_AVAILABLE</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">print_tool_execution</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">UI_AVAILABLE</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s">"executing"</span><span class="p">:</span>
+            <span class="n">ui</span><span class="p">.</span><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"🔧 [yellow]Executing:[/yellow] </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">status</span> <span class="o">==</span> <span class="s">"completed"</span><span class="p">:</span>
+            <span class="n">ui</span><span class="p">.</span><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"🔧 [green]Completed:[/green] </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s"> (</span><span class="si">{</span><span class="n">duration</span><span class="si">:</span><span class="p">.</span><span class="mi">1</span><span class="n">f</span><span class="si">}</span><span class="s">s)"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Fallback to basic text
+</span>        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[tool_use:</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">] </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>斜杠命令系统构建起来特别有趣：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">command_words</span> <span class="o">=</span> <span class="p">[</span><span class="s">'/help'</span><span class="p">,</span> <span class="s">'/tools'</span><span class="p">,</span> <span class="s">'/refresh'</span><span class="p">,</span> <span class="s">'/config'</span><span class="p">,</span> <span class="s">'/exit'</span><span class="p">]</span>
+
+<span class="n">user_input</span> <span class="o">=</span> <span class="n">ui</span><span class="p">.</span><span class="n">get_input</span><span class="p">(</span><span class="s">"Enter command or message"</span><span class="p">,</span> <span class="n">command_words</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">user_input</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'/'</span><span class="p">):</span>
+    <span class="n">command_parts</span> <span class="o">=</span> <span class="n">user_input</span><span class="p">[</span><span class="mi">1</span><span class="p">:].</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="n">command_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">command</span> <span class="o">==</span> <span class="s">'tools'</span><span class="p">:</span>
+        <span class="n">show_tools_command</span><span class="p">()</span>  <span class="c1"># Beautiful table of all tools
+</span>    <span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s">'config'</span><span class="p">:</span>
+        <span class="n">handle_config_command</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>  <span class="c1"># Interactive configuration
+</span></code></pre></div></div>
+
+<p>你可以使用制表符补全、通过箭头键查看命令历史记录，并且全文都支持丰富的格式设置。但是如果你没有安装 Rich，所有功能仍然可以使用——只是会退回到纯文本模式。</p>
+
+<h2 id="经验教训与开发者见解">经验教训与开发者见解</h2>
+
+<p>构建思链让我对人工智能工具集成有了一些意想不到的认识。以下是一些最深刻的见解：</p>
+
+<h3 id="效果非常好的方面">效果非常好的方面</h3>
+
+<p><strong>工具结果注入是一个改变游戏规则的因素。</strong> 对此我再怎么强调都不为过。当 Claude 能够在回复之前思考工具结果时，回复的质量会有显著提高。这不仅仅是使用工具——而是对其输出进行推理。</p>
+
+<p><strong>自动工具发现可轻松扩展。</strong> 我最初只有 2 个工具，现在有 17 个，而且添加新工具仍然只是“将文件拖到文件夹中，然后重启”。发现系统会处理所有复杂的事情。</p>
+
+<p><strong>丰富的描述让 Claude 更智能。</strong> 一个只有基本描述的工具和一个有关于何时使用它的丰富上下文的工具之间的差别犹如天壤之别。有了好的描述，Claude 能做出更好的工具选择决策。</p>
+
+<p><strong>MCP 集成开启无限可能。</strong> 一旦我连接到 MCP 服务器，我就意识到这不仅仅关乎我构建的工具，而是关乎连接到整个生态系统。</p>
+
+<h3 id="令我惊讶的挑战">令我惊讶的挑战</h3>
+
+<p><strong>管理异步 MCP 连接比预期更棘手。</strong> MCP 服务器作为独立进程运行，要将其生命周期与主应用程序进行协调，需要谨慎地进行异步处理：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="k">def</span> <span class="nf">cleanup_mcp_servers</span><span class="p">():</span>
+    <span class="s">"""Gracefully shutdown all MCP server connections"""</span>
+    <span class="k">for</span> <span class="n">server_name</span><span class="p">,</span> <span class="n">client</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">active_clients</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error during cleanup of MCP server </span><span class="si">{</span><span class="n">server_name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>工具故障处理必须万无一失。</strong> 当工具出现故障时，不能直接崩溃——Claude 需要了解问题所在，并可能尝试其他方法：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">execute_tool_sync</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">tool_function</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"❌ Network error calling </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s">"</span>
+    <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"❌ Invalid input for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s">"</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"❌ Unexpected error in </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s">"</span>
+</code></pre></div></div>
+
+<p><strong>思考预算优化比我想象的更重要。</strong> 最初我将思考预算设置为 16,000 个代币，但我发现 1,024 - 2,048 个代币通常效果更好。思考预算过多，Claude 会对简单问题过度思考。过少则无法推理复杂的工具链。</p>
+
+<h3 id="性能洞察">性能洞察</h3>
+
+<p><strong>工具执行时间差异极大。</strong> 天气 API 调用耗时 0.5 到 1 秒，网页抓取可能需要 3 到 5 秒，而数据库操作几乎瞬间完成。用户界面进度指示器可帮助用户了解正在发生的事情。</p>
+
+<p><strong>流处理与批处理的权衡。</strong> 流处理能提供更好的用户体验，但需要更复杂的错误处理。我最终采用了一种混合方法——对话采用流处理，但在启动时进行工具发现采用批处理。</p>
+
+<p><strong>内存使用量随工具数量增加而增长。</strong> 每个工具都会在内存中保留其模式，并且 MCP 连接会维持持久状态。我使用 17 个工具时，内存使用量约为 50MB，这完全合理，但仍需留意。</p>
+
+<h3 id="出现的代码模式">出现的代码模式</h3>
+
+<p>以下是一些我发现自己反复使用的模式：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Tool result validation pattern
+</span><span class="k">def</span> <span class="nf">validate_and_format_result</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tool_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"❌ </span><span class="si">{</span><span class="n">tool_name</span><span class="si">}</span><span class="s"> returned empty result"</span>
+
+    <span class="c1"># Try to parse as JSON for structured data
+</span>    <span class="k">try</span><span class="p">:</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">parsed</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Pretty print
+</span>    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span>  <span class="c1"># Return as-is if not JSON
+</span>
+<span class="c1"># Graceful degradation pattern  
+</span><span class="k">def</span> <span class="nf">safe_tool_execution</span><span class="p">(</span><span class="n">tool_func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">tool_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"❌ Missing dependency: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"❌ Tool execution failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span>
+
+<span class="c1"># Configuration management pattern
+</span><span class="k">def</span> <span class="nf">update_config</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ALLOWED_CONFIG_KEYS</span><span class="p">:</span>
+        <span class="n">CONFIG</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">save_config_to_file</span><span class="p">()</span>  <span class="c1"># Persist changes
+</span>        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">return</span> <span class="bp">False</span>
+</code></pre></div></div>
+
+<p>我意识到，构建人工智能工具不仅仅关乎人工智能部分，还在于创建强大且对开发者友好的系统，这些系统能够优雅地处理边缘情况并提供出色的体验。</p>
+
+<h2 id="分叉它并使其为你所用">分叉它并使其为你所用</h2>
+
+<p>事情是这样的——ThinkChain 的设计初衷就是可被分叉和扩展。我特意以麻省理工学院许可协议来构建它，就是因为我想看看开发者们会用它做出什么来。</p>
+
+<p>该架构在设计上是模块化的。想为你的领域添加工具吗？将 Python 文件放入 <code class="language-plaintext highlighter-rouge">/tools/</code> 。想连接到专门的 MCP 服务器吗？编辑 <code class="language-plaintext highlighter-rouge">mcp_config.json</code> 。想定制用户界面吗？修改富组件。</p>
+
+<h3 id="特定领域分叉的想法">特定领域分叉的想法</h3>
+
+<p><strong>数据科学思维链</strong> ：添加用于数据处理的 pandas 工具、用于可视化的 matplotlib 以及用于笔记本集成的 jupyter 工具。想象一下，要求 Claude“加载这个数据集，分析趋势并创建可视化”，然后看着它逐步思考。</p>
+
+<p><strong>Web 开发思维链</strong> ：React 组件生成器、npm 包管理器、git 集成工具、部署自动化。“使用这些属性创建一个新的 React 组件并将其添加到项目中”变成了一段对话，而非手动流程。</p>
+
+<p><strong>DevOps 思维链</strong> ：Docker 容器工具、Kubernetes 部署工具、AWS/GCP 集成、监控仪表盘。“检查我们生产服务的健康状况，并在需要时进行扩展”，同时对决策给出完整的推理。</p>
+
+<p><strong>研究思链</strong> ：学术论文搜索工具、文献引用管理器、数据分析工具、LaTeX 生成器。通过工具驱动的研究“查找有关该主题的近期论文并总结其方法”。</p>
+
+<h3 id="开始使用你的分叉">开始使用你的分叉</h3>
+
+<p>这个过程很简单：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Fork and clone</span>
+git clone https://github.com/yourusername/your-thinkchain-fork.git
+<span class="nb">cd </span>your-thinkchain-fork
+
+<span class="c"># Install dependencies</span>
+uv pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+
+<span class="c"># Create your first tool</span>
+vim tools/yourtool.py
+
+<span class="c"># Test it</span>
+python thinkchain.py
+/refresh  <span class="c"># Loads your new tool</span>
+<span class="s2">"Use my new tool for X"</span>  <span class="c"># Test with Claude</span>
+</code></pre></div></div>
+
+<h3 id="我希望你构建的东西">我希望你构建的东西</h3>
+
+<p>看到特定领域的分叉、新颖的工具组合以及富有创意的 MCP 集成，我感到很兴奋。也许有人会为法律研究、科学计算或创意写作打造思链。可能性是无穷的。</p>
+
+<p>如果你构建了很酷的东西，告诉我！我很乐意展示社区分支，并看看人们如何扩展这个系统。</p>
+
+<h2 id="接下来是什么">接下来是什么</h2>
+
+<p>构建思维链让我见识到当人工智能工具能够思考自身工具使用方式时所蕴含的可能性。以下是我对未来感到兴奋的方面：</p>
+
+<h3 id="我正在进行的技术改进">我正在进行的技术改进</h3>
+
+<p><strong>更好的错误恢复能力</strong> ：当工具出现故障时，Claude 应该能够提出替代方法或调试问题。我正在尝试让 Claude 能够访问错误日志和系统状态。</p>
+
+<p><strong>工具组合工作流程</strong> ：如果 Claude 不只是简单地链接工具，而是能够将它们组合成可重复使用的工作流程会怎样？“将这个工具序列记住为一个‘数据分析工作流程’，供未来使用。”</p>
+
+<p><strong>多模型支持</strong> ：Claude 很棒，但不同的模型有不同的优势。要是在同一次对话中，你可以用 GPT-4 处理创造性任务，用 Claude 处理分析性任务，那会怎样呢？</p>
+
+<p><strong>性能优化</strong> ：一些工具链可以并行运行而非顺序运行。我正在探索如何让 Claude 标记哪些工具可以并发运行。</p>
+
+<h3 id="大局观">大局观</h3>
+
+<p>最让我兴奋的是，思链（ThinkChain）代表了从“使用工具的人工智能”到“思考工具的人工智能”的转变。当 Claude 能够对工具结果进行推理时，它就能在使用哪些工具以及如何使用这些工具方面做出从根本上来说更好的决策。</p>
+
+<p>我认为这仅仅是个开始。随着越来越多的 MCP 服务器上线，随着工具生态系统的成熟，以及随着人工智能模型在推理方面变得更加出色，我们将会看到人工智能系统不仅仅是自动执行任务——它们还能智能地编排复杂的工作流程。</p>
+
+<p>未来不是人工智能取代人类开发者，而是人工智能成为极其复杂的开发伙伴，能够深入思考问题、智能使用工具，并在每一步都解释其推理过程。</p>
+
+<h2 id="结论">结论</h2>
+
+<p>彼得罗关于“工具链”的推文引发了一个想法，但我在构建思维链时发现了更重要的东西：当你让人工智能思考工具的结果时，一切都变了。</p>
+
+<p>Claude 不再只是使用工具——它会对工具进行推理、从工具中学习，并就如何组合工具做出明智的决策。思考与工具执行之间的反馈循环创造了一种我前所未见的智能。</p>
+
+<p>对于开发者而言，这意味着我们需要以不同的方式思考人工智能集成。仅仅让人工智能访问工具是不够的——我们需要设计出能让人工智能思考工具结果并利用这种思考做出更好决策的系统。</p>
+
+<p>技术模式出奇地简单直接：工具结果注入、异步流、优雅的错误处理以及丰富的用户体验。但其影响却意义深远。我们正在从遵循脚本的人工智能助手转向能够推理复杂问题的人工智能伙伴。</p>
+
+<p>思维链是我对这一理念的探索，但这真的只是一个开始。最好的人工智能工具不仅仅是智能的——它们是能让人工智能变得更智能的工具。</p>
+
+<p>将其复刻、扩展并打造出令人惊叹的东西。我迫不及待想看看你创造出了什么。</p>
+
+<hr />
+
+<p><strong>想试试 ThinkChain 吗？</strong> 查看 <a href="https://github.com/martinbowling/ThinkChain">GitHub 仓库</a> 并开始构建你自己的工具思考反馈循环。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

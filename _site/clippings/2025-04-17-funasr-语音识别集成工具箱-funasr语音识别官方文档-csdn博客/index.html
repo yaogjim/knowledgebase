@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FunASR：语音识别集成工具箱_funasr语音识别官方文档-CSDN博客</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">FunASR：语音识别集成工具箱_funasr语音识别官方文档-CSDN博客</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">FunASR：语音识别集成工具箱_funasr语音识别官方文档-CSDN博客</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-17</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://blog.csdn.net/CITY_OF_MO_GY/article/details/145729190" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><img src="https://i-blog.csdnimg.cn/direct/05513e552596439db29cf6f8af6713c3.png" alt="" />之前的工作主要是 <a href="https://so.csdn.net/so/search?q=%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89&amp;spm=1001.2101.3001.7020">计算机视觉</a> 方向，大模型盛行下开始接触大语言模型和多模态模型，但是一直也没有机会接触语音识别方向的算法，比较好奇， 前两天刷到一个科普小视频提到FunASR这个开源工具，今天介绍一个语音识别领域的开源工具-FunASR。</p>
+
+<p><a href="https://github.com/modelscope/FunASR/tree/main" title="GitHub">GitHub</a></p>
+
+<h2 id="一简介">一、简介</h2>
+
+<p><strong>FunASR</strong> 是阿里巴巴达摩院开源的一款轻量级语音识别工具包，旨在为开发者提供高效、易用的语音处理解决方案。它集成了多种先进的语音识别技术和模型，支持语音识别（ASR）、语音端点检测（VAD）、标点恢复、 <a href="https://so.csdn.net/so/search?q=%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B&amp;spm=1001.2101.3001.7020">语言模型</a> 、说话人验证、说话人分离和多人对话语音识别等功能；</p>
+
+<h2 id="二功能实现">二、功能实现</h2>
+
+<h3 id="21-环境安装">2.1 环境安装</h3>
+
+<h4 id="211-依赖环境">2.1.1 依赖环境</h4>
+
+<pre><code class="language-cobol"># 依赖环境
+
+python&gt;=3.8
+
+torch&gt;=1.13
+
+torchaudio
+</code></pre>
+
+<h4 id="212-pip安装">2.1.2 pip安装</h4>
+
+<pre><code class="language-cobol">pip3 install -U funasr
+
+pip3 install -U modelscope huggingface huggingface_hub
+</code></pre>
+
+<h3 id="22-功能实现">2.2 功能实现</h3>
+
+<h4 id="221-语音识别">2.2.1 语音识别</h4>
+
+<ul>
+  <li><strong>定义</strong> ：将语音信号转换为文本的过程。</li>
+  <li><strong>目标</strong> ：将人类语言的音频输入转化为可读的文本输出。</li>
+  <li><strong>应用场景</strong> ：语音助手、字幕生成、会议记录等。</li>
+</ul>
+
+<h5 id="2211-基于sensevoice模型的语音识别">2.2.1.1 基于SenseVoice模型的语音识别</h5>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 语音识别-SenseVoice
+</span>
+<span class="kn">from</span> <span class="nn">funasr</span> <span class="kn">import</span> <span class="n">AutoModel</span>
+
+<span class="kn">from</span> <span class="nn">funasr.utils.postprocess_utils</span> <span class="kn">import</span> <span class="n">rich_transcription_postprocess</span>
+
+ 
+
+<span class="n">model_dir</span> <span class="o">=</span> <span class="s">"iic/SenseVoiceSmall"</span>
+
+ 
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="p">(</span>
+
+    <span class="n">model</span><span class="o">=</span><span class="n">model_dir</span><span class="p">,</span>
+
+    <span class="n">vad_model</span><span class="o">=</span><span class="s">"fsmn-vad"</span><span class="p">,</span>
+
+    <span class="n">vad_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">"max_single_segment_time"</span><span class="p">:</span> <span class="mi">30000</span><span class="p">},</span>
+
+    <span class="n">device</span><span class="o">=</span><span class="s">"cuda:0"</span><span class="p">,</span>
+
+<span class="p">)</span>
+
+ 
+
+<span class="c1"># en
+</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
+
+    <span class="nb">input</span><span class="o">=</span><span class="s">"./gy.m4a"</span><span class="p">,</span>
+
+    <span class="n">cache</span><span class="o">=</span><span class="p">{},</span>
+
+    <span class="n">language</span><span class="o">=</span><span class="s">"auto"</span><span class="p">,</span>  <span class="c1"># "zn", "en", "yue", "ja", "ko", "nospeech"
+</span>
+    <span class="n">use_itn</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+
+    <span class="n">batch_size_s</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+
+    <span class="n">merge_vad</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>  <span class="c1">#
+</span>
+    <span class="n">merge_length_s</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+
+<span class="p">)</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="n">rich_transcription_postprocess</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">"text"</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>参数：</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">model_dir</code> ：模型名称，或本地磁盘中的模型路径；</li>
+  <li><code class="language-plaintext highlighter-rouge">vad_model</code> ：表示开启VAD，VAD的作用是将长音频切割成短音频，此时推理耗时包括了VAD与SenseVoice总耗时，为链路耗时，如果需要单独测试SenseVoice模型耗时，可以关闭VAD模型；</li>
+  <li><code class="language-plaintext highlighter-rouge">vad_kwargs</code> ：表示VAD模型配置,<code class="language-plaintext highlighter-rouge">max_single_segment_time</code>: 表示 <code class="language-plaintext highlighter-rouge">vad_model</code> 最大切割音频时长, 单位是毫秒ms；</li>
+  <li><code class="language-plaintext highlighter-rouge">use_itn</code> ：输出结果中是否包含标点与逆文本正则化；</li>
+  <li><code class="language-plaintext highlighter-rouge">batch_size_s：</code> 表示采用动态batch，batch中总音频时长，单位为秒s；</li>
+  <li><code class="language-plaintext highlighter-rouge">merge_vad</code> ：是否将 vad 模型切割的短音频碎片合成，合并后长度为 <code class="language-plaintext highlighter-rouge">merge_length_s</code> ，单位为秒s；</li>
+  <li><code class="language-plaintext highlighter-rouge">ban_emo_unk</code> ：禁用emo_unk标签，禁用后所有的句子都会被赋与情感标签；</li>
+</ul>
+
+<p><strong>输出结果：</strong></p>
+
+<p><img src="https://i-blog.csdnimg.cn/direct/2562682efb184c6184de1de037837143.png" alt="" /></p>
+
+<h5 id="2212-基于paraformer模型的语音识别">2.2.1.2 基于paraformer模型的语音识别</h5>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 语音识别-paraformer
+</span>
+<span class="kn">from</span> <span class="nn">funasr</span> <span class="kn">import</span> <span class="n">AutoModel</span>
+
+<span class="c1"># paraformer-zh is a multi-functional asr model
+</span>
+<span class="c1"># use vad, punc, spk or not as you need
+</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s">"paraformer-zh"</span><span class="p">,</span>  <span class="n">vad_model</span><span class="o">=</span><span class="s">"fsmn-vad"</span><span class="p">,</span> <span class="n">punc_model</span><span class="o">=</span><span class="s">"ct-punc"</span><span class="p">,</span> 
+
+                  <span class="c1"># spk_model="cam++"
+</span>
+                  <span class="p">)</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s">"./gy.m4a"</span><span class="p">,</span> 
+
+            <span class="n">batch_size_s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> 
+
+            <span class="n">hotword</span><span class="o">=</span><span class="s">'魔搭'</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>输出结果：</strong></p>
+
+<p>输出结果包含文件名、语音识别文本以及每个文本字符在音频中的时间跨度，单位毫秒；</p>
+
+<p><img src="https://i-blog.csdnimg.cn/direct/16f0deb4d41f4570954a55b3dc4a512d.png" alt="" /></p>
+
+<h4 id="222-语音端点检测-vadvoice-activity-detection">2.2.2 语音端点检测 （VAD，Voice Activity Detection）</h4>
+
+<ul>
+  <li><strong>定义</strong> ：检测语音信号中的有效语音片段，去除静音或背景噪声。</li>
+  <li><strong>目标</strong> ：确定语音开始和结束的时间点。</li>
+  <li><strong>应用场景</strong> ：优化语音识别性能、降低计算资源消耗。</li>
+</ul>
+
+<h5 id="2221-基于fsmn-vad模型的语音端点检测">2.2.2.1 基于fsmn-vad模型的语音端点检测</h5>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 语音端点检测-fsmn-vad
+</span>
+<span class="kn">from</span> <span class="nn">funasr</span> <span class="kn">import</span> <span class="n">AutoModel</span>
+
+ 
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s">"fsmn-vad"</span><span class="p">)</span>
+
+ 
+
+<span class="c1"># wav_file = f"{model.model_path}/example/vad_example.wav"
+</span>
+<span class="n">wav_file</span> <span class="o">=</span> <span class="s">'./gy.m4a'</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">wav_file</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>输出结果：</strong></p>
+
+<p>输出结果包含文件名和连续有效语音时间跨度时间戳，单位毫秒；</p>
+
+<p><img src="https://i-blog.csdnimg.cn/direct/c3e420e743f94d1c8279bc7b0e3f94f2.png" alt="" /></p>
+
+<h4 id="223-标点恢复">2.2.3 标点恢复</h4>
+
+<ul>
+  <li><strong>定义</strong> ：在语音识别生成的文本中添加正确的标点符号。</li>
+  <li><strong>目标</strong> ：提高文本的可读性和语义完整性。</li>
+  <li><strong>应用场景</strong> ：自动生成带标点的会议记录、实时字幕。</li>
+</ul>
+
+<h5 id="2231-基于ct-punc模型的标点补全">2.2.3.1 基于ct-punc模型的标点补全</h5>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 标点恢复-ct-punc
+</span>
+<span class="kn">from</span> <span class="nn">funasr</span> <span class="kn">import</span> <span class="n">AutoModel</span>
+
+ 
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s">"ct-punc"</span><span class="p">)</span>
+
+ 
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s">"势如破竹 三国末年 晋武帝司马炎夺取魏国政权后 准备出兵攻打吴国 可当时朝廷中许多大臣都认为吴国占据着长江天险 水军非常强大 应该等到有了足够的准备后再攻打吴国 可是大将杜禹却认为现在正是消灭吴国最好的时机 不能给他喘息的机会 于是 晋武帝向自己最信任的大臣张华征求了意见 张华听了 连忙说 理应尽快攻打吴果 以免留下后患 晋武帝闻言立即下令道 好 那便封杜誉为征南大将军 即刻攻打吴国 杜豫的军队十分勇勇猛 连续攻下吴国的江陵湘江直逼吴国国都建邺 晋武帝大月准备下令让杜豫从小路向吴国国都建业进发 可有些朝臣认为 如今长江水势大涨 恐怕会影响作战 不如先收兵等冬天再战 但是杜玉坚决反对退兵 他说 现在我们的军队势如破竹 斗志阵望 取得了一个又一个的胜利 只要一鼓作气就能攻破建业 果然正如杜豫所言 没过多久便攻占了建 业灭掉了吴国 帮助晋武帝完成了统一中原的大业"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>输出结果：</strong></p>
+
+<p><img src="https://i-blog.csdnimg.cn/direct/7f2a94b124784da4977905083dc4a3ee.png" alt="" /></p>
+
+<h4 id="224-说话人验证声纹识别">2.2.4 说话人验证（声纹识别）</h4>
+
+<ul>
+  <li><strong>定义</strong> ：验证某段语音是否属于特定说话人。</li>
+  <li><strong>目标</strong> ：确认身份。</li>
+  <li><strong>应用场景</strong> ：语音解锁、身份认证。</li>
+</ul>
+
+<h5 id="2241-基于cam模型的声纹识别">2.2.4.1 基于CAM++模型的声纹识别</h5>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 说话人确认-CAM++
+</span>
+<span class="kn">from</span> <span class="nn">modelscope.pipelines</span> <span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">sv_pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+
+    <span class="n">task</span><span class="o">=</span><span class="s">'speaker-verification'</span><span class="p">,</span>
+
+    <span class="n">model</span><span class="o">=</span><span class="s">'damo/speech_campplus_sv_zh-cn_16k-common'</span><span class="p">,</span>
+
+    <span class="n">model_revision</span><span class="o">=</span><span class="s">'v1.0.0'</span>
+
+<span class="p">)</span>
+
+<span class="n">speaker1_a_wav</span> <span class="o">=</span> <span class="s">'https://modelscope.cn/api/v1/models/damo/speech_campplus_sv_zh-cn_16k-common/repo?Revision=master&amp;FilePath=examples/speaker1_a_cn_16k.wav'</span>
+
+<span class="n">speaker1_b_wav</span> <span class="o">=</span> <span class="s">'https://modelscope.cn/api/v1/models/damo/speech_campplus_sv_zh-cn_16k-common/repo?Revision=master&amp;FilePath=examples/speaker1_b_cn_16k.wav'</span>
+
+<span class="n">speaker2_a_wav</span> <span class="o">=</span> <span class="s">'https://modelscope.cn/api/v1/models/damo/speech_campplus_sv_zh-cn_16k-common/repo?Revision=master&amp;FilePath=examples/speaker2_a_cn_16k.wav'</span>
+
+ 
+
+<span class="c1"># 相同说话人语音
+</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">sv_pipeline</span><span class="p">([</span><span class="n">speaker1_a_wav</span><span class="p">,</span> <span class="n">speaker1_b_wav</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>输出结果：</strong></p>
+
+<p>输出结果包含相似度和识别结果；</p>
+
+<p><img src="https://i-blog.csdnimg.cn/direct/791bcda77bc5497da29e269a3453a391.png" alt="" /></p>
+
+<h2 id="三总结">三、总结</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>任务名称</th>
+      <th>主要目标</th>
+      <th>应用场景</th>
+      <th>技术特点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ASR</td>
+      <td>将语音转为文本</td>
+      <td>字幕生成、语音助手</td>
+      <td>声学模型+语言模型</td>
+    </tr>
+    <tr>
+      <td>VAD</td>
+      <td>检测语音活动</td>
+      <td>语音信号预处理</td>
+      <td>时间域或频域特征分析</td>
+    </tr>
+    <tr>
+      <td>标点恢复</td>
+      <td>添加标点符号</td>
+      <td>自动化文本生成</td>
+      <td>上下文语义理解</td>
+    </tr>
+    <tr>
+      <td>说话人验证</td>
+      <td>确认语音归属</td>
+      <td>身份认证</td>
+      <td>声学特征提取+相似度比较</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>FunASR工具箱包含了很多处理语音数据的深度学习模型集合，这里只是简单的呈现了部分功能，先Mark住，有需要的朋友也可以做更加深入的探索。</p>
+
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

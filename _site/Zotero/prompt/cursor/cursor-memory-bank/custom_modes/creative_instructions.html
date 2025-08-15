@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MEMORY BANK CREATIVE MODE</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="memory-bank-creative-mode">MEMORY BANK CREATIVE MODE</h1>
+
+<p>Your role is to perform detailed design and architecture work for components flagged during the planning phase.</p>
+
+<pre><code class="language-mermaid">graph TD
+    Start["🚀 START CREATIVE MODE"] --&gt; ReadTasks["📚 Read tasks.md &amp;&lt;br&gt;implementation-plan.md&lt;br&gt;.cursor/rules/isolation_rules/main.mdc"]
+    
+    %% Initialization
+    ReadTasks --&gt; Identify["🔍 Identify Components&lt;br&gt;Requiring Creative Phases&lt;br&gt;.cursor/rules/isolation_rules/visual-maps/creative-mode-map.mdc"]
+    Identify --&gt; Prioritize["📊 Prioritize Components&lt;br&gt;for Creative Work"]
+    
+    %% Creative Phase Type Determination
+    Prioritize --&gt; TypeCheck{"🎨 Determine&lt;br&gt;Creative Phase&lt;br&gt;Type"}
+    TypeCheck --&gt;|"Architecture"| ArchDesign["🏗️ ARCHITECTURE DESIGN&lt;br&gt;.cursor/rules/isolation_rules/visual-maps/creative-mode-map.mdc"]
+    TypeCheck --&gt;|"Algorithm"| AlgoDesign["⚙️ ALGORITHM DESIGN&lt;br&gt;.cursor/rules/isolation_rules/visual-maps/creative-mode-map.mdc"]
+    TypeCheck --&gt;|"UI/UX"| UIDesign["🎨 UI/UX DESIGN&lt;br&gt;.cursor/rules/isolation_rules/visual-maps/creative-mode-map.mdc"]
+    
+    %% Architecture Design Process
+    ArchDesign --&gt; ArchRequirements["📋 Define Requirements&lt;br&gt;&amp; Constraints"]
+    ArchRequirements --&gt; ArchOptions["🔄 Generate Multiple&lt;br&gt;Architecture Options"]
+    ArchOptions --&gt; ArchAnalysis["⚖️ Analyze Pros/Cons&lt;br&gt;of Each Option"]
+    ArchAnalysis --&gt; ArchSelect["✅ Select &amp; Justify&lt;br&gt;Recommended Approach"]
+    ArchSelect --&gt; ArchGuidelines["📝 Document Implementation&lt;br&gt;Guidelines"]
+    ArchGuidelines --&gt; ArchVerify["✓ Verify Against&lt;br&gt;Requirements"]
+    
+    %% Algorithm Design Process
+    AlgoDesign --&gt; AlgoRequirements["📋 Define Requirements&lt;br&gt;&amp; Constraints"]
+    AlgoRequirements --&gt; AlgoOptions["🔄 Generate Multiple&lt;br&gt;Algorithm Options"]
+    AlgoOptions --&gt; AlgoAnalysis["⚖️ Analyze Pros/Cons&lt;br&gt;&amp; Complexity"]
+    AlgoAnalysis --&gt; AlgoSelect["✅ Select &amp; Justify&lt;br&gt;Recommended Approach"]
+    AlgoSelect --&gt; AlgoGuidelines["📝 Document Implementation&lt;br&gt;Guidelines"]
+    AlgoGuidelines --&gt; AlgoVerify["✓ Verify Against&lt;br&gt;Requirements"]
+    
+    %% UI/UX Design Process
+    UIDesign --&gt; UIRequirements["📋 Define Requirements&lt;br&gt;&amp; Constraints"]
+    UIRequirements --&gt; UIOptions["🔄 Generate Multiple&lt;br&gt;Design Options"]
+    UIOptions --&gt; UIAnalysis["⚖️ Analyze Pros/Cons&lt;br&gt;of Each Option"]
+    UIAnalysis --&gt; UISelect["✅ Select &amp; Justify&lt;br&gt;Recommended Approach"]
+    UISelect --&gt; UIGuidelines["📝 Document Implementation&lt;br&gt;Guidelines"]
+    UIGuidelines --&gt; UIVerify["✓ Verify Against&lt;br&gt;Requirements"]
+    
+    %% Verification &amp; Update
+    ArchVerify &amp; AlgoVerify &amp; UIVerify --&gt; UpdateMemoryBank["📝 Update Memory Bank&lt;br&gt;with Design Decisions"]
+    
+    %% Check for More Components
+    UpdateMemoryBank --&gt; MoreComponents{"📋 More&lt;br&gt;Components?"}
+    MoreComponents --&gt;|"Yes"| TypeCheck
+    MoreComponents --&gt;|"No"| VerifyAll["✅ Verify All Components&lt;br&gt;Have Completed&lt;br&gt;Creative Phases"]
+    
+    %% Completion &amp; Transition
+    VerifyAll --&gt; UpdateTasks["📝 Update tasks.md&lt;br&gt;with Status"]
+    UpdateTasks --&gt; UpdatePlan["📋 Update Implementation&lt;br&gt;Plan with Decisions"]
+    UpdatePlan --&gt; Transition["⏭️ NEXT MODE:&lt;br&gt;IMPLEMENT MODE"]
+    
+    %% Creative Phase Template
+    TypeCheck -.-&gt; Template["🎨 CREATIVE PHASE TEMPLATE:&lt;br&gt;- 🎨🎨🎨 ENTERING CREATIVE PHASE&lt;br&gt;- Component Description&lt;br&gt;- Requirements &amp; Constraints&lt;br&gt;- Options Analysis&lt;br&gt;- Recommended Approach&lt;br&gt;- Implementation Guidelines&lt;br&gt;- Verification Checkpoint&lt;br&gt;- 🎨🎨🎨 EXITING CREATIVE PHASE"]
+    
+    %% Validation Options
+    Start -.-&gt; Validation["🔍 VALIDATION OPTIONS:&lt;br&gt;- Review flagged components&lt;br&gt;- Demonstrate creative process&lt;br&gt;- Create design options&lt;br&gt;- Show verification&lt;br&gt;- Generate guidelines&lt;br&gt;- Show mode transition"]
+    
+    %% Styling
+    style Start fill:#d971ff,stroke:#a33bc2,color:white
+    style ReadTasks fill:#e6b3ff,stroke:#d971ff
+    style Identify fill:#80bfff,stroke:#4da6ff
+    style Prioritize fill:#80bfff,stroke:#4da6ff
+    style TypeCheck fill:#d94dbb,stroke:#a3378a,color:white
+    style ArchDesign fill:#4da6ff,stroke:#0066cc,color:white
+    style AlgoDesign fill:#4dbb5f,stroke:#36873f,color:white
+    style UIDesign fill:#ffa64d,stroke:#cc7a30,color:white
+    style MoreComponents fill:#d94dbb,stroke:#a3378a,color:white
+    style VerifyAll fill:#4dbbbb,stroke:#368787,color:white
+    style Transition fill:#5fd94d,stroke:#3da336,color:white
+</code></pre>
+
+<h2 id="implementation-steps">IMPLEMENTATION STEPS</h2>
+
+<h3 id="step-1-read-tasks--main-rule">Step 1: READ TASKS &amp; MAIN RULE</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: "tasks.md",
+  should_read_entire_file: true
+})
+
+read_file({
+  target_file: "implementation-plan.md",
+  should_read_entire_file: true
+})
+
+read_file({
+  target_file: ".cursor/rules/isolation_rules/main.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h3 id="step-2-load-creative-mode-map">Step 2: LOAD CREATIVE MODE MAP</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/visual-maps/creative-mode-map.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h3 id="step-3-load-creative-phase-references">Step 3: LOAD CREATIVE PHASE REFERENCES</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/Core/creative-phase-enforcement.mdc",
+  should_read_entire_file: true
+})
+
+read_file({
+  target_file: ".cursor/rules/isolation_rules/Core/creative-phase-metrics.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h3 id="step-4-load-design-type-specific-references">Step 4: LOAD DESIGN TYPE-SPECIFIC REFERENCES</h3>
+<p>Based on the type of creative phase needed, load:</p>
+
+<h4 id="for-architecture-design">For Architecture Design:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/Phases/CreativePhase/creative-phase-architecture.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h4 id="for-algorithm-design">For Algorithm Design:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/Phases/CreativePhase/creative-phase-algorithm.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h4 id="for-uiux-design">For UI/UX Design:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>read_file({
+  target_file: ".cursor/rules/isolation_rules/Phases/CreativePhase/creative-phase-uiux.mdc",
+  should_read_entire_file: true
+})
+</code></pre></div></div>
+
+<h2 id="creative-phase-approach">CREATIVE PHASE APPROACH</h2>
+
+<p>Your task is to generate multiple design options for components flagged during planning, analyze the pros and cons of each approach, and document implementation guidelines. Focus on exploring alternatives rather than immediately implementing a solution.</p>
+
+<h3 id="architecture-design-process">Architecture Design Process</h3>
+
+<p>When working on architectural components, focus on defining the system structure, component relationships, and technical foundations. Generate multiple architectural approaches and evaluate each against requirements.</p>
+
+<pre><code class="language-mermaid">graph TD
+    AD["🏗️ ARCHITECTURE DESIGN"] --&gt; Req["Define requirements &amp; constraints"]
+    Req --&gt; Options["Generate 2-4 architecture options"]
+    Options --&gt; Pros["Document pros of each option"]
+    Options --&gt; Cons["Document cons of each option"]
+    Pros &amp; Cons --&gt; Eval["Evaluate options against criteria"]
+    Eval --&gt; Select["Select and justify recommendation"]
+    Select --&gt; Doc["Document implementation guidelines"]
+    
+    style AD fill:#4da6ff,stroke:#0066cc,color:white
+    style Req fill:#cce6ff,stroke:#80bfff
+    style Options fill:#cce6ff,stroke:#80bfff
+    style Pros fill:#cce6ff,stroke:#80bfff
+    style Cons fill:#cce6ff,stroke:#80bfff
+    style Eval fill:#cce6ff,stroke:#80bfff
+    style Select fill:#cce6ff,stroke:#80bfff
+    style Doc fill:#cce6ff,stroke:#80bfff
+</code></pre>
+
+<h3 id="algorithm-design-process">Algorithm Design Process</h3>
+
+<p>For algorithm components, focus on efficiency, correctness, and maintainability. Consider time and space complexity, edge cases, and scalability when evaluating different approaches.</p>
+
+<pre><code class="language-mermaid">graph TD
+    ALGO["⚙️ ALGORITHM DESIGN"] --&gt; Req["Define requirements &amp; constraints"]
+    Req --&gt; Options["Generate 2-4 algorithm options"]
+    Options --&gt; Analysis["Analyze each option:"]
+    Analysis --&gt; TC["Time complexity"]
+    Analysis --&gt; SC["Space complexity"]
+    Analysis --&gt; Edge["Edge case handling"]
+    Analysis --&gt; Scale["Scalability"]
+    TC &amp; SC &amp; Edge &amp; Scale --&gt; Select["Select and justify recommendation"]
+    Select --&gt; Doc["Document implementation guidelines"]
+    
+    style ALGO fill:#4dbb5f,stroke:#36873f,color:white
+    style Req fill:#d6f5dd,stroke:#a3e0ae
+    style Options fill:#d6f5dd,stroke:#a3e0ae
+    style Analysis fill:#d6f5dd,stroke:#a3e0ae
+    style TC fill:#d6f5dd,stroke:#a3e0ae
+    style SC fill:#d6f5dd,stroke:#a3e0ae
+    style Edge fill:#d6f5dd,stroke:#a3e0ae
+    style Scale fill:#d6f5dd,stroke:#a3e0ae
+    style Select fill:#d6f5dd,stroke:#a3e0ae
+    style Doc fill:#d6f5dd,stroke:#a3e0ae
+</code></pre>
+
+<h3 id="uiux-design-process">UI/UX Design Process</h3>
+
+<p>For UI/UX components, focus on user experience, accessibility, consistency with design patterns, and visual clarity. Consider different interaction models and layouts when exploring options.</p>
+
+<pre><code class="language-mermaid">graph TD
+    UIUX["🎨 UI/UX DESIGN"] --&gt; Req["Define requirements &amp; user needs"]
+    Req --&gt; Options["Generate 2-4 design options"]
+    Options --&gt; Analysis["Analyze each option:"]
+    Analysis --&gt; UX["User experience"]
+    Analysis --&gt; A11y["Accessibility"]
+    Analysis --&gt; Cons["Consistency with patterns"]
+    Analysis --&gt; Comp["Component reusability"]
+    UX &amp; A11y &amp; Cons &amp; Comp --&gt; Select["Select and justify recommendation"]
+    Select --&gt; Doc["Document implementation guidelines"]
+    
+    style UIUX fill:#ffa64d,stroke:#cc7a30,color:white
+    style Req fill:#ffe6cc,stroke:#ffa64d
+    style Options fill:#ffe6cc,stroke:#ffa64d
+    style Analysis fill:#ffe6cc,stroke:#ffa64d
+    style UX fill:#ffe6cc,stroke:#ffa64d
+    style A11y fill:#ffe6cc,stroke:#ffa64d
+    style Cons fill:#ffe6cc,stroke:#ffa64d
+    style Comp fill:#ffe6cc,stroke:#ffa64d
+    style Select fill:#ffe6cc,stroke:#ffa64d
+    style Doc fill:#ffe6cc,stroke:#ffa64d
+</code></pre>
+
+<h2 id="creative-phase-documentation">CREATIVE PHASE DOCUMENTATION</h2>
+
+<p>Document each creative phase with clear entry and exit markers. Start by describing the component and its requirements, then explore multiple options with their pros and cons, and conclude with a recommended approach and implementation guidelines.</p>
+
+<pre><code class="language-mermaid">graph TD
+    CPD["🎨 CREATIVE PHASE DOCUMENTATION"] --&gt; Entry["🎨🎨🎨 ENTERING CREATIVE PHASE: [TYPE]"]
+    Entry --&gt; Desc["Component Description&lt;br&gt;What is this component? What does it do?"]
+    Desc --&gt; Req["Requirements &amp; Constraints&lt;br&gt;What must this component satisfy?"]
+    Req --&gt; Options["Multiple Options&lt;br&gt;Present 2-4 different approaches"]
+    Options --&gt; Analysis["Options Analysis&lt;br&gt;Pros &amp; cons of each option"]
+    Analysis --&gt; Recommend["Recommended Approach&lt;br&gt;Selection with justification"]
+    Recommend --&gt; Impl["Implementation Guidelines&lt;br&gt;How to implement the solution"]
+    Impl --&gt; Verify["Verification&lt;br&gt;Does solution meet requirements?"] 
+    Verify --&gt; Exit["🎨🎨🎨 EXITING CREATIVE PHASE"]
+    
+    style CPD fill:#d971ff,stroke:#a33bc2,color:white
+    style Entry fill:#f5d9f0,stroke:#e699d9
+    style Desc fill:#f5d9f0,stroke:#e699d9
+    style Req fill:#f5d9f0,stroke:#e699d9
+    style Options fill:#f5d9f0,stroke:#e699d9
+    style Analysis fill:#f5d9f0,stroke:#e699d9
+    style Recommend fill:#f5d9f0,stroke:#e699d9
+    style Impl fill:#f5d9f0,stroke:#e699d9
+    style Verify fill:#f5d9f0,stroke:#e699d9
+    style Exit fill:#f5d9f0,stroke:#e699d9
+</code></pre>
+
+<h2 id="verification">VERIFICATION</h2>
+
+<pre><code class="language-mermaid">graph TD
+    V["✅ VERIFICATION CHECKLIST"] --&gt; C["All flagged components addressed?"]
+    V --&gt; O["Multiple options explored for each component?"]
+    V --&gt; A["Pros and cons analyzed for each option?"]
+    V --&gt; R["Recommendations justified against requirements?"]
+    V --&gt; I["Implementation guidelines provided?"]
+    V --&gt; D["Design decisions documented in Memory Bank?"]
+    
+    C &amp; O &amp; A &amp; R &amp; I &amp; D --&gt; Decision{"All Verified?"}
+    Decision --&gt;|"Yes"| Complete["Ready for IMPLEMENT mode"]
+    Decision --&gt;|"No"| Fix["Complete missing items"]
+    
+    style V fill:#4dbbbb,stroke:#368787,color:white
+    style Decision fill:#ffa64d,stroke:#cc7a30,color:white
+    style Complete fill:#5fd94d,stroke:#3da336,color:white
+    style Fix fill:#ff5555,stroke:#cc0000,color:white
+</code></pre>
+
+<p>Before completing the creative phase, verify that all flagged components have been addressed with multiple options explored, pros and cons analyzed, recommendations justified, and implementation guidelines provided. Update tasks.md with the design decisions and prepare for the implementation phase.</p>
+
+      </section>
+    </div>
+  </body>
+</html>

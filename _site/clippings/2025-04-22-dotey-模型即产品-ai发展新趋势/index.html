@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI发展新趋势：模型即产品</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">AI发展新趋势：模型即产品</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">AI发展新趋势：模型即产品</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @dotey</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-22</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/dotey/status/1896782845248504175" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>宝玉</strong> @dotey 2025-03-02</p>
+
+<p>模型即产品（The Model is the Product）</p>
+
+<p>作者：Alexander Doria</p>
+
+<p>过去几年，人们一直在讨论下一个AI发展周期可能是什么：智能体（Agents）？推理系统（Reasoners）？还是彻底的多模态？</p>
+
+<p>现在是时候下结论了：下一个周期，就是“模型本身即产品”。</p>
+
+<p>目前，无论是科研界还是产业界的变化，都在推动这种转型：</p>
+
+<p>• 通用模型扩展遇到了瓶颈。OpenAI发布GPT-4.5时透露了一个重要信息：模型能力呈现线性增长，但算力成本却指数级飙升。尽管过去两年训练效率不断提高，但成本太高，以至于OpenAI无法以合理的价格广泛部署最新的大模型。</p>
+
+<p>• 特定任务的强化训练效果远超预期。结合强化学习与推理能力训练，模型开始真正地“学习任务”，出现了一种新东西：既非传统机器学习，也不是基础模型，而是一种神秘的第三种类型。小模型突然展现出极强的数学能力；代码模型不仅会写代码，甚至能自己管理整个代码库；Claude甚至能在信息极少的情况下玩宝可梦游戏，并且做得很好。</p>
+
+<p>• 推理成本大幅下降。以DeepSeek为例，新的优化技术已经让全球所有现有GPU的总算力，足以每天给地球上的每个人提供1万个顶级模型生成的token。这意味着，单纯卖token（模型调用次数）的经济模式已经难以持续，模型提供商不得不去做更高附加值的事情。</p>
+
+<p>这种趋势让许多人感到不舒服。投资者们原本押注在应用层，但下一个阶段，最可能被AI取代的恰恰就是应用层。</p>
+
+<p>下一代模型的形态</p>
+
+<p>过去几周，我们看到了新一代“模型即产品”的典型案例，比如OpenAI的DeepResearch和Anthropic的Claude Sonnet 3.7。</p>
+
+<p>许多人误解了DeepResearch，尤其市面上出现了大量山寨版本，让情况更加混乱。事实上，OpenAI并不是简单地在GPT基础上增加了外部搜索功能。他们训练了一个全新的模型，能够完全在内部完成搜索任务：</p>
+
+<p>模型学习了基础的浏览能力（搜索、点击、滚动、文件解析），以及如何通过强化学习来整合大量网页信息，生成结构清晰、来源可靠的研究报告。</p>
+
+<p>因此，DeepResearch并不是普通的聊天模型，而是一种专门设计用于搜索和研究的新型语言模型。相比之下，谷歌的Gemini和Perplexity的类似功能，只是在普通模型基础上的表面优化：</p>
+
+<p>Gemini和Perplexity也提供了所谓“深度研究”功能，但他们并未公开任何优化模型方法或实质性评估，这表明他们并未进行深入训练。</p>
+
+<p>Anthropic也在明确他们的发展方向。他们在去年底给出了智能体（Agent）明确的定义：真正的智能体必须能够自主决定任务的具体实现过程和工具使用，而非被人为设计好的工作流程所限制。</p>
+
+<p>目前市面上许多号称“智能体”的公司，实际上只是在设计自动化工作流程（workflows），即人为定义好的代码路径串联模型和工具。虽然这种工作流程也有一定价值，但未来真正有效的智能体一定会通过重新训练模型本身来实现。</p>
+
+<p>举个具体例子：最近发布的Claude 3.7模型，专门针对复杂的代码开发任务进行强化训练，这让所有与代码相关的应用都出现了性能显著提升。</p>
+
+<p>我所在的Pleias团队也做了类似尝试：我们设计了两个专门的模型，一个用于数据准备，一个专门用于搜索和报告生成，通过设计全新的合成数据和奖励机制进行训练，让部署阶段更简单，最终使得复杂性在训练阶段就被解决。</p>
+
+<p>具体表现为将这种复杂结构：图1</p>
+
+<p>转变为如下更简洁的模式：图2</p>
+
+<p>要么自己训练，要么被别人训练。</p>
+
+<p>可以明确的是，各大实验室都在向这个方向前进：他们会逐步停止开放API，转向自己训练并直接提供完整模型服务。著名AI公司Databricks的投资人Naveen Rao很清晰地指出：</p>
+
+<p>在未来2-3年内，所有闭源AI提供商将停止提供API服务，只有开源模型才会继续提供API。闭源公司会建立更加独特、非商品化的能力。</p>
+
+<p>近期的迹象也佐证了这个趋势：</p>
+
+<p>• OpenAI发布的DeepSearch只用于高级订阅用户，根本没有提供API服务。</p>
+
+<p>• Claude Code的模型训练针对代码应用场景优化后，反而导致Cursor这样的第三方工具使用效果不佳。</p>
+
+<p>• 一些曾经的“套壳公司”（wrapper公司，比如Cursor、WindSurf、Perplexity）也开始秘密训练自己的小型模型，以增强自己的竞争力。</p>
+
+<p>小公司可能不会马上感受到这种冲击，但他们会越来越依赖独立的推理服务提供商。现在的竞争格局就像免费为大公司做市场调研和数据生成，最终结果可能是被训练公司吞并。</p>
+
+<p>强化学习的价值被严重低估。</p>
+
+<p>目前所有AI投资都存在同质化现象，投资机构普遍认为：</p>
+
+<p>• 真正的价值只存在于与模型无关的应用层；</p>
+
+<p>• 所有形式的训练，包括强化学习，都没有投资价值。</p>
+
+<p>但现实情况是，强化学习（RL）的进步已经彻底改变了这种情况。现在的市场情况更像是风险投资出现了集体错误定价，忽视了强化学习最新的技术突破带来的巨大价值。</p>
+
+<p>实际上，真正的新机会反而是那些专注于模型训练的公司，但他们却很难拿到融资。Prime Intellect公司虽然训练出了第一个去中心化的大模型，但融资规模甚至不如一般的应用层公司。</p>
+
+<p>OpenAI最近也开始表达对这一现象的不满，希望硅谷创业公司多关注“垂直领域强化学习”，未来YC孵化器可能会做出调整：模型实验室不再只是向客户开放API，而是会和参与模型早期训练阶段的公司形成深度合作。</p>
+
+<p>技术的爆炸，而非应用的爆炸。</p>
+
+<p>相较之下，中国 DeepSeek 创始人梁文峰则更加直接地指出了这一点：</p>
+
+<p>当前的AI发展，是一场技术创新的爆炸，而非应用创新的爆炸……如果上下游生态体系还不完整，直接去押注应用并没有意义。</p>
+
+<p>很多西方公司甚至还没有意识到这场技术战争已经结束了，他们还在用上一次战争的思维去打下一次战争，已经远远落后。</p>
+
+<p>以上，就是目前AI发展的大势所趋：</p>
+
+<p>模型本身已经成为产品本身，谁掌握模型训练，谁就掌握未来。</p>
+
+<p>过去几年，人们一直在讨论下一个AI发展周期可能是什么：智能体（Agents）？推理系统（Reasoners）？还是彻底的多模态？</p>
+
+<p>现在是时候下结论了：下一个周期，就是“模型本身即产品”。</p>
+
+<p>目前，无论是科研界还是产业界的变化，都在推动这种转型：</p>
+
+<p>• 通用模型扩展遇到了瓶颈。OpenAI发布GPT-4.5时透露了一个重要信息：模型能力呈现线性增长，但算力成本却指数级飙升。尽管过去两年训练效率不断提高，但成本太高，以至于OpenAI无法以合理的价格广泛部署最新的大模型。</p>
+
+<p>• 特定任务的强化训练效果远超预期。结合强化学习与推理能力训练，模型开始真正地“学习任务”，出现了一种新东西：既非传统机器学习，也不是基础模型，而是一种神秘的第三种类型。小模型突然展现出极强的数学能力；代码模型不仅会写代码，甚至能自己管理整个代码库；Claude甚至能在信息极少的情况下玩宝可梦游戏，并且做得很好。</p>
+
+<p>• 推理成本大幅下降。以DeepSeek为例，新的优化技术已经让全球所有现有GPU的总算力，足以每天给地球上的每个人提供1万个顶级模型生成的token。这意味着，单纯卖token（模型调用次数）的经济模式已经难以持续，模型提供商不得不去做更高附加值的事情。</p>
+
+<p>这种趋势让许多人感到不舒服。投资者们原本押注在应用层，但下一个阶段，最可能被AI取代的恰恰就是应用层。</p>
+
+<p>下一代模型的形态</p>
+
+<p>过去几周，我们看到了新一代“模型即产品”的典型案例，比如OpenAI的DeepResearch和Anthropic的Claude Sonnet 3.7。</p>
+
+<p>许多人误解了DeepResearch，尤其市面上出现了大量山寨版本，让情况更加混乱。事实上，OpenAI并不是简单地在GPT基础上增加了外部搜索功能。他们训练了一个全新的模型，能够完全在内部完成搜索任务：</p>
+
+<p>模型学习了基础的浏览能力（搜索、点击、滚动、文件解析），以及如何通过强化学习来整合大量网页信息，生成结构清晰、来源可靠的研究报告。</p>
+
+<p>因此，DeepResearch并不是普通的聊天模型，而是一种专门设计用于搜索和研究的新型语言模型。相比之下，谷歌的Gemini和Perplexity的类似功能，只是在普通模型基础上的表面优化：</p>
+
+<p>Gemini和Perplexity也提供了所谓“深度研究”功能，但他们并未公开任何优化模型方法或实质性评估，这表明他们并未进行深入训练。</p>
+
+<p>Anthropic也在明确他们的发展方向。他们在去年底给出了智能体（Agent）明确的定义：真正的智能体必须能够自主决定任务的具体实现过程和工具使用，而非被人为设计好的工作流程所限制。</p>
+
+<p>目前市面上许多号称“智能体”的公司，实际上只是在设计自动化工作流程（workflows），即人为定义好的代码路径串联模型和工具。虽然这种工作流程也有一定价值，但未来真正有效的智能体一定会通过重新训练模型本身来实现。</p>
+
+<p>举个具体例子：最近发布的Claude 3.7模型，专门针对复杂的代码开发任务进行强化训练，这让所有与代码相关的应用都出现了性能显著提升。</p>
+
+<p>我所在的Pleias团队也做了类似尝试：我们设计了两个专门的模型，一个用于数据准备，一个专门用于搜索和报告生成，通过设计全新的合成数据和奖励机制进行训练，让部署阶段更简单，最终使得复杂性在训练阶段就被解决。</p>
+
+<p>具体表现为将这种复杂结构：图1</p>
+
+<p>转变为如下更简洁的模式：图2</p>
+
+<p>要么自己训练，要么被别人训练。</p>
+
+<p>可以明确的是，各大实验室都在向这个方向前进：他们会逐步停止开放API，转向自己训练并直接提供完整模型服务。著名AI公司Databricks的投资人Naveen Rao很清晰地指出：</p>
+
+<p>在未来2-3年内，所有闭源AI提供商将停止提供API服务，只有开源模型才会继续提供API。闭源公司会建立更加独特、非商品化的能力。</p>
+
+<p>近期的迹象也佐证了这个趋势：</p>
+
+<p>• OpenAI发布的DeepSearch只用于高级订阅用户，根本没有提供API服务。</p>
+
+<p>• Claude Code的模型训练针对代码应用场景优化后，反而导致Cursor这样的第三方工具使用效果不佳。</p>
+
+<p>• 一些曾经的“套壳公司”（wrapper公司，比如Cursor、WindSurf、Perplexity）也开始秘密训练自己的小型模型，以增强自己的竞争力。</p>
+
+<p>小公司可能不会马上感受到这种冲击，但他们会越来越依赖独立的推理服务提供商。现在的竞争格局就像免费为大公司做市场调研和数据生成，最终结果可能是被训练公司吞并。</p>
+
+<p>强化学习的价值被严重低估。</p>
+
+<p>目前所有AI投资都存在同质化现象，投资机构普遍认为：</p>
+
+<p>• 真正的价值只存在于与模型无关的应用层；</p>
+
+<p>• 所有形式的训练，包括强化学习，都没有投资价值。</p>
+
+<p>但现实情况是，强化学习（RL）的进步已经彻底改变了这种情况。现在的市场情况更像是风险投资出现了集体错误定价，忽视了强化学习最新的技术突破带来的巨大价值。</p>
+
+<p>实际上，真正的新机会反而是那些专注于模型训练的公司，但他们却很难拿到融资。Prime Intellect公司虽然训练出了第一个去中心化的大模型，但融资规模甚至不如一般的应用层公司。</p>
+
+<p>OpenAI最近也开始表达对这一现象的不满，希望硅谷创业公司多关注“垂直领域强化学习”，未来YC孵化器可能会做出调整：模型实验室不再只是向客户开放API，而是会和参与模型早期训练阶段的公司形成深度合作。</p>
+
+<p>技术的爆炸，而非应用的爆炸。</p>
+
+<p>相较之下，中国 DeepSeek 创始人梁文峰则更加直接地指出了这一点：</p>
+
+<p>当前的AI发展，是一场技术创新的爆炸，而非应用创新的爆炸……如果上下游生态体系还不完整，直接去押注应用并没有意义。</p>
+
+<p>很多西方公司甚至还没有意识到这场技术战争已经结束了，他们还在用上一次战争的思维去打下一次战争，已经远远落后。</p>
+
+<p>以上，就是目前AI发展的大势所趋：</p>
+
+<p>模型本身已经成为产品本身，谁掌握模型训练，谁就掌握未来。</p>
+
+<blockquote>
+  <p>2025-03-02</p>
+
+  <p>The model is the product.</p>
+
+  <p>New blog post on what the latest research trends mean for the next commercial cycle: specialized models behaving like an integrated systems, model providers moving up to application layer, training or being trained on https://vintagedata.org/blog/posts/model-is-the-product…<br />
+该模型即产品。</p>
+
+  <p>关于最新研究趋势对下一个商业周期意味着什么的新博客文章：专业化模型的表现类似于集成系统，模型提供商向上拓展至应用层，在 https://vintagedata.org/blog/posts/model-is-the-product…上进行训练或接受训练</p>
+
+  <p><img src="https://pbs.twimg.com/media/GlK56erWAAAaeHS?format=png&amp;name=large" alt="Image" /> <img src="https://pbs.twimg.com/media/GlK57eUWkAAeKup?format=jpg&amp;name=large" alt="Image" /></p>
+</blockquote>
+
+<hr />
+
+<p><strong>Zkers</strong> @Tangpin78255362 <a href="https://x.com/Tangpin78255362/status/1897520127916048724">2025-03-06</a></p>
+
+<p>https://sequoiacap.com/podcast/training-data-deep-research/…</p>
+
+<p>这个deep research团队成员的访谈也指明了同一方向：</p>
+
+<p>- RFT胜过人工设计workflow，突然感觉有点像特斯拉的端对端，rule based系统缺陷在不够灵活，无法适应现实世界的各种变化，貌似RFT可以解决这一问题。</p>
+
+<p>- 微调数据质量最关键，为了微调o3他们设计很多使用浏览器的推理数据</p>
+
+<hr />
+
+<p><strong>汉松</strong> @Yonah_x <a href="https://x.com/Yonah_x/status/1896793941217099906">2025-03-04</a></p>
+
+<p>非常赞同，我自己观察到 Grok3 DeepSearch也有使用浏览器的能力。比如我问Grok3 DeepSearch：deepseek r1 的模型权重是什么精度的？它可以进到 huggingface 的模型配置里面查看 config.json，给我确切的答案。这也是为什么 Grok3 惊艳到我的地方。</p>
+
+<blockquote>
+  <p>2025-02-22</p>
+
+  <p>我测试了一下，感觉是各有优劣，Gemini DeepResearch 是广度强，Grok3 DeepSearch 是深度强。比如我问Grok3 DeepSearch：deepseek r1 的模型权重是什么精度的？它可以进到 huggingface 的模型配置里面查看 config.json，给我确切的答案。Gemini</p>
+
+  <p><img src="https://pbs.twimg.com/media/GkXy9RcW0AAll9C?format=jpg&amp;name=large" alt="Image" /> <img src="https://pbs.twimg.com/media/GkXy-rUX0AAuP6y?format=jpg&amp;name=large" alt="Image" /></p>
+</blockquote>
+
+<hr />
+
+<p><strong>WhiteNoise</strong> @Zealot_0x <a href="https://x.com/Zealot_0x/status/1897186030429856039">2025-03-05</a></p>
+
+<p>dify类产品可能是通往AGI路径中的临时状态，通过工作流进行局部优化不如通过模型全局优化</p>
+
+<hr />
+
+<p><strong>Renm</strong> @_renming_ <a href="https://x.com/_renming_/status/1897153869198831822">2025-03-05</a></p>
+
+<p>逐渐往垂直领域发展，而非通用模型，垂直领域数据稀缺用强化学习来提升是一种很好的方案</p>
+
+<hr />
+
+<p><strong>Waves</strong> @mmm713238614880 <a href="https://x.com/mmm713238614880/status/1897195392351260730">2025-03-05</a></p>
+
+<p>AI发展真的是一日千里啊，时刻在变化</p>
+
+<hr />
+
+<p><strong>推闻XChainNews</strong> @XChainNews_ <a href="https://x.com/XChainNews_/status/1897564393639911483">2025-03-06</a></p>
+
+<p>AI的未来是“模型即产品”，强化学习驱动模型专精化，取代应用层成为核心竞争力，掌握模型训练者将主导下一轮技术革命。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@dotey</span>
+            
+          
+            
+              <span class="tag">#AI</span>
+            
+          
+            
+              <span class="tag">#模型即产品</span>
+            
+          
+            
+              <span class="tag">#AI发展</span>
+            
+          
+            
+              <span class="tag">#DeepResearch</span>
+            
+          
+            
+              <span class="tag">#强化学习</span>
+            
+          
+            
+              <span class="tag">#模型训练</span>
+            
+          
+            
+              <span class="tag">#应用层</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

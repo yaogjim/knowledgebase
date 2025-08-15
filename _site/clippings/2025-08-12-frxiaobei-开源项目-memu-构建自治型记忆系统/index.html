@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>memU：AI 记忆的未来</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">memU：AI 记忆的未来</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">memU：AI 记忆的未来</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @frxiaobei</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-08-12</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/frxiaobei/status/1954792085737128223" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>凡人小北</strong> @frxiaobei 2025-05-16</p>
+
+<p>刷到一个开源项目叫 memU，光听名字就透着记忆系统那味儿，看了下相关资料介绍，果然是有点东西的。</p>
+
+<p>之前聊过多智能体的两种范式：应用响应式和深度研究式。</p>
+
+<p>一个真正好用的应用响应型 agent，一定离不开一个结构化、可演化的记忆系统。</p>
+
+<p>最近和很多朋友聊多智能体实践，发现大家的注意力大多还集中在上下文工程、agent 调度链路这些表层调优。</p>
+
+<p>一说起AI 的记忆，大多数人脑子里浮现的仍是做个 embedding 检索，但这类短效策略解决的只是能不能回忆的问题，对于记忆如何组织、演化与干预完全没有涉及到。</p>
+
+<p>但对于记忆真正值得关注的是，如何构建长期结构性记忆，并将其作为智能体认知与人格的一部分？</p>
+
+<p>在我看来，memU 是目前最接近这个方向的开源框架，比起 Graphti 和 Mem0，它在记忆的系统层级上走得更深乐了一些：</p>
+
+<p>简单做个回忆：</p>
+
+<p>Graphti 是记忆可视化 + 节点知识图谱的代表，擅长搭建知识导航图谱，但依赖开发者设计结构；</p>
+
+<p>Mem0 是面向轻量 agent 的 memory 辅助包，强调的是最近说过什么+ 语义快速召回，适合提示词拼接，但缺乏结构深度；</p>
+
+<p>而 memU 更像一个自治型记忆操作系统：具备自动分类、抽象、总结、反思和遗忘能力，能在空闲时自动优化 memory 树，让记忆本身变得更有生命力。</p>
+
+<p>通俗点说，Graphti 是记忆的 UI、Mem0 是记忆的快照缓存，而只有 memU是在构建记忆的神经系统。</p>
+
+<p>这意味着当我们开始构建长期陪伴型 AI、可持续协作的智能工作流，或多智能体系统时，单靠上下文窗口是远远不够的。</p>
+
+<p>这个时候就特别需要一个记忆系统，这个系统能够反思重组、并且能自动抽象预测，能够参与到理解、建模和行动判断本身上去。</p>
+
+<p>memU 提供了这种可能性：它用这种类人类文件系统的结构记忆信息，通过访问频率来进行动态遗忘，并利用语义联想来建立记忆之间的连接，并在空闲周期中反思并重构知识，最终将这一切抽象为一个可自治的记忆 agent。</p>
+
+<p>这种设计对企业很有价值，特别是用户运营类，把所有内容堆进长上下文，不仅成本高，还不具备记忆演化能力。随着交互持续深入，真正决定体验质感的，是企业对 memory 层的组织与治理能力。</p>
+
+<p>我打算做个实验，把 memU 接入 LangGraph 的 agent 网络中，验证下真正记住用户 + 会自己进化偏好的系统能力如何。有感兴趣的可以私信我，一起探索。</p>
+
+<p>长期协作、私域智能体、情感陪伴、创作搭档，所有这些场景都绕不开记忆。</p>
+
+<p>我们都该重新认真想一遍： 过去两年，我们做了那么多的 AI系统，她们真的有记忆吗？</p>
+
+<blockquote>
+  <p>2025-05-16</p>
+
+  <p>AI 记性越来越好，但你有没有想过：它到底记得了什么？又理解了什么？</p>
+
+  <p>传统的 Agent 记忆系统，说白了就是个能搜索的便签本。</p>
+
+  <p>它知道你说过什么，却不知道你经历了什么。更别说“为什么会这样”。</p>
+
+  <p>真正聪明的智能体，不该只是记性好，而是要看得懂你的行为链，判断你在哪一步掉队了。</p>
+
+  <p>这就是 Graphiti</p>
+</blockquote>
+
+<hr />
+
+<p><strong>凡人小北</strong> @frxiaobei <a href="https://x.com/frxiaobei/status/1954792088970936514">2025-08-11</a></p>
+
+<p>🔗地址在这里：</p>
+
+<hr />
+
+<p><strong>Jerlin</strong> @eviljer <a href="https://x.com/eviljer/status/1954820898059682074">2025-08-11</a></p>
+
+<p>前不久看到一个 Memobase，也很有启发，刚好也想开个新实验，学习下他们的思路。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@frxiaobei</span>
+            
+          
+            
+              <span class="tag">#AI记忆</span>
+            
+          
+            
+              <span class="tag">#自治系统</span>
+            
+          
+            
+              <span class="tag">#memU</span>
+            
+          
+            
+              <span class="tag">#智能体</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

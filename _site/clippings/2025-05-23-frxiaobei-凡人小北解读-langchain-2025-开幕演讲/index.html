@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LangChain 2025: 智能体构建的四力融合</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">LangChain 2025: 智能体构建的四力融合</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">LangChain 2025: 智能体构建的四力融合</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @frxiaobei</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-05-23</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/frxiaobei/status/1925500138954666495?s=46&t=bx0WG1AGHlEB9ipAHDEpnw" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>凡人小北</strong> @frxiaobei <a href="https://x.com/frxiaobei/status/1925500138954666495/history">2025-05-22</a></p>
+
+<p>LangChain Interrupt 2025 开幕演讲终于放出来了，强烈建议所有做 AI 工程的开发者、产品、创业者都看一遍。</p>
+
+<p>全是干货！！！</p>
+
+<p>全程不讲估值，不吹爆炒作，不show 模型，</p>
+
+<p>完整的一个 Agent 工程路线图：</p>
+
+<p>Agent到底怎么构建、怎么部署、怎么协作、怎么跑进业务系统。</p>
+
+<p>过去这段时间，</p>
+
+<p>我们被红杉讲下注逻辑、被 Google 秀平台野心，</p>
+
+<p>搞得要么焦虑、要么兴奋，全在仰望星空。</p>
+
+<p>那不如脚踏实地，看看技术人该怎么跟上 AI 时代。</p>
+
+<p>下面的总结也结合了我在实际项目中的经验思考，欢迎围观：</p>
+
+<hr />
+
+<p><strong>凡人小北</strong> @frxiaobei <a href="https://x.com/frxiaobei/status/1925501630231060619">2025-05-22</a></p>
+
+<p>1/ LangChain 的起点和使命</p>
+
+<p>Langchain 两年前只是业余开源项目， 一个月后 ChatGPT才 发布，引爆了所有人想把 LLM 真正用于业务的想象。</p>
+
+<p>最初的角色就是帮助开发者快速做出惊艳的原型。但很快发现，从原型走向生产落地，真的很难。这个差距，也让LangChain决定从开源项目转型成公司：做成一套系统性的工具，帮助大家真正落地 AI 智能体</p>
+
+<p>-–</p>
+
+<p>很多人把 LangChain 看成工具集，其实它更像是一种认知工程范式的布道者。它解决的不是怎么接 API，而是如何让语言模型拥有可托付的系统行为。</p>
+
+<p>回看我们2023年4月份开始搞 AI，在艰难前行一个月后把未来的框架确定成langchain，才发现站在了巨人肩膀上，LLM 交互原来没那么难，稳定、可控、可演进这些事儿，LangChain 全班我们干了。</p>
+
+<p>庆幸当初的决策，这两年落地了很多有直接受益的AI项目。</p>
+
+<hr />
+
+<p><strong>凡人小北</strong> @frxiaobei <a href="https://x.com/frxiaobei/status/1925504310135464369">2025-05-22</a></p>
+
+<p>2/ 什么是 Agent Engineer？智能体构建的四力融合</p>
+
+<p>LangChain 定义了一种新的角色：Agent Engineer（智能体工程师）</p>
+
+<p>总结了一下，涉及到下面 4 类关键能力：</p>
+
+<p>1. Prompt 工程：和 LLM 交互的基础，构建智能体行为的关键。</p>
+
+<p>2. 工程能力：把智能体做得可靠、部署上线，需要非常扎实的工程实践。</p>
+
+<p>3. 产品直觉：要模仿人类工作流，需要产品 sense （这一点很重要，工程师缺的就是这点）来理解真实需求。</p>
+
+<p>4. 机器学习：特别是 Eval 能力（这一点很重要），用数据度量非确定性的输出。</p>
+
+<p>-–</p>
+
+<p>现在很多早期的开发者，已经有不少人具备了这样的能力，</p>
+
+<p>这种角色很难有一个清晰的定义？智能体构建师？跨语义边界构建者？</p>
+
+<p>他既能建数据流，也能设计对话策略，还能理解人-机协作本质。</p>
+
+<p>这种能力要求已经不是传统意义上的 PM、Dev 或 MLE，而是新范式下的 AI 编排师。对一个人的综合能力要求非常之高。</p>
+
+<p>我们自己团队也在两年的时间里一直不停的锤炼自己，把产品、技术、算法（推荐、nlp、图像）、数据揉到一块打磨，让每个人都有自己的深度，也同时具备其他人的广度，这样才能在正确的方向上跑得更快，跑得更远。都叫</p>
+
+<p>内部也在设计自己垂直场景的 AI OS 系统，探索把业务、运营多角色，利用这套系统把认知外包、任务转化、上下文感知编织成一套可控流程。</p>
+
+<hr />
+
+<p><strong>凡人小北</strong> @frxiaobei <a href="https://x.com/frxiaobei/status/1925507850379698350">2025-05-22</a></p>
+
+<p>3/ LangChain 对“现在”的三个判断</p>
+
+<p>3.1 多模型组合是趋势，智能体将使用多个模型</p>
+
+<p>LangChain 月下载量 7000 万，已超过 OpenAI 官方 SDK，核心原因是开发者更需要模型切换自由。</p>
+
+<p>已经出现太多的模型，每个都有自己的优势，有的便宜，有的强推理、有的适合写作、有的响应快。未来的智能体会像微服务一样，根据任务调用不同模型组合。</p>
+
+<p>-–</p>
+
+<p>这不只是工具便利，而是一种系统层的去中心化趋势。每个模型都有短板，真正稳定的智能体必然是多模型协同、动态路由决策。</p>
+
+<p>模型即微服务 这个概念越来越成型了。</p>
+
+<p>从最初用开始AI化，Langchain就扮演了我们模型接入层的角色， 意图识别走什么模型、信息总结提取走什么模型，都要做好选型，这就要求工程师对模型选择有很高的认知。当然，选模型也是Prompt工程的一部分，很重要的部分。</p>
+
+<p>未来 Agent 会像流水线一样，提问走 GPT-4、查资料走 Claude、压成本走 DeepSeek，每个节点选最优模型。</p>
+
+<p>这时候，LangChain 就是把这些拼起来的胶水。</p>
+
+<p>经验就是，一个大的工程里，一定是多模型协作的，不只是Agent、Agentic Workflow或者是小的文章生成的应用。</p>
+
+<p>从产品视角出发，模型多配，才是合格 AI 工程基建。</p>
+
+<hr />
+
+<p><strong>凡人小北</strong> @frxiaobei <a href="https://x.com/frxiaobei/status/1925510488227815616">2025-05-22</a></p>
+
+<p>3/ LangChain 对“现在”的三个判断</p>
+
+<p>3.2 可靠的智能体必须从上下文工程开始</p>
+
+<p>Prompt 是由多个部分组成的，包括系统提示、用户输入、工具调用、历史对话、检索结果等。</p>
+
+<p>为了提供对上下文的完全掌控， LangGraph 出生：</p>
+
+<p>- 极简、无隐藏逻辑</p>
+
+<p>- 可以自定义完整的推理流程</p>
+
+<p>- 提供 streaming、内存、人类协同等底层能力</p>
+
+<p>复杂的智能体建议都基于 LangGraph 构建。</p>
+
+<p>-–</p>
+
+<p>这点我相信大家认知是一致的：</p>
+
+<p>Prompt ≠ 一段字符串，</p>
+
+<p>而是一套系统结构，包含系统提示、工具输出、历史对话、检索补充等多源组成。</p>
+
+<p>这些才构成了 Agent 的灵魂，而不是 LLM 本体。</p>
+
+<p>我们在多个智能体项目中已经感受到这个痛点：你不给上下文设计流程，模型再强也回不好。LangGraph 的设计就是一种声明式流程编排语言，甚至可以理解为认知工作流的 DSL。</p>
+
+<p>实践经验是绝大部分的智能体都能用Prompt + 一堆Tools/MCP 快速构建，你不需要太多的工程开发。社区里的一些项目也验证了我这个观点，感兴趣的可以关注Langchain，经常翻一翻他新推荐的项目，每一个都是教科书里的例子。</p>
+
+<p>所以，LangGraph 也是目前为止，我看到的最贴近真实 Agent 编排需求的框架。是真正做复杂智能体时最需要的，灵活，而不是神秘。</p>
+
+<p>如果有自己做Agent的需求，这是个不错的技术选型。</p>
+
+<hr />
+
+<p><strong>凡人小北</strong> @frxiaobei <a href="https://x.com/frxiaobei/status/1925512439631946164">2025-05-22</a></p>
+
+<p>3/ LangChain 对“现在”的三个判断</p>
+
+<p>3.3 智能体构建是一个团队运动</p>
+
+<p>不是所有人都能兼备 Prompt、工程、产品和 ML 能力，</p>
+
+<p>LangSmith 就是为这个目的诞生的：</p>
+
+<p>- 提供可视化调试（trace、输入输出、工具调用路径）</p>
+
+<p>- 支持离线和在线评估（eval）</p>
+
+<p>- 提供 Prompt playground &amp; hub</p>
+
+<p>- 打造一个跨职能协作的智能体平台</p>
+
+<p>-–</p>
+
+<p>这部分太重要了。也是我一直在推文里说的：</p>
+
+<p>Agent 的真正演进不是更像人，而是像团队。</p>
+
+<p>AI 项目进入第二阶段了，不是一个人做个 demo，而是像做 SaaS 产品一样建流程、看数据、搞运维、测质量。LangSmith 就是 DevOps + PM 工具 + prompt IDE 三合一的 AI 工程平台。</p>
+
+<p>AI 的Agent DevOps 平台。</p>
+
+<p>我们没有在内部使用LangSmith，推荐一个开源的替代方案——Langfuse。</p>
+
+<hr />
+
+<p><strong>凡人小北</strong> @frxiaobei <a href="https://x.com/frxiaobei/status/1925514198001631583">2025-05-22</a></p>
+
+<p>4/ LangChain 对未来的三点预测</p>
+
+<p>4.1 AI 可观测性 ≠ 传统可观测性</p>
+
+<p>传统 observability 工具服务的是 SRE，记录结构化数据。而 AI 智能体产生的是非结构化、多模态的数据，</p>
+
+<p>用户角色也变了。</p>
+
+<p>LangSmith 中推出了这几个功能：</p>
+
+<p>- 工具使用情况追踪（调用次数、耗时、报错率）</p>
+
+<p>- 智能体路径分析（trajectory observability）</p>
+
+<p>-–</p>
+
+<p>Eval 只是起点，更重要的是观测出 agent 的意图和行为链条”。</p>
+
+<p>传统 observability 是看机器行为，AI observability 是看语言行为，这根本是两个物种。Agent 面对的 trace 更复杂、更模糊、更长。</p>
+
+<p>AI-first 系统的可观测，都不是靠 log 查错，而是靠行为轨迹 + prompt 树复盘认知路径。</p>
+
+<p>需要把历史对话拉出来整理，模型的思考和工具的调用链路图形化了在观察、跟进、排查。</p>
+
+<p>这些我们过去都是靠人整理。</p>
+
+<p>现在 LangSmith 在这个方向上开始工业化了。把 APM 这套逻辑引入了 AI 世界，未来应该会成为各公司落地 agent 的基础设施。</p>
+
+<hr />
+
+<p><strong>凡人小北</strong> @frxiaobei <a href="https://x.com/frxiaobei/status/1925516150622007492">2025-05-22</a></p>
+
+<p>4/ LangChain 对未来的三点预测</p>
+
+<p>4.2 所有人都将成为 Agent Builder</p>
+
+<p>目前的大多数人都处于一个专业象限中（工程/产品/ML/Prompt），LangChain 希望逐步让他们往Agent Engineer靠近。</p>
+
+<p>推出了三个入口：</p>
+
+<p>- LangGraph Prebuilts：常见智能体架构（单智能体、群体、监督者等）模版</p>
+
+<p>- LangGraph Studio V2：全新 UI，支持在线运行、不再限于 Mac，支持直接调试生产 trace</p>
+
+<p>- Open Agent Platform：完全开源，零代码构建智能体，支持 RAG as a service、MCP 工具服务、Agent 注册管理等</p>
+
+<p>目的就是：哪怕不是程序员，也能构建实用的 Agent。</p>
+
+<p>-–</p>
+
+<p>我对这三个入口做个简单的解释：</p>
+
+<p>- LangGraph Prebuilts：程序员用的</p>
+
+<p>- LangGraph Studio V2：产品、测试、开发用的，可以直接调试 trace</p>
+
+<p>- Open Agent Platform：非技术用户用的，拖拽搭建Agent（里面含 MCP / RAG）</p>
+
+<p>前两个我没用过，第三个我体验过，个人感觉比coze agentic 一些，但是完成度一般，可以持续跟进；</p>
+
+<p>这就是 LangChain 的长线策略：</p>
+
+<p>1. 用 LangGraph 建 Dev 基座；</p>
+
+<p>2. LangSmith 让团队协作；</p>
+
+<p>3. Open Agent 把战线拉到非技术人；</p>
+
+<p>这就是我为什么一直认为 Agent 的终局不在技术圈，</p>
+
+<p>而在业务一线。</p>
+
+<p>LangChain 的这套工具层次，正在把 Agent 建设拉到组织内人人可用的级别。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@frxiaobei</span>
+            
+          
+            
+              <span class="tag">#AI</span>
+            
+          
+            
+              <span class="tag">#LangChain</span>
+            
+          
+            
+              <span class="tag">#智能体</span>
+            
+          
+            
+              <span class="tag">#AgentEngineer</span>
+            
+          
+            
+              <span class="tag">#认知工程</span>
+            
+          
+            
+              <span class="tag">#PromptEngineering</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

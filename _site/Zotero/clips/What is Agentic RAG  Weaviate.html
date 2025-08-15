@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的知识库</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <p><img src="https://weaviate.io/assets/images/hero-d41770f860f0fa78a7230034f7d43820.png" alt="Agentic Retrieval Augmented Generation (RAG)" /></p>
+
+<p>虽然检索增强生成（RAG）在 2023 年占据主导地位，但智能体工作流程在 2024 年正推动着巨大进展。人工智能智能体的使用为构建更强大、更稳健且更通用的由大语言模型（LLM）驱动的应用程序开辟了新的可能性。一种可能性是在智能体增强的 RAG 管道中使用人工智能智能体来增强 RAG 管道。</p>
+
+<p>本文向您介绍代理式检索增强生成（agentic RAG）的概念、其实现方式以及其优点和局限性。</p>
+
+<h2 id="智能体检索增强生成agentic-rag基础">智能体检索增强生成（Agentic RAG）基础<a href="https://weaviate.io/blog/what-is-agentic-rag#fundamentals-of-agentic-rag" title="Direct link to Fundamentals of Agentic RAG">​</a></h2>
+
+<p>智能体增强检索生成（Agentic RAG）描述了一种基于人工智能智能体的检索生成实现方式。在我们进一步探讨之前，让我们快速回顾一下检索生成（RAG）和人工智能智能体的基本概念。</p>
+
+<h3 id="什么是检索增强生成rag">什么是检索增强生成（RAG）<a href="https://weaviate.io/blog/what-is-agentic-rag#what-is-retrieval-augmented-generation-rag" title="Direct link to What is Retrieval-Augmented Generation (RAG)">​</a></h3>
+
+<p>检索增强生成（RAG）是一种用于构建由LLM驱动的应用程序的技术。它利用外部知识源为LLM提供相关上下文并减少幻觉。</p>
+
+<p>一个简单的 RAG 管道由一个检索组件（通常由一个嵌入模型和一个向量数据库组成）和一个生成组件（一个LLM）组成。在推理时，用户查询用于对索引文档进行相似性搜索，以检索与查询最相似的文档，并为LLM提供额外的上下文。</p>
+
+<p><img src="https://weaviate.io/assets/images/Vanilla_RAG-697535e2d5b9ae64ccfd6415a79965c7.png" alt="Vanilla RAG" /></p>
+
+<p>典型的检索增强生成（RAG）应用程序有两个相当大的局限性：</p>
+
+<ol>
+  <li>朴素的检索增强生成（RAG）管道仅考虑一个外部知识源。然而，一些解决方案可能需要两个外部知识源，并且一些解决方案可能需要外部工具和应用程序编程接口（API），例如网络搜索。</li>
+  <li>它们是一次性解决方案，这意味着上下文仅检索一次。不会对检索到的上下文质量进行推理或验证。</li>
+</ol>
+
+<h3 id="人工智能系统中的智能体是什么">人工智能系统中的智能体是什么<a href="https://weaviate.io/blog/what-is-agentic-rag#what-are-agents-in-ai-systems" title="Direct link to What are Agents in AI Systems">​</a></h3>
+
+<p>随着LLMs的普及，人工智能代理和多智能体系统的新范式已经出现。人工智能代理被赋予了角色和任务，能够访问内存和外部工具。LLMs的推理能力帮助代理规划所需步骤并采取行动来完成手头的任务。</p>
+
+<p>因此，人工智能智能体的核心组件包括：</p>
+
+<ul>
+  <li>LLM（具有一个角色和一项任务）</li>
+  <li>内存（短期和长期）</li>
+  <li>规划（例如，反思、自我批评、查询路由等）</li>
+  <li>工具（例如，计算器、网络搜索等）</li>
+</ul>
+
+<p><img src="https://weaviate.io/assets/images/Components_of_an_AI_agent-2f1846374720471d6b11169203ccb865.png" alt="Components of an AI agent" /></p>
+
+<p>一种流行的框架是 ReAct 框架。一个 ReAct 智能体可以通过将路由、查询规划和工具使用组合成一个单一实体，在维护状态（内存中）的同时处理顺序多部分查询。</p>
+
+<blockquote>
+  <p>ReAct = 推理 + 行动 (与 LLMs 相关)</p>
+</blockquote>
+
+<p>该过程包括以下步骤：</p>
+
+<ol>
+  <li>
+    <p>思考：在收到用户查询后，智能体思考接下来要采取的行动</p>
+  </li>
+  <li>
+    <p>行动：智能体决定采取一项行动并执行它（例如，使用工具）</p>
+  </li>
+  <li>
+    <p>观察：智能体观察来自行动的反馈</p>
+  </li>
+  <li>
+    <p>此过程会不断迭代，直到智能体完成任务并响应用户。</p>
+
+    <p><img src="https://weaviate.io/assets/images/ReAct-6d7ea59cdc1c7f882f860e7015228302.png" alt="ReAct framework" /></p>
+  </li>
+</ol>
+
+<h2 id="什么是智能体增强检索生成agentic-rag">  什么是智能体增强检索生成（Agentic RAG）？<a href="https://weaviate.io/blog/what-is-agentic-rag#what-is-agentic-rag" title="Direct link to What is Agentic RAG?">​</a></h2>
+
+<p>智能体增强型检索与生成（Agentic RAG）描述了一种基于人工智能智能体的 RAG 实现方式。具体而言，它将人工智能智能体整合到 RAG 流程中，以协调其组件，并执行简单信息检索和生成之外的其他操作，从而克服非智能体流程的局限性。</p>
+
+<blockquote>
+  <p>智能体增强检索生成（Agentic RAG）描述了一种基于人工智能智能体的检索生成实现方式。</p>
+</blockquote>
+
+<h3 id="代理检索增强生成agentic-rag是如何工作的">代理检索增强生成（Agentic RAG）是如何工作的？<a href="https://weaviate.io/blog/what-is-agentic-rag#how-does-agentic-rag-work" title="Direct link to How does Agentic RAG work?">​</a></h3>
+
+<p>虽然智能体可以融入到 RAG 流程的不同阶段，但智能体增强的 RAG 通常是指在检索组件中使用智能体。</p>
+
+<p>具体而言，检索组件通过使用能够访问不同检索工具的检索代理而具有智能体特性，例如：</p>
+
+<ul>
+  <li>向量搜索引擎（也称为查询引擎），它对向量索引执行向量搜索（就像在典型的 RAG 管道中那样）</li>
+  <li>  网络搜索</li>
+  <li>  计算器</li>
+  <li>任何用于以编程方式访问软件的应用程序编程接口，如电子邮件或聊天程序</li>
+  <li>  以及更多。</li>
+</ul>
+
+<p>然后，RAG 智能体可以针对以下示例检索场景进行推理和行动：</p>
+
+<ol>
+  <li>决定是否检索信息</li>
+  <li>决定使用哪个工具来检索相关信息</li>
+  <li>制定查询本身</li>
+  <li>评估检索到的上下文并决定是否需要重新检索。</li>
+</ol>
+
+<h3 id="智能体检索增强生成架构">  智能体检索增强生成架构<a href="https://weaviate.io/blog/what-is-agentic-rag#agentic-rag-architecture" title="Direct link to Agentic RAG Architecture">​</a></h3>
+
+<p>与顺序朴素的检索增强生成（RAG）架构相比，智能检索增强生成（RAG）架构的核心是智能体。智能检索增强生成（RAG）架构可以有不同程度的复杂性。在最简单的形式中，单智能体检索增强生成（RAG）架构是一个简单的路由器。然而，你也可以将多个智能体添加到多智能体检索增强生成（RAG）架构中。本节讨论两种基本的检索增强生成（RAG）架构。</p>
+
+<p><strong>单智能体检索增强生成（路由器）</strong></p>
+
+<p>在其最简单的形式中，智能体增强检索生成（agentic RAG）是一个路由器。这意味着你至少有两个外部知识源，并且智能体决定从哪个知识源检索额外的上下文信息。然而，外部知识源不必局限于（向量）数据库。你也可以从工具中检索更多信息。例如，你可以进行网络搜索，或者使用应用程序编程接口（API）从 Slack 频道或你的电子邮件账户中检索额外信息。</p>
+
+<p><img src="https://weaviate.io/assets/images/Single_Agent_RAG_System_(Router)-ae2ec18616941504070d6b2a7210a358.png" alt="Single Agent RAG System (Router).png" /></p>
+
+<p>  <strong>多智能体检索增强生成系统</strong></p>
+
+<p>如你所想，单智能体系统也有其局限性，因为它仅限于单个智能体进行推理、检索和答案生成。因此，将多个智能体链接成一个多智能体 RAG 应用程序是有益的。</p>
+
+<p>例如，你可以有一个主代理，它负责协调多个专门的检索代理之间的信息检索。例如，一个代理可以从专有的内部数据源检索信息。另一个代理可以专门从你的个人账户（如电子邮件或聊天记录）中检索信息。另一个代理也可以专门从网络搜索中检索公共信息。</p>
+
+<p><img src="https://weaviate.io/assets/images/Multi_Agent_RAG_System-73e480f62a52e172a78a0ac344dcdcb5.png" alt="Multi Agent RAG System.png" /></p>
+
+<h3 id="超越检索代理">  超越检索代理<a href="https://weaviate.io/blog/what-is-agentic-rag#beyond-retrieval-agents" title="Direct link to Beyond Retrieval Agents">​</a></h3>
+
+<p>上述示例展示了不同检索代理的用法。然而，你也可以将代理用于检索以外的目的。RAG 系统中代理的可能性是多种多样的。</p>
+
+<h2 id="智能检索增强生成agentic-rag与普通检索增强生成rag">智能检索增强生成（Agentic RAG）与（普通）检索增强生成（RAG）<a href="https://weaviate.io/blog/what-is-agentic-rag#agentic-rag-vs-vanilla-rag" title="Direct link to Agentic RAG vs. (Vanilla) RAG">​</a></h2>
+
+<p>虽然 RAG 的基本概念（发送查询、检索信息并生成响应）保持不变，但工具的使用对其进行了扩展，使其更加灵活和强大。</p>
+
+<p>这么想：普通（香草味）的检索增强生成（RAG）就像是在图书馆（在智能手机出现之前）回答一个特定问题。另一方面，智能检索增强生成（Agentic RAG）就像是手里拿着一部智能手机，里面有网络浏览器、计算器、你的电子邮件等等。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>  香草检索增强生成</th>
+      <th>  智能检索增强生成</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>  访问外部工具</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>  查询预处理</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>  多步检索</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>检索信息的验证</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="实现代理检索增强生成agentic-rag">  实现代理检索增强生成（Agentic RAG）<a href="https://weaviate.io/blog/what-is-agentic-rag#implementing-agentic-rag" title="Direct link to Implementing Agentic RAG">​</a></h2>
+
+<p>如前所述，智能体由多个组件组成。要构建一个基于智能体的检索增强生成（RAG）管道，有两种选择：具有函数调用功能的语言模型或智能体框架。两种实现方式都能得到相同的结果，这将取决于你想要的控制程度和灵活性。</p>
+
+<h3 id="具有函数调用功能的语言模型">具有函数调用功能的语言模型<a href="https://weaviate.io/blog/what-is-agentic-rag#language-models-with-function-calling" title="Direct link to Language Models with Function Calling">​</a></h3>
+
+<p>语言模型是智能检索增强生成（RAG）系统的主要组成部分。另一个组成部分是工具，它使语言模型能够访问外部服务。具有函数调用功能的语言模型提供了一种通过允许模型与预定义工具进行交互来构建智能系统的方法。语言模型提供商已在其客户端中添加了此功能。</p>
+
+<p>2023 年 6 月，OpenAI 发布了针对 <code class="language-plaintext highlighter-rouge">gpt-3.5-turbo</code> 和 <code class="language-plaintext highlighter-rouge">gpt-4</code> 的函数调用。它使这些模型能够可靠地将 GPT 的功能与外部工具和 API 连接起来。开发人员很快开始构建将 <code class="language-plaintext highlighter-rouge">gpt-4</code> 插入代码执行器、数据库、计算器等的应用程序。</p>
+
+<p>Cohere 进一步推出了其连接器 API，以便在 Command-R 模型套件中添加工具。此外，Anthropic 和谷歌为 Claude 和 Gemini 推出了函数调用功能。通过使用外部服务为这些模型提供支持，它可以访问和引用网络资源、执行代码等。</p>
+
+<p>函数调用不仅适用于专有模型。Ollama 为 <code class="language-plaintext highlighter-rouge">Llama3.2</code> 、 <code class="language-plaintext highlighter-rouge">nemotron-mini</code> 等流行的开源模型引入了工具支持。</p>
+
+<p>要构建一个工具，首先需要定义函数。在这个代码片段中，我们正在编写一个函数，该函数使用 Weaviate 的混合搜索从数据库中检索对象：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def get_search_results(query: str) -&gt; str:    """Sends a query to Weaviate's Hybrid Search. Parses the response into a {k}:{v} string."""        response = blogs.query.hybrid(query, limit=5)        stringified_response = ""    for idx, o in enumerate(response.objects):        stringified_response += f"Search Result: {idx+1}:\n"        for prop in o.properties:            stringified_response += f"{prop}:{o.properties[prop]}"        stringified_response += "\n"        return stringified_response
+</code></pre></div></div>
+
+<p>然后，我们将通过一个 <code class="language-plaintext highlighter-rouge">tools_schema</code> 把该函数传递给语言模型。然后，该模式将用于语言模型的提示中：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tools_schema=[{    'type': 'function',    'function': {        'name': 'get_search_results',        'description': 'Get search results for a provided query.',        'parameters': {          'type': 'object',          'properties': {            'query': {              'type': 'string',              'description': 'The search query.',            },          },          'required': ['query'],        },    },}]
+</code></pre></div></div>
+
+<p>由于你是直接连接到语言模型 API，因此需要编写一个在语言模型和工具之间进行路由的循环：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def ollama_generation_with_tools(user_message: str,                                 tools_schema: List, tool_mapping: Dict,                                 model_name: str = "llama3.1") -&gt; str:    messages=[{        "role": "user",        "content": user_message    }]    response = ollama.chat(        model=model_name,        messages=messages,        tools=tools_schema    )    if not response["message"].get("tool_calls"):        return response["message"]["content"]    else:        for tool in response["message"]["tool_calls"]:            function_to_call = tool_mapping[tool["function"]["name"]]            print(f"Calling function {function_to_call}...")            function_response = function_to_call(tool["function"]["arguments"]["query"])            messages.append({                "role": "tool",                "content": function_response,            })        final_response = ollama.chat(model=model_name, messages=messages)    return final_response["message"]["content"]
+</code></pre></div></div>
+
+<p>你的查询将如下所示：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ollama_generation_with_tools("How is HNSW different from DiskANN?",                            tools_schema=tools_schema, tool_mapping=tool_mapping)
+</code></pre></div></div>
+
+<p>你可以按照这个食谱来重现上述内容。</p>
+
+<h3 id="智能体框架">  智能体框架<a href="https://weaviate.io/blog/what-is-agentic-rag#agent-frameworks" title="Direct link to Agent Frameworks">​</a></h3>
+
+<p>诸如 DSPy、LangChain、CrewAI、LlamaIndex 和 Letta 等代理框架已经出现，以促进使用语言模型构建应用程序。这些框架通过将预建模板组合在一起来简化构建代理式 RAG 系统的过程。</p>
+
+<ul>
+  <li>DSPy 支持 ReAct 智能体和 Avatar 优化。Avatar 优化描述了对每个工具的描述使用自动化提示工程。</li>
+  <li>LangChain 提供了许多用于使用工具的服务。LangChain 的 LCEL 和 LangGraph 框架还进一步提供了内置工具。</li>
+  <li>LlamaIndex 进一步引入了 QueryEngineTool，这是一组用于检索工具的模板。</li>
+  <li>CrewAI 是开发多智能体系统的领先框架之一。工具使用所采用的关键概念之一是在智能体之间共享工具。</li>
+  <li>Swarm 是 OpenAI 构建的用于多智能体编排的框架。Swarm 同样关注工具在智能体之间的共享方式。</li>
+  <li>莱塔接口将反映和完善内部世界模型作为函数。除了回答问题之外，这还可能需要使用搜索结果来更新聊天机器人用户在智能体中的记忆。</li>
+</ul>
+
+<h2 id="企业为何采用自主检索增强生成agentic-rag">企业为何采用自主检索增强生成（Agentic RAG）<a href="https://weaviate.io/blog/what-is-agentic-rag#why-are-enterprises-adopting-agentic-rag" title="Direct link to Why are Enterprises Adopting Agentic RAG">​</a></h2>
+
+<p>企业正在从普通的检索增强生成（RAG）转向构建具有智能体功能的 RAG 应用程序。Replit 发布了一款帮助开发人员构建和调试软件的智能体。此外，微软宣布了能与用户协同工作以在完成任务时提供建议的副驾驶功能。这些只是正在投入使用的智能体的几个例子，其可能性是无穷无尽的。</p>
+
+<h3 id="自主检索增强生成agentic-rag的优势">  自主检索增强生成（Agentic RAG）的优势<a href="https://weaviate.io/blog/what-is-agentic-rag#benefits-of-agentic-rag" title="Direct link to Benefits of Agentic RAG">​</a></h3>
+
+<p>从普通检索增强生成（RAG）转向智能检索增强生成（RAG）使这些系统能够产生更准确的回答、自主执行任务并更好地与人类协作。</p>
+
+<p>智能检索增强生成（agentic RAG）的优势主要在于所检索到的额外信息质量得到了提升。通过添加能够使用工具的智能体，检索智能体可以将查询路由到专门的知识源。此外，智能体的推理能力能够在检索到的上下文用于进一步处理之前，对其进行一层验证。因此，智能检索增强生成（agentic RAG）管道可以带来更可靠、准确的回答。</p>
+
+<h3 id="智能体增强检索生成agentic-rag的局限性">智能体增强检索生成（Agentic RAG）的局限性<a href="https://weaviate.io/blog/what-is-agentic-rag#limitations-of-agentic-rag" title="Direct link to Limitations of Agentic RAG">​</a></h3>
+
+<p>然而，凡事皆有两面性。使用人工智能代理 a 执行子任务意味着引入一个LLM来完成一项任务。这伴随着在任何应用中使用LLMs的局限性，例如增加的延迟和不可靠性。根据LLM的推理能力，一个代理可能无法充分完成一项任务（甚至根本无法完成）。纳入适当的失败模式以帮助人工智能代理在无法完成任务时摆脱困境是很重要的。</p>
+
+<h2 id="summary">Summary<a href="https://weaviate.io/blog/what-is-agentic-rag#summary" title="Direct link to Summary">​</a></h2>
+
+<p>本博客讨论了代理式检索增强生成（agentic RAG）的概念，其中涉及将代理纳入检索增强生成流程。虽然在检索增强生成流程中，代理可用于许多不同目的，但代理式检索增强生成通常涉及使用可访问工具的检索代理来进行泛化检索。</p>
+
+<p>本文讨论了使用单智能体和多智能体系统的智能体 RAG 架构，以及它们与普通 RAG 管道的区别。</p>
+
+<p>随着人工智能代理系统的兴起和普及，许多不同的框架正在不断发展，以实现基于代理的检索增强生成（RAG），例如 LlamaIndex、LangGraph 或 CrewAI。</p>
+
+<p>最后，本文讨论了代理式检索增强生成（RAG）管道的优点和局限性。</p>
+
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>如何善用 Cursor 及其 12 条准则</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">如何善用 Cursor 及其 12 条准则</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">如何善用 Cursor 及其 12 条准则</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @hellokaton</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-24</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/hellokaton/status/1914487184423526633" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>katon</strong> @hellokaton 2025-04-21</p>
+
+<p>用好 Cursor = 高效、整洁的代码。</p>
+
+<p>用不好 = AI 给你堆出一团乱麻的代码，够你收拾一礼拜。</p>
+
+<p>下面是正确使用的 12 条准则：</p>
+
+<p>1. 预先定好 5-10 条明确的项目规范，让 Cursor 知道你的项目结构和约束。对于老代码库，可以试试 /generate rules。</p>
+
+<p>2. 提示词要具体。像写一份简要的技术说明那样，把技术栈、功能要求和约束都讲清楚。</p>
+
+<p>3. 逐个文件来做；每次处理一小部分，集中精力生成、测试和检查。</p>
+
+<p>4. 先写测试，确定测试用例，然后让 AI 生成代码，直到所有测试都通过。</p>
+
+<p>5. 务必检查 AI 的输出，发现问题要彻底改对，然后告诉 Cursor 这些改动，让它学习。</p>
+
+<p>6. 用 @ file, @ folders, @ git 把 Cursor 的注意力范围限定在你关心的代码部分。</p>
+
+<p>7. 把设计文档和任务清单放在 .cursor/ 目录里，这样 Cursor 就能充分了解接下来该做什么。</p>
+
+<p>8. 如果 AI 生成的代码不对，别光解释，直接自己改。Cursor 从你的修改中学得比解释快。</p>
+
+<p>9. 利用聊天历史，可以在旧提示词基础上迭代优化，不用每次都从头开始。</p>
+
+<p>10. 有目的地选择不同的模型。Gemini 适合需要精确的场景，Claude 适合需要广泛理解的场景。</p>
+
+<p>11. 遇到新的或不熟悉的技术栈，把文档链接粘贴进去。让 Cursor 逐行解释遇到的错误以及如何修复。</p>
+
+<p>12. 大项目让它先花时间索引，可以放在晚上进行；同时限制上下文范围，保持操作流畅。</p>
+
+<p>掌控好结构和流程是关键 (至少目前是这样)。</p>
+
+<p>把 Cursor 看作一个能力很强的初级工程师——只要你指引得当，它就能快速成长、表现出色。</p>
+
+<blockquote>
+  <p>2025-04-21</p>
+
+  <p>Using Cursor well = fast, clean code.</p>
+
+  <p>Using it wrong = AI spaghetti you’ll be cleaning up all week.</p>
+
+  <p>Here’s how to actually use it right:</p>
+
+  <p>1. Set 5-10 clear project rules upfront so Cursor knows your structure and constraints. Try /generate rules for existing codebases.</p>
+
+  <p>2. Be<br />
+善用游标 = 快速、简洁的代码。</p>
+
+  <p>使用不当 = 你整个星期都要清理的人工智能乱麻。</p>
+
+  <p>以下是正确使用它的方法：</p>
+
+  <p>1. 预先设置 5 到 10 条明确的项目规则，以便 Cursor 了解您的结构和约束条件。尝试为现有代码库生成规则。</p>
+
+  <p>2. 存在</p>
+</blockquote>
+
+<hr />
+
+<p><strong>ColinSun</strong> @seecolinsun <a href="https://x.com/seecolinsun/status/1914506139414466839">2025-04-22</a></p>
+
+<p>我觉得第3条很重要，分解并逐个击破，否则到头来整个工程都乱七八糟，每次改动都很少崩溃</p>
+
+<hr />
+
+<p><strong>katon</strong> @hellokaton <a href="https://x.com/hellokaton/status/1914506420806189290">2025-04-22</a></p>
+
+<p>是的，就像和人沟通一次说一个概念更容易准确的理解。</p>
+
+<hr />
+
+<p><strong>EC Elliot</strong> @elliotchen100 <a href="https://x.com/elliotchen100/status/1914497997616062472">2025-04-22</a></p>
+
+<p>Ryo 中文很好 不过 他会依然感激你翻译</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@hellokaton</span>
+            
+          
+            
+              <span class="tag">#AI开发</span>
+            
+          
+            
+              <span class="tag">#Cursor</span>
+            
+          
+            
+              <span class="tag">#代码生成</span>
+            
+          
+            
+              <span class="tag">#效率</span>
+            
+          
+            
+              <span class="tag">#编程</span>
+            
+          
+            
+              <span class="tag">#软件开发</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

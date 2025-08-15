@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code的子任务机制</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Claude Code的子任务机制</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Claude Code的子任务机制</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @dotey</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-01</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/dotey/status/1935794151293083803" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>宝玉</strong> @dotey 2025-06-06</p>
+
+<p>我看到有人在让“Claude Code”自己开新进程 `claude -p `实现多任务，其实没必要，有更简单的办法。这个简单办法就是让它自己开子 Agent。Claude Code 现在有 18 个工具，最特殊的一个工具叫 Task，它本质就是一个 Claude Code 的克隆工具，只不过是作为 Claude Code 的一个工具。</p>
+
+<p>如果你懂递归的话就很好理解。如果你不懂递归，可以这么理解：Claude Code 是个 AI 程序员，它可以用一堆工具，其中最神奇的一个工具叫 Task，就是克隆一个自己的分身去干活！</p>
+
+<p>这样做有什么好处呢？就是可以并行多任务，还可以控制上下文，让子任务更专注。</p>
+
+<p>举例来说，你粘贴一段错误代码让 Claude Code 去 Debug，并且还让它写测试代码覆盖这个错误。Claude Code 会先调用 TodoWrite 这个工具写一个 TODO List。把任务分成 3 步：</p>
+
+<p>- [ ] 根据错误信息收集相关代码</p>
+
+<p>- [ ] 根据错误信息和相关代码解决 Bug</p>
+
+<p>- [ ] 写新的测试覆盖</p>
+
+<p>这一步完了后它会起一个 Task，这个 Task 就是专门根据错误信息去找到相关代码的位置，那么这个子任务只需要接受错误信息找上下文，它不管怎么解决 Bug，也不管怎么写测试覆盖。</p>
+
+<p>主任务就会等这个子任务完成，子任务完成后，主任务就调用 TODO Write 更新 TODO List。</p>
+
+<p>- [x] 根据错误信息收集相关代码</p>
+
+<p>- [ ] 根据错误信息和相关代码解决 Bug</p>
+
+<p>- [ ] 写新的测试覆盖</p>
+
+<p>然后调用 TodoRead 工具看下一步要干嘛，现在有充足上下文了，它可以再起一个子任务去根据错误信息和代码修复 Bug，等修复 Bug 的子任务完成了，再回到主任务，继续更新 TODO List，继续读取下一个 Item</p>
+
+<p>最后再启动一个子任务去写测试，测试子任务也完成了，返回结果到主任务，这时候调用 TodoRead 一看任务都处理完了，最后根据前面的任务情况给你一个总结摘要，表示任务都完成了。</p>
+
+<p>Claude Code 真的没有做什么工程上的优化，什么上下文压缩、临时存储，都没有的！就是简单粗暴：</p>
+
+<p>1. 把用户问题、系统提示词、能用到的工具一股脑发给 Claude，问下一步该干嘛</p>
+
+<p>2. Claude 就返回说现在你要到 TodoWriter 工具</p>
+
+<p>3. Claude Code 就去调用 TodoWriter 工具，本质上也是一个 AI 请求，最后返回生成的 Todo List</p>
+
+<p>4. 然后 Claude Code 把工具返回结果和前面的所有消息继续发给 Claude，Claude 返回说你现在要去起一个新的 Task 去收集代码了</p>
+
+<p>5. 然后 Claude Code 就起一个新的 Task，把错误信息和要求收集相关代码的任务说明、系统提示词、环境说明、能用到的工具一股脑发给 Claude，问下一步该干嘛</p>
+
+<p>- 在新的 Task 里面，就是不停的问 Claude 该用啥工具，然后发送工具结果和前面所有历史消息</p>
+
+<p>- 任务完成后，返回任务结果</p>
+
+<p>6. 然后 Claude Code 把子 Task 的结果和前面历史信息一起发给 Claude 问下一步干嘛</p>
+
+<p>7. 就这样循环直到 Claude 认为任务完成了</p>
+
+<p>所以你经常看到 Claude Code 在那几十分钟上下文也没爆掉，因为它会启动子任务，这样上下文就分摊到子任务中了，主任务中只是保留子任务完成后的内容。</p>
+
+<blockquote>
+  <p>2025-06-06</p>
+
+  <p>开个 Thread 来整理一些我使用 CluadeCode 的经验和心得，也欢迎留言分享。去年起我是 Cursor 的重度用户，最近一个月，我用 Cursor 越来越少了，开发方式也发生了变化，现在大部分时候都是：ClaudeCode 先做，做完了我去 IDE 去审查修改，所以不再需要 Cursor 的绝大部分功能，反而由于 Cursor</p>
+
+  <p><img src="https://pbs.twimg.com/media/Gt1LrTkWkAAINrA?format=jpg&amp;name=large" alt="Image" /> <img src="https://pbs.twimg.com/media/Gt1OLcTXEAIP9Cp?format=jpg&amp;name=large" alt="Image" /> <img src="https://pbs.twimg.com/media/Gt1O7j0WIAAf2kW?format=jpg&amp;name=large" alt="Image" /></p>
+</blockquote>
+
+<hr />
+
+<p><strong>宝玉</strong> @dotey <a href="https://x.com/dotey/status/1935794229994770624">2025-06-19</a></p>
+
+<p>视频来源：</p>
+
+<blockquote>
+  <p>2025-06-19</p>
+
+  <p>Btw, since people don’t seem to know this, you can literally spawn subagents in Claude Code just by asking.<br />
+顺便说一句，既然大家似乎都不知道，在 Claude Code 里，你只要开口要求，就能直接创建子智能体。</p>
+</blockquote>
+
+<hr />
+
+<p><strong>宝玉</strong> @dotey <a href="https://x.com/dotey/status/1935797021270483411">2025-06-19</a></p>
+
+<p>配合他们自己写的 《构建高效 Agent [译]》更好理解</p>
+
+<p>https://baoyu.io/translations/building-effective-agents…</p>
+
+<p><img src="https://pbs.twimg.com/media/Gt1U4_NWEAAIBu-?format=jpg&amp;name=large" alt="Image" /></p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@dotey</span>
+            
+          
+            
+              <span class="tag">#AI</span>
+            
+          
+            
+              <span class="tag">#编程</span>
+            
+          
+            
+              <span class="tag">#大模型</span>
+            
+          
+            
+              <span class="tag">#ClaudeCode</span>
+            
+          
+            
+              <span class="tag">#子任务</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

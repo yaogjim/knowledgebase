@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>提取中文标题</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <p><strong>Elie Steinbock</strong> @elie2222 <a href="https://x.com/elie2222/status/1907070722960187745">2025-04-01</a></p>
+
+<p>自从我将用于 Cursor 的.mdc 规则开源以来，我收到了很多问题。以下是所有问题的集中解答：1. 20 个.mdc 文件对 Cursor 来说信息是不是太多了？</p>
+
+<p>不。这就是.mdc 文件解决的问题。光标规则文件现已弃用。你不再一次性提供所有信息，而是分小块（.mdc 文件）提供。我的每个.mdc 文件都少于 50 行。2. 你需要手动标记光标吗？</p>
+
+<p>规则有 4 种选项：</p>
+
+<p>a. 始终 - 该规则是每次聊天的一部分</p>
+
+<p>b. 自动关联 - 例如，每当你在聊 “.tsx” 文件或 “tailwind.config” 文件时自动关联。</p>
+
+<p>c. 代理请求 - 代理可以请求读取文件。这是我最常使用的方式。代理根据您为规则设置的描述来决定是否请求规则</p>
+
+<p>d. 手册 - 仅在标记时应用。我大多使用 c。而且我经常会自己为光标标记一个规则文件，因为我不确定否则它是否总能读取到。3. 我如何编写规则？</p>
+
+<p>我有一个用于编写规则的 cursor-rules.mdc。最简单的方法是：</p>
+
+<p>* 与 Cursor 共享一段代码（在相关文本上按 Command-Shift-L）</p>
+
+<p>* 标记.cursor-rules.mdc 文件</p>
+
+<p>* 要求 Cursor 为此模式创建一个新的.mdc 文件专业提示：Cursor 在这里有点问题。我更喜欢在询问模式下进行此操作，然后将结果复制到一个.mdc 文件中。有时当我在代理模式下这样做时，你会看到 Cursor 显示空文件。4. 它能正常工作吗？</p>
+
+<p>是的。在视频结尾（下一条推文链接中）观看它的实际操作。</p>
+
+<p>如果你让人工智能自行其是，它会创造出新的模式。我们编写的很多代码都是反复做同样的事情（例如，添加一个表单，进行一次LLM调用，添加一个更新数据库的服务器操作等）。编写代码没有唯一正确的方法。但在你的项目中有。你希望代码保持一致。每个表单的代码应该大致相同。规则有助于 Cursor 有效地做到这一点。（在你的代码库中标记其他代码示例是做到这一点的另一种方法，但.mdc 更简洁，噪音更少）。5. 花力气设置规则值得吗？</p>
+
+<p>是的。设置一条规则只需付出极少的一次性努力。尤其是当你有一个基础可以依托时。而且它们能永远提供价值。</p>
+
+<p>光标代理是我的头号员工。为它提供尽可能有效的上下文是非常值得的。6. 你使用什么规则？</p>
+
+<p>到目前为止，我的规则可以分为几类：</p>
+
+<p>a. 代码模式（例如添加表单、服务器操作或测试）</p>
+
+<p>b. 常识（例如项目结构）</p>
+
+<p>c. 功能（例如，这就是收件箱清理器的作用及其工作方式）</p>
+
+<p>我的大多数规则都属于“代码模式”。但我正在稳步添加更多“功能”规则。我经常一遍又一遍地向LLMs重复自己的话。我可能会使用 Claude 或 Anthropic，现在我可以在这些笔记中复制粘贴。当然，我也可以在 Cursor 中为这些笔记添加标签。</p>
+
+<p>如果你想看到我的规则实际运行情况，请查看我的 YouTube 频道或 Inbox Zero GitHub。下面是链接。</p>
+
+<p><img src="https://pbs.twimg.com/media/GndBQ4OXsAAiVMj?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>Elie Steinbock</strong> @elie2222 <a href="https://x.com/elie2222/status/1907070725661282592">2025-04-01</a></p>
+
+<p>仓库（给它点个星！）：https://getinboxzero.com/github</p>
+
+<p>视频：https://x.com/elie2222/status/1906985581835419915…</p>
+
+<p>我的频道：https://youtube.com/elie2222</p>
+
+<blockquote>
+  <p>2025-04-01</p>
+
+  <p>我开源了我的 Cursor .mdc 规则！</p>
+
+  <p>以下是如何使用.mdc 来提高 10 倍生产力 👇</p>
+</blockquote>
+
+
+      </section>
+    </div>
+  </body>
+</html>

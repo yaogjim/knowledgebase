@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>🔄 OPTIMIZATION ROUND 4: SINGLE SOURCE OF TRUTH IMPLEMENTATION</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="-optimization-round-4-single-source-of-truth-implementation">🔄 OPTIMIZATION ROUND 4: SINGLE SOURCE OF TRUTH IMPLEMENTATION</h1>
+
+<h2 id="-key-issues-identified">🚨 Key Issues Identified</h2>
+<ol>
+  <li>Despite introducing tasks.md, the system still instructed updating task status in multiple files</li>
+  <li>Dual-file update process (both .cursorrules AND activeContext.md) created synchronization errors</li>
+  <li>Complex command verification with nested if-statements caused terminal crashes</li>
+  <li>Inconsistent documentation references confused task tracking</li>
+</ol>
+
+<h2 id="-key-improvements">✅ Key Improvements</h2>
+<ol>
+  <li><strong>True Single Source of Truth</strong>
+    <ul>
+      <li>Designated tasks.md as the ONLY file for task status tracking</li>
+      <li>Removed all instructions to update task status in .cursorrules</li>
+      <li>Modified all files to reference but not duplicate task information</li>
+      <li>Added explicit verification for tasks.md existence</li>
+    </ul>
+  </li>
+  <li><strong>Command Execution Safety</strong>
+    <ul>
+      <li>Simplified file verification processes to avoid terminal crashes</li>
+      <li>Removed nested if-statements in Windows batch commands</li>
+      <li>Added safer versions of common commands</li>
+      <li>Trusted the AI’s existing knowledge of file operations</li>
+    </ul>
+  </li>
+  <li><strong>Documentation Role Clarification</strong>
+    <ul>
+      <li>.cursorrules: Project patterns and intelligence only</li>
+      <li>activeContext.md: Implementation details and current focus</li>
+      <li>progress.md: Overall progress and references to tasks</li>
+      <li>tasks.md: All task status tracking</li>
+    </ul>
+  </li>
+  <li><strong>Technical Fixes</strong>
+    <ul>
+      <li>Corrected MDC reference links in main.mdc</li>
+      <li>Fixed verification checklist for single source approach</li>
+      <li>Enhanced platform-specific documentation</li>
+      <li>Simplified real-time update formats</li>
+    </ul>
+  </li>
+</ol>
+
+      </section>
+    </div>
+  </body>
+</html>

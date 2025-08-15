@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>今日更新</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        
+<h2 id="今日更新">今日更新</h2>
+<pre><code class="language-dataview">TABLE split(file.folder, "/")[0] AS "文件夹"
+FROM "Readwise"
+WHERE date(today) - file.mtime &lt;= dur(1 day)
+SORT file.mtime DESC,file.folder DESC
+</code></pre>
+
+<pre><code class="language-dataview">TABLE split(file.folder, "/")[0] AS "文件夹"
+FROM "Omnivore"
+WHERE date(today) - file.mtime &lt;= dur(1 day)
+SORT file.mtime DESC,file.folder DESC
+</code></pre>
+
+<pre><code class="language-dataview">TABLE split(file.folder, "/")[0] AS "文件夹"
+FROM "Zotero"
+WHERE date(today) - file.mtime &lt;= dur(1 day)
+SORT file.mtime DESC,file.folder DESC
+</code></pre>
+
+      </section>
+    </div>
+  </body>
+</html>

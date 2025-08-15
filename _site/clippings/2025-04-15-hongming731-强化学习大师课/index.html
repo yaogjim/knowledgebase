@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>强化学习：从概念到应用</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">强化学习：从概念到应用</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">强化学习：从概念到应用</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @hongming731</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-15</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/hongming731/status/1911787900699910329" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>ginobefun</strong> @hongming731 <a href="https://x.com/hongming731/status/1911787900699910329">2025-04-14</a></p>
+
+<p>我刚看了篇 42章经对话吴翼（清华大佬，以前在 OpenAI 搞过研究）的文章，把强化学习 (RL) 这事儿讲得特别透彻！</p>
+
+<p>1. RL 到底是个啥？</p>
+
+<p>他解释说，RL 跟咱们平时熟悉的机器学习（比如认猫认狗）不一样。那种是喂一堆标准答案让机器背下来，一步到位。</p>
+
+<p>RL 更像是打游戏：需要做好多步决策（发球、接球、走位），没有唯一的“正确”走法，最后看结果（赢了还是输了）来判断好坏。它处理的是多步决策问题，更接近真实生活（比如出差，咋去都行，只要最后顺利）。</p>
+
+<p>2. 为啥 RL 现在又火了？跟大模型 (LLM)啥关系？</p>
+
+<p>一开始 LLM（像 GPT-3）虽然能“熟读唐诗三百首”，但不太听话，你让它解释登月，它可能回你“是什么”。</p>
+
+<p>OpenAI 就想了个办法，用 RL 来训练 LLM “听指令”，这就是 RLHF (人类反馈强化学习) 的由来。人来判断哪个回答更好，训练出一个“奖励模型”，让 LLM 学会怎么说话讨人喜欢。</p>
+
+<p>重点来了：RLHF 主要是让 LLM 变好用（对齐），但不能让它变 聪明。</p>
+
+<p>3. 那 RL 咋让 LLM 变聪明的？</p>
+
+<p>后来大家发现，人解决复杂问题前会先思考。于是就想让 LLM 也学会慢思考。</p>
+
+<p>咋实现呢？一个简单粗暴的办法就是让模型在回答前先“多吐点字”（生成很多中间过程），这个过程就像思考。</p>
+
+<p>训练这种“思考”过程，又用到了 RL！因为我们只关心最终答案对不对（比如解数学题），中间它咋想的（吐了啥字）不重要，这又回到了 RL 的逻辑。</p>
+
+<p>4. RL 和 LLM 是黄金搭档</p>
+
+<p>只靠 RL 行不行？试过，不行。RL 决策能力强，但理解能力弱，需要 LLM 提供基础的理解和记忆能力。</p>
+
+<p>所以，LLM (理解/记忆) + RL (决策/推理/慢思考) = 更强的 AI，两者是乘法关系，缺一不可。像 OpenAI 的 Agent (Operator, Deep Research) 就是这么搞出来的。</p>
+
+<p>5. 未来 RL 方向 &amp; 挑战</p>
+
+<p>RL 的潜力还很大，它的 scaling law (规模效应) 才刚开始。</p>
+
+<p>不同公司路径也开始分化：OpenAI 搞 Agent，Anthropic 搞编程，DeepSeek 搞通用推理（比如哲学问题也能答）。</p>
+
+<p>搞 RL 很难！ 门槛高（数学、工程要求都高），基建（框架）特别重要，数据也很关键，而且过程像“炼丹”，玄学成分不少。人才特别稀缺。</p>
+
+<p>6. 对人生的启发 (这个有意思！)</p>
+
+<p>传统 RL 只认准一个最优策略反复用。但吴翼研究发现，人是 Diversity-driven (追求多样性) 的，总想换着法子赢。</p>
+
+<p>他觉得人生也该追求 “熵值最大化”，多探索不同的可能性，别总选最稳妥的路，尤其年轻时，试错成本低。</p>
+
+<p>人生也像 RL，需要主动探索，才能找到自己的 “奖励函数” (目标、意义)。</p>
+
+<p>总的来说，这篇对谈把 RL 的前世今生、跟 LLM 的关系、未来的潜力以及挑战都讲清楚了，还拔高到了人生哲学，信息量很大，值得琢磨琢磨！</p>
+
+<p><img src="https://pbs.twimg.com/media/GogI6txXAAAoBho?format=jpg&amp;name=large" alt="Image" /></p>
+
+<hr />
+
+<p><strong>ginobefun</strong> @hongming731 <a href="https://x.com/hongming731/status/1911792994296221924">2025-04-14</a></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>#BestBlogs 一堂「强化学习」大师课</td>
+      <td>42章经</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>吴翼教授在访谈中深入解析强化学习与大语言模型的结合，并分享了 RL 在实际应用和人生决策中的价值。</p>
+
+<p>摘要：</p>
+
+<p>本文是曲凯对清华大学交叉信息研究院助理教授吴翼的访谈，深入探讨了强化学习（RL）这一概念及其最新进展。吴翼从 RL 与传统机器学习的区别入手，解释了 RL 在解决多步决策问题上的优势。随后，讨论了 RL 与大语言模型（LLM）的结合，特别是在解决 LLM 指令遵从问题上的应用，以及 RLHF (Reinforcement Learning from Human Feedback) 的作用。吴翼还分享了 OpenAI 在 RL 领域的探索，以及 RL 在 Agent 范式中的应用。此外，还探讨了 RL 在人才培养中的基建重要性，以及在人生决策中的启示，强调了动手能力、不设限以及主动探索的重要性，并指出创业公司不该有终局思维。</p>
+
+<p>主要内容:</p>
+
+<p>1. RL 和 LLM 是乘法关系，二者相辅相成 – LLM 负责理解和记忆，RL 负责决策和执行，二者结合才能实现更高级的智能，缺一不可。</p>
+
+<p>2. RL 擅长解决多步决策问题，更贴近现实生活 – 与传统机器学习不同，RL 不需要标准答案，通过反馈机制来评判决策的好坏，模拟了真实世界中解决问题的逻辑。</p>
+
+<p>3. RL 与 LLM 结合，提升了 LLM 的指令遵从能力 – 通过 RLHF，LLM 能够更好地理解人类指令并给出符合期望的答案，解决了 LLM 最初存在的“不听话”问题。</p>
+
+<p>4. Agent 的核心在于对文本之外的世界产生影响 – RL 赋予了 Agent 自主探索能力，使其能够端到端地完成复杂任务，而不仅仅依赖于 Prompt Engineering。</p>
+
+<p>5. 人生也是一场强化学习，要敢于探索和试错 – 通过主动探索，尝试不同的选择，才能找到自己的奖励函数，并追求“熵值最大化”的生活方式。</p>
+
+<p>文章链接：https://bestblogs.dev/article/0b43f3</p>
+
+<hr />
+
+<p><strong>notice_u</strong> @ID_CKChen <a href="https://x.com/ID_CKChen/status/1911962371448590390">2025-04-15</a></p>
+
+<p>@readwise save thread<br />
+@readwise 保存线程</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@hongming731</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

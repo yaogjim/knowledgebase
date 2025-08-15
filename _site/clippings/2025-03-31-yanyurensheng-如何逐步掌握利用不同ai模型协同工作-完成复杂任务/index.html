@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>如何逐步掌握利用不同AI模型协同工作，完成复杂任务？</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">如何逐步掌握利用不同AI模型协同工作，完成复杂任务？</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">如何逐步掌握利用不同AI模型协同工作，完成复杂任务？</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @YanyuRensheng</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-03-31</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/YanyuRensheng/status/1906483820628701544" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>StLi</strong> @YanyuRensheng <a href="https://x.com/YanyuRensheng/status/1906483820628701544">2025-03-30</a></p>
+
+<p>实际应用中，发现AI的大多数初期使用者，真的是一个模型用到地老天荒，而且是默认第一个是什么就一直是它了。</p>
+
+<p>逐步掌握利用不同的模型在一个（或者多个）上下文中协同工作，是利用AI完成复杂任务的良好开始，这个往往比写出高质量的提示词更重要。</p>
+
+<p>比如，初期的思路整理阶段，使用4o mini、claude 3.5、gemini lite就足够了，在时间和成本方面特别友好。当需要深入的时候，不妨将工作拆解成几个子任务，分别使用不同的模型加以处理，比如生成图片部分，完全就可以只使用mini类来加载，基本不会影响出图效果。对于较为复杂的任务，比如需要严格事实验证的、带有算法的编码，就可以考虑使用o1 pro、geimini 2.5、claude 3.7这一类推理模型。</p>
+
+<p>如果需要编写较为复杂的文档，可以试试以下步骤：</p>
+
+<p>1. 如果对主题要求很高，可以一上来就用o1 pro这类高级推理模型协助拟定备选主题，比如中心思想、写作风格、段落划分等。</p>
+
+<p>2. 用4o等模型为文章提炼大纲，如果需要模型生成较长篇幅的文章，细化大纲是一个很有用的手段，可以逐级细化，实际中基本上大纲越细，可以产生的篇幅越长。</p>
+
+<p>3. 继续使用中级模型生成正文，写作类内容，推理模型似乎没有明显的优势，4.5、4o、sonnet3.5、gemini 2足够了。</p>
+
+<p>4. 文笔类的润色，可以考虑mini类的模型，速度很快，在已有原文的基础上，mini类模型也可以准确定位需要修改的内容。</p>
+
+<p>5. 最后可以让模型将文章转化为特定的格式，比如html，原始格式不是很友好。现在有了强大的生图能力，也可以考虑直接转化为图片。</p>
+
+<p>可以试试每一步都用最简洁的提示词，哪怕先写一个复杂的，在花点儿时间精简提示词。要点明确又富有弹性的提示词，不仅可以节省时间，也可以在最低消耗的情况下获取直接的反馈。</p>
+
+<p>如果有一天，真的要2万美金一个月才能使用某些模型的时候，善于利用不同模型，编写高效简洁的提示词，真的就是必备技能。</p>
+
+<hr />
+
+<p><strong>Aaronruan</strong> @AaronRuanzs <a href="https://x.com/AaronRuanzs/status/1906514808310280617">2025-03-31</a></p>
+
+<p>直接用cusor的自动模式效果如何呢</p>
+
+<hr />
+
+<p><strong>StLi</strong> @YanyuRensheng <a href="https://x.com/YanyuRensheng/status/1906535388904390663">2025-03-31</a></p>
+
+<p>如果是开发场景，估计也是有积极效果。其它的可能主要依靠自己选择</p>
+
+<hr />
+
+<p><strong>Wu</strong> @Wu7107308420459 <a href="https://x.com/Wu7107308420459/status/1906506697931411548">2025-03-31</a></p>
+
+<p>我一开始gpt3.5后面开始用GPT4，然后偶尔用通义千问，极少用文心一言，后面用克劳德。根据场景，使用不同的AI，比如大家觉得最没用的文心一言，局部功能也有小优点，全凭个人感觉吧。</p>
+
+<hr />
+
+<p><strong>小秦（互fo）</strong> @chandlerkodi <a href="https://x.com/chandlerkodi/status/1906510931498074482">2025-03-31</a></p>
+
+<p>啊，初学者总是执着于一个模型呢，尝试多样性才能有更大收获呢~ 😉</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@YanyuRensheng</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

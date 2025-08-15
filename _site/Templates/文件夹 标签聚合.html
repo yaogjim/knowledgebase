@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的知识库</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        
+<p>```dataviewjs</p>
+
+<p>// 基于文件夹聚类所有的标签。
+for (let group of dv.pages(“”).filter(p =&gt; p.file.folder != “”).groupBy(p =&gt; p.file.folder.split(“/”)[0])){
+  let datas=dv.pages(<code class="language-plaintext highlighter-rouge">"${group.key}"</code>).file.tags.distinct().map(t =&gt; {return <code class="language-plaintext highlighter-rouge">[${t}](${t})</code>}).array()
+  let lens=datas.length
+dv.paragraph(<code class="language-plaintext highlighter-rouge">#### ${group.key} (${lens})</code>);</p>
+
+<p>dv.paragraph(
+    datas.sort().join(“ | “));
+}</p>
+
+      </section>
+    </div>
+  </body>
+</html>

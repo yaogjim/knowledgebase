@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>吴恩达老师的建议：早构建自动评估原型</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">吴恩达老师的建议：早构建自动评估原型</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">吴恩达老师的建议：早构建自动评估原型</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @dotey</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-18</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/dotey/status/1912920713901625678" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>宝玉</strong> @dotey 2025-04-17</p>
+
+<p>吴恩达老师的建议：团队先快速构建一个初步的自动评估原型，再逐步迭代升级到成熟的状态，会帮助你更早地建立有效的评估体系，大幅加快项目进展。</p>
+
+<p>***</p>
+
+<p>我注意到很多生成式AI应用项目，在自动化评估系统（evals）的建设上都拖得比较晚。他们往往更长时间地依靠人工来判断输出质量，而不是更早地构建自动评估工具。这是因为团队觉得建立一套有效的自动化评估需要巨大的前期投入，比如制作100个甚至1000个评估样本，设计和验证各项指标，这些工作似乎永远找不到一个“合适的时机”来完成。</p>
+
+<p>我建议团队转变一下思路，把自动评估的构建看作一个渐进式的过程。也就是说，刚开始没必要一步到位，完全可以从简单粗糙的版本做起，比如先用5个样本和一些未经优化的评价指标来进行初步评估，然后再一步步迭代优化。通过这样的方式，你可以逐渐减少对人工判断的依赖，把更多评估工作转移到自动化系统上。</p>
+
+<p>我之前在《The Batch》中写过，建立有效的自动评估方法既重要又困难。举个例子，比如你在开发一个面向客户的聊天机器人，用户可能输入任意内容，而机器人的回复往往并没有一个绝对“正确”的答案。这种情况下，团队通常只能依靠人工一遍遍审查系统每次更新后的大量输出，来判断改动是否带来了真正的提升。尽管最近一些新技术，比如让另一个大语言模型（LLM）来当“裁判”，能帮上一点忙，但要真正把这些技术用好，比如怎样设计提示词、提供什么上下文给裁判等等，依旧是件特别琐碎且繁杂的事。这些挑战使得人们认为做自动评估必须投入大量前期成本，而在实际开发过程中，团队往往觉得，与其花力气研究自动化评估，还不如直接让人力判断来得简单快捷。</p>
+
+<p>我鼓励你们尝试另一种思路：刚开始建立的评估工具，可以只是部分的、不完整的，甚至准确度较低的，也没关系。你可以通过不断迭代逐步提高这些评估工具的质量。自动评估不需要立刻完全取代人工判断，而是可以作为人工评估的重要补充。随着时间推移，你可以慢慢改进自动评估方法，使它们与人工判断的差距逐渐缩小。</p>
+
+<p>举几个具体的例子：</p>
+
+<p>最开始的评估样本可以非常少，比如仅5个。之后逐渐增加数量，甚至必要时减少一些样本，尤其是发现某些样本过于简单或过于困难，无法有效区分系统版本差异时。</p>
+
+<p>一开始的评估可以只测量系统表现中的一部分内容，或者一些你认为与整体表现相关、但并不全面的指标。例如，在客服机器人某个特定时刻需要同时完成两个任务：(1) 调用API执行退款操作；(2) 向用户发送合适的消息。你完全可以先只评估API是否正确调用，而暂时不管消息内容是否合适。又比如机器人在特定情境下需要推荐某个产品时，你可以只评估机器人有没有提到该产品，而不关注具体推荐的方式或措辞是否完美。</p>
+
+<p>只要这些自动评估的结果与总体性能呈现一定的相关性，即便初期只覆盖了你关心的表现的一部分，也是完全可以接受的。</p>
+
+<p>这样以来，整个开发过程就包含两个并行的迭代循环：</p>
+
+<p>改进系统本身的性能：通过自动评估与人工判断的组合，逐步提升系统表现；</p>
+
+<p>改进自动评估本身的准确性：逐渐使自动评估更贴近人工判断。</p>
+
+<p>和AI领域许多工作一样，我们第一次往往不会完全做好。因此，快速搭建起一个初步的、端到端的系统，再通过迭代逐步改进，是更明智的做法。我们已经习惯了这种方式来构建AI系统，同样，我们也可以用这种方式来构建评估工具。</p>
+
+<p>对我而言，一个成功的评估工具应当符合以下两个标准：假设我们现在有个系统A，通过一些修改得到系统B：</p>
+
+<p>如果在人类专家看来，系统A明显比系统B表现得更好，那么自动评估也应该给系统A明显更高的分数。</p>
+
+<p>如果系统A和系统B在人类看来表现类似，自动评估的得分也应相差无几。</p>
+
+<p>当某次评估给出与上述标准相反的结果时，就说明这个评估存在“错误”，我们就应该及时调整，确保它能够正确地区分两个系统的优劣。这种理念类似于机器学习中的误差分析（error analysis），不过我们这里关注的是评估工具本身的“错误”，而不是模型输出的错误（例如模型输出了错误的标签）。评估工具的“错误”表现为无法正确区分两个系统的表现，因此也无法帮助我们做出有效的决策。</p>
+
+<p>项目初期依靠纯人工评估是不错的选择，但对于大多数团队来说，先快速构建一个初步的自动评估原型，再逐步迭代升级到成熟的状态，会帮助你更早地建立有效的评估体系，大幅加快项目进展。</p>
+
+<blockquote>
+  <p>2025-04-17</p>
+
+  <p>I’ve noticed that many GenAI application projects put in automated evaluations (evals) of the system’s output probably later — and rely on humans to judge outputs longer — than they should. This is because building evals is viewed as a massive investment (say, creating 100 or<br />
+我注意到，许多生成式人工智能应用项目对系统输出的自动化评估（评测）可能设置得较晚，而且依靠人工判断输出结果的时间比应有的更长。这是因为构建评测被视为一项巨大的投入（比如，创建 100 个或……</p>
+
+  <p><img src="https://pbs.twimg.com/media/GowPPJqWMAAm6-Y?format=jpg&amp;name=large" alt="Image" /></p>
+</blockquote>
+
+<hr />
+
+<p><strong>RichChat</strong> @richardchang <a href="https://x.com/richardchang/status/1913034781484528081">2025-04-18</a></p>
+
+<p>Eval 的重要程度在落地实施时确实经常被忽视</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@dotey</span>
+            
+          
+            
+              <span class="tag">#自动化评估</span>
+            
+          
+            
+              <span class="tag">#AI评估</span>
+            
+          
+            
+              <span class="tag">#迭代改进</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude 4 prompt engineering best practices</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Claude 4 prompt engineering best practices</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Claude 4 prompt engineering best practices</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> Anthropic</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-11</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices#example-formatting-preferences" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p>本指南提供了针对 Claude 4 模型（Opus 4 和 Sonnet 4）的特定提示工程技术，以帮助您在应用中获得最佳效果。与前代 Claude 模型相比，这些模型在遵循指令方面经过了更精确的训练。</p>
+
+<h2 id="一般原则">一般原则</h2>
+
+<h3 id="明确给出你的指令">明确给出你的指令</h3>
+
+<p>Claude 4 模型对清晰、明确的指令响应良好。明确你想要的输出有助于提高结果。那些期望 Claude 4 展现出与之前 Claude 模型同样 “超乎预期” 表现的客户，可能需要更明确地请求这些行为。</p>
+
+<p><strong>效果较差的：</strong></p>
+
+<p><strong>更有效：</strong></p>
+
+<h3 id="添加上下文以提高性能">添加上下文以提高性能</h3>
+
+<p>在你的指令背后提供背景信息或动机，比如向 Claude 解释为什么这样的行为很重要，这可以帮助 Claude 4 更好地理解你的目标并给出更有针对性的回答。</p>
+
+<p><strong>效果较差的：</strong></p>
+
+<p><strong>更有效：</strong></p>
+
+<p>Claude 足够聪明，能够从解释中进行归纳总结。</p>
+
+<h3 id="对示例和细节保持警惕">对示例和细节保持警惕</h3>
+
+<p>Claude 4 模型在遵循指令时会关注细节和示例。确保你的示例与你想要鼓励的行为保持一致，并尽量减少你想要避免的行为。</p>
+
+<h2 id="特定情况的指南">特定情况的指南</h2>
+
+<h3 id="控制回复的格式">控制回复的格式</h3>
+
+<p>我们发现有几种方法在引导 Claude 4 模型的输出格式方面特别有效：</p>
+
+<ol>
+  <li><strong>告诉 Claude 要做什么，而不是不要做什么</strong>
+    <ul>
+      <li>而不是：“在你的回复中不要使用 Markdown”</li>
+      <li>尝试：“你的回答应由流畅的散文段落组成。”</li>
+    </ul>
+  </li>
+  <li><strong>使用 XML 格式指示符</strong>
+    <ul>
+      <li>尝试：“将你回复中的散文部分写在<流畅的散文段落>标签内。”</流畅的散文段落></li>
+    </ul>
+  </li>
+  <li><strong>使你的提示词风格与期望的输出相匹配</strong>
+ 你在提示词中使用的格式风格可能会影响 Claude 的响应风格。如果你在输出格式方面仍遇到可控性问题，我们建议尽可能使你的提示词风格与期望的输出风格相匹配。例如，从你的提示词中去除 Markdown 格式可以减少输出中的 Markdown 内容量。</li>
+</ol>
+
+<h3 id="利用思考和交错思考能力">利用思考和交错思考能力</h3>
+
+<p>Claude 4 具备思考能力，这对于涉及工具使用后反思或复杂多步推理的任务尤其有帮助。你可以引导它进行初始思考或交错思考，以获得更好的结果。</p>
+
+<p>示例提示</p>
+
+<p>有关思维能力的更多信息，请参阅 <a href="https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking">扩展思维</a> 。</p>
+
+<h3 id="优化并行工具调用">优化并行工具调用</h3>
+
+<p>Claude 4 模型在并行工具执行方面表现出色。它们在无需任何提示的情况下进行并行工具调用时成功率很高，但一些小提示可以将这种行为提升到约 100%的并行工具使用成功率。我们发现以下提示最为有效：</p>
+
+<p>智能体的示例提示</p>
+
+<h3 id="在智能体编码中减少文件创建">在智能体编码中减少文件创建</h3>
+
+<p>Claude 4 模型有时可能会出于测试和迭代目的创建新文件，尤其是在处理代码时。这种方法使 Claude 能够在保存最终输出之前，将文件（特别是 Python 脚本）用作“临时便签簿”。使用临时文件尤其有助于提高代理编码用例的效果。</p>
+
+<p>如果你希望尽量减少新文件的创建，你可以指示 Claude 自行清理：</p>
+
+<p>示例提示</p>
+
+<h3 id="增强视觉和前端代码生成">增强视觉和前端代码生成</h3>
+
+<p>对于前端代码生成，你可以通过给予明确的引导，促使 Claude 4 模型创建复杂、详细且交互式的设计：</p>
+
+<p>示例提示</p>
+
+<p>你还可以通过提供额外的修饰词以及关于重点关注内容的详细信息，来提升 Claude 在特定领域的前端性能：</p>
+
+<ul>
+  <li>尽可能包含更多相关特征和交互</li>
+  <li>添加诸如悬停状态、过渡效果和微交互等周到的细节</li>
+  <li>创建一个令人印象深刻的演示，展示网页开发能力</li>
+  <li>应用设计原则：层次结构、对比、平衡和动感</li>
+</ul>
+
+<h3 id="避免专注于通过测试和硬编码">避免专注于通过测试和硬编码</h3>
+
+<p>前沿语言模型有时可能过于专注于使测试通过，而牺牲了更通用的解决方案。为防止这种行为并确保稳健、可推广的解决方案：</p>
+
+<p>示例提示</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Please write a high quality, general purpose solution. Implement a solution that works correctly for all valid inputs, not just the test cases. Do not hard-code values or create solutions that only work for specific test inputs. Instead, implement the actual logic that solves the problem generally.
+
+Focus on understanding the problem requirements and implementing the correct algorithm. Tests are there to verify correctness, not to define the solution. Provide a principled implementation that follows best practices and software design principles.
+
+If the task is unreasonable or infeasible, or if any of the tests are incorrect, please tell me. The solution should be robust, maintainable, and extendable.
+</code></pre></div></div>
+
+<h2 id="迁移注意事项">迁移注意事项</h2>
+
+<p>从 Sonnet 3.7 迁移到 Claude 4 时：</p>
+
+<ol>
+  <li><strong>明确期望的行为</strong> ：考虑确切描述你希望在输出中看到的内容。</li>
+  <li><strong>使用修饰词来组织你的指令</strong> ：添加鼓励 Claude 提高输出质量和细节的修饰词有助于更好地塑造 Claude 的表现。例如，不要说“创建一个分析仪表板”，而是说“创建一个分析仪表板。尽可能包含更多相关功能和交互。超越基础，创建一个功能齐全的实现。”</li>
+  <li>明确请求特定功能：如有需要，应明确请求动画和交互元素。</li>
+</ol>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

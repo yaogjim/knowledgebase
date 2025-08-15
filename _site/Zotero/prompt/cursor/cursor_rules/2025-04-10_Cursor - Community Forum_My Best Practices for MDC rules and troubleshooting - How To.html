@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Best Practices for MDC rules and troubleshooting - How To</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <p><a href="https://forum.cursor.com/u/Meh-S-Eze">Meh-S-Eze</a></p>
+
+<p>我一直在通过对人工智能进行实验来探索 Cursor 的 MDC 规则是如何工作的。</p>
+
+<p>我想分享一下，通过将不同的文件输入上下文并询问人工智能它看到了什么，我学到了什么。</p>
+
+<h2 id="mdc-规则系统">mdc 规则系统</h2>
+
+<h4 id="情况mdc-规则的当前状态是什么">情况：MDC 规则的当前状态是什么？</h4>
+
+<p>所以事情是这样的——根据我从官方文档中所理解的内容，似乎<br />
+就好像你可以把任何类型的文件扔进.cursor/rules 文件夹，然后 Cursor 就会……<br />
+弄清楚。但当我实际尝试这个并向人工智能展示不同的文件以查看<br />
+它能识别的内容，我发现根本不是那样运作的。你特别需要<br />
+要使用扩展名为.mdc 的 YAML 文件，否则规则将不会被识别。这相当……<br />
+与我认为文档所说的内容不同！</p>
+
+<h4 id="背景这些规则实际上是如何运作的">背景：这些规则实际上是如何运作的？</h4>
+
+<p>一旦我把那个弄好了，我就开始更多地摆弄这些规则。它们实际上是<br />
+相当酷——你可以让 Cursor 以不同方式处理不同文件。我花了大量时间<br />
+在使用人工智能进行测试的过程中，我们发现规则是根据数字加载的</p>
+<当前光标位置>  
+在文件名开头。哦，还有一件有趣的事——如果你有相互冲突的规则，  
+最后一个获胜。有点像最后一个碰恒温器的人可以选择  
+温度！
+
+我学到的大部分内容都是通过向人工智能抛出不同的例子，然后看看哪些能记住。  
+它在解释它在我的测试文件中发现的模式方面非常有帮助。
+
+### 评估：我发现什么最有效？
+
+#### 格式选择
+
+看，我尝试了很多不同的方法来编写这些规则，但 YAML 绝对是  
+前行之路。不仅因为这是必需的（确实如此），还因为它意义非凡  
+更易于阅读和处理。另外，你可以添加注释，这对我帮助很大  
+多得数不清！
+
+#### 命名系统
+
+通过反复试验，我发现这个组织系统效果最佳。  
+我使用三位数字格式并按如下方式分组规则：
+
+- 核心规则：001 - 099
+- 集成规则：100 - 199
+- 模式/角色规则：200 - 299
+
+**示例：**
+
+- **核心规则：**
+	- “001-Core-Security.mdc”
+	- “015-Core-Logging.mdc”
+- **集成规则：**
+	- “100-API 集成.mdc”
+	- “110-CLI-Handler.mdc”
+- **模式/角色规则：**
+	- “200-文件-模式-规则.mdc”
+	- “210-数据验证.mdc”
+
+### 建议：以下是你应该做的事情
+
+#### 创建方法
+
+我发现设置用户界面绝对是创建规则最可靠的方法 -  
+它帮我避免了很多错误。但是如果你想直接创建文件，  
+只需确保它们以“.mdc”结尾（如“001-Your-Rule.mdc”）。
+
+#### 规则结构
+
+这是一个我用人工智能测试过的可行示例：
+
+```yaml
+---
+name: Example Pattern Rule
+version: "1.0"
+globs:
+  - "src/**/*.py"
+triggers:
+  - file_change
+---
+\`\`\`yaml
+rule_definition:
+  description: "This rule applies to Python source files in the src directory."
+```
+
+#### 已知问题
+
+注意 - 保存.mdc 规则文件时有一个烦人的怪癖。有时你的更改  
+就这么凭空消失了！但我找到了一个解决办法：如果东西粘不住，那就……  
+完全关闭光标。你会看到这个“未保存更改”弹出窗口 - 点击“覆盖”并  
+然后重新打开游标。是的，这有点麻烦，但是嘿——它管用！
+
+#### 参考文献
+
+- “错误报告：保存.mdc 规则文件时出现的问题”
+- “人工智能规则 - Cursor 文档”
+- “.cursorrules 文件的好例子？”
+- 最佳实践：.cursorrules
+</当前光标位置>
+
+      </section>
+    </div>
+  </body>
+</html>

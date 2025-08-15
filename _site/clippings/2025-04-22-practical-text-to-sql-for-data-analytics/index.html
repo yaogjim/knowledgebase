@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical Text-to-SQL for Data Analytics</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Practical Text-to-SQL for Data Analytics</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Practical Text-to-SQL for Data Analytics</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-22</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://www.linkedin.com/blog/engineering/ai/practical-text-to-sql-for-data-analytics" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><a href="https://www.linkedin.com/blog/engineering/ai/#lithograph-app">Skip to main content</a></p>
+
+<p><a href="https://www.linkedin.com/blog/engineering/artificial-intelligence">人工智能</a></p>
+
+<h2 id="用于数据分析的实用文本到-sql-转换">用于数据分析的实用文本到 SQL 转换</h2>
+
+<p><a href="https://www.linkedin.com/in/albertcc">Authored by 陈艾伯特</a></p>
+
+<p>2024 年 12 月 9 日</p>
+
+<p>共同作者：Albert Chen、Manas Bundele、Gaurav Ahlawat、Patrick Stetz、Zhitao (James) W.、Qiang Fei、Don Jung、Audrey Chu、Bharadwaj Jayaraman、Ayushi Panth、Yatin Arora、Sourav Jain、Renjith Varma、Alex Ilin、Iuliia Melnychuk 🇺🇦、Chelsea C.、Joyan Sil 和 Xiaofeng Wang</p>
+
+<p><img src="https://media.licdn.com/dms/image/v2/D4D08AQHqXsGS6_tDzw/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1733409700827?e=2147483647&amp;v=beta&amp;t=tcREkjBt6w8H4NKujpmpmwQHUz0IRE2reZVqTG3exVw" alt="Typical user interaction with SQL Bot" /></p>
+
+<p>图 1：与 SQL Bot 的典型用户交互</p>
+
+<p><img src="https://media.licdn.com/dms/image/v2/D4D08AQGpwSLogeNOxQ/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1733409778600?e=2147483647&amp;v=beta&amp;t=HVJZuhhXaW9ZrpWjjT4TliZDrIKqCnCxOZnEiUc4Vr8" alt="Knowledge graph. Users, table clusters, tables, and fields are nodes. The nodes have attributes derived from DataHub, query logs, crowdsourced domain knowledge, etc." /></p>
+
+<p>图 2：知识图谱。用户、表集群、表和字段是节点。这些节点具有从数据中心、查询日志、众包领域知识等派生的属性。</p>
+
+<p><img src="https://media.licdn.com/dms/image/v2/D4D08AQFs4aVHGWNHnQ/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1733776847861?e=2147483647&amp;v=beta&amp;t=K-CEVLdprBTUMf3PUzVdr4Xs_D_t6C_eJijrhi1dtMM" alt="Modeling architecture. The user’s question is classified and delegated to the appropriate flow. Open-ended follow-up chats are handled by an agent." /></p>
+
+<p>图 3：建模架构。用户的问题被分类并分配到适当的流程。开放式后续聊天由代理处理。</p>
+
+<p>图 4：用户界面中的丰富显示元素有助于用户理解推荐表。</p>
+
+<p>图 5：查询输出包括验证检查、解释和表格。</p>
+
+<p>领英的每个数据集都有自己的访问控制列表，该列表仅允许特定用户或组对数据集进行读取访问。为防止用户运行查询时被拒绝访问的情况，我们会检查用户是否是具有适当访问权限的组的成员，如果是，我们会自动提供利用该组凭证所需的代码。这减少了用户的挫败感，尤其是对于领英新接触 SQL 的用户。</p>
+
+<h2 id="策略4用户定制选项">策略#4：用户定制选项</h2>
+
+<p>我们希望用户能够在不向平台团队提出请求的情况下提高 SQL Bot 的性能。为此，我们提供了三个控制手段，使用户能够针对其产品领域定制体验：</p>
+
+<ol>
+  <li>数据集定制：用户可以通过提供电子邮件组或明确指定要使用的用户和数据集，为某个产品领域定义数据集。该产品领域的数据集是该领域用户组通常使用的数据集，并可选择按指定包含或排除其他数据集。用户可以通过用户界面选择要使用的产品领域。</li>
+  <li>自定义说明：用户可以直接在 DARWIN 中向 SQL Bot 提供自定义文本说明。这些说明既可以丰富 SQL Bot 的整体领域知识，也可以为 SQL Bot 提供特定行为的指导方针，以匹配用户偏好。在选择表和字段以及编写和修复查询时，会使用用户提供的说明。</li>
+  <li>示例查询：用户可以创建示例查询，以便编入我们的向量存储中。可以通过创建一个笔记本并将其标记为“已认证”，直接在达尔文系统中添加这些查询。</li>
+</ol>
+
+<h2 id="策略5持续对标">策略#5：持续对标</h2>
+
+<p>该机器人有许多超参数，例如要嵌入什么文本、要传递给每个LLM的上下文是什么、如何表示上下文和元提示、如何管理智能体内存、要检索多少项、要运行多少次自我校正以及模型架构中要包含哪些步骤。因此，开发一个基准集来评估质量和性能至关重要。</p>
+
+<p>基准测试最好针对特定应用进行定制，因为文本到 SQL 的要求可能因目标用户、数据集数量、表名和列名的清晰度、所需查询的复杂性、SQL 方言、目标响应时间以及所需的专业领域知识程度等因素而有很大差异。我们与 10 个产品领域的领域专家合作，定义了一组超过 130 个基准问题。每个问题都包括一个表述清晰的问题和正确答案。</p>
+
+<p>我们的评估指标包括与真实情况相比的表和字段召回率、表/字段幻觉率、语法正确性和响应延迟。这些指标易于计算，在开发的第一阶段，当我们致力于找到正确的表/字段并避免明显的查询问题时，我们重点关注了这些指标。</p>
+
+<p>例如，此图表显示了通过添加重排器、描述和示例查询，表格召回率的提升情况：</p>
+
+<p>图 6：重新排序器、描述和示例查询有助于 SQL Bot 识别正确的表。</p>
+
+<p>但是，这些指标不足以评估查询准确性。为此，我们结合人工评估和以LLM作为评判标准，根据问题、表模式和基本事实来评估回答。评分标准包括整体分数以及在表、列、连接、过滤器、聚合等方面的正确性维度，以及回答在效率和复杂性方面的质量。这种方法对我们来说比运行 SQL 查询并比较输出更实用，因为它不需要数据访问，使我们能够评估查询与正确答案的接近程度，并深入了解如何改进模型。</p>
+
+<p>我们很早就发现，回答一个问题可能有多种方式。现在，我们约 60%的基准问题都有多个答案。如果没有这些额外的答案，我们召回率的报告就会少报 10%-15%。我们每三个月进行一次专家人工审核，将被接受的答案添加到我们的基准中。LLM-as-a-judge 有助于这个过程：我们发现，它在 75%的情况下返回的分数与人工评分相差在 1 分以内，较大的分歧往往表明我们的状态跟踪（SOT）中没有正确答案。我们要求专家审查这些情况，并在需要时更新我们的基准。</p>
+
+<h2 id="结论">结论</h2>
+
+<p>在过去一年多的时间里，我们通过一个在我们的优先产品领域拥有专业知识的虚拟团队构建了 SQL Bot。我们早期的试点项目引起了用户的极大兴趣，并且在集成到 DARWIN 后的几个月里，我们看到了持续的应用。在最近的一项调查中，约 95%的人将 SQL Bot 的查询准确性评为“及格”或更高，约 40%的人将查询准确性评为“非常好”或“优秀”。</p>
+
+<p>展望未来，存在改善用户体验的机会，例如通过更快的响应时间、在线查询修订、展示 SQL Bot 用于回答问题的上下文以及随着时间的推移从用户交互中学习。此外，通过确定倡导者来领导各自领域内的自助式上下文管理工作，有助于提高语义准确性。</p>
+
+<p>一个收获是，“使用人工智能修复”功能易于开发，但使用率非常高——占我们会话的 80%——经常为用户节省调试查询的时间。识别这样的高投资回报率痛点是开始文本到 SQL 之旅的一个好起点。</p>
+
+<h2 id="致谢">致谢</h2>
+
+<p>感谢工程/产品部门参与该项目的所有贡献者，包括 Michael Cheng、Clarisse Rahbar、Sparsh Agarwal、Manohar Mohan Rao、Paul Lee、Vishal Chandawarkar。</p>
+
+<p>感谢 Trino 专家们集思广益、编写查询计划解析器并审阅这篇博客文章：Erik Krogen、Slim Bouguerra。</p>
+
+<p>感谢数据科学专家精心整理基准数据集并评估查询准确性：卡维·谭、安德鲁·贾巴拉、诺拉·吴、郭若云、史蒂夫·纳、阿希什·特里帕蒂、迈克尔·科斯克、陈凌军、科尔·席尔瓦、纪斐然、罗珍妮特、富兰克林·马什、杨梦瑶、林涛、朱焕奇、保罗·马齐拉斯、安德鲁·柯克。</p>
+
+<p>感谢工程合作伙伴提供用于知识图谱构建的 API：Shailesh Jannu、Na Zhang、Leo Sun、Alex Bachuk、Steve Calvert。</p>
+
+<p>感谢领导对本项目的支持：徐亚、李政、丁佳、黄国宁、Harikumar Velayutham、Shishir Sathe、Justin Dyer。</p>
+
+<p>主题：生成式人工智能 人工智能 数据管理 数据科学</p>
+
+<ul>
+  <li><a href="https://www.linkedin.com/blog/engineering/product-design">产品设计</a>
+  <a href="https://www.linkedin.com/blog/engineering/product-design/building-collaborative-prompt-engineering-playgrounds-using-jupyter-notebook">使用 Ju…构建协作式提示工程游乐场</a>
+  阿贾伊·普拉卡什 2025 年 2 月 13 日
+  <img src="https://media.licdn.com/dms/image/v2/D4D08AQGjTYbN5UtiOg/croft-frontend-shrinkToFit767/B4DZT8ALjpGkAQ-/0/1739394694227?e=2147483647&amp;v=beta&amp;t=LJd4SIgJx9IY4Rdw7d2Rk7ZiiCRkZDBBMsbWQ8KF_5w" alt="" /></li>
+  <li><a href="https://www.linkedin.com/blog/engineering/marketing">营销</a>
+  <a href="https://www.linkedin.com/blog/engineering/marketing/buyer-journey-insights-with-data-driven-attribution">通过数据驱动的归因分析获得的买家旅程洞察</a>
+  约翰·本奇纳 2025 年 1 月 22 日
+  <img src="https://media.licdn.com/dms/image/v2/D4D08AQGkfqQ8hTSyDQ/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1727903865702?e=2147483647&amp;v=beta&amp;t=G6jwkQKs9ofiIlXDmks9sa7HK-CWm_OMYJ7D0cLAJ-I" alt="" /></li>
+  <li><a href="https://www.linkedin.com/blog/engineering/generative-ai">生成式人工智能</a>
+  <a href="https://www.linkedin.com/blog/engineering/generative-ai/how-we-built-domain-adapted-foundation-genai-models-to-power-our-platform">我们如何构建适应领域的基础生成式人工智能模型来推动……</a>
+  普拉文·库马尔·博迪古特拉 2024 年 12 月 18 日
+  <img src="https://media.licdn.com/dms/image/v2/D4D08AQFyupxn30RDCw/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1734471896974?e=2147483647&amp;v=beta&amp;t=dJ31oHKPaFH1BtaVGQc4IuOzz-0lbRsc362ZwEHco80" alt="" /></li>
+</ul>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code 子代理功能</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Claude Code 子代理功能</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Claude Code 子代理功能</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> </span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-08-15</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p>好的，这就为您详细解读影片内容：</p>
+
+<h3 id="前言"><strong>前言</strong></h3>
+
+<p>影片主要介绍了 Claude Code 的子代理（sub-agent）功能，并探讨了其最佳实践方法。影片中，主讲人分享了自己从最初的负面体验到后来掌握诀窍，从而大幅提升 Claude Code 性能的过程。</p>
+
+<h3 id="claude-code-子代理功能介绍"><strong>Claude Code 子代理功能介绍</strong></h3>
+
+<p>Claude Code 推出的子代理功能，允许使用者创建自己的人工智慧代理团队。</p>
+
+<ul>
+  <li><strong>后端架构师（backend-architect）</strong>：负责设定资料库结构和 API。</li>
+  <li><strong>前端开发者（frontend-developer）</strong>：负责建立使用者介面元件。</li>
+  <li><strong>支付整合商（payment-integrator）</strong>：负责处理支付流程。</li>
+</ul>
+
+<p>然而，许多使用者在初期体验中发现，子代理运行缓慢，消耗大量 token，且使用者无法看到具体的变更过程，导致体验不佳。</p>
+
+<h3 id="深入理解子代理的设计初衷"><strong>深入理解子代理的设计初衷</strong></h3>
+
+<p>要掌握子代理的最佳实践，首先需要理解其设计的初衷——<strong>脉络工程（Context Engineering）与脉络最佳化（Context Optimization）</strong>。</p>
+
+<h4 id="传统-claude-code-代理的工作模式"><strong>传统 Claude Code 代理的工作模式</strong></h4>
+
+<p>在没有子代理的情况下，Claude Code 代理的工作流程如下：</p>
+
+<ol>
+  <li><strong>接收任务</strong>：例如，研究哪个档案包含支付功能。</li>
+  <li><strong>执行一系列工具</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ls</code>：列出档案。</li>
+      <li><code class="language-plaintext highlighter-rouge">glob 'payment'</code>：搜寻包含 “payment” 的档案。</li>
+      <li><code class="language-plaintext highlighter-rouge">glob 'payment method'</code>：搜寻包含 “payment method” 的档案。</li>
+      <li><code class="language-plaintext highlighter-rouge">read 'payment.tsx'</code>：读取特定档案。</li>
+      <li>…</li>
+    </ul>
+  </li>
+  <li><strong>问题</strong>：在执行修改档案的指令前，仅研究阶段就可能用掉 <strong>80% 的脉络视窗（context window）</strong>。</li>
+</ol>
+
+<p><br /></p>
+
+<p><strong>Claude Code 代理工具集</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">基础工具</th>
+      <th style="text-align: left">进阶工具</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Bash</strong></td>
+      <td style="text-align: left"><strong>Plan</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bash</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">TodoWrite</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ExitPlanMode</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Context</strong></td>
+      <td style="text-align: left"><strong>Run parallel sub agents</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">context</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Task</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">glob</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">grep</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">read</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ls</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>File operation</strong></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">edit</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">multi-edit</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">write</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Notebook</strong></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">notebookread</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">notebookwrite</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>由于 <code class="language-plaintext highlighter-rouge">read</code> 等工具会消耗大量 token，当脉络视窗被填满时，系统会触发 <code class="language-plaintext highlighter-rouge">compact</code> 指令来压缩对话历史，这会导致 Claude Code 失去部分脉络，从而影响其性能。</p>
+
+<h4 id="子代理的最佳实践分工与脉络最佳化"><strong>子代理的最佳实践：分工与脉络最佳化</strong></h4>
+
+<p>引入子代理的核心目的，是将<strong>研究与规划</strong>和<strong>执行</strong>分离。</p>
+
+<ol>
+  <li><strong>任务指派</strong>：主代理（Parent Agent）将研究任务指派给一个子代理。</li>
+  <li><strong>子代理执行研究</strong>：子代理执行 <code class="language-plaintext highlighter-rouge">ls</code>, <code class="language-plaintext highlighter-rouge">glob</code>, <code class="language-plaintext highlighter-rouge">grep</code>, <code class="language-plaintext highlighter-rouge">read</code> 等高 token 消耗的操作。</li>
+  <li><strong>回报摘要</strong>：子代理完成研究后，不会将所有详细步骤都回报给主代理，而是提供一份<strong>摘要</strong>，例如：「以下是所有包含支付相关内容且需要您修改的档案：xxxxxx」。</li>
+  <li><strong>主代理执行</strong>：主代理根据这份简洁的摘要，开始执行具体的修改档案等操作。</li>
+</ol>
+
+<p><br /></p>
+
+<p><strong>工作流程图</strong></p>
+
+<pre><code class="language-mermaid">graph TD
+    A[Claude Code] --&gt;|Task| B(Claude Code);
+    subgraph B
+        C{ls} --&gt; D{glob 'payment'};
+        D --&gt; E{glob 'payment method'};
+        E --&gt; F{grep 'payment'};
+        F --&gt; G[Here are all the files...];
+    end
+    B --&gt; H[Great, based on this, we should...];
+    H --&gt; I{Edit file xxxxx};
+    I --&gt; J{Edit file xxxxx};
+    J --&gt; K{Edit file xxxxx};
+    K --&gt; L[I'm done!];
+
+</code></pre>
+<p><br /></p>
+
+<p>透过这种方式，原本可能消耗 <strong>90k+ tokens</strong> 的研究过程，被压缩成仅有几百个 token 的摘要。这大大节省了主代理的脉络视窗，使其能够更专注于执行任务。</p>
+
+<p><strong>核心理念</strong>：子代理应被视为<strong>研究员</strong>，负责大量的资讯收集和整理工作，并将结果以精简的形式回馈给主代理。</p>
+
+<h3 id="创建专家子代理"><strong>创建专家子代理</strong></h3>
+
+<p>基于上述理念，我们可以为不同的服务或框架创建专门的<strong>专家子代理</strong>。</p>
+
+<ul>
+  <li><strong>shadcn-expert</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">shadnc theme MCP</code></li>
+      <li><code class="language-plaintext highlighter-rouge">shadnc component MCP</code></li>
+    </ul>
+  </li>
+  <li><strong>Vercel-ai-sdk-expert</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">latest vercel ai sdk v5 doc</code></li>
+    </ul>
+  </li>
+  <li><strong>stripe-expert</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">latest stripe docs</code></li>
+      <li><code class="language-plaintext highlighter-rouge">context7</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p><strong>子代理的建立规则</strong></p>
+
+<ul>
+  <li><strong>在系统提示中包含文件（Doc in system prompt）</strong>：将相关的最新文件和最佳实践直接写入子代理的系统提示中。</li>
+  <li><strong>提供检索脉络的工具（Tools to help retrieve context）</strong>：为子代理提供专门的工具（如 MCP），使其能够高效地获取所需资讯。</li>
+</ul>
+
+<h3 id="实例演练建立一个-chatgpt-复制品"><strong>实例演练：建立一个 ChatGPT 复制品</strong></h3>
+
+<h4 id="1-设定上下文共享机制"><strong>1. 设定上下文共享机制</strong></h4>
+
+<p>主讲人设计了一套基于档案系统的上下文共享机制：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">.claude/</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Task/</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">context_01.md</code>：储存专案的整体脉络和计画。</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">Doc/</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">ui-implementation.md</code>：UI 实现计画。</li>
+          <li><code class="language-plaintext highlighter-rouge">vercel-ai-sdk-plan.md</code>：Vercel AI SDK 整合计画。</li>
+          <li><code class="language-plaintext highlighter-rouge">stripe-integration-plan.md</code>：Stripe 整合计画。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p><strong>工作流程图</strong></p>
+
+<pre><code class="language-mermaid">graph TD
+    A[Claude Code] --&gt; B[context_01.md];
+    C[shadcn-expert] --&gt; B;
+    D[Vercel-ai-sdk-expert] --&gt; B;
+    E[stripe-expert] --&gt; B;
+    B --&gt; F[doc/ui-implementation.md];
+    B --&gt; G[doc/vercel-ai-sdk-plan.md];
+    B --&gt; H[doc/stripe-integration-plan.md];
+    F --&gt; C;
+    G --&gt; D;
+    H --&gt; E;
+
+</code></pre>
+
+<p><br /></p>
+<h4 id="2-程式码实作展示"><strong>2. 程式码实作展示</strong></h4>
+
+<p>影片中展示了如何透过指令行与 Claude Code 互动，建立一个类似 ChatGPT 的应用。</p>
+
+<p><strong>建立新专案</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pnpx d1x shadcn@latest init
+<span class="nb">cd </span>my-app
+claude
+/init
+</code></pre></div></div>
+
+<p><strong>主代理的指令</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Help me build a replica of chatGPT, using shadcn as frontend, and vercel ai sdk 5 as AI service<span class="p">;</span>
+Lets firstly build the UI, make sure we consult the subagent
+</code></pre></div></div>
+
+<p><strong>子代理 <code class="language-plaintext highlighter-rouge">shadcn-ui-expert</code> 的任务</strong></p>
+
+<p>子代理接收到的指令会非常具体：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Prompt: I need to build a ChatGPT replica UI using shadcn/ui components in a Next.js 15.4.6 app with App Router.
+
+Please read the context file at '.claude/tasks/context_session_1.md' first to understand the project.
+
+Then, design and plan the UI implementation...
+...
+After completing your research and planning, update the context file at '.claude/tasks/context_session_1.md' with your findings and create a detailed plan document at '.claude/doc/chatgpt_ui_implementation_plan.md'.
+</code></pre></div></div>
+<p><br /></p>
+
+<p>子代理完成后，主代理会读取其生成的计画档案，并开始执行具体的 UI 建立工作。</p>
+
+<h4 id="3-整合-vercel-ai-sdk"><strong>3. 整合 Vercel AI SDK</strong></h4>
+
+<p><code class="language-plaintext highlighter-rouge">bash
+Great next lets do the vercel AI SDK integration, and make sure you consult the sub agent</code></p>
+
+<p>此指令会触发 <code class="language-plaintext highlighter-rouge">vercel-ai-sdk-implementation-planner</code> 子代理，该代理同样会先读取上下文档案，然后根据其内建的 Vercel AI SDK v5 知识，生成一份详细的整合计画。主代理再根据此计画完成后续的程式码编写和整合工作。</p>
+
+<h3 id="结论"><strong>结论</strong></h3>
+
+<p>通过将研究和执行分离，并利用文件系统进行上下文共享，可以大幅提升 Claude Code 子代理的性能和可靠性。这种<strong>专家子代理</strong>的模式，使得每个代理都能专注于其擅长的领域，从而共同高效地完成复杂的开发任务。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

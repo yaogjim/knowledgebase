@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In-depth guide to fine-tuning LLMs with LoRA and QLoRA</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">In-depth guide to fine-tuning LLMs with LoRA and QLoRA</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">In-depth guide to fine-tuning LLMs with LoRA and QLoRA</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-01</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://www.mercity.ai/blog-post/guide-to-fine-tuning-llms-with-lora-and-qlora" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><img src="https://cdn.prod.website-files.com/61b1b0f3cfbb813f0495d1f9/61d5ae26c987d76de2556cd2_BG%2020-min.png" alt="" /> <img src="https://cdn.prod.website-files.com/61b1b0f3cfbb813f0495d1f9/61d5ae26112cd59bc0ecef4a_BG%2021-min.png" alt="" /></p>
+
+<p>像 GPT-4 这样的语言模型已成为自然语言处理行业构建产品和应用程序的事实上的标准。这些模型能够执行大量任务，并且可以使用 <a href="https://www.mercity.ai/blog-post/advanced-prompt-engineering-techniques">提示工程技术</a> 轻松适应新任务。但这些模型在训练方面也带来了巨大挑战。像 GPT-4 这样的大型模型训练成本高达数百万美元，因此我们在生产环境中使用较小的模型。</p>
+
+<p>但另一方面，较小的模型无法泛化到多个任务，最终我们会为多个用户的多个任务准备多个模型。这就是像 LoRA 这样的 PEFT 技术发挥作用的地方，与完全微调大型模型相比，这些技术能让你更高效地训练大型模型。在本博客中，我们将详细介绍 LoRA、QLoRA 以及其他特别从 LoRA 衍生出来的流行技术。</p>
+
+<h2 id="什么是-peft-微调">什么是 PEFT 微调？</h2>
+
+<p><a href="https://www.mercity.ai/blog-post/fine-tuning-llms-using-peft-and-lora">PEFT 微调</a> 即参数高效微调，是一组微调技术，它能让你比常规训练更高效地对模型进行微调与训练。PEFT 技术通常通过减少神经网络中可训练参数的数量来发挥作用。最著名且常用的 PEFT 技术有前缀微调（Prefix Tuning）、P-tuning、LoRA 等。LoRA 可能是使用最广泛的一种。LoRA 也有许多变体，如 QLoRA 和 LongLoRA，它们各有其应用场景。</p>
+
+<h3 id="为什么要使用-peft-微调">为什么要使用 PEFT 微调？</h3>
+
+<p>使用 PEFT 技术有很多原因，它们已成为微调 LLMs 和其他模型的首选方法。但以下是一些即使是企业和大型公司也喜欢使用这些方法的原因。</p>
+
+<h4 id="节省时间">节省时间</h4>
+
+<p>随着可训练参数数量的减少，你在训练上花费的时间也会减少。但这只是其中一方面。可训练参数减少后，你可以更快地训练模型，结果也能更快地测试模型。有了更多的时间，你可以把它花在测试不同的模型、不同的数据集、不同的技术等等上面。</p>
+
+<p>此外，有了更多时间，你可以将模型训练更长的时间，从而大幅降低损失，同时随着 PEFT 技术针对内存使用进行了大量优化，批大小也会增加。</p>
+
+<h4 id="节省资金">节省资金</h4>
+
+<p>这是不言而喻的，但 PEFT 可以为你节省大量的计算成本。如前所述，由于进行了大量的内存优化，你无需租用具有大量 VRAM 的实例，因为你可以在较小的 VRAM 中容纳更大的批次。这在计算方面节省了资金，并使你能够利用更大批次大小的优势在大得多的数据集上进行训练。</p>
+
+<h4 id="轻松构建多租户架构服务">轻松构建多租户架构服务</h4>
+
+<p>如前所述，由于大语言模型（LLMs）的规模变得如此之大，服务和处理起来非常复杂，几乎不可能为每个用户训练专门的模型。如果你有多个用户，那么要么每次有新用户进来时都承担微调新模型这个复杂的任务，要么就只在新数据上为新用户微调同一个模型。这两种方法都有各自的问题，如果你为每个用户都微调一个新模型，会带来更高的准确性，但你必须处理庞大的模型，将它们加载到内存中、存储它们、处理它们等等，这简直是架构上的噩梦，而且如果犯一个小错误就可能导致大问题。为所有用户训练同一个模型要容易得多，但模型的准确性会大幅下降。</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/65358e23a1841692bce3fdde_pZkMHXa1_5JDK-50qaL33QmXp3A_QHlenbmoeLOLZjeAwjV_4JMC258-7ft_nQP0SWwDiGjpdWAwzXoHdH9e24xopk6UPhjVfKqcpGpgmDDJ5KVju6bhb7i1z7qa8SO3MW2RPjQalY3yC66Yx3arBco.png" alt="" /></p>
+
+<p>另一方面，PEFT 微调兼收并蓄，让你能够构建小型 <strong>适配器</strong> ，将其与模型配对以获得定制化结果。这些适配器可以针对特定数据集或特定用户进行微调。这些适配器非常小，只有 6MB - 8MB，你只需将这些适配器应用于大型模型，在生产环境中这样做要快得多。</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/65358e237ecc65ca6bff3e86_pIAt6GubybV8S1uucMNhmD6r3YgBFMH10yfupxAN--0sMvjakr6kerdmhrxFpzh4NySfz83mDUHEXQXSVRCZ9cYGUJkraPYJVxNdq63WzpO30yHRr7jNQBfh9fJ0oxD7jzVPUTHZpQY536m2xoLn_D4.png" alt="" /></p>
+
+<h2 id="lora-微调">LoRA 微调</h2>
+
+<p>LoRA 是最流行且可能是使用最广泛的参数高效微调（PEFT）技术，但它早在 2021 年就在[这篇](https://arxiv.org/abs/2106.09685)论文中发布了。LoRA 更像是一种适配器方法，它在模型中引入新参数，通过这些新参数来训练模型。关键在于如何引入新参数并将其合并回模型，**而不**增加模型中的参数总数。</p>
+
+<h3 id="lora-是如何工作的">LoRA 是如何工作的？</h3>
+
+<p>如前所述，LoRA 是一种基于适配器的方法，但仅在训练步骤中添加新参数，这些参数并非作为模型的一部分引入。这使得模型大小完全保持不变，同时仍能提供参数高效微调的灵活性。以下是对其工作原理的更详细解释。</p>
+
+<p>LoRA 的工作原理是将权重更新矩阵分解为较小的矩阵，并使用它们来训练模型。看一下下面的图，ΔW <sub>AxB </sub> 是权重更新矩阵，即反向传播中学习到的变化矩阵，其大小与我们微调模型时需要更新的参数数量相同。这个矩阵，或者任何矩阵，都可以表示为一组较小的矩阵，这里表示为 A 和 B， <em>r</em> 是它们的秩。 <em>r</em> 参数控制较小矩阵的大小。</p>
+
+<p>然后，可以使用这些较小的矩阵通过常规反向传播来训练模型，但更新的是较小矩阵中的参数，而不是直接在模型中更新。我们基本上是通过较小的矩阵来学习ΔW。然后，可以将这些较小的矩阵相乘，以恢复原始矩阵。由于这些矩阵要小得多，此过程使用的参数更少，因此计算资源也少得多。这还会导致更小的检查点，因为无需存储整个模型，只需存储较小的矩阵即可。</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/65358e2365a382945ff60dd2_oqMjFlY7MeAQFHy2IvqYbKYLaAHWFt2mxQXorwdv0ohg-OhpmF5X5MltxKvE6CgXW9OAyUFplEMKFxGR01DBUQEivGUX44l4tzKQoQWBniwVz5bGR8awfBBJhlOwJ-tqQXPdoAd86E2Ys-GBSCPvdmk.png" alt="" /></p>
+
+<h3 id="使用-huggingface-进行-lora-微调">使用 HuggingFace 进行 LoRA 微调</h3>
+
+<p>要使用 HuggingFace 实现 LoRA 微调，你需要使用 <a href="https://pypi.org/project/peft/">PEFT 库</a> 将 LoRA 适配器注入模型，并将它们用作更新矩阵。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">from</span> <span class="nn">peft</span> <span class="kn">import</span> <span class="n">get_peft_config</span><span class="p">,</span> <span class="n">get_peft_model</span><span class="p">,</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">TaskType</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name_or_path</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s">"auto"</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1"># load the model
+</span>
+<span class="n">peft_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="n">TaskType</span><span class="p">.</span><span class="n">CAUSAL_LM</span><span class="p">,</span> <span class="n">inference_mode</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s">'query_key_value'</span><span class="p">]</span> <span class="c1"># optional, you can target specific layers using this
+</span><span class="p">)</span> <span class="c1"># create LoRA config for the finetuning
+</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">peft_config</span><span class="p">)</span> <span class="c1"># create a model ready for LoRA finetuning
+</span>
+<span class="n">model</span><span class="p">.</span><span class="n">print_trainable_parameters</span><span class="p">()</span> 
+<span class="c1"># trainable params: 9,437,184 || all params: 6,931,162,432 || trainable%: 0.13615586263611604
+</span></code></pre></div></div>
+
+<p>完成此操作后，你就可以像平常一样训练模型了。但这一次，与平常相比，它所需的时间和计算资源要少得多。</p>
+
+<h2 id="qlora-微调">QLoRA 微调</h2>
+
+<p>QLoRA 是一种微调技术，它将高精度计算技术与低精度存储方法相结合。这有助于在确保模型仍具有高性能和准确性的同时，保持模型规模较小。</p>
+
+<h3 id="qlora-是如何工作的">QLoRA 是如何工作的？</h3>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/65358e232cf7056045158369_kAizskrUxOXNivr5h5E4TCPBYNX_J8JTGZKYgd7lVTFSGPKHrZKvQZp1faQG5KfNmIsf_G-m2QzJf6Z5wuaPpURbeXo4VioqFcL8aNHccc3Pzwzlf8QLXI9maqVYxgBnRBOiUYDxKRbUex2iXTODbMA.png" alt="" /></p>
+
+<p>QLoRA 通过引入 3 个有助于减少内存同时保持相同质量性能的新概念来工作。它们是 <strong>4 位正常浮点</strong> 、 <strong>双量化</strong> 和 <strong>分页优化器</strong> 。让我们详细谈谈这 3 个非常重要的概念。</p>
+
+<h4 id="4位正常浮点数">4位正常浮点数</h4>
+
+<p>4 位 NormalFloat 或 NF 是一种基于分位数量化技术构建的全新的 <em>信息理论最优</em> 数据类型。4 位 NF 的工作原理是在 0 到 1 的分布中估计 2 <sup>k</sup> + 1（k 为位数）个分位数，然后将其值归一化到[-1, 1]范围内。得到这些之后，我们还可以将神经网络权重归一化到[-1, 1]范围，然后量化为我们在步骤 2 中得到的分位数。</p>
+
+<p>以下是分位数量化的一个示例</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/65358e23515cf733600388f4_7xYu7pLVD0_QDWRkB3GtH8WC4HZIyQBrfYpeESnmcLUQltE1FpKFno3USa6R6NhgHD11UOTssJbikqIa2hSB4P_2okBSyVO8pxxmDZbJ40LKbp323ayLshQ4XE59BYV_2Q5lYycQFrnKfFWS_CmCeKQ.png" alt="" /></p>
+
+<p>你可以看到存在数据被量化的“桶”或“箱”。数字2和3都落入同一个分位数，即2。这种量化过程通过“四舍五入”到最接近的分位数，使你能够使用更少的数字。</p>
+
+<h4 id="双重去量化">双重去量化</h4>
+
+<p>双量化是在 4 位 NF 量化的量化过程中对所使用的量化常数进行量化的过程。如论文中所述，这一点并不重要，但平均每个参数可以节省 0.5 比特。这对该过程有帮助，因为 QLoRA 使用逐块 k 比特量化，这意味着不是将所有权重一起量化，而是创建多个权重块，然后对这些块进行独立量化。</p>
+
+<p>这种逐块方法会导致创建多个量化常量，然后这些常量又可以再次进行量化以节省更多空间。这是可行的，因为量化常量的数量较少，因此不需要大量的计算或存储。</p>
+
+<h4 id="使用-lora-微调减少错误">使用 LoRA 微调减少错误</h4>
+
+<p>如前所示，分位数量化会为大范围的数字创建桶或箱。此过程会导致将多个不同的数字放入同一个桶中，例如，在量化过程中，数字2和3可能会被转换为3。这会在权重反量化过程中引入1的误差。</p>
+
+<p>以下是在神经网络权重的更大分布上这些误差的图形表示。</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/65358e23a61fd7828ed079ca_MZdJdD5ihusfmdnu1iO-YUGQ0KaM4PZXWCFu5z4hOi6k8bCR41fMHVU-JNKu11M9t9BOrVq-cYwZysc0xwIt5LV5SGafLhggn-mvA_p3aPB9bc2Yzjpx0qALyVguZ23AEWYXnx5LYvyxIWNxwPMH4dc.png" alt="" /></p>
+
+<p>这个错误就是为什么 QLoRA 更像是一种微调机制，而不是一种独立的量化策略。虽然它可用于 4 位推理。当使用 QLoRA 进行微调时，我们采用了 LoRA 微调机制，即创建两个较小的权重更新矩阵，然后用它们来更新神经网络的权重。在这里，我们将 LoRA 矩阵保持在更高精度的格式，如脑浮点 16（bfloat16）或浮点 16，并且在反向传播和前向传播过程中，网络的权重也会进行反量化。所以实际的训练仍然是以更高精度的格式进行，但存储仍采用较低精度。这就导致了量化误差的出现，但模型训练本身能够弥补量化过程中的这些低效问题。</p>
+
+<p>因此，使用更高精度的 LoRA 训练有助于模型了解并减少量化误差。</p>
+
+<h3 id="qlora-与-lora-有何不同">QLoRA 与 LoRA 有何不同？</h3>
+
+<p>QLoRA 和 LoRA 都是微调技术，但 QLoRA 使用 LoRA 作为辅助手段来修复量化误差过程中引入的错误。LoRA 本身更像是一种独立的微调技术。</p>
+
+<h3 id="使用-huggingface-进行-qlora-微调">使用 HuggingFace 进行 QLoRA 微调</h3>
+
+<p>要使用 HuggingFace 进行 QLoRA 微调，你需要安装 <a href="https://pypi.org/project/bitsandbytes/">BitsandBytes 库</a> 和 PEFT 库。BitsandBytes 库负责 4 位量化以及整个低精度存储和高精度计算部分。PEFT 库将用于 LoRA 微调部分。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">peft</span> <span class="kn">import</span> <span class="n">prepare_model_for_kbit_training</span><span class="p">,</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">get_peft_model</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">BitsAndBytesConfig</span>
+
+<span class="n">model_id</span> <span class="o">=</span> <span class="s">"EleutherAI/gpt-neox-20b"</span>
+<span class="n">bnb_config</span> <span class="o">=</span> <span class="n">BitsAndBytesConfig</span><span class="p">(</span>
+    <span class="n">load_in_4bit</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">bnb_4bit_use_double_quant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">bnb_4bit_quant_type</span><span class="o">=</span><span class="s">"nf4"</span><span class="p">,</span>
+    <span class="n">bnb_4bit_compute_dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">bfloat16</span>
+<span class="p">)</span> <span class="c1"># setup bits and bytes config
+</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_id</span><span class="p">,</span> <span class="n">quantization_config</span><span class="o">=</span><span class="n">bnb_config</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="p">{</span><span class="s">""</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">gradient_checkpointing_enable</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">prepare_model_for_kbit_training</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="c1"># prepares the whole model for kbit training
+</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> 
+    <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> 
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s">"query_key_value"</span><span class="p">],</span> 
+    <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> 
+    <span class="n">bias</span><span class="o">=</span><span class="s">"none"</span><span class="p">,</span> 
+    <span class="n">task_type</span><span class="o">=</span><span class="s">"CAUSAL_LM"</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="c1"># Now you get a model ready for QLoRA training
+</span></code></pre></div></div>
+
+<p>然后你可以再次使用 HF 训练器进行正常训练。查看这个 <a href="https://colab.research.google.com/drive/1VoYNfYDKcKRQRor98Zbf2-9VQTtGJ24k?usp=sharing#scrollTo=FCc64bfnmd3j">Colab 笔记本</a> 作为 QLoRA 训练的指南。</p>
+
+<h2 id="qlora-与标准微调对比">QLoRA 与标准微调对比</h2>
+
+<p>在论文中，研究人员对 QLoRA、LoRA 以及网络的完全微调进行了非常详细的比较。</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/65358e23a61fd7828ed079d3_iFgh5dLJlkXuia76nlzEeGFJaHuZk0d27_qMY4dIPcigc3lBDNZnnyybIXrjzCFDJ4aOLC5OU5eUa3m5anHnq7F70bNGG8ql9DMFjaHT2nlgBAqqft5ojwrnILo1Q1UfdbtGqth8lFumRthtk281fvA.png" alt="" /></p>
+
+<p>如你在上述表格中所见，在使用 QLoRA 进行训练时，T5 模型家族的性能没有任何损失，甚至在使用双重量化时，我们也没有看到任何重大差异。一个显著的区别是所需的 LoRA 适配器数量。在论文中，作者提到与普通的 LoRA 微调相比，他们在 QLoRA 微调中需要更多的 LoRA 适配器。作者建议在所有线性变压器模块以及查询、键和值层上应用 LoRA 适配器。</p>
+
+<p>即使对于大得多的语言模型，性能仍然相同：</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/65358e233b0593b2e2dce709_-cLgG3H7dbGRuFqh3m0OHfHHqnXNC9qoGEk7ANjagwAiex64QT1ayNQ86Jcfa1qOjuSqSy8BzVVdsBXyKDNMGlm_X1hCnhyNnCpY_W6ycUn2UYvYT0kgvNlcmnXulLvRbyGDn64YoexaSMMYTr4-7Mk.png" alt="" /></p>
+
+<p>因此，作者在基础 LLaMA 模型之上训练了一个模型，即 <a href="https://huggingface.co/timdettmers/guanaco-65b">羊驼（Guanaco）</a> 。这是一个拥有 330 亿参数的模型，在 OASST1 数据集上进行训练。在发布时，它成为了一个先进的模型，相对于 ChatGPT 达到了 <strong>99.3%</strong> 的性能。尽管其他模型如 Vicuna 13B 参数较少，但由于使用了 4 位精度，羊驼 33B（Guanaco33B）比 13B 模型使用的内存更少。</p>
+
+<h2 id="lora-微调的其他变体">LoRA 微调的其他变体</h2>
+
+<h3 id="qa-lora">QA LoRA</h3>
+
+<p>问答 LoRA 是基于 QLoRA 构建的另一种微调技术，在[这篇]论文中被提出。问答 LoRA 主要是为微调扩散模型而发布的，但和 LoRA 一样，它也可以很容易地推广到训练任何类型的模型。</p>
+
+<p>QLoRA 和 QALoRA 的区别在于，QALoRA 是量化感知的，这意味着在微调过程中，LoRA 适配器的权重与模型的权重一起被量化。这有助于更高效地训练，因为在反向传播过程中无需进行转换步骤来更新模型。</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/65358e23d7d446708a1eec24_mR-H3Wh2jk0zRKaY7FQCRQANOZNaQNV62RwDzf28bcUQBHHg5ei75Q0M1lHLqL-VTAjiWCHGhzzwUhFbZYso-uVZ-sTabL78mpR3eEAmLAZNEmthk8n9oDaCPKdf4r0KaZjLPs3sbxBn-fF0r7Ggfuk.png" alt="" /></p>
+
+<h3 id="长-lora">长 LoRA</h3>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/65358e2317daafaf293fb79c_wSYLsK_nzksoc9Wzl4UjQW68U8F451DuQCVh7_TzN_icR9iRnzOx0v26S0rEcMgbDgYprqBBcoU8FQhqGo9j-9w9WHr-O04EBoukXwwVXAa3GFkm4te8ElCs4nHEEh1T-xurHGQRQiVzfLjCz8b0VD8.png" alt="" /></p>
+
+<p><a href="https://arxiv.org/abs/2309.12307">LongLoRA</a> 是 LoRA 微调技术的又一变体，但该技术专门用于训练更长上下文模型。LongLoRA 通过使用一种称为 <strong>SHIFT SHORT ATTENTION</strong> 的方法来工作。此方法会创建令牌的块或组，其中注意力是独立计算的。由于工作负载分布，这种方法使 LongLoRA 能够扩展到长得多的上下文。</p>
+
+<p>与此同时，作者表明，为使该方法正常工作，在归一化层和嵌入层也需要使用 LoRA。</p>
+
+<h3 id="adalora">AdaLoRA</h3>
+
+<p>在传统的 LoRA 中，你为每一层固定一个秩 r。但不同的层对模型性能的贡献不同。</p>
+
+<p>AdaLoRA（自适应 LoRA）所做的是在训练期间根据权重矩阵的重要性动态分配参数预算，即秩。这避免了 LoRA 的统一秩分配，对于重要性不同的层来说，这种统一分配可能不是最优的。重要的层（通常是顶层的 Transformer 层）会获得更高的秩，而不太关键的层则会被裁剪。</p>
+
+<p>它通过模仿权重矩阵的奇异值分解（SVD）算法并通过其奇异值更新权重来实现这一点：</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/682f9f271dfebe56a0445a06_AD_4nXf5OKq5Se4xLnekVb5kZrxEK298VQiyXn_CTw6pqd7Q31KoAq1o-8F2kwncU9jbeSC-w5_nFtCyqq_l-xPwGA1_LyMWJBXR1SbGbTvIeEbXOG2IcJsyoK3V2x88J8RXyfi8002iDw.png" alt="" /></p>
+
+<h3 id="dora">DoRA</h3>
+
+<p><a href="https://arxiv.org/pdf/2402.09353">可分解秩适应（DoRA）</a> 将高秩的 LoRA 层分解为结构化的单秩组件，允许在训练期间根据它们对特定任务的重要性对参数预算进行动态剪枝，从而充分利用有限的参数预算。它引入了 r′对单秩矩阵，每对矩阵都充当一个 LoRA 组件。在训练过程中，DoRA 评估每个组件对整体性能的贡献，并剪枝贡献较小的组件。</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/682f9f270f51d8769902a253_AD_4nXe557d4mk2wd2AUnZITtRY6PcjRtnLzKQyj8HX7EBHfMUIblwR4b4UTCZHa6OC9hiDUjehweOJejBytIw_KydBH2Ca3OMIda3CfHphTc56BPiDh3RdUpUsm0VUEiB5t9BqS8kyz.png" alt="" /></p>
+
+<p>DoRA 没有使用标准的 LoRA 层，而是将其重新解释为：</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/682f9f27cc46e85b462743ad_AD_4nXc41tOO91LNa9L7XwHMl_2MzsU1-LAi4kUNx18N6Jr261oEwRVATpTTJcOgXnf_TQjj5moXLVR7BXVk5BfQYQAASi0QuTvUUs5HHOaTttwSkYZWxpdol5KIf6mU25tk4095c7Allg.png" alt="" /></p>
+
+<p>这里 r′表示 LoRA 组件的数量。一个 LoRA 组件是由 A、B 和 c 组成的三元组，其中 A 和 B 是单秩矩阵，形状分别为 d×1 和 1×d。c 是用于修剪该组件的标量，如果要修剪该组件，则将其设置为 0。</p>
+
+<p>通过在 LoRA 配置中进行以下修改，DoRA 可以直接集成：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> 
+    <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> 
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s">"query_key_value"</span><span class="p">],</span> 
+    <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> 
+    <span class="n">bias</span><span class="o">=</span><span class="s">"none"</span><span class="p">,</span> 
+    <span class="n">task_type</span><span class="o">=</span><span class="s">"CAUSAL_LM"</span><span class="p">,</span>
+    <span class="n">use_dora</span><span class="o">=</span><span class="bp">True</span> <span class="c1"># simply pass True here to use DoRA
+</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="c1"># Now you get a model ready for QLoRA training
+</span></code></pre></div></div>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/682f9f27b92cc05d5f1d923c_AD_4nXc0Fa-KzkKwd7i273CUbdvH-gO434ojJq89CJOzJK_B-1dfcunK2eeaRZKUA34mLGhOoVxa_uaItndXPy6YPNO40GryYXRn4AbvHLRJ2q7_yGzsLBxlkMwFuvxFtGLbZdr5Xresew.png" alt="" /></p>
+
+<h2 id="现代量化策略2025年5月">现代量化策略（2025年5月）</h2>
+
+<p>以下是一些往往效果非常好的现代量化策略。</p>
+
+<h3 id="awq激活感知权重量化">AWQ（激活感知权重量化）</h3>
+
+<p><a href="https://arxiv.org/pdf/2306.00978">AWQ</a> 是一种训练后量化（PTQ）技术，旨在将大语言模型（LLMs）压缩为低比特格式，具体为 4 比特，同时不影响性能。与传统的均匀处理所有权重的量化方法不同，AWQ 能够智能地识别并保留一小部分对维持模型准确性至关重要的 <em>显著</em> 权重。</p>
+
+<p>AWQ 的独特之处在于其方法，它不是直接分析权重，而是评估激活分布以确定哪些权重通道最为重要。这种方法无需反向传播或重构，使得该过程在不同领域和模态中既高效又具有高度通用性。</p>
+
+<p>AWQ 在各种基准测试中始终能取得出色的结果，包括经过指令微调的和多模态的 LLMs。例如，它能在诸如 LLaMA-2 70B 这样的大型模型上实现高效的 4 位推理，与 FP16 实现方式相比，在桌面和移动 GPU 上都能实现超过 3 倍的加速。</p>
+
+<h3 id="仿射量化">仿射量化</h3>
+
+<p><a href="https://arxiv.org/html/2403.12544v1">仿射量化（AffineQuant）</a> 引入了一种全新的模型训练后量化（PTQ）方法，通过利用仿射变换来优化权重和激活值的分布。与传统的依赖简单缩放的方法不同，仿射量化使用变换矩阵来更精确地对齐量化前后的输出，有效减少量化误差。</p>
+
+<p>通过应用仿射变换矩阵，它调整数据分布以更好地拟合量化函数，从而减少量化误差。为确保变换是可逆的，仿射量化（AffineQuant）采用渐进掩码优化方法，最初关注对角元素，然后逐渐扩展到其他元素（确保可逆性）。这种方法符合列维 - 德斯普朗克定理，保证了变换的可逆性。</p>
+
+<p><img src="https://cdn.prod.website-files.com/640f56f76d313bbe39631bfd/682f9f27e7a75d2528741bcb_AD_4nXdC0zY3zTJnXsuoNbGX8QC3a8vn1U4b1r8UJ3Zec42Lu0D5b3j2uQTwzp8krhvewwp6LYLqr6tnQ5egEdqBVWlncPbRRvoadQXzPBN3bEPj8Wn7advMgYKhbBo0FjAg-UdxqzLO.png" alt="" /></p>
+
+<p>仿射量化为大语言模型（LLMs）中的后训练量化（PTQ）设定了新标准。例如，在使用 W4A4 量化的 LLaMA2 - 7B 模型上，它实现了 15.76 的 C4 困惑度，超过了像 OmniQuant 这样的先前方法。在零样本任务中，它在 LLaMA - 30B 上使用 4/4 位量化达到了令人印象深刻的 58.61%的平均准确率，标志着相对于现有技术在性能上有显著飞跃。</p>
+
+<h3 id="动态4位量化">动态4位量化</h3>
+
+<p><a href="https://unsloth.ai/blog/dynamic-4bit">动态 4 位量化</a> ，由 <a href="https://huggingface.co/collections/unsloth/unsloth-4-bit-dynamic-quants-67503bb873f89e15276c44e7">Unsloth</a> 实现，为量化 LLMs 提供了一种灵活的方法。与静态量化方法不同，动态量化在运行时动态调整模型的精度级别，确保更好的性能和资源使用。</p>
+
+<p>基于 BitsandBytes（BnB）4 位量化构建，与标准的 BnB 4 位实现相比，这种动态策略在使用多不到 10%的 VRAM 的情况下，显著提高了准确性</p>
+
+<p>Unsloth 的动态 4 位量化已被证明能提供准确可靠的结果，常常优于标准的 4 位量化方法。例如，虽然标准量化可能会降低模型性能，但 Unsloth 的方法能保持高精度，同时显著减少内存使用。比如，将 Llama 3.2 Vision（11B）从 20GB 压缩到仅 6.5GB，同时保持其高精度。</p>
+
+<p>如果你正在考虑为你的企业微调模型，那么你可能是对的。但数据成为了这个过程中的重要部分，看看我们的 <a href="https://www.mercity.ai/blog-post/using-chatgpt-to-build-synthetic-datasets">合成数据生成指南</a> 。然而，微调后的模型有很多方法可以通过提供定制来提高你企业的性能。微调模型能帮助你根据特定需求和知识对模型进行定制。你可以使用 RAG 管道来定制模型，但有时知识量过于庞大，嵌入和相似性搜索还不够，这时就需要通过微调来进行定制了。</p>
+
+<p>如果您的企业需要经过微调的模型， <a href="https://www.mercity.ai/contacts">尽管联系我们</a> ，别不好意思。我们在微调各类模型方面经验丰富，从小型的 T5 模型到像 Falcon180B 这样的大型模型。各种情况我们都见过。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

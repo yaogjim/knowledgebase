@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Readwise 今日内容</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="readwise-今日内容">Readwise 今日内容</h1>
+<pre><code class="language-dataviewjs">const yesterday = new Date(Date.now() - 7*24*60*60*1000);
+
+const pages = dv.pages()
+  .where(page =&gt; page.file.path.startsWith("Readwise") &amp;&amp; page.file.mtime &gt; yesterday)
+  .sort(page =&gt; page.file.mtime, "desc");
+
+for (const page of pages) {
+    dv.paragraph("## "+page.file.link);
+    let content = await dv.io.load(page.file.path);
+    // 处理图片链接，设置图片大小 
+    content = content.replace(/\!\[.*?\]\((.*?)\)/g, (match, imageUrl) =&gt; { 
+    return `![|30x30](${imageUrl})`; 
+    // 这里设置图片的大小为500x300 
+    });
+    dv.paragraph(content);
+}
+
+</code></pre>
+
+<h1 id="readlater-今日内容">Readlater 今日内容</h1>
+<pre><code class="language-dataviewjs">const yesterday = new Date(Date.now() - 7*24*60*60*1000);
+
+const pages = dv.pages()
+  .where(page =&gt; page.file.path.startsWith("zDaily") &amp;&amp; page.file.mtime &gt; yesterday)
+  .sort(page =&gt; page.file.mtime, "desc");
+
+for (const page of pages) {
+    dv.paragraph("## "+page.file.link);
+    let content = await dv.io.load(page.file.path);
+    // 处理图片链接，设置图片大小 
+    content = content.replace(/\!\[.*?\]\((.*?)\)/g, (match, imageUrl) =&gt; { 
+    return `![|30x30](${imageUrl})`; 
+    // 这里设置图片的大小为500x300 
+    });
+    dv.paragraph(content);
+}
+
+</code></pre>
+
+<hr />
+<hr />
+
+<h1 id="omnivore-今日内容">![[Omnivore 今日内容]]</h1>
+
+<hr />
+
+<h1 id="zotero-今日内容">![[Zotero 今日内容]]</h1>
+
+      </section>
+    </div>
+  </body>
+</html>

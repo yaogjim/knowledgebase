@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI对未来劳动市场的潜在影响</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">AI对未来劳动市场的潜在影响</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">AI对未来劳动市场的潜在影响</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> @jesselaunz</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-05-09</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://x.com/jesselaunz/status/1920640617149050955" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong>Jesse Lau 遁一子</strong> @jesselaunz 2025-05-08</p>
+
+<p>AI Studio恢复了对音频视频的处理，昨天忘了发个推，今天补上😁</p>
+
+<p>不过gemini对SRT格式的文本总是会出错，经常小时的时间轴不写，剪映等软件无法识别。</p>
+
+<p>可以建一个新的chat，system prompt如下：</p>
+
+<p>✅ SRT 文件标准格式结构</p>
+
+<p>每条字幕由三部分组成：</p>
+
+<p>字幕编号（从1开始递增）</p>
+
+<p>时间码（表示字幕出现和消失的时间）</p>
+
+<p>字幕文本</p>
+
+<p>每条字幕之间用空行隔开。</p>
+
+<p>1</p>
+
+<p>00:00:01,000 –&gt; 00:00:04,000</p>
+
+<p>Hello, welcome to the show.<br />
+1</p>
+
+<p>00:00:01,000 –&gt; 00:00:04,000</p>
+
+<p>你好，欢迎来到这个节目。</p>
+
+<p>2</p>
+
+<p>00:00:04,500 –&gt; 00:00:07,000</p>
+
+<p>Today we’re going to talk about AI.</p>
+
+<p>🕒 时间码格式<br />
+2</p>
+
+<p>00:00:04,500 –&gt; 00:00:07,000</p>
+
+<p>今天我们要谈论人工智能。</p>
+
+<p>🕒 时间码格式</p>
+
+<p>小时:分钟:秒,毫秒</p>
+
+<p>时间区间之间用 –&gt; 分隔</p>
+
+<p>毫秒使用英文逗号,表示（不是句点.）</p>
+
+<p>✅ 正确格式：</p>
+
+<p>00:01:30,500 –&gt; 00:01:33,000</p>
+
+<p>🔁 最终格式规则总结：</p>
+
+<p>字幕编号（整数）</p>
+
+<p>时间轴（格式严格固定）</p>
+
+<p>字幕正文（可多行）</p>
+
+<p>每条字幕之间必须空一行</p>
+
+<p>⚠ 常见错误注意事项：</p>
+
+<p>错误类型：00:01:774 –&gt; 00:05:874 ，错误省略了小时。</p>
+
+<p>注意时间格式严格为小时:分钟:秒,毫秒，小时00不能省略</p>
+
+<p>””””</p>
+
+<p>你的任务是根据上面SRT原则，将我贴上来的视频生成标准SRT格式的字幕</p>
+
+<blockquote>
+  <p>2025-05-08</p>
+
+  <p>前面5秒的veo2美女降低了30秒的播放率。看来不太适合这类播客视频。</p>
+
+  <p>这类播客主要针对用户利用碎片时间来获得一些感兴趣的知识点</p>
+
+  <p>如果没有全程美女同步对嘴型播放，估计还是简单的整个图加点动画效果好点</p>
+
+  <p>今天研究一下AI对未来劳动市场的潜在影响</p>
+
+  <p>过两天整个英文播客试试 x.com/jesselaunz/sta…</p>
+
+  <p><img src="https://pbs.twimg.com/media/Gqd77DyWgAAkoLa?format=jpg&amp;name=large" alt="Image" /></p>
+</blockquote>
+
+<hr />
+
+<p><strong>Osaker</strong> @gogoxui <a href="https://x.com/gogoxui/status/1920648298634822054">2025-05-09</a></p>
+
+<p>如果不翻译，光stt，whisper.cpp + large v3 turbo就已经很够用了，用mac mini来处理可以干到25x，格式什么的都没问题。</p>
+
+<p>用LLM来STT总觉得他会在什么地方漏几句，不放心😂</p>
+
+<hr />
+
+<p><strong>Jesse Lau 遁一子</strong> @jesselaunz <a href="https://x.com/jesselaunz/status/1920652953519575513">2025-05-09</a></p>
+
+<p>gemini pro还可以，比较稳定。主要whisper有时生成的有些字面错误</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">@jesselaunz</span>
+            
+          
+            
+              <span class="tag">#AI</span>
+            
+          
+            
+              <span class="tag">#未来职场</span>
+            
+          
+            
+              <span class="tag">#劳动力市场</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

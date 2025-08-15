@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI辅助编程进入后台和可集成时代</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">AI辅助编程进入后台和可集成时代</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">AI辅助编程进入后台和可集成时代</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> 祝威廉</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-06-26</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://mp.weixin.qq.com/s/1T9HEai_3HRGH-76f0IzDg" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p>原创 祝威廉 <em>2025年06月22日 18:31</em></p>
+
+<p>AI辅助编程到目前发展也就不到三年。从最早的 tab, 到后来的 tab tab, 再到 chat/apply, 后面出现标志性分界线：支持多文件修改的 Manual/Edit 模式，再到现在火辣的 Agentic，感觉这些进展就像发生在昨天。</p>
+
+<p>后台化和并行化</p>
+
+<p>当前 AI 辅助编程的主流使用方式还是基于IDE, 比如cursor/windsurf, 其他形态为辅助，比如 Web 形态或者 Terminal 形态。从上个月大部分厂商都开始支持多标签开始，AI辅助编程进入并行化时代，人类可以将任务拆解成多个可并行执行化的任务，然后在不同的标签里运行，从而实现并行化，而这种并行化一旦成为主流，就意味着用户已经无暇关注任务的运行过程了，对用户而言，他只关心自己的输入，以及Code Agent 给的结果，要么继续往后修改，要么返工重修。既然用户已经不关注中间的过程，那么意味着所有的任务都可以开始后台化，也就是我提交一个任务，你自己跑，跑完后你告诉我结果，我来review。</p>
+
+<p>而更进一步的是， IDE 已经变得非常不适合了，因为 IDE 是强人机交互的一款产品。我们来看看厂商是如何用脚实际投票的：</p>
+
+<p>1. codex 的web 版，已经无法查看代码，只能提交任务和review PR。</p>
+
+<p>2. cursor 推出了 background agent,然后你可以在slack 应用上发起需求。</p>
+
+<p>3. Claude 提供了命令行和 Python API, 可以让你接入任何交互产品中。</p>
+
+<p>实际上，Code Agent 和人类比的一个巨大优势页凸显出来了，也就是他可以高度并行化（真多核），而人类则很难(实际上是单核，最多实现一个抢占式伪并行)，通过高度并行化，进一步提升百倍千倍的效率。</p>
+
+<p>可集成化</p>
+
+<p>前面我提到了， IDE 只能人去用，所以导致任务发起也需要电脑打开IDE，打开项目，然后人去描述和提交。这种方式对人依赖太多。</p>
+
+<p>其次，如果我希望同时启动十个代码修改任务，这种行为需要对应的AI辅助产品在功能上做支持，比如 IDE，首先他需要支持多标签，接着你就需要开十个标签，然后一个一个输入，一个一个提交。如果是Web 版本的，也是如此，需要他设计了这种backround 运行的机制。 而如果你希望再灵活点，希望对接 github,那么这种又要以来对应的AI辅助产品是否不是已经开发了对应的功能特性。</p>
+
+<p>此外，你可能觉得 auto-coder.chat 的terminal 界面不好看，你觉得 claude code 的好看，或者你觉得 auto-coder.web 的web 界面不够酷炫，你想自己做一个，亦或者你希望能够在你已有的产品里集成AI辅助编程能力（大部分AI应用都需要编程能力，look my eye, trust me），你不可能再去花个一年开发一个完善的code agent ，而 cursor 这类你也没办法集成。 那怎么办？ 我们提供了可集成化能力，这个能力通过 CLI 和 Python API 来支持。</p>
+
+<p>CLI 和 Python API</p>
+
+<p>我们来看下 CLI 是怎么用的：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"Write a function to calculate Fibonacci numbers"</span>  | auto-coder.run <span class="nt">--model</span> v3_chat
+</code></pre></div></div>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/TutGfHFrGuh3UAUxJKmmOANThl4micEh2s56ibBthYz0N2tSDh6DDYyheDXgRhPw9YZEBHS1w4EwCGrib5B0A3icGQ/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="图片" /></p>
+
+<p>CLI 的好处是什么，就是你可以随时用比如auto-coder.chat 写个Shell脚本，然后脚本里面调用 auto-coder.run 这个命令，就可以实现我们前面说的，启动五个并行的agent同时做任务修改。</p>
+
+<p>此外， auto-coder.run 这个 CLI 还有会话记忆功能，你调用多次，可以在一个会话，他会记住你之前的调用，所以可以实现很复杂的一些东西。</p>
+
+<p>或者，如果你的应用是Java ， Go 等其他语言开发的，你想在里面集成代码修改能力，那么你可以直接在这些语言里调用这个命令来完成，他的适配度是最高的，最灵活的。</p>
+
+<p>但是，如果你希望有更好的控制该怎么办？比如我想自己做个Claude Code,我希望五天就做完，这个时候 CLI 的输出是很难很好的控制的，所以这个时候你就可以使用 Python API发挥作用的时候了：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">asynciofrom</span> <span class="n">autocoder</span><span class="p">.</span><span class="n">sdk</span> <span class="kn">import</span> <span class="nn">query</span><span class="p">,</span> <span class="n">query_sync</span><span class="p">,</span> <span class="n">AutoCodeOptions</span><span class="c1"># 同步查询response = query_sync("Write a function to calculate Fibonacci numbers",options = AutoCodeOptions(                        model="v3_chat"    ))print(response)# 异步查询async def async_example():    options = AutoCodeOptions(                        model="v3_chat"    )
+</span>    <span class="k">async</span> <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">query</span><span class="p">(</span><span class="s">"Explain how Python decorators work"</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[</span><span class="si">{</span><span class="n">message</span><span class="p">.</span><span class="n">role</span><span class="si">}</span><span class="s">] </span><span class="si">{</span><span class="n">message</span><span class="p">.</span><span class="n">content</span><span class="si">}</span><span class="s">"</span><span class="p">)</span><span class="n">asyncio</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">async_example</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>你可以通过 message拿到整个Agentic 的流输出。当然，我们还有事件的驱动的 API,可以拿到更多的信息，方便你自己做渲染或者控制。类似这样子：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">asynciofrom</span> <span class="n">autocoder</span><span class="p">.</span><span class="n">sdk</span> <span class="kn">import</span> <span class="nn">modify_code_stream</span><span class="p">,</span> <span class="n">AutoCodeOptions</span>        <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>    <span class="n">options</span> <span class="o">=</span> <span class="n">AutoCodeOptions</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s">"v3_chat"</span><span class="p">)</span>    <span class="k">async</span> <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">modify_code_stream</span><span class="p">(</span>        <span class="s">"Refactor the user authentication module"</span><span class="p">,</span>        <span class="n">options</span><span class="o">=</span><span class="n">options</span>    <span class="p">):</span>        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[</span><span class="si">{</span><span class="n">event</span><span class="p">.</span><span class="n">event_type</span><span class="si">}</span><span class="s">] </span><span class="si">{</span><span class="n">event</span><span class="p">.</span><span class="n">data</span><span class="si">}</span><span class="s">"</span><span class="p">)</span><span class="n">asyncio</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>可以看到，Python API 显然可以带来更好的控制，让你构建自己的 AI辅助编程工具，而不用等待第三方AI辅助编程工具提供对应的特性。此外，你还可以开发自己的 REST API 服务，方便其他非 Python 应用通过 Rest API 来访问。</p>
+
+<p>总结</p>
+
+<p>并发是 code agent 超越人类的地方，而并发必然带来后台化，后台化必然要带来交互层面的进一步变化，不是直接人机交互，而是和应用之间的交互，这必然要求 AI辅助编程工具具备可集成性，而集成性可以通过 CLI 和 Python APi 来满足。 auto-coder 作为一个有这快两年的AI辅助编程项目，从一开始就是交互和引擎分离的，今天，我们特地抽象出更好的API，方便用户更好的集成和使用。 我们相信，被万物集成，后台化和高并发化，这会是 Code Agent 的一个新时代。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

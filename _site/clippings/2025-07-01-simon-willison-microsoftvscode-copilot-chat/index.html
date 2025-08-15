@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>microsoft/vscode-copilot-chat</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">microsoft/vscode-copilot-chat</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">microsoft/vscode-copilot-chat</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> Simon Willison</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-01</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://simonwillison.net/2025/Jun/30/vscode-copilot-chat/" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><strong><a href="https://github.com/microsoft/vscode-copilot-chat">microsoft/vscode-copilot-chat</a></strong> （ <a href="https://twitter.com/ashtom/status/1939724483448717369" title="@ashtom">通过</a> ）如在 5 月的 Build 2025 大会上所承诺的，微软已在开源（MIT）许可下发布了适用于 VS Code 的 GitHub Copilot Chat 客户端。</p>
+
+<p>到目前为止，这只是提供 Copilot 聊天组件的扩展，但 <a href="https://code.visualstudio.com/blogs/2025/06/30/openSourceAIEditorFirstMilestone">发布公告</a> 承诺 Copilot 自动完成功能将在不久的将来推出：</p>
+
+<blockquote>
+  <p>接下来，我们将仔细地把扩展的相关组件重构到 VS Code 核心中。提供内联补全功能的 <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot">原始 GitHub Copilot 扩展</a> 仍然是闭源的——但在接下来的几个月里，我们计划由开源的 <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat">GitHub Copilot Chat 扩展</a> 来提供该功能。</p>
+</blockquote>
+
+<p>我已经开始四处探寻那些至关重要的提示信息。到目前为止，我找到的最有趣的内容位于 <a href="https://github.com/microsoft/vscode-copilot-chat/blob/v0.29.2025063001/src/extension/prompts/node/agent/agentInstructions.tsx">prompts/node/agent/agentInstructions.tsx</a> 中，其中有一个 <code class="language-plaintext highlighter-rouge">&lt;Tag name='instructions'&gt;</code> 块，它 <a href="https://github.com/microsoft/vscode-copilot-chat/blob/v0.29.2025063001/src/extension/prompts/node/agent/agentInstructions.tsx#L39">是这样开始的</a> ：</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">You are a highly sophisticated automated coding agent with expert-level knowledge across many different programming languages and frameworks. The user will ask a question, or ask you to perform a task, and it may require lots of research to answer correctly. There is a selection of tools that let you perform actions or retrieve helpful context to answer the user's question.</code></p>
+</blockquote>
+
+<p>有 <a href="https://github.com/microsoft/vscode-copilot-chat/blob/v0.29.2025063001/src/extension/prompts/node/agent/agentInstructions.tsx#L54">工具使用说明</a> - 以下是其中一些编辑后的要点：</p>
+
+<blockquote>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">When using the ReadFile tool, prefer reading a large section over calling the ReadFile tool many times in sequence. You can also think of all the pieces you may be interested in and read them in parallel. Read large enough context to ensure you get what you need.</code></li>
+    <li><code class="language-plaintext highlighter-rouge">You can use the FindTextInFiles to get an overview of a file by searching for a string within that one file, instead of using ReadFile many times.</code></li>
+    <li><code class="language-plaintext highlighter-rouge">Don't call the RunInTerminal tool multiple times in parallel. Instead, run one command and wait for the output before running the next command.</code></li>
+    <li><code class="language-plaintext highlighter-rouge">After you have performed the user's task, if the user corrected something you did, expressed a coding preference, or communicated a fact that you need to remember, use the UpdateUserPreferences tool to save their preferences.</code></li>
+    <li><code class="language-plaintext highlighter-rouge">NEVER try to edit a file by running terminal commands unless the user specifically asks for it.</code></li>
+    <li><code class="language-plaintext highlighter-rouge">Use the ReplaceString tool to replace a string in a file, but only if you are sure that the string is unique enough to not cause any issues. You can use this tool multiple times per file.</code></li>
+  </ul>
+</blockquote>
+
+<p>该文件还有单独的《代码搜索模式说明》，以及一个《SweBench 代理提示》类，其注释称它“用于一些 swebench 评估”。</p>
+
+<p>在代码的其他地方， <a href="https://github.com/microsoft/vscode-copilot-chat/blob/v0.29.2025063001/src/extension/prompt/node/summarizer.ts">prompt/node/summarizer.ts</a> 展示了他们进行 <a href="https://simonwillison.net/2025/Jun/29/how-to-fix-your-context/">上下文摘要</a> 的一种方法，其提示如下：</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">You are an expert at summarizing chat conversations.</code></p>
+
+  <p><code class="language-plaintext highlighter-rouge">You will be provided:</code></p>
+
+  <p><code class="language-plaintext highlighter-rouge">- A series of user/assistant message pairs in chronological order</code><br />
+<code class="language-plaintext highlighter-rouge">- A final user message indicating the user's intent.</code></p>
+
+  <p><code class="language-plaintext highlighter-rouge">[...]</code></p>
+
+  <p><code class="language-plaintext highlighter-rouge">Structure your summary using the following format:</code></p>
+
+  <p><code class="language-plaintext highlighter-rouge">TITLE: A brief title for the summary</code><br />
+<code class="language-plaintext highlighter-rouge">USER INTENT: The user's goal or intent for the conversation</code><br />
+<code class="language-plaintext highlighter-rouge">TASK DESCRIPTION: Main technical goals and user requirements</code><br />
+<code class="language-plaintext highlighter-rouge">EXISTING: What has already been accomplished. Include file paths and other direct references.</code><br />
+<code class="language-plaintext highlighter-rouge">PENDING: What still needs to be done. Include file paths and other direct references.</code><br />
+<code class="language-plaintext highlighter-rouge">CODE STATE: A list of all files discussed or modified. Provide code snippets or diffs that illustrate important context.</code><br />
+<code class="language-plaintext highlighter-rouge">RELEVANT CODE/DOCUMENTATION SNIPPETS: Key code or documentation snippets from referenced files or discussions.</code><br />
+<code class="language-plaintext highlighter-rouge">OTHER NOTES: Any additional context or information that may be relevant.</code></p>
+</blockquote>
+
+<p><a href="https://github.com/microsoft/vscode-copilot-chat/blob/v0.29.2025063001/src/extension/prompts/node/panel/terminalQuickFix.tsx">prompts/node/panel/terminalQuickFix.tsx</a> 看起来也很有意思，它有一些提示来帮助用户解决在终端中遇到的问题：</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">You are a programmer who specializes in using the command line. Your task is to help the user fix a command that was run in the terminal by providing a list of fixed command suggestions. Carefully consider the command line, output and current working directory in your response. [...]</code></p>
+</blockquote>
+
+<p>该文件还有一个 <a href="https://github.com/microsoft/vscode-copilot-chat/blob/v0.29.2025063001/src/extension/prompts/node/panel/terminalQuickFix.tsx#L201">Python 模块错误提示</a> ：</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Follow these guidelines for python:</code><br />
+<code class="language-plaintext highlighter-rouge">- NEVER recommend using "pip install" directly, always recommend "python -m pip install"</code><br />
+<code class="language-plaintext highlighter-rouge">- The following are pypi modules: ruff, pylint, black, autopep8, etc</code><br />
+<code class="language-plaintext highlighter-rouge">- If the error is module not found, recommend installing the module using "python -m pip install" command.</code><br />
+<code class="language-plaintext highlighter-rouge">- If activate is not available create an environment using "python -m venv .venv".</code></p>
+</blockquote>
+
+<p>这里还有很多内容有待探索。例如， <a href="https://github.com/microsoft/vscode-copilot-chat/blob/v0.29.2025063001/src/extension/xtab/common/promptCrafting.ts#L34">xtab/common/promptCrafting.ts</a> 看起来可能是打算取代 Copilot 自动完成功能的代码的一部分。</p>
+
+<p>它处理求值的方式也非常有趣。相关代码位于 <a href="https://github.com/microsoft/vscode-copilot-chat/tree/v0.29.2025063001/test">test/</a> 目录中。代码量 <em>很大</em> ，所以我借助 Gemini 2.5 Pro 来弄清楚它是如何工作的：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/microsoft/vscode-copilot-chat
+cd vscode-copilot-chat/chat
+files-to-prompt -e ts -c . | llm -m gemini-2.5-pro -s \
+  'Output detailed markdown architectural documentation explaining how this test suite works, with a focus on how it tests LLM prompts'
+</code></pre></div></div>
+
+<p>这是生成的文档结果 <a href="https://github.com/simonw/public-notes/blob/main/vs-code-copilot-evals.md">（点击查看）</a> ，其中甚至还包含一个 Mermaid 图表（我不得不将 Markdown 保存到一个普通的 GitHub 仓库中才能使其渲染出来——Gist 仍然无法处理 Mermaid。）</p>
+
+<p>最巧妙的技巧在于它使用 <a href="https://github.com/simonw/public-notes/blob/main/vs-code-copilot-evals.md#the-golden-standard-cached-responses">基于 SQLite 的缓存机制</a> 来缓存来自大语言模型（LLM）的提示结果，这使得即使大语言模型本身以不确定性著称，测试套件仍能以确定性方式运行。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

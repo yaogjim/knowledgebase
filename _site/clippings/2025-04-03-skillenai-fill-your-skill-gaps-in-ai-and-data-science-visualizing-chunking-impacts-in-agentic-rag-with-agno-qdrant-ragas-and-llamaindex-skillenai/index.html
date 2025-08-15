@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizing Chunking Impacts in Agentic RAG with Agno, Qdrant, RAGAS and LlamaIndex - Skillenai</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Visualizing Chunking Impacts in Agentic RAG with Agno, Qdrant, RAGAS and LlamaIndex - Skillenai</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Visualizing Chunking Impacts in Agentic RAG with Agno, Qdrant, RAGAS and LlamaIndex - Skillenai</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+          <span class="meta-item">✍️ <strong>作者:</strong> Skillenai - Fill your skill gaps in AI and Data Science</span>
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-04-03</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://skillenai.com/competition-post/visualizing-chunking-impacts-in-agentic-rag-with-agno-qdrant-ragas-and-llamaindex/" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p>在检索增强生成（Agentic-RAG）的人工智能智能体领域，一个持续存在的挑战是智能体如何对我们的源文档进行分块，以优化响应的准确性和相关性。本博客系列深入探讨不同的分块策略——固定分块、语义分块、智能体分块和递归分块——如何影响 Agentic RAG 系统的性能。使用 <code class="language-plaintext highlighter-rouge">Agno</code> 进行智能体创建和编排，并将 <code class="language-plaintext highlighter-rouge">Qdrant</code> 用作向量存储，我们通过 <code class="language-plaintext highlighter-rouge">RAGAS</code> 和 <code class="language-plaintext highlighter-rouge">LlamaIndex</code> 评估分块效果，并通过基于指标的深入分析将结果可视化。这一探索不仅揭示了分块方法中的细微差别，还为在实际应用中优化检索管道奠定了基础。</p>
+
+<p><img src="https://i0.wp.com/skillenai.com/wp-content/uploads/2025/03/arch.png?resize=580%2C210&amp;ssl=1" alt="" /></p>
+
+<h4 id="架构">架构：</h4>
+
+<p>该架构始于 Agno 和 Qdrant 的集成，其中 <code class="language-plaintext highlighter-rouge">Agno</code> 促进代理式 RAG 工作流程， <code class="language-plaintext highlighter-rouge">Qdrant</code> 用作存储分块文档嵌入的向量数据库，在代理术语中也称为知识库。应用了多种分块策略——即固定、语义、代理和递归——每种策略都为输入文档提供不同的粒度和上下文重叠。然后，这些分块输入通过 Agno 的代理管道，以模拟真实世界的检索和推理设置。</p>
+
+<p>下一阶段涉及 RAGAS 和 LlamaIndex，它们在评估中起着关键作用。 <code class="language-plaintext highlighter-rouge">RAGAS</code> 有助于创建一个黄金标准评估数据集，而 LlamaIndex 处理用于 RAGA 评估函数的LLM包装器。它们共同为每个分块策略生成诸如上下文召回率、忠实度和答案正确性等性能指标。最后，使用在 ReactJS 中创建的自定义仪表板将这些见解可视化，以比较不同策略如何影响智能体 RAG 系统的结果。此管道提供了一个全面的视角，以了解各种分块技术的权衡和效率。</p>
+
+<h4 id="实施">实施</h4>
+
+<p>智能检索增强生成（Agentic RAG）设置的项目结构如下所示。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+
+├── agentic_chunk_benchmarking.py
+
+├── create_eval_dataset.py
+
+├── data
+
+│   ├── ground_truth.json
+
+│   └── test_data.pdf
+
+├── fixed_chunk_benchmarking.py
+
+├── recursive_chunk_benchmarking.py
+
+├── requirements.txt
+
+└── semantic_chunk_benchmarking.py
+</code></pre></div></div>
+
+<p>项目要求如下。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>agno
+
+python-dotenv
+
+qdrant-client
+
+anthropic
+
+ollama
+
+# pdf parser
+
+pypdf
+
+# chunking library
+
+chonkie
+
+# configuration
+
+packaging
+
+importlib-metadata
+
+# evals
+
+ragas
+
+deepeval
+
+# llama-index
+
+llama-index
+
+llama-index-llms-openai
+</code></pre></div></div>
+
+<p>包含安全凭证的环境文件如下。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>collection_name=chunk_test
+
+qdrant_url=http://localhost:6333
+
+api_key=your key
+
+ANTHROPIC_API_KEY=sk-ant-
+
+OPENAI_API_KEY=sk-proj-
+</code></pre></div></div>
+
+<h4 id="固定分块策略">固定分块策略</h4>
+
+<p>以下代码使用 RAGAS 评估框架评估一个检索增强生成（RAG）系统。它首先通过加载一个 PDF 文档来建立一个知识库，将其分块成片段，并将这些块存储在一个带有来自 Ollama 模型嵌入的 Qdrant 向量数据库中。该系统使用 Claude 3.7 Sonnet 作为语言模型，根据知识库回答查询。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import os
+
+from create_eval_dataset import create_eval_ds
+
+from agno.agent import Agent
+
+from agno.document.chunking.fixed import FixedSizeChunking
+
+from agno.embedder.ollama import OllamaEmbedder
+
+from agno.models.anthropic import Claude
+
+from qdrant_client import qdrant_client
+
+from agno.knowledge.pdf import PDFKnowledgeBase
+
+from agno.vectordb.qdrant import Qdrant
+
+from dotenv import load_dotenv, find_dotenv
+
+from ragas.llms import LlamaIndexLLMWrapper
+
+from ragas import EvaluationDataset, evaluate
+
+from ragas.metrics import Faithfulness, FactualCorrectness, ContextRelevance, ContextUtilization, ContextRecall
+
+from llama_index.llms.openai import OpenAI
+
+eval_llm = OpenAI(model='gpt-4o')
+
+load_dotenv(find_dotenv())
+
+doc_path = "data/test_data.pdf"
+
+ground_truth_path = "data/ground_truth.json"
+
+chunk_size = 1000
+
+chunk_overlap = 200
+
+# initialize the LLM (default to openai)
+
+claude = Claude(id="claude-3-7-sonnet-20250219")
+
+# initialize the qdrant client.
+
+q_client = qdrant_client.QdrantClient(url=os.environ.get('qdrant_url'), api_key=os.environ.get('api_key'))
+
+# create the qdrant vector store instance
+
+vector_db = Qdrant(
+
+    collection=os.environ.get('collection_name'),
+
+    url=os.environ.get('qdrant_url'),
+
+    api_key=os.environ.get('api_key'),
+
+    embedder=OllamaEmbedder(id="nomic-embed-text:latest", dimensions=768)
+
+)
+
+# configure the knowledge base
+
+knowledge_base = PDFKnowledgeBase(vector_db=vector_db,
+
+                                  path=doc_path,
+
+                                  chunking_strategy=FixedSizeChunking(
+
+                                      chunk_size=chunk_size,
+
+                                      overlap=chunk_overlap)
+
+                                  )
+
+if not q_client.collection_exists(collection_name=os.environ.get('collection_name')):
+
+    knowledge_base.load(recreate=False)
+
+# initialize agent
+
+agent = Agent(knowledge=knowledge_base, search_knowledge=True, model=claude)
+
+# create the dataset for evaluation
+
+eval_dataset = create_eval_ds(agent=agent, ground_truth_path=ground_truth_path)
+
+# trigger evals
+
+evaluation_dataset = EvaluationDataset.from_list(eval_dataset)
+
+evaluator_llm = LlamaIndexLLMWrapper(llm=eval_llm)
+
+result = evaluate(dataset=evaluation_dataset, metrics=[Faithfulness(), ContextRelevance(),
+
+                                                       ContextUtilization(), ContextRecall(),
+
+                                                       FactualCorrectness()])
+
+for score in result.scores:
+
+    print(score)
+
+# destroy the collection
+
+if q_client.collection_exists(collection_name=os.environ.get('collection_name')):
+
+    q_client.delete_collection(collection_name=os.environ.get('collection_name'))
+</code></pre></div></div>
+
+<p>评估过程首先从真实数据创建一个数据集，然后使用 GPT-4o 作为评估模型，以跨多个指标评估 RAG 系统的性能，这些指标包括忠实度、上下文相关性、上下文利用率、上下文召回率和事实正确性。这些指标衡量系统的回答与提供的上下文和事实准确性的匹配程度。</p>
+
+<p>运行评估并打印每个指标的分数后，代码通过删除 Qdrant 集合进行清理。这个完整的流程展示了一个典型的 RAG 系统评估工作流程，其中文档知识被转换为向量嵌入，针对这些知识处理查询，并系统地衡量响应的质量。</p>
+
+<h4 id="语义分块策略">语义分块策略：</h4>
+
+<p>以下代码使用语义分块而非固定大小分块来评估一个 RAG 系统。它通过加载 PDF 文档 <code class="language-plaintext highlighter-rouge">splitting it into chunks based on semantic similarity with a threshold of 0.6</code> 来设置知识库，并使用 Ollama 嵌入将它们存储在 Qdrant 向量数据库中。该系统利用 Claude 3.5 Sonnet 作为其语言模型来处理针对知识库的查询。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import os
+
+from agno.agent import Agent
+
+from agno.document.chunking.semantic import SemanticChunking
+
+from agno.embedder.ollama import OllamaEmbedder
+
+from agno.models.anthropic import Claude
+
+from qdrant_client import qdrant_client
+
+from agno.knowledge.pdf import PDFKnowledgeBase
+
+from agno.vectordb.qdrant import Qdrant
+
+from dotenv import load_dotenv, find_dotenv
+
+from ragas.llms import LlamaIndexLLMWrapper
+
+from ragas import EvaluationDataset, evaluate
+
+from ragas.metrics import Faithfulness, FactualCorrectness, ContextRelevance, ContextUtilization, ContextRecall
+
+from llama_index.llms.openai import OpenAI
+
+from create_eval_dataset import create_eval_ds
+
+eval_llm = OpenAI(model='gpt-4o')
+
+load_dotenv(find_dotenv())
+
+doc_path = "data/test_data.pdf"
+
+ground_truth_path = "data/ground_truth.json"
+
+# initialize the LLM (default to openai)
+
+claude = Claude(id="claude-3-5-sonnet-20241022")
+
+# initialize the qdrant client.
+
+q_client = qdrant_client.QdrantClient(url=os.environ.get('qdrant_url'), api_key=os.environ.get('api_key'))
+
+# create the qdrant vector store instance
+
+vector_db = Qdrant(
+
+    collection=os.environ.get('collection_name'),
+
+    url=os.environ.get('qdrant_url'),
+
+    api_key=os.environ.get('api_key'),
+
+    embedder=OllamaEmbedder(id="nomic-embed-text:latest", dimensions=768)
+
+)
+
+# configure the knowledge base
+
+knowledge_base = PDFKnowledgeBase(vector_db=vector_db,
+
+                                  path=doc_path,
+
+                                  chunking_strategy=SemanticChunking(
+
+                                      chunk_size=chunk_size,
+
+                                      similarity_threshold=0.6)
+
+                                  )
+
+if not q_client.collection_exists(collection_name=os.environ.get('collection_name')):
+
+    knowledge_base.load(recreate=False)
+
+# initialize agent
+
+agent = Agent(knowledge=knowledge_base,search_knowledge=True, model=claude)
+
+# create the dataset for evaluation
+
+eval_dataset = create_eval_ds(agent=agent, ground_truth_path=ground_truth_path)
+
+evaluation_dataset = EvaluationDataset.from_list(eval_dataset)
+
+evaluator_llm = LlamaIndexLLMWrapper(llm=eval_llm)
+
+result = evaluate(dataset=evaluation_dataset, metrics=[Faithfulness(), ContextRelevance(),
+
+                                                       ContextUtilization(), ContextRecall(),
+
+                                                       FactualCorrectness()])
+
+for score in result.scores:
+
+    print(score)
+
+# destroy the collection
+
+if q_client.collection_exists(collection_name=os.environ.get('collection_name')):
+
+    q_client.delete_collection(collection_name=os.environ.get('collection_name'))
+</code></pre></div></div>
+
+<p>评估工作流程从真实数据创建一个测试数据集，然后使用 GPT-4o 作为评估器，从忠实性、上下文相关性、上下文利用率、上下文召回率和事实正确性这五个指标对系统进行评估。这些指标全面衡量了系统的回答与所提供上下文的匹配程度以及保持事实准确性的情况。</p>
+
+<p>在运行评估并打印每个指标的结果后，代码通过删除 Qdrant 集合进行清理。这展示了一个先进的 RAG 管道，该管道使用语义理解而非任意字符计数来确定文档块，有可能在保持相同严格评估方法的同时提高检索过程中的上下文相关性。</p>
+
+<h4 id="代理分块策略">代理分块策略：</h4>
+
+<p>以下代码评估一个 RAG 系统 <code class="language-plaintext highlighter-rouge">using agentic chunking, an advanced method that employs Claude 3.7 Sonnet to intelligently segment documents based on content understanding rather than arbitrary divisions</code> 。它处理一个 PDF 文档，并将分块存储在一个 Qdrant 向量数据库中，这些分块带有来自 Ollama 的 nomic-embed-text 模型的嵌入。该系统在分块过程和基于知识库回答查询时都使用相同的 Claude 模型。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import os
+
+from agno.agent import Agent
+
+from agno.document.chunking.agentic import AgenticChunking
+
+from agno.embedder.ollama import OllamaEmbedder
+
+from agno.models.anthropic import Claude
+
+from qdrant_client import qdrant_client
+
+from agno.knowledge.pdf import PDFKnowledgeBase
+
+from agno.vectordb.qdrant import Qdrant
+
+from dotenv import load_dotenv, find_dotenv
+
+from ragas.llms import LlamaIndexLLMWrapper
+
+from ragas import EvaluationDataset, evaluate
+
+from ragas.metrics import Faithfulness, FactualCorrectness, ContextRelevance, ContextUtilization, ContextRecall
+
+from llama_index.llms.openai import OpenAI
+
+from create_eval_dataset import create_eval_ds
+
+eval_llm = OpenAI(model='gpt-4o')
+
+load_dotenv(find_dotenv())
+
+doc_path = "data/test_data.pdf"
+
+ground_truth_path = "data/ground_truth.json"
+
+chunk_size = 1000
+
+# initialize the LLM (default to openai)
+
+claude = Claude(id="claude-3-7-sonnet-20250219")
+
+# initialize the qdrant client.
+
+q_client = qdrant_client.QdrantClient(url=os.environ.get('qdrant_url'), api_key=os.environ.get('api_key'))
+
+# create the qdrant vector store instance
+
+vector_db = Qdrant(
+
+    collection=os.environ.get('collection_name'),
+
+    url=os.environ.get('qdrant_url'),
+
+    api_key=os.environ.get('api_key'),
+
+    embedder=OllamaEmbedder(id="nomic-embed-text:latest", dimensions=768)
+
+)
+
+# configure the knowledge base
+
+knowledge_base = PDFKnowledgeBase(vector_db=vector_db,
+
+                                  path=doc_path,
+
+                                  chunking_strategy=AgenticChunking(
+
+                                      model=claude,
+
+                                      max_chunk_size=chunk_size)
+
+                                  )
+
+if not q_client.collection_exists(collection_name=os.environ.get('collection_name')):
+
+    knowledge_base.load(recreate=False)
+
+# initialize agent
+
+agent = Agent(knowledge=knowledge_base, search_knowledge=True, model=claude)
+
+# create the dataset for evaluation
+
+eval_dataset = create_eval_ds(agent=agent, ground_truth_path=ground_truth_path)
+
+evaluation_dataset = EvaluationDataset.from_list(eval_dataset)
+
+evaluator_llm = LlamaIndexLLMWrapper(llm=eval_llm)
+
+result = evaluate(dataset=evaluation_dataset, metrics=[Faithfulness(), ContextRelevance(),
+
+                                                       ContextUtilization(), ContextRecall(),
+
+                                                       FactualCorrectness()])
+
+for score in result.scores:
+
+    print(score)
+
+# destroy the collection
+
+if q_client.collection_exists(collection_name=os.environ.get('collection_name')):
+
+    q_client.delete_collection(collection_name=os.environ.get('collection_name'))
+</code></pre></div></div>
+
+<p>评估框架使用 RAGAS，并以 GPT-4o 作为评估模型，以五个关键指标评估系统的性能：忠实性、上下文相关性、上下文利用率、上下文召回率和事实正确性。这项全面评估考察了系统的回答与检索到的上下文的匹配程度以及保持事实准确性的情况。</p>
+
+<p>在完成评估并输出分数后，代码通过删除 Qdrant 集合进行清理。此管道代表了一种复杂的 RAG 系统方法，该方法利用人工智能对文档分割做出明智决策，可能在确保块保持在最大 1000 个标记大小以下的同时，保持块中的语义连贯。</p>
+
+<h4 id="递归分块策略">递归分块策略：</h4>
+
+<p>以下代码评估一个 RAG 系统 <code class="language-plaintext highlighter-rouge">using recursive chunking, which hierarchically splits documents into progressively smaller segments based on document structure</code> 。它处理一个 PDF 文档，并将其分割成 1000 个标记的块，重叠 200 个标记，然后将这些块存储在一个 Qdrant 向量数据库中，并使用 Ollama 的 nomic-embed-text 模型生成嵌入。该系统使用 Claude 3.7 Sonnet 作为语言模型，利用这个知识库来回答查询。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import os
+
+from agno.agent import Agent
+
+from agno.document.chunking.recursive import RecursiveChunking
+
+from agno.embedder.ollama import OllamaEmbedder
+
+from agno.models.anthropic import Claude
+
+from qdrant_client import qdrant_client
+
+from agno.knowledge.pdf import PDFKnowledgeBase
+
+from agno.vectordb.qdrant import Qdrant
+
+from dotenv import load_dotenv, find_dotenv
+
+from ragas.llms import LlamaIndexLLMWrapper
+
+from ragas import EvaluationDataset, evaluate
+
+from ragas.metrics import Faithfulness, FactualCorrectness, ContextRelevance, ContextUtilization, ContextRecall
+
+from llama_index.llms.openai import OpenAI
+
+from create_eval_dataset import create_eval_ds
+
+eval_llm = OpenAI(model='gpt-4o')
+
+load_dotenv(find_dotenv())
+
+doc_path = "data/test_data.pdf"
+
+ground_truth_path = "data/ground_truth.json"
+
+chunk_size = 1000
+
+chunk_overlap = 200
+
+# initialize the LLM (default to openai)
+
+claude = Claude(id="claude-3-7-sonnet-20250219")
+
+# initialize the qdrant client.
+
+q_client = qdrant_client.QdrantClient(url=os.environ.get('qdrant_url'), api_key=os.environ.get('api_key'))
+
+# create the qdrant vector store instance
+
+vector_db = Qdrant(
+
+    collection=os.environ.get('collection_name'),
+
+    url=os.environ.get('qdrant_url'),
+
+    api_key=os.environ.get('api_key'),
+
+    embedder=OllamaEmbedder(id="nomic-embed-text:latest", dimensions=768)
+
+)
+
+# configure the knowledge base
+
+knowledge_base = PDFKnowledgeBase(vector_db=vector_db,
+
+                                  path=doc_path,
+
+                                  chunking_strategy=RecursiveChunking(
+
+                                      chunk_size=chunk_size,
+
+                                      overlap=chunk_overlap)
+
+                                  )
+
+if not q_client.collection_exists(collection_name=os.environ.get('collection_name')):
+
+    knowledge_base.load(recreate=False)
+
+# initialize agent
+
+agent = Agent(knowledge=knowledge_base, search_knowledge=True, model=claude)
+
+# create the dataset for evaluation
+
+eval_dataset = create_eval_ds(agent=agent, ground_truth_path=ground_truth_path)
+
+evaluation_dataset = EvaluationDataset.from_list(eval_dataset)
+
+evaluator_llm = LlamaIndexLLMWrapper(llm=eval_llm)
+
+result = evaluate(dataset=evaluation_dataset, metrics=[Faithfulness(), ContextRelevance(),
+
+                                                       ContextUtilization(), ContextRecall(),
+
+                                                       FactualCorrectness()])
+
+for score in result.scores:
+
+    print(score)
+
+# destroy the collection
+
+if q_client.collection_exists(collection_name=os.environ.get('collection_name')):
+
+    q_client.delete_collection(collection_name=os.environ.get('collection_name'))
+</code></pre></div></div>
+
+<p>评估过程从真实数据创建一个测试数据集，然后使用 GPT-4o 作为评估器来评估五个关键指标：忠实度、上下文相关性、上下文利用率、上下文召回率和事实正确性。这些指标全面衡量系统的回答与所提供的上下文和事实准确性的匹配程度。</p>
+
+<p>在评估并打印分数之后，代码通过删除 Qdrant 集合进行清理。这种方法利用递归分块保留分层文档结构的能力，在使用与先前实现中相同严格的方法评估系统时，通过保持章节、小节和段落之间的关系，有可能改进信息检索。</p>
+
+<h4 id="创建评估数据集">创建评估数据集：</h4>
+
+<p>以下代码通过处理真实数据并将其与智能体生成的响应进行比较，创建了一个用于测试 RAG 系统的评估数据集。它读取一个包含问题和预期答案的 JSON 文件，然后遍历每个项目，将问题提交给智能体，并捕获其响应以及检索到的上下文文档。</p>
+
+<p>对于每一对问答，该函数会构建一个响应对象，其中包含原始问题、真实参考答案、智能体的实际响应，以及智能体为生成答案而检索到的上下文集。这些上下文是从智能体响应中的参考元数据中提取的，有助于深入了解系统用于制定答案的文档。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import json
+
+from time import sleep
+
+test_data = []
+
+def create_eval_ds(agent, ground_truth_path):
+
+    with open(ground_truth_path, 'r') as f:
+
+        data = json.load(f)
+
+        for obj in data:
+
+            print(f'question:{obj["question"]}')
+
+            resp = {'user_input': obj["question"], 'reference': obj["answer"]}
+
+            # trigger the agent
+
+            response = agent.run(obj["question"], markdown=True)
+
+            relevant_docs = []
+
+            for reference in response.extra_data.references:
+
+                relevant_docs.extend([item['content'] for item in reference.references])
+
+            resp['retrieved_contexts'] = relevant_docs
+
+            resp['response'] = response.content
+
+            test_data.append(resp)
+
+            sleep(60)
+
+    return test_data
+</code></pre></div></div>
+
+<p>该函数在问题之间包含 60 秒的延迟，以防止速率限制或留出处理时间。生成的数据集被构建为一个字典列表，每个字典包含问题、参考答案、智能体响应和检索到的上下文，然后像 RAGAS 这样的评估框架可以使用这些数据来衡量 RAG 系统在各种指标上的性能。</p>
+
+<h4 id="执行情况与结果">执行情况与结果：</h4>
+
+<p>一旦你运行，我们就会有由 ragas 和 LlamaIndex wrappen 为LLM提供支持的不同评估，以评估我们的评估数据集。下面显示了其中一个输出运行结果。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{'faithfulness': 1.0, 'nv_context_relevance': 1.0, 'context_utilization': 0.7408430916026282, 'context_recall': 1.0, 'factual_correctness(mode=f1)': np.float64(0.46)}
+
+{'faithfulness': 1.0, 'nv_context_relevance': 1.0, 'context_utilization': 0.46957671956889324, 'context_recall': 1.0, 'factual_correctness(mode=f1)': np.float64(0.59)}
+
+{'faithfulness': 1.0, 'nv_context_relevance': 1.0, 'context_utilization': 0.8333333332916666, 'context_recall': 1.0, 'factual_correctness(mode=f1)': np.float64(0.25)}
+
+{'faithfulness': 0.9411764705882353, 'nv_context_relevance': 1.0, 'context_utilization': 0.3652996309200647, 'context_recall': 1.0, 'factual_correctness(mode=f1)': np.float64(0.0)}
+
+{'faithfulness': 0.9047619047619048, 'nv_context_relevance': 1.0, 'context_utilization': 0.5833333333041666, 'context_recall': 1.0, 'factual_correctness(mode=f1)': np.float64(0.9)}
+
+{'faithfulness': 0.8, 'nv_context_relevance': 1.0, 'context_utilization': 0.249999999975, 'context_recall': 1.0, 'factual_correctness(mode=f1)': np.float64(0.15)}
+
+{'faithfulness': 1.0, 'nv_context_relevance': 1.0, 'context_utilization': 0.99999999998, 'context_recall': 1.0, 'factual_correctness(mode=f1)': np.float64(0.7)}
+
+{'faithfulness': 1.0, 'nv_context_relevance': 1.0, 'context_utilization': 0.5833333333041666, 'context_recall': 1.0, 'factual_correctness(mode=f1)': np.float64(0.25)}
+
+{'faithfulness': 0.9166666666666666, 'nv_context_relevance': 1.0, 'context_utilization': 0.9999999999, 'context_recall': 1.0, 'factual_correctness(mode=f1)': np.float64(0.17)}
+
+{'faithfulness': 0.9090909090909091, 'nv_context_relevance': 1.0, 'context_utilization': 0.8666666666377778, 'context_recall': 1.0, 'factual_correctness(mode=f1)': np.float64(0.31)}
+</code></pre></div></div>
+
+<p><img src="https://i0.wp.com/skillenai.com/wp-content/uploads/2025/03/fig1.png?resize=580%2C638&amp;ssl=1" alt="" /></p>
+
+<p><img src="https://i0.wp.com/skillenai.com/wp-content/uploads/2025/03/fig2.png?resize=580%2C653&amp;ssl=1" alt="" /></p>
+
+<p><img src="https://i0.wp.com/skillenai.com/wp-content/uploads/2025/03/fig3.png?resize=580%2C651&amp;ssl=1" alt="" /></p>
+
+<p><img src="https://i0.wp.com/skillenai.com/wp-content/uploads/2025/03/fig4.png?resize=580%2C649&amp;ssl=1" alt="" /></p>
+
+<p><img src="https://i0.wp.com/skillenai.com/wp-content/uploads/2025/03/fig5.png?resize=580%2C429&amp;ssl=1" alt="" /></p>
+
+<h4 id="接下来是什么">接下来是什么？</h4>
+
+<p>我们将了解如何构建这些仪表板并将数据导入其中，以便我们能够看到不同实验的对比分析。</p>
+
+<h4 id="为什么我们不使用-mlops-平台">为什么我们不使用 MlOps 平台？</h4>
+
+<p>我们当然可以使用 MlOps 平台，但它们本质上要先进得多，仅仅为了可视化性能数据，我们并不需要整个平台。但是，我们将在后续博客中专门介绍 MLOps 平台，特别是 Mlflow，看看我们如何在生成式人工智能项目中利用 Mlflow。</p>
+
+<h4 id="结论">结论：</h4>
+
+<p>我们对分块策略的评估表明，文档分割在所有 RAGAS 指标上都会对 RAG 系统性能产生重大影响。虽然固定大小分块提供了一个基线，但语义和智能方法通过尊重自然信息边界，能更好地保持上下文完整性。值得注意的是，使用 Claude 3.7 十四行诗的智能分块通过利用LLM对文档结构的理解，展现出卓越的上下文相关性和事实正确性，而递归分块在分层文档方面表现出色。这些发现强调，分块不仅仅是一个技术细节，而是一项基本的架构决策，应根据特定的文档类型和用例进行定制，以构建更准确、更可靠的 RAG 系统。</p>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducing ColQwen-Omni: Retrieve in every modality</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="/knowledgebase/assets/css/post.css">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/knowledgebase/" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="/knowledgebase/" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="/knowledgebase/">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">Introducing ColQwen-Omni: Retrieve in every modality</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">Introducing ColQwen-Omni: Retrieve in every modality</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        
+        
+          <span class="meta-item">📅 <strong>创建日期:</strong> 2025-07-18</span>
+        
+        
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="https://huggingface.co/blog/manu/colqwen-omni-omnimodal-retrieval" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      <p><a href="https://huggingface.co/blog">Back to Articles</a></p>
+
+<p><a href="https://huggingface.co/blog/community">Community Article</a> Published July 17, 2025</p>
+
+<p><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/1654090481550-60f2e021adf471cbdf8bb660.jpeg" alt="Manuel Faysse's avatar" /></p>
+
+<p>Manuel Faysse’s avatar</p>
+
+<p><a href="https://huggingface.co/manu">Manuel Faysse</a></p>
+
+<p><a href="https://huggingface.co/manu">manu</a></p>
+
+<p><a href="https://huggingface.co/antonioloison">Antonio Loison</a></p>
+
+<p><a href="https://huggingface.co/antonioloison">antonioloison</a></p>
+
+<p><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6651baf4b34bbdaec88333e7/YTk8BiBAfgF0oDVOehULS.jpeg" alt="Paul Teiletche's avatar" /></p>
+
+<p>Paul Teiletche’s avatar</p>
+
+<p><a href="https://huggingface.co/paultltc">Paul Teiletche</a></p>
+
+<p><a href="https://huggingface.co/paultltc">paultltc</a></p>
+
+<p><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/661e945eebe3616a1b09e279/U3DL1BNouUpcusCKAPZm0.jpeg" alt="Quentin Macé's avatar" /></p>
+
+<p>Quentin Macé’s avatar</p>
+
+<p><a href="https://huggingface.co/QuentinJG">Quentin Macé</a></p>
+
+<p><a href="https://huggingface.co/QuentinJG">QuentinJG</a></p>
+
+<p><a href="https://huggingface.co/merve">merve</a></p>
+
+<p><a href="https://huggingface.co/merve">merve</a></p>
+
+<p><a href="https://cdn-uploads.huggingface.co/production/uploads/60f2e021adf471cbdf8bb660/GjWEzA1ldtW10TQZLoR34.png"><img src="https://cdn-uploads.huggingface.co/production/uploads/60f2e021adf471cbdf8bb660/GjWEzA1ldtW10TQZLoR34.png" alt="image/png" /></a></p>
+
+<p>Remember <a href="https://arxiv.org/abs/2407.01449">ColPali</a>, <a href="https://huggingface.co/vidore/colqwen2-v1.0">ColQwen</a>, <a href="https://arxiv.org/abs/2406.11251">DSE</a>? These models introduced the concept of <em>visual document retrieval</em>: instead of painfully extracting text from a document in order to process it, it is possible to just treat document pages as a series of images (screenshots), and train Vision Language Models (VLMs) to represent their content directly as vectors. ColPali has shown this strategy to often be much quicker, simpler, and yield better retrieval perfomance than alternative methods. The ColPali and ColQwen model series have since their release about a year ago been downloaded millions of times, been mentionned as a <a href="https://www.stateof.ai/">top AI innovation of 2024</a>, and have inspired many follow up work! Models actually became so good our first benchmark (<a href="https://huggingface.co/spaces/vidore/vidore-leaderboard">Vidore v1</a>) is now <a href="https://huggingface.co/blog/manu/vidore-v2">too easy</a>!</p>
+
+<p><a href="https://cdn-uploads.huggingface.co/production/uploads/60f2e021adf471cbdf8bb660/S5J60Nwd_Se_tLOwl5GyC.png"><img src="https://cdn-uploads.huggingface.co/production/uploads/60f2e021adf471cbdf8bb660/S5J60Nwd_Se_tLOwl5GyC.png" alt="image/png" /></a></p>
+
+<p>Rapid progress in VLMs has led to top models being able to process more modalities. The amazing <a href="https://huggingface.co/Qwen/Qwen2.5-Omni-3B">Qwen-Omni</a> series is typically able to process audio and video inputs on top of images and text! Upon seeing this, we were immediately interested in seeing whether we could generalize the ColQwen series to embed and retrieve not only document images, but also audio chunks and short videos. After VisionRAG, is AudioRAG possible? Introducing <a href="https://huggingface.co/vidore/colqwen-omni-v0.1">ColQwen-Omni</a> (3B), an extension of <a href="https://huggingface.co/vidore/colqwen2-v1.0">ColQwen2</a> that embeds basically anything you throw at it!</p>
+
+<h2 id="example-usage">Example Usage</h2>
+
+<p>Let’s walk through how to use it to retrieve audio chunks! You can follow along in <a href="https://colab.research.google.com/drive/1YOlTWfLbiyQqfq1SlqHA2iME1R-nH4aS#scrollTo=9Qs1CLrBcG47">Google Colab</a>. First, let’s load the model:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># !pip install git+https://github.com/illuin-tech/colpali
+</span><span class="kn">from</span> <span class="nn">colpali_engine.models</span> <span class="kn">import</span> <span class="n">ColQwen2_5Omni</span><span class="p">,</span> <span class="n">ColQwen2_5OmniProcessor</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ColQwen2_5Omni</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s">"vidore/colqwen-omni-v0.1"</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s">"cuda"</span><span class="p">,</span>
+    <span class="n">attn_implementation</span><span class="o">=</span><span class="s">"flash_attention_2"</span><span class="p">).</span><span class="nb">eval</span><span class="p">()</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">ColQwen2_5OmniProcessor</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s">"vidore/colqwen-omni-v0.1"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Let’s say our goal is to be able to query a 30 minute long podcast. Let’s split the podcast into 30 second chunks, and store each chunk in WAV format in a python list.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pydub</span> <span class="kn">import</span> <span class="n">AudioSegment</span>
+
+<span class="n">audio</span> <span class="o">=</span> <span class="n">AudioSegment</span><span class="p">.</span><span class="n">from_wav</span><span class="p">(</span><span class="s">"&lt;my_legally_downloaded_podcast&gt;.wav"</span><span class="p">)</span>
+<span class="c1"># Set target frame rate
+</span><span class="n">target_rate</span> <span class="o">=</span> <span class="mi">16000</span>
+<span class="n">chunk_length_ms</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">1000</span>  <span class="c1"># 30 seconds
+</span><span class="n">audios</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">audio</span><span class="p">),</span> <span class="n">chunk_length_ms</span><span class="p">):</span>
+    <span class="n">chunk</span> <span class="o">=</span> <span class="n">audio</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">chunk_length_ms</span><span class="p">]</span>
+    <span class="c1"># Convert stereo to mono, sample at 16k Hz
+</span>    <span class="n">chunk</span> <span class="o">=</span> <span class="n">chunk</span><span class="p">.</span><span class="n">set_channels</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">set_frame_rate</span><span class="p">(</span><span class="n">target_rate</span><span class="p">)</span>
+    <span class="c1"># Export and convert to numpy array
+</span>    <span class="n">buf</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">BytesIO</span><span class="p">()</span>
+    <span class="n">chunk</span><span class="p">.</span><span class="n">export</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">"wav"</span><span class="p">)</span>
+    <span class="n">buf</span><span class="p">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">rate</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">wavfile</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
+    <span class="n">audios</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We now have everything in place to embed all audios.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="c1"># Process the inputs by batches of 4
+</span><span class="n">dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="n">audios</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">collate_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">processor</span><span class="p">.</span><span class="n">process_audios</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">ds</span>  <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">batch_doc</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="p">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">batch_doc</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">device</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">batch_doc</span><span class="p">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">embeddings_doc</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">batch_doc</span><span class="p">)</span>
+    <span class="n">ds</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">unbind</span><span class="p">(</span><span class="n">embeddings_doc</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="s">"cpu"</span><span class="p">))))</span>
+</code></pre></div></div>
+
+<p>Here, a 30 minute audio can be embedded in under 10 seconds, and we get about 800 audio tokens for 30s of audio! Let’s give it a test:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">batch_queries</span> <span class="o">=</span> <span class="n">processor</span><span class="p">.</span><span class="n">process_queries</span><span class="p">([</span><span class="n">query</span><span class="p">]).</span><span class="n">to</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="c1"># Forward pass
+</span>    <span class="k">with</span> <span class="n">torch</span><span class="p">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">query_embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">batch_queries</span><span class="p">)</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">processor</span><span class="p">.</span><span class="n">score_multi_vector</span><span class="p">(</span><span class="n">query_embeddings</span><span class="p">,</span> <span class="n">ds</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">scores</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">topk</span><span class="p">(</span><span class="n">k</span><span class="p">).</span><span class="n">indices</span><span class="p">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">get_results</span><span class="p">(</span><span class="s">"&lt;YOUR QUERY&gt;"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"The best audio chunks are: </span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="c1">#&gt; The best audio chunks are: [102, 96, 35]
+</span></code></pre></div></div>
+
+<p>Audio chunks #102 and 96 are perfectly relevant in my case! It’s even possible to send the top most relevant audio chunks to GPT-4o to do end-to-end AudioRAG!</p>
+
+<p>Let’s demonstrate everything end-to-end with a 30 minute audio about the Hannibal and the punic wars:</p>
+
+<video controls="" src="https://cdn-uploads.huggingface.co/production/uploads/60f2e021adf471cbdf8bb660/OxrgTuYxe1rlOXnekymhs.qt"></video>
+
+<p>The complete notebook can be found <a href="https://github.com/ManuelFay/Tutorials/blob/main/Practical_3_AudioRAG.ipynb">here</a>.</p>
+
+<h2 id="when-is-it-useful-to-retrieve-audios">When is it Useful to Retrieve Audios?</h2>
+
+<p>Many use cases may require audio retrieval. For example, you might want to find specific information within an educational video, recorded class, or podcast. You might need to locate the one voice note amongst dozens from a friend mentioning the address of their birthday party. Call center managers might attempt to find a few instances of customers laughing or expressing anger within millions of recorded calls. Numerous use cases exist, and although it’s possible to transcribe audio to text using a Speech-to-Text (STT) system and then search the transcription, retrieving audio directly is orders of magnitude faster and direct audio retrieval better captures information such as emotions, ambient sounds, and voice tones, opening up entirely new possibilities!</p>
+
+<h2 id="what-about-videos">What About Videos?</h2>
+
+<p>Videos also work with ColQwen-Omni. Note, however, that video processing is very memory-intensive, so it’s best suited for short clips.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">batch_videos</span> <span class="o">=</span> <span class="n">processor</span><span class="p">.</span><span class="n">process_videos</span><span class="p">(</span><span class="n">videos</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+<span class="c1"># Forward pass
+</span><span class="k">with</span> <span class="n">torch</span><span class="p">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">video_embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">batch_videos</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Here’s a fun demo featuring the Mother of Dragons.</p>
+
+<video controls="" src="https://cdn-uploads.huggingface.co/production/uploads/60f2e021adf471cbdf8bb660/NWNbEKA4KQR_lyKTIVIQ8.mp4"></video>
+
+<h2 id="training">Training</h2>
+
+<p>The first iteration of this model is the result of a scientific experiment. We explored whether a model trained purely on visual document retrieval, without exposure to audio or videos during training, could effectively transfer its embedding capabilities to other modalities. The answer turned out to be: fairly well! By training strictly on the <a href="https://huggingface.co/datasets/vidore/colpali_train_set">Vidore train set</a>, the model matched the performance of current top models on visual document retrieval and while we don’t recomment using the model in production yet, it demonstrated strong performance in audio retrieval as well.</p>
+
+<p>In future iterations, we plan to specifically incorporate audio clips into the contrastive training set to further optimize the model for audio retrieval, potentially significantly boosting performance. The current model is great at understanding spoken content but shows some limitations in grasping accents, emotions, and ambient sounds. We are confident that focused training can address these areas effectively, and welcome any feedback on v0.1 to know what data to integrate in future runs! In the meantime, training code for colqwen-omni is available on our <a href="https://github.com/illuin-tech/colpali">Github</a> and is ready to take in your custom datasets! Our goal will also be to improve the model on natural images and text retrieval - paving the way for a truly modality agnostic retriever!</p>
+
+<h2 id="some-links">Some Links</h2>
+
+<p>📝 The <a href="https://arxiv.org/abs/2407.01449">paper</a></p>
+
+<p>🗃️ The <a href="https://huggingface.co/vidore">HF organization</a></p>
+
+<p>👀 The <a href="https://huggingface.co/vidore/colqwen-omni-v0.1">model</a></p>
+
+<p>💻 The <a href="https://github.com/illuin-tech/colpali">code</a></p>
+
+<p>📝 The <a href="https://arxiv.org/abs/2505.02466">Single-Vector DSE Version</a></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">misc</span><span class="p">{</span><span class="n">faysse2024colpaliefficientdocumentretrieval</span><span class="p">,</span>
+      <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">ColPali</span><span class="p">:</span> <span class="n">Efficient</span> <span class="n">Document</span> <span class="n">Retrieval</span> <span class="k">with</span> <span class="n">Vision</span> <span class="n">Language</span> <span class="n">Models</span><span class="p">},</span> 
+      <span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">Manuel</span> <span class="n">Faysse</span> <span class="ow">and</span> <span class="n">Hugues</span> <span class="n">Sibille</span> <span class="ow">and</span> <span class="n">Tony</span> <span class="n">Wu</span> <span class="ow">and</span> <span class="n">Bilel</span> <span class="n">Omrani</span> <span class="ow">and</span> <span class="n">Gautier</span> <span class="n">Viaud</span> <span class="ow">and</span> <span class="n">Céline</span> <span class="n">Hudelot</span> <span class="ow">and</span> <span class="n">Pierre</span> <span class="n">Colombo</span><span class="p">},</span>
+      <span class="n">year</span><span class="o">=</span><span class="p">{</span><span class="mi">2024</span><span class="p">},</span>
+      <span class="n">eprint</span><span class="o">=</span><span class="p">{</span><span class="mf">2407.01449</span><span class="p">},</span>
+      <span class="n">archivePrefix</span><span class="o">=</span><span class="p">{</span><span class="n">arXiv</span><span class="p">},</span>
+      <span class="n">primaryClass</span><span class="o">=</span><span class="p">{</span><span class="n">cs</span><span class="p">.</span><span class="n">IR</span><span class="p">},</span>
+      <span class="n">url</span><span class="o">=</span><span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">arxiv</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="nb">abs</span><span class="o">/</span><span class="mf">2407.01449</span><span class="p">},</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+
+    </article>
+
+    <!-- 显示标签 -->
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          
+          
+            
+              <span class="tag">clippings</span>
+            
+          
+        </div>
+      </footer>
+    
+    
+    <!-- 相关文章推荐 -->
+    
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-01-31-icepanel-how-to-create-common-architecture-diagrams-with-the-c4-model/">
+                <span class="related-title">How to create common architecture diagrams with the C4 model</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-howie-serious-%E9%98%85%E8%AF%BB%E6%98%AF%E7%BB%88%E6%9E%81%E6%9D%A0%E6%9D%86-%E4%B8%80%E6%97%A5%E4%B9%8B%E5%8A%9F-%E6%92%AC%E5%8A%A8%E6%9D%B0%E5%87%BA%E5%A4%B4%E8%84%91%E4%B8%80%E7%94%9F%E6%8E%A2%E7%B4%A2%E7%9A%84%E6%B4%9E%E8%A7%81/">
+                <span class="related-title">阅读是终极杠杆：一日之功，撬动杰出头脑一生探索的洞见</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-29-kleekawaii521-%E5%93%B2%E5%AD%A6%E6%BA%90%E4%BA%8E%E5%AE%9E%E8%B7%B5-%E7%90%86%E8%AE%BA%E5%88%99%E7%A6%BB%E4%B8%8D%E5%BC%80%E5%AF%B9%E4%BA%BA%E7%94%9F%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%B7%B1%E5%88%BB%E6%80%9D%E8%80%83%E4%B8%8E%E7%90%86%E8%A7%A3/">
+                <span class="related-title">哲学源于实践，理论则离不开对人生经验的深刻思考与理解</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-30-yonah-x-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/">
+                <span class="related-title">《深入浅出的人工智能：从基础概念到应用实践》</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+            
+            <li>
+              <a href="/knowledgebase/clippings/2025-03-31-aiallmaker-%E6%8E%A2%E7%A9%B6%E6%9E%81%E5%BA%A6%E8%87%AA%E7%A7%81%E8%87%AA%E5%88%A9%E6%88%90%E5%B0%B1%E6%88%90%E5%8A%9F%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91-%E4%B8%93%E6%B3%A8-%E7%B2%BE%E8%BF%9B%E4%B8%8E%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E8%B5%84%E6%BA%90/">
+                <span class="related-title">探究极度自私自利成就成功的内在逻辑：专注、精进与高效利用资源</span>
+                
+                  <span class="related-date">03-31</span>
+                
+              </a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+    
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="/knowledgebase/">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

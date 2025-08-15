@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ADAPTIVE MEMORY-BASED ASSISTANT SYSTEM - ENTRY POINT</title>
+    <link rel="stylesheet" href="/knowledgebase/assets/css/style.css?v=e0e97af0e75294fb4b56b2cabc2a0049b04824f8">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="adaptive-memory-based-assistant-system---entry-point">ADAPTIVE MEMORY-BASED ASSISTANT SYSTEM - ENTRY POINT</h1>
+
+<blockquote>
+  <p><strong>TL;DR:</strong> I am an AI assistant implementing a structured Memory Bank system that maintains context across sessions through specialized modes that handle different phases of the development process.</p>
+</blockquote>
+
+<pre><code class="language-mermaid">graph TD
+    %% Main Command Detection
+    Start["User Command"] --&gt; CommandDetect{"Command&lt;br&gt;Type?"}
+    
+    CommandDetect --&gt;|"VAN"| VAN["VAN Mode"]
+    CommandDetect --&gt;|"PLAN"| Plan["PLAN Mode"]
+    CommandDetect --&gt;|"CREATIVE"| Creative["CREATIVE Mode"]
+    CommandDetect --&gt;|"IMPLEMENT"| Implement["IMPLEMENT Mode"]
+    CommandDetect --&gt;|"QA"| QA["QA Mode"]
+    
+    %% Immediate Response Node
+    VAN --&gt; VanResp["Respond: OK VAN"]
+    Plan --&gt; PlanResp["Respond: OK PLAN"]
+    Creative --&gt; CreativeResp["Respond: OK CREATIVE"]
+    Implement --&gt; ImplResp["Respond: OK IMPLEMENT"]
+    QA --&gt; QAResp["Respond: OK QA"]
+    
+    %% Memory Bank Check
+    VanResp --&gt; CheckMB_Van["Check Memory Bank&lt;br&gt;&amp; tasks.md Status"]
+    PlanResp --&gt; CheckMB_Plan["Check Memory Bank&lt;br&gt;&amp; tasks.md Status"]
+    CreativeResp --&gt; CheckMB_Creative["Check Memory Bank&lt;br&gt;&amp; tasks.md Status"]
+    ImplResp --&gt; CheckMB_Impl["Check Memory Bank&lt;br&gt;&amp; tasks.md Status"]
+    QAResp --&gt; CheckMB_QA["Check Memory Bank&lt;br&gt;&amp; tasks.md Status"]
+    
+    %% Rule Loading
+    CheckMB_Van --&gt; LoadVan["Load Rule:&lt;br&gt;isolation_rules/visual-maps/van_mode_split/van-mode-map"]
+    CheckMB_Plan --&gt; LoadPlan["Load Rule:&lt;br&gt;isolation_rules/visual-maps/plan-mode-map"]
+    CheckMB_Creative --&gt; LoadCreative["Load Rule:&lt;br&gt;isolation_rules/visual-maps/creative-mode-map"]
+    CheckMB_Impl --&gt; LoadImpl["Load Rule:&lt;br&gt;isolation_rules/visual-maps/implement-mode-map"]
+    CheckMB_QA --&gt; LoadQA["Load Rule:&lt;br&gt;isolation_rules/visual-maps/qa-mode-map"]
+    
+    %% Rule Execution with Memory Bank Updates
+    LoadVan --&gt; ExecVan["Execute Process&lt;br&gt;in Rule"]
+    LoadPlan --&gt; ExecPlan["Execute Process&lt;br&gt;in Rule"]
+    LoadCreative --&gt; ExecCreative["Execute Process&lt;br&gt;in Rule"]
+    LoadImpl --&gt; ExecImpl["Execute Process&lt;br&gt;in Rule"]
+    LoadQA --&gt; ExecQA["Execute Process&lt;br&gt;in Rule"]
+    
+    %% Memory Bank Continuous Updates
+    ExecVan --&gt; UpdateMB_Van["Update Memory Bank&lt;br&gt;&amp; tasks.md"]
+    ExecPlan --&gt; UpdateMB_Plan["Update Memory Bank&lt;br&gt;&amp; tasks.md"]
+    ExecCreative --&gt; UpdateMB_Creative["Update Memory Bank&lt;br&gt;&amp; tasks.md"]
+    ExecImpl --&gt; UpdateMB_Impl["Update Memory Bank&lt;br&gt;&amp; tasks.md"]
+    ExecQA --&gt; UpdateMB_QA["Update Memory Bank&lt;br&gt;&amp; tasks.md"]
+    
+    %% Verification with Memory Bank Checks
+    UpdateMB_Van --&gt; VerifyVan{"Process&lt;br&gt;Complete?"}
+    UpdateMB_Plan --&gt; VerifyPlan{"Process&lt;br&gt;Complete?"}
+    UpdateMB_Creative --&gt; VerifyCreative{"Process&lt;br&gt;Complete?"}
+    UpdateMB_Impl --&gt; VerifyImpl{"Process&lt;br&gt;Complete?"}
+    UpdateMB_QA --&gt; VerifyQA{"Process&lt;br&gt;Complete?"}
+    
+    %% Outcomes
+    VerifyVan --&gt;|"Yes"| CompleteVan["VAN Process&lt;br&gt;Complete"]
+    VerifyVan --&gt;|"No"| RetryVan["Resume&lt;br&gt;VAN Process"]
+    RetryVan --- ReadMB_Van["Reference Memory Bank&lt;br&gt;for Context"]
+    ReadMB_Van --&gt; ExecVan
+    
+    VerifyPlan --&gt;|"Yes"| CompletePlan["PLAN Process&lt;br&gt;Complete"]
+    VerifyPlan --&gt;|"No"| RetryPlan["Resume&lt;br&gt;PLAN Process"]
+    RetryPlan --- ReadMB_Plan["Reference Memory Bank&lt;br&gt;for Context"]
+    ReadMB_Plan --&gt; ExecPlan
+    
+    VerifyCreative --&gt;|"Yes"| CompleteCreative["CREATIVE Process&lt;br&gt;Complete"]
+    VerifyCreative --&gt;|"No"| RetryCreative["Resume&lt;br&gt;CREATIVE Process"]
+    RetryCreative --- ReadMB_Creative["Reference Memory Bank&lt;br&gt;for Context"]
+    ReadMB_Creative --&gt; ExecCreative
+    
+    VerifyImpl --&gt;|"Yes"| CompleteImpl["IMPLEMENT Process&lt;br&gt;Complete"]
+    VerifyImpl --&gt;|"No"| RetryImpl["Resume&lt;br&gt;IMPLEMENT Process"]
+    RetryImpl --- ReadMB_Impl["Reference Memory Bank&lt;br&gt;for Context"]
+    ReadMB_Impl --&gt; ExecImpl
+    
+    VerifyQA --&gt;|"Yes"| CompleteQA["QA Process&lt;br&gt;Complete"]
+    VerifyQA --&gt;|"No"| RetryQA["Resume&lt;br&gt;QA Process"]
+    RetryQA --- ReadMB_QA["Reference Memory Bank&lt;br&gt;for Context"]
+    ReadMB_QA --&gt; ExecQA
+    
+    %% Final Memory Bank Updates at Completion
+    CompleteVan --&gt; FinalMB_Van["Update Memory Bank&lt;br&gt;with Completion Status"]
+    CompletePlan --&gt; FinalMB_Plan["Update Memory Bank&lt;br&gt;with Completion Status"]
+    CompleteCreative --&gt; FinalMB_Creative["Update Memory Bank&lt;br&gt;with Completion Status"]
+    CompleteImpl --&gt; FinalMB_Impl["Update Memory Bank&lt;br&gt;with Completion Status"]
+    CompleteQA --&gt; FinalMB_QA["Update Memory Bank&lt;br&gt;with Completion Status"]
+    
+    %% Mode Transitions with Memory Bank Preservation
+    FinalMB_Van --&gt;|"Level 1"| TransToImpl["→ IMPLEMENT Mode"]
+    FinalMB_Van --&gt;|"Level 2-4"| TransToPlan["→ PLAN Mode"]
+    FinalMB_Plan --&gt; TransToCreative["→ CREATIVE Mode"]
+    FinalMB_Creative --&gt; TransToImpl2["→ IMPLEMENT Mode"]
+    FinalMB_Impl --&gt; TransToQA["→ QA Mode"]
+    
+    %% Memory Bank System
+    MemoryBank["MEMORY BANK&lt;br&gt;CENTRAL SYSTEM"] -.-&gt; tasks["tasks.md&lt;br&gt;Source of Truth"]
+    MemoryBank -.-&gt; projBrief["projectbrief.md&lt;br&gt;Foundation"]
+    MemoryBank -.-&gt; active["activeContext.md&lt;br&gt;Current Focus"]
+    MemoryBank -.-&gt; progress["progress.md&lt;br&gt;Implementation Status"]
+    
+    CheckMB_Van &amp; CheckMB_Plan &amp; CheckMB_Creative &amp; CheckMB_Impl &amp; CheckMB_QA -.-&gt; MemoryBank
+    UpdateMB_Van &amp; UpdateMB_Plan &amp; UpdateMB_Creative &amp; UpdateMB_Impl &amp; UpdateMB_QA -.-&gt; MemoryBank
+    ReadMB_Van &amp; ReadMB_Plan &amp; ReadMB_Creative &amp; ReadMB_Impl &amp; ReadMB_QA -.-&gt; MemoryBank
+    FinalMB_Van &amp; FinalMB_Plan &amp; FinalMB_Creative &amp; FinalMB_Impl &amp; FinalMB_QA -.-&gt; MemoryBank
+    
+    %% Error Handling
+    Error["⚠️ ERROR&lt;br&gt;DETECTION"] --&gt;|"Todo App"| BlockCreative["⛔ BLOCK&lt;br&gt;creative-mode-map"]
+    Error --&gt;|"Multiple Rules"| BlockMulti["⛔ BLOCK&lt;br&gt;Multiple Rules"]
+    Error --&gt;|"Rule Loading"| UseCorrectFn["✓ Use fetch_rules&lt;br&gt;NOT read_file"]
+    
+    %% Styling
+    style Start fill:#f8d486,stroke:#e8b84d
+    style CommandDetect fill:#f8d486,stroke:#e8b84d
+    style VAN fill:#ccf,stroke:#333
+    style Plan fill:#cfc,stroke:#333
+    style Creative fill:#fcf,stroke:#333
+    style Implement fill:#cff,stroke:#333
+    style QA fill:#fcc,stroke:#333
+    
+    style VanResp fill:#d9e6ff,stroke:#99ccff
+    style PlanResp fill:#d9e6ff,stroke:#99ccff
+    style CreativeResp fill:#d9e6ff,stroke:#99ccff
+    style ImplResp fill:#d9e6ff,stroke:#99ccff
+    style QAResp fill:#d9e6ff,stroke:#99ccff
+    
+    style LoadVan fill:#a3dded,stroke:#4db8db
+    style LoadPlan fill:#a3dded,stroke:#4db8db
+    style LoadCreative fill:#a3dded,stroke:#4db8db
+    style LoadImpl fill:#a3dded,stroke:#4db8db
+    style LoadQA fill:#a3dded,stroke:#4db8db
+    
+    style ExecVan fill:#a3e0ae,stroke:#4dbb5f
+    style ExecPlan fill:#a3e0ae,stroke:#4dbb5f
+    style ExecCreative fill:#a3e0ae,stroke:#4dbb5f
+    style ExecImpl fill:#a3e0ae,stroke:#4dbb5f
+    style ExecQA fill:#a3e0ae,stroke:#4dbb5f
+    
+    style VerifyVan fill:#e699d9,stroke:#d94dbb
+    style VerifyPlan fill:#e699d9,stroke:#d94dbb
+    style VerifyCreative fill:#e699d9,stroke:#d94dbb
+    style VerifyImpl fill:#e699d9,stroke:#d94dbb
+    style VerifyQA fill:#e699d9,stroke:#d94dbb
+    
+    style CompleteVan fill:#8cff8c,stroke:#4dbb5f
+    style CompletePlan fill:#8cff8c,stroke:#4dbb5f
+    style CompleteCreative fill:#8cff8c,stroke:#4dbb5f
+    style CompleteImpl fill:#8cff8c,stroke:#4dbb5f
+    style CompleteQA fill:#8cff8c,stroke:#4dbb5f
+    
+    style MemoryBank fill:#f9d77e,stroke:#d9b95c,stroke-width:2px
+    style tasks fill:#f9d77e,stroke:#d9b95c
+    style projBrief fill:#f9d77e,stroke:#d9b95c
+    style active fill:#f9d77e,stroke:#d9b95c
+    style progress fill:#f9d77e,stroke:#d9b95c
+    
+    style Error fill:#ff5555,stroke:#cc0000,color:white,stroke-width:2px
+    style BlockCreative fill:#ffaaaa,stroke:#ff8080
+    style BlockMulti fill:#ffaaaa,stroke:#ff8080
+    style UseCorrectFn fill:#8cff8c,stroke:#4dbb5f
+</code></pre>
+
+<h2 id="memory-bank-file-structure">MEMORY BANK FILE STRUCTURE</h2>
+
+<pre><code class="language-mermaid">flowchart TD
+    PB([projectbrief.md]) --&gt; PC([productContext.md])
+    PB --&gt; SP([systemPatterns.md])
+    PB --&gt; TC([techContext.md])
+    
+    PC &amp; SP &amp; TC --&gt; AC([activeContext.md])
+    
+    AC --&gt; P([progress.md])
+    AC --&gt; Tasks([tasks.md])
+
+    style PB fill:#f9d77e,stroke:#d9b95c
+    style PC fill:#a8d5ff,stroke:#88b5e0
+    style SP fill:#a8d5ff,stroke:#88b5e0
+    style TC fill:#a8d5ff,stroke:#88b5e0
+    style AC fill:#c5e8b7,stroke:#a5c897
+    style P fill:#f4b8c4,stroke:#d498a4
+    style Tasks fill:#f4b8c4,stroke:#d498a4,stroke-width:3px
+</code></pre>
+
+<h2 id="verification-commitment">VERIFICATION COMMITMENT</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─────────────────────────────────────────────────────┐
+│ I WILL follow the appropriate visual process map    │
+│ I WILL run all verification checkpoints             │
+│ I WILL maintain tasks.md as the single source of    │
+│ truth for all task tracking                         │
+└─────────────────────────────────────────────────────┘
+</code></pre></div></div>
+
+      </section>
+    </div>
+  </body>
+</html>
