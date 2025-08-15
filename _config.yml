@@ -55,7 +55,7 @@ social:
     - "https://github.com/yaogjim"
 
 # 页脚设置
-footer_content: 'Copyright &copy; 2025 我的知识库. 基于 <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a> 构建.'
+footer_content: "Copyright &copy; 2025 我的知识库. "
 
 # 颜色主题 (light, dark, auto)
 color_scheme: light
