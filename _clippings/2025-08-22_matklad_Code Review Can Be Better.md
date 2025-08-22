@@ -63,7 +63,3 @@ tags:
 - 在 GitHub 的 Web API 之上实现编辑器内审查界面的 [prr](https://doc.dxuuu.xyz/prr/index.html)
 - 《简街资本的代码审查之道》表明，一个更美好的世界是有可能实现的，而且它已经存在，只是并非处处皆是。
 - [git-pr](https://pr.pico.sh/) 是一个在理念上与之类似的项目，它利用 Git 原生特性来取代整个拉取请求工作流程。
-
-Enjoyed this post?[添加我们的 RSS 源](https://tigerbeetle.com/blog/atom.xml)
-
-![An idling tiger beetle](https://tigerbeetle.com/blog/img/beetle-idle.gif)
