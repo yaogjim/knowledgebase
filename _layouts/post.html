@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | escape }}</title>
+  <!-- 引入笔记页面的专属 CSS -->
+  <link rel="stylesheet" href="{{ '/assets/css/post.css' | relative_url }}">
+  <!-- 引入一个通用的 Google 字体，让中英文显示更优雅 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- 添加顶部导航栏 -->
+  <nav class="top-navigation">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="{{ '/' | relative_url }}" class="nav-brand">📚 我的知识库</a>
+      </div>
+      <div class="nav-right">
+        <a href="{{ '/' | relative_url }}" class="nav-link">🏠 首页</a>
+        <a href="#" class="nav-link" onclick="history.back(); return false;">⬅️ 返回</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="post-container">
+    <header class="post-header">
+      <!-- 添加面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="{{ '/' | relative_url }}">首页</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="current-page">{{ page.title | default: "笔记详情" }}</span>
+      </div>
+      
+      <!-- 显示笔记的标题 -->
+      <h1 class="post-title">{{ page.title | default: "无标题笔记" }}</h1>
+      
+      <!-- 显示笔记的元数据 -->
+      <div class="post-meta">
+        {% if page.author %}
+          <span class="meta-item">✍️ <strong>作者:</strong> {{ page.author | join: ', ' | remove: '[[' | remove: ']]' }}</span>
+        {% endif %}
+        {% if page.created %}
+          <span class="meta-item">📅 <strong>创建日期:</strong> {{ page.created | date: "%Y-%m-%d" }}</span>
+        {% endif %}
+        {% if page.source %}
+          <span class="meta-item">🔗 <strong>来源:</strong> <a href="{{ page.source }}" target="_blank" rel="noopener noreferrer">点击查看</a></span>
+        {% endif %}
+      </div>
+    </header>
+
+    <!-- 这里是笔记 Markdown 内容被渲染后的地方 -->
+    <article class="post-content">
+      {{ content }}
+    </article>
+
+    <!-- 显示标签 -->
+    {% if page.tags %}
+      <footer class="post-footer">
+        <div class="post-tags">
+          <strong>🏷️ 标签:</strong>
+          {% assign tag_list = page.tags | first | split: ' ' %}
+          {% for tag in tag_list %}
+            {% if tag != "" and tag != "#" %}
+              <span class="tag">{{ tag }}</span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </footer>
+    {% endif %}
+    
+    <!-- 相关文章推荐 -->
+    {% if site.clippings.size > 1 %}
+    <div class="related-posts">
+      <h3>📖 更多文章</h3>
+      <ul class="related-list">
+        {% assign related_count = 0 %}
+        {% for post in site.clippings limit: 10 %}
+          {% if post.url != page.url and related_count < 5 %}
+            {% assign related_count = related_count | plus: 1 %}
+            <li>
+              <a href="{{ post.url | relative_url }}">
+                <span class="related-title">{{ post.title | default: "无标题笔记" }}</span>
+                {% if post.created %}
+                  <span class="related-date">{{ post.created | date: "%m-%d" }}</span>
+                {% endif %}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    
+    <!-- 返回首页的链接 -->
+    <div class="back-to-home">
+      <a href="{{ '/' | relative_url }}">&larr; 返回知识库首页</a>
+      <a href="#" onclick="history.back(); return false;" class="back-btn">↶ 返回上一页</a>
+    </div>
+  </div>
+
+  <!-- Mermaid.js 集成 -->
+  <script type="module">
+    // 1. 引入 Mermaid 库
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // 2. 初始化
+    mermaid.initialize({ startOnLoad: true });
+
+    // 3. 兼容 Jekyll 的 Markdown 渲染
+    // Jekyll 会把 ```mermaid ... ``` 渲染成 <pre><code class="language-mermaid">...</code></pre>
+    // 我们需要找到这些块，并把 class="language-mermaid" 改为 class="mermaid"
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre code.language-mermaid').forEach((block) => {
+        const preElement = block.parentNode;
+        const mermaidContainer = document.createElement('div');
+        mermaidContainer.innerHTML = block.textContent;
+        mermaidContainer.className = 'mermaid';
+        preElement.parentNode.replaceChild(mermaidContainer, preElement);
+      });
+    });
+
+          // 2. 自动为文章中的所有图片添加 Lity 灯箱功能
+      // 遍历文章内容区域的所有图片
+      document.querySelectorAll('.post-content img').forEach(function(img) {
+        // 检查图片是否已经被链接包裹，避免重复操作
+        if (img.parentNode.tagName !== 'A') {
+          var link = document.createElement('a');
+          link.href = img.src;
+          // 关键：添加这个属性，Lity 库会自动识别并绑定“打开灯箱”事件
+          link.setAttribute('data-lity', ''); 
+          
+          // 将新创建的链接插入到图片前面，然后将图片移动到链接内部
+          img.parentNode.insertBefore(link, img);
+          link.appendChild(img);
+        }
+      });
+  </script>
+
+</body>
+</html>

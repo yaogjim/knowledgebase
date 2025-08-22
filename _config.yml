@@ -1,0 +1,66 @@
+title: "我的知识库"
+description: "个人Obsidian笔记整理与分享"
+baseurl: "/knowledgebase"
+url: "https://yaogjim.github.io" # 替换为您的GitHub Pages URL
+
+# 主题设置 (如果要使用Just the Docs主题，取消下面的注释)
+# theme: just-the-docs
+
+# 搜索功能
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false
+
+# 导航设置
+nav_sort: case_insensitive
+nav_fold: true
+
+collections:
+  clippings:
+    output: true
+    sort_by: created
+    permalink: /:collection/:name/
+
+# 为 "clippings" 集合设置默认布局
+defaults:
+  - scope:
+      path: ""
+      type: "clippings"
+    values:
+      layout: "post"
+      nav_exclude: false
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+# 插件
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# SEO设置
+author: "yaogjim"
+social:
+  name: "yaogjim"
+  links:
+    - "https://github.com/yaogjim"
+
+# 页脚设置
+footer_content: "Copyright &copy; 2025 我的知识库. "
+
+# 颜色主题 (light, dark, auto)
+color_scheme: light
+
+# 代码高亮
+highlighter: rouge
+kramdown:
+  syntax_highlighter: rouge
