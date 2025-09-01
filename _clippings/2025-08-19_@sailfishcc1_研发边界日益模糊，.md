@@ -1,11 +1,11 @@
 ---
-title: "未来工作技能：全栈能力 vs 深度专业能力"
-source: "https://x.com/sailfishcc1/status/1957302468511203557"
+title: 2025-08-19_@sailfishcc1_研发边界日益模糊
+source: https://x.com/sailfishcc1/status/1957302468511203557
 author:
   - "[[@sailfishcc1]]"
 published: 2025-08-19
 created: 2025-08-19
-description:
+description: 
 tags:
   - "@sailfishcc1"
 ---
