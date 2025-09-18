@@ -9,7 +9,7 @@ description: ""
 tags:
 ---
 
-好的，这是根据您提供的视频文稿主题内容划分的段落、总结以及发言人发言细节。
+# AI Now Elon’s $1T Package, Apple’s $600B for Trump & How Small Startups Win
 
 ### 万亿薪酬方案与后资本主义社会的展望
 
