@@ -1,12 +1,12 @@
 ---
-title: "2025-10-07_"
+title: 2025-10-07_Spec-driven development with AI
 source: ""
 author:
   - ""
 published: 2025-10-07
 created: 2025-10-07
-description: ""
-tags: []
+description: 
+tags:
 ---
 
 ## 📝 通俗易懂的总结：Spec-driven development with AI
