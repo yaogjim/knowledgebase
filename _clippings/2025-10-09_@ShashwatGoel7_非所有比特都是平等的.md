@@ -1,21 +1,13 @@
 ---
-title: 信息位的重要性
-source: https://x.com/ShashwatGoel7/status/1975939253680120152
+title: "非所有比特都是平等的"
+source: "https://x.com/ShashwatGoel7/status/1975939253680120152"
 author:
   - "[[@ShashwatGoel7]]"
 published: 2025-10-09
 created: 2025-10-09
-description: 
+description:
 tags:
-  - "@ShashwatGoel7"
-  - "#"
-  - 人工智能
-  - "#"
-  - 强化学习
-  - "#"
-  - 模仿学习
-  - "#"
-  - SFT
+  - "@ShashwatGoel7 #强化学习 #SFT #模仿学习 #监督微调 #信息比特 #人工智能 #深度学习 #语言模型"
 ---
 **Shashwat Goel** @ShashwatGoel7 [2025-10-08](https://x.com/ShashwatGoel7/status/1975939253680120152)
 
