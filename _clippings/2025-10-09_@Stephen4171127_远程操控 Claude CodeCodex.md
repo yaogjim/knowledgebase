@@ -1,13 +1,24 @@
 ---
-title: "**远程操控 Claude Code/Codex：3 种手机上省事的解决方案**"
-source: "https://x.com/Stephen4171127/status/1976011856146767989"
+title: 远程操控 laudeCode/Codex
+source: https://x.com/Stephen4171127/status/1976011856146767989
 author:
   - "[[@Stephen4171127]]"
 published: 2025-10-09
 created: 2025-10-09
-description:
+description: 
 tags:
-  - "@Stephen4171127 # 线上协作 # 远程操控 # Claude Code # CodeX # AI"
+  - "@Stephen4171127"
+  - "#"
+  - 线上协作
+  - "#"
+  - 远程操控
+  - "#"
+  - Claude
+  - Code
+  - "#"
+  - CodeX
+  - "#"
+  - AI
 ---
 **熊布朗** @Stephen4171127 [2025-10-08](https://x.com/Stephen4171127/status/1976011856146767989)
 
