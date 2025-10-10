@@ -34,22 +34,3 @@ to B 云存储厂商 @Box 的 CEO @levie 在 YC 的分享很有价值：50 人�
 \- 跨越鸿沟
 
 \- 蓝海战略
-
----
-
-**迈克 Mike Chong** @mike\_chong\_zh [2025-10-08](https://x.com/mike_chong_zh/status/1975946409066283340)
-
-原视频：
-
----
-
-**LiUgOd** @LiuGods [2025-10-08](https://x.com/LiuGods/status/1975963583814172964)
-
-值得反复研读
-
----
-
-**AI at AMD** @AIatAMD
-
-Join the AI conversation. Follow @AIatAMD to discover the latest AI innovation for developers.  
-加入 AI 对话。关注 @AIatAMD ，探索面向开发者的最新 AI 创新。
