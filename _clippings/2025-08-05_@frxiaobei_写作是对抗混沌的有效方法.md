@@ -7,6 +7,19 @@ created: 2025-08-05
 description:
 tags:
   - "@frxiaobei #输出 #学习 #思考 #知识 #费曼学习法"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **凡人小北** @frxiaobei 2025-08-02
 

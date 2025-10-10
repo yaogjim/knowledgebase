@@ -7,6 +7,19 @@ created: 2025-06-04
 description:
 tags:
   - "@kieranklaassen #LLM安全 #智能体安全 #安全扫描器"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Kieran Klaassen** @kieranklaassen [2025-06-03](https://x.com/kieranklaassen/status/1930032748951154966)
 

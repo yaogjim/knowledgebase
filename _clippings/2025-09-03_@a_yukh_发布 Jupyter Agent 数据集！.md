@@ -8,6 +8,19 @@ created: 2025-09-03
 description:
 tags:
   - "@a_yukh #数据科学 #机器学习 #代码执行 #JupyterNotebook"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Hanna Yukhymenko** @a\_yukh [2025-09-02](https://x.com/a_yukh/status/1962911097452683710)
 

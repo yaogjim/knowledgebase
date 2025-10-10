@@ -6,6 +6,19 @@ published: 2025-08-18
 created: 2025-08-18
 description:
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [Skip to content](https://docs.llamaindex.ai/en/latest/examples/cookbooks/build_knowledge_graph_with_neo4j_llamacloud/?utm_source=socials&utm_medium=li_social#building-a-knowledge-graph-with-llamacloud-neo4j)
 

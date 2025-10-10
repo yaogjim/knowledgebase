@@ -8,6 +8,19 @@ created: 2025-03-26
 description: Sam 引用的推文作者 Joe，在OpenAI负责指导研究和算力团队，Sam 评价 Joe 说他的一个超能力，就是能深刻理解“情绪清晰度”（emotional clarity）以及如何实现它。在通用人工智能（AGI）时代，这将成为最重要的技能之一。Joe 写的有关情绪的 50 条
 tags:
   - clippings
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **宝玉** @dotey 2025-03-20
 

@@ -7,6 +7,19 @@ created: 2025-04-22
 description: "Recognized by leading researchers as the most performant AI for video understanding; surpassing benchmarks from cloud majors and open-source models."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 教程
 

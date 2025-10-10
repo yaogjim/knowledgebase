@@ -7,6 +7,19 @@ created: 2025-04-29
 description:
 tags:
   - "@feltanimalworld #熵控术 #佛教 #金刚经 #宗教 #认知 #智慧"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Susan/STEM MOM** @feltanimalworld 2025-04-27
 

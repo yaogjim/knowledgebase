@@ -7,6 +7,19 @@ created: 2025-05-23
 description:
 tags:
   - "@feltanimalworld #AI #中产阶级 #阶级分化 #科技冲击"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Susan STEM** @feltanimalworld 2025-05-21
 

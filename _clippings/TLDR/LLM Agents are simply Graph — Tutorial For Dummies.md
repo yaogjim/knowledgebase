@@ -8,6 +8,19 @@ created: 2025-03-26
 description: "Ever wondered how AI agents actually work behind the scenes?"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ![](https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F382ea8f1-0610-4cce-b4ef-350a9df68ee0_1050x588.png)
 

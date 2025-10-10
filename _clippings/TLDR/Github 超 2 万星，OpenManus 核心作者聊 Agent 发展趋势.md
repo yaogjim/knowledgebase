@@ -8,6 +8,19 @@ created: 2025-03-26
 description: "OpenManus 核心作者分享 Agent 发展趋势，重点介绍了其 3 小时快速复刻 Manus 的技术实现和未来发展方向。"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 文章转载自「锦秋集」。  
 

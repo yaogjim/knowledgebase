@@ -7,6 +7,19 @@ created: 2025-04-23
 description:
 tags:
   - "@0xthefool #Prompt #AI #大语言模型 #人工智能 #PromptEngineering"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Shawn Pang 庞舜心** @0xthefool [2025-04-22](https://x.com/0xthefool/status/1914518588515365033)
 

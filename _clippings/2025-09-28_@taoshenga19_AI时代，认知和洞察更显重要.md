@@ -8,6 +8,19 @@ created: 2025-09-28
 description:
 tags:
   - "@taoshenga19 #AI #内容生成 #未来 #认知 #洞察"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **闵祖涛** @taoshenga19 2025-09-08
 

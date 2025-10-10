@@ -8,6 +8,19 @@ created: 2025-07-01
 description: "I rewrote my \"tech writer\" agent in 7 frameworks: Agno, Autogen, Google ADK, Atomic Agents, DSPy, Langgraph, and Pydantic AI. You'll NEVER guess the winners."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ### 我用 7 种框架重写了我的“技术写作”智能体：Agno、Autogen、谷歌 ADK、Atomic Agents、DSPy、Langgraph 和 Pydantic AI。你绝对猜不到胜出者是谁。
 

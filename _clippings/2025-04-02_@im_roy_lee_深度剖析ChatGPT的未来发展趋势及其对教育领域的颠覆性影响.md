@@ -7,6 +7,19 @@ created: 2025-04-02
 description: "刚刚结束了在@InterviewCoder 的第二个月，营收达到 22.85 万美元，利润为 22.4 万美元；以下是一些数据和想法： 94%的营收来自月度订阅（每月 60 美元），月度用户流失率约为 35%。 我们的利润率约为 99%；唯一的实际成本来自每月的 Vercel 账"
 tags:
   - "@im_roy_lee #人工智能 #ChatGPT #深度学习 #自然语言处理 #科技创新 #教育变革 #未来趋势"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Roy** @im\_roy\_lee [2025-04-01](https://x.com/im_roy_lee/status/1907165655151079729)
 

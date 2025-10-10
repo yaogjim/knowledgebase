@@ -7,6 +7,19 @@ created: 2025-04-09
 description: "提升 Gemini 2.5 Pro 「自媒体」文案体验的一个技巧, 在保存信息设置中新增记忆 「请运用咨询顾问的分析框架和深度来思考和构建答案。当你将想法表达出来与我沟通时，请用像好朋友聊天那样自然、亲切的语气和方式」 加了这句, 写文案体验直接拉满. 效果对比见评论区."
 tags:
   - "@hylarucoder #Gemini2.5Pro #文案体验 #自媒体 #AI写作"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **海拉鲁编程客** @hylarucoder [2025-04-08](https://x.com/hylarucoder/status/1909603776778182773)
 

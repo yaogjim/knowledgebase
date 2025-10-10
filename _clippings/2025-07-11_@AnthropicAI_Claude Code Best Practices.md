@@ -8,6 +8,19 @@ created: 2025-07-11
 description: "A blog post covering tips and tricks that have proven effective for using Claude Code across various codebases, languages, and environments."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [Anthropic 公司的工程团队](https://www.anthropic.com/engineering) ![](https://www-cdn.anthropic.com/images/4zrzovbb/website/6295100fcf8952bed666ba69536c581af87eef15-2554x2554.svg)
 

@@ -8,6 +8,19 @@ created: 2025-08-20
 description:
 tags:
   - "@Himalaya_bear1 #纽约 #绅士俱乐部 #高端消费 #职业女性 #人生感悟 #文化差异 #中国人在美国"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Cha Li | 查立** @Himalaya\_bear1 2025-08-19
 

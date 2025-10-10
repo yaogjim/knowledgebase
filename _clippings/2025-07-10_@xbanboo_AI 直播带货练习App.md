@@ -7,6 +7,19 @@ created: 2025-07-10
 description:
 tags:
   - "@xbanboo #直播带货 #AI #练习 #电商 #电商平台 #主播"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **banboo** @xbanboo [2025-07-10](https://x.com/xbanboo/status/1943131222030586012)
 

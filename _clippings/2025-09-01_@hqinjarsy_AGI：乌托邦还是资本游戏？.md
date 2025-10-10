@@ -8,6 +8,19 @@ created: 2025-09-01
 description:
 tags:
   - "@hqinjarsy #AGI #LLM #人工智能 #通识人工智能 #科技革命 #价值观"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Han Qin** @hqinjarsy [2025-08-31](https://x.com/hqinjarsy/status/1962213954870280279)
 

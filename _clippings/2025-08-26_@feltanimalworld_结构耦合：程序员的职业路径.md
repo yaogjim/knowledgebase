@@ -8,6 +8,19 @@ created: 2025-08-26
 description:
 tags:
   - "@feltanimalworld #超级个体 #结构耦合 #职业发展 #AI 落地"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Susan STEM** @feltanimalworld [2025-08-24](https://x.com/feltanimalworld/status/1959680202314785228)
 

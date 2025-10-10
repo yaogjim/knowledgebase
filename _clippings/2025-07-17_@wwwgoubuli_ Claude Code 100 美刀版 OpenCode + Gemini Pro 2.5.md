@@ -7,5 +7,18 @@ created: 2025-07-17
 description:
 tags:
   - "@wwwgoubuli #语言模型 #人工智能 #比较 #工具"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 目前组合 claude code 100 美刀版 opencode + gemini pro 2.5 和很多人的感受可能不一样的是，我认为这两者能力其实在同一层级，但要看是什么样的人使用 以及使用方法。

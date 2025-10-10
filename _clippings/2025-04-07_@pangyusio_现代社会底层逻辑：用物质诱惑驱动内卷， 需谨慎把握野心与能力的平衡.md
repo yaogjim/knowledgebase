@@ -7,6 +7,19 @@ created: 2025-04-07
 description: "现代社会的底层逻辑，就是用房子、车子、孩子、高消费和优越感这些诱饵，驱动每个人拼命去劳动、去卷、去创造价值，从而推动整个社会往前走。 这本身其实是个挺不错的机制，高效，也相对公平。但有一点特别重要：你的能力，一定要和你的野心匹配。 一旦野心超出能力太多，你就只能拿身体健康、心"
 tags:
   - "@pangyusio #消费主义 #内卷 #社会机制 #野心 #能力 #物质诱惑 #生活目标 #个人成长 #清醒"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Pangyu 胖鱼** @pangyusio [2025-03-30](https://x.com/pangyusio/status/1906374137679139239)
 

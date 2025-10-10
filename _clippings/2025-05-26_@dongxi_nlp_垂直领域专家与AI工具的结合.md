@@ -7,6 +7,19 @@ created: 2025-05-26
 description:
 tags:
   - "@dongxi_nlp #AI #垂直领域 #行业专家 #工具 #护城河"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **马东锡 NLP** @dongxi\_nlp [2025-05-25](https://x.com/dongxi_nlp/status/1926613249958494665)
 

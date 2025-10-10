@@ -8,6 +8,19 @@ created: 2025-08-15
 description:
 tags:
   - "@llama_index #人工智能 #代理 #开发 #氛围编码"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LlamaIndex** @llama\_index [2025-08-14](https://x.com/llama_index/status/1956033914633642418)
 

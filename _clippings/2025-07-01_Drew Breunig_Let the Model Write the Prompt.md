@@ -8,6 +8,19 @@ created: 2025-07-01
 description: "Notes from a talk I delivered at the 2025 Data + AI Summit, detailing the problem with prompts in your code and how DSPy can make everything better."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ### 为何应用程序和管道应使用 DSPy
 

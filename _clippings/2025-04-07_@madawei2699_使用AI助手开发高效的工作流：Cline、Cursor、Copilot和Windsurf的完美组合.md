@@ -7,6 +7,19 @@ created: 2025-04-07
 description: "最近一周完全用 Cline/Cursor/Copilot/Windsurf 等 AI Agent开发完了下面两个专注 LLM动态工作流编排（非 DAG 这种预定义工作流）的项目： https://github.com/i365dev/agent_forge… https:/"
 tags:
   - "@madawei2699 #AI #工作流 #自动化 #LLM #Cline #Cursor #Copilot #Windsurf #开发"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Dawei Ma** @madawei2699 [2025-03-29](https://x.com/madawei2699/status/1905860072795681017)
 

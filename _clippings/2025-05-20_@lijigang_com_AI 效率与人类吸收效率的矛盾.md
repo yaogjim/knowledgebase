@@ -7,6 +7,19 @@ created: 2025-05-20
 description:
 tags:
   - "@lijigang_com #AI #信息时代 #生产效率 #吸收效率"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **李继刚** @lijigang\_com [2025-05-19](https://x.com/lijigang_com/status/1924354379806650370)
 

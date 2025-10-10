@@ -8,6 +8,19 @@ created: 2025-09-29
 description:
 tags:
   - "@dotey #持续工作 #ClaudeCode #AGENT #工具 #自动化 #任务执行"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **宝玉** @dotey [2025-09-28](https://x.com/dotey/status/1972200355506135165)
 

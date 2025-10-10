@@ -8,6 +8,19 @@ created: 2025-09-28
 description:
 tags:
   - "@tutulifestyle #直播 #消费升级 #电商 #大数据"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **TuTu生活志** @tutulifestyle [2025-09-27](https://x.com/tutulifestyle/status/1971864380091650449)
 

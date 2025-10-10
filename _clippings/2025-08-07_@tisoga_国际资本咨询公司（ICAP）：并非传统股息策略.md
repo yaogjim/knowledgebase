@@ -7,6 +7,19 @@ created: 2025-08-07
 description:
 tags:
   - "@tisoga #ICAP #股息策略 #投资"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jiayuan** @tisoga [2025-08-06](https://x.com/tisoga/status/1953084882487525703)
 

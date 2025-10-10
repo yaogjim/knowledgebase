@@ -8,6 +8,19 @@ created: 2025-09-24
 description:
 tags:
   - "@lijigang_com #现代思想 #认识论 #本体论 #方法论 #意义论 #中国传统思想"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **李继刚** @lijigang\_com [2025-09-23](https://x.com/lijigang_com/status/1970465230993195432)
 

@@ -8,6 +8,19 @@ created: 2025-10-09
 description:
 tags:
   - "@Barret_China # AI # 传统软件工程 # 机器学习  # 人工智能 # 机器人"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Barret李靖** @Barret\_China [2025-10-08](https://x.com/Barret_China/status/1975861192548548974)
 

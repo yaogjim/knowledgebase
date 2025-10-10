@@ -7,6 +7,19 @@ created: 2025-06-11
 description:
 tags:
   - "@BadUncleX #ClaudeCode #自动化 #AI #工具调用"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **BadUncle** @BadUncleX [2025-06-11](https://x.com/BadUncleX/status/1932694405154279567)
 

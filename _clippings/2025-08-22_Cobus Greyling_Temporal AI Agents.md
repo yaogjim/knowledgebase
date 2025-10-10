@@ -8,6 +8,19 @@ created: 2025-08-22
 description: "Memory is also important from continuity perspective and optimising the user experience; the user does not have to repeat or re-input information which can be drawn from conversation history. RAG is…"
 tags:
   - "Cobus Greyling"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [Sitemap](https://cobusgreyling.medium.com/sitemap/sitemap.xml)
 

@@ -7,6 +7,19 @@ created: 2025-03-31
 description: "我感觉是之前的提示词写的有特定的文字爱好，只能说适合你个人的视频气质。我换成下图的prompt试验一下，风格各不同，但估计由新人split test的话，估计gemini 2.5 pro传播力会强点GPT 4.5: ----------做自媒体只需记住三个关键词：露脸、真诚、重复"
 tags:
   - "@jesselaunz"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jesse Lau** @jesselaunz 2025-03-30
 

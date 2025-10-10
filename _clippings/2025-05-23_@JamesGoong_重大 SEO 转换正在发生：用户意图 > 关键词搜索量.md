@@ -7,6 +7,19 @@ created: 2025-05-23
 description:
 tags:
   - "@JamesGoong #SEO #用户意图 #关键词优化"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **在悉尼和稀泥** @JamesGoong [2025-05-23](https://x.com/JamesGoong/status/1925731159423520880/history)
 

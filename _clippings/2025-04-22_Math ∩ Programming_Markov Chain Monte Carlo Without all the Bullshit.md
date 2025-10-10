@@ -8,6 +8,19 @@ created: 2025-04-22
 description: "I have a little secret: I don’t like the terminology, notation, and style of writing in statistics. I find it unnecessarily complicated. This shows up when trying to read about Markov Chain Monte Carlo methods. Take, for example, the abstract to the Markov Chain Monte Carlo article in the Encyclopedia of Biostatistics.Markov chain Monte Carlo (MCMC) is a technique for estimating by simulation the expectation of a statistic in a complex model."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 本文是从我的旧 Wordpress 博客移植到这里的。如果你在渲染或布局方面发现任何问题，请给我发电子邮件。
 

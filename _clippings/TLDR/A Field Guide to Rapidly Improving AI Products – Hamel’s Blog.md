@@ -8,6 +8,19 @@ created: 2025-03-26
 description: "Evaluation methods, data-driven improvement, and experimentation techniques from 30+ production implementations."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 大多数人工智能团队关注的都是错误的事情。以下是我在咨询工作中常见的一幕：
 

@@ -8,6 +8,19 @@ created: 2025-08-26
 description: "AI 加速主义。前 Outlook Mobile 开发者，软件3.0架构师。 努力让一起用 AI 创造属于我们自己的产品与企业。一起学习，共同成功。文科生，也是理科生？？"
 tags:
   - "@mike_chong_zh #人工智能 #代码生成 #DevOps #GitHub #自动化 #效率"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **迈克 Mike Chong** @mike\_chong\_zh [2025-08-26](https://x.com/mike_chong_zh/status/1960176017135546687)
 

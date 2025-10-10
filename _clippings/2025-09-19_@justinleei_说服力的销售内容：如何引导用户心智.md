@@ -8,6 +8,19 @@ created: 2025-09-19
 description:
 tags:
   - "@justinleei #内容营销 #销售技巧 #说服力 #认知改造"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **李举刚** @justinleei [2025-09-16](https://x.com/justinleei/status/1967938482111905994)
 

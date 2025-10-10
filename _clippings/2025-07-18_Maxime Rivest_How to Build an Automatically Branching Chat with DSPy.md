@@ -8,6 +8,19 @@ created: 2025-07-18
 description: "DSPy is particularly useful for making use of AI generation straight back in your code. As a way to demonstrate, we will build a chat application that has no single conversation. Where your messages go will be decided automatically by AI."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ![](https://maximerivest.com/posts/images/conversation_tree.png)
 

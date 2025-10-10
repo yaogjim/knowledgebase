@@ -7,6 +7,19 @@ created: 2025-07-03
 description:
 tags:
   - "@frxiaobei #AI #医疗诊断 #智能协作 #模型无关 #agent"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **凡人小北** @frxiaobei [2025-07-03](https://x.com/frxiaobei/status/1940610813703627189)
 

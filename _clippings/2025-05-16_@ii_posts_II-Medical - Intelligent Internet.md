@@ -8,6 +8,19 @@ created: 2025-05-16
 description: "* Model CardMedical AI continues to advance at a rapid pace - and our II-Medical-8B is a testament to just how far we’ve come. Despite its compact size, our new model outperforms systems over 10 times larger on key clinical reasoning benchmarks. Designed for precision, transparency, and real-world applicability, II-Medical-8B builds on our commitment to creating trustworthy AI for healthcare and education. With cutting-edge supervised fine-tuning (SFT) and reinforcement learning (RL) pipeline"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [
 

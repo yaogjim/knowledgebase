@@ -7,6 +7,19 @@ created: 2025-08-06
 description:
 tags:
   - "@YYislearning #技术 #合伙 #招聘 #外包 #AI产品 #RPA #MCP #工作流"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **YY** @YYislearning [2025-06-23](https://x.com/YYislearning/status/1937007208878997701)
 

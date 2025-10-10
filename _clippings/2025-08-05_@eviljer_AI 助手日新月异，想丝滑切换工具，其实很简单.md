@@ -7,6 +7,19 @@ created: 2025-08-05
 description:
 tags:
   - "@eviljer #AI #工具 #切换 #效率 #自动化"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jerlin** @eviljer [2025-08-03](https://x.com/eviljer/status/1951996893854306522/history)
 

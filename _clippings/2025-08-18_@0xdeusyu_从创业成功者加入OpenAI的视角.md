@@ -8,6 +8,19 @@ created: 2025-08-18
 description:
 tags:
   - "@0xdeusyu"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Rainman** @0xdeusyu [2025-08-17](https://x.com/0xdeusyu/status/1957125335423799558)
 

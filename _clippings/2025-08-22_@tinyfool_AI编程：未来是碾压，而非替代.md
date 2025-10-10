@@ -8,6 +8,19 @@ created: 2025-08-22
 description:
 tags:
   - "@tinyfool #AI编程 #未来科技 #人工智能 #协作"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Tinyfool** @tinyfool 2025-08-21
 

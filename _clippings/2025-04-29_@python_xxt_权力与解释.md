@@ -7,6 +7,19 @@ created: 2025-04-29
 description:
 tags:
   - "@python_xxt #权力 #解释 #社会 #系统 #力量 #弱者 #强者"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Robinson · 鲁棒逊** @python\_xxt 2025-04-28
 

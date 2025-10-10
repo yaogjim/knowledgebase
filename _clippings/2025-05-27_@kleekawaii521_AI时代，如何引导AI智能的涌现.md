@@ -7,6 +7,19 @@ created: 2025-05-27
 description:
 tags:
   - "@kleekawaii521 #AI进化 #agenticAI #工具使用 #内生智能"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **神樂坂kleekwaii** @kleekawaii521 2025-05-25
 

@@ -7,6 +7,19 @@ created: 2025-04-07
 description: "身边的人是否“旺”你，我的一个评判标准是“辽阔”，如果跟着对方，视野会变得辽阔，格局变大，时间和空间都有一种被放大的感觉，会有一种轻松如沐春风的感觉。 相反，如果对方克你，你就会感觉到“一切都在变小”，变拧巴，自我意志很小，有一种深深的无力感。"
 tags:
   - "@YosefBlockchain #能量场 #人际关系 #个人成长 #格局 #视野"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **陈思远Yosef** @YosefBlockchain [2025-04-06](https://x.com/YosefBlockchain/status/1908681677574201389)
 

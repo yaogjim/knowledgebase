@@ -8,6 +8,19 @@ created: 2025-08-20
 description:
 tags:
   - "@ItsKieranDrew #写作 #提高效率 #生活习惯 #散步 #冥想"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Kieran Drew** @ItsKieranDrew [2025-08-19](https://x.com/ItsKieranDrew/status/1957761088801415296)
 

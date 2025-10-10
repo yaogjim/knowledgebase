@@ -8,6 +8,19 @@ created: 2025-08-19
 description: 
 tags:
   - "@sailfishcc1"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **橙子啊** @sailfishcc1 [2025-08-18](https://x.com/sailfishcc1/status/1957302468511203557)
 

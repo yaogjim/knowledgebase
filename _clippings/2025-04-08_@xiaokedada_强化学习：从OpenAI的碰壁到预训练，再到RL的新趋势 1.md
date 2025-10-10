@@ -7,6 +7,19 @@ created: 2025-04-08
 description: "#分享 这期博客挺硬核，尤其是从16年 OpenAI RL 碰壁转到预训练，再从预训练到 RL，娓娓道来。 Intelligence = LLM (理解) × RL (决策)，二者缺一不可 RL 目前三大分支：泛化 (DeepSeek)、代码 (Anthropic)、Agen"
 tags:
   - "@xiaokedada #强化学习 #大模型 #预训练 #RL #AI"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **nazha** @xiaokedada [2025-04-08](https://x.com/xiaokedada/status/1909498953303048550)
 

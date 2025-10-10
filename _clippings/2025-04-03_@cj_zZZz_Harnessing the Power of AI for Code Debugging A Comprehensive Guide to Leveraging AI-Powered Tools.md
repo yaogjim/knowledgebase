@@ -7,6 +7,19 @@ created: 2025-04-03
 description: "在过去 10 天里，我使用了一些人工智能模型和工具。我构建了一个人工智能代理，它可以在谷歌趋势和谷歌广告关键词上进行搜索，然后找到可用的域名。（如果我把它作为一个售价 199 美元的一次性付费产品出售，肯定会畅销）然后我使用了开源的 manus（基于浏览器使用框架构建的开源 ma"
 tags:
   - "@cj_zZZz #人工智能 #代码调试 #AI编程 #深度学习 #软件开发"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Cj Z** @cj\_zZZz [2025-04-02](https://x.com/cj_zZZz/status/1907490067238760952)
 

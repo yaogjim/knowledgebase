@@ -8,6 +8,19 @@ created: 2025-08-20
 description:
 tags:
   - "@frxiaobei #职场剧 #官场剧 #历史 #电视剧 #职场 #小说 #陈乔恩 #王凯 #马伯庸 #古代"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **凡人小北** @frxiaobei [2025-08-19](https://x.com/frxiaobei/status/1957745792292385237)
 

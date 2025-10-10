@@ -7,6 +7,19 @@ created: 2025-05-09
 description:
 tags:
   - "@feltanimalworld #AI发展 #人机协作 #智能框架 #自我演化"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Susan STEM** @feltanimalworld 2025-05-06
 

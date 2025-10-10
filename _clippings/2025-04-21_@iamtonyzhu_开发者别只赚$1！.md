@@ -7,6 +7,19 @@ created: 2025-04-21
 description:
 tags:
   - "@iamtonyzhu #市场营销 #品牌建设 #用户需求 #价值洞察"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Tony出海号** @iamtonyzhu 2025-04-21
 

@@ -7,6 +7,19 @@ created: 2025-07-11
 description:
 tags:
   - "@robj3d3 #人工智能 #开发效率 #ClaudeCode #技术分享"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Rob Hallam** @robj3d3 [2025-06-18](https://x.com/robj3d3/status/1935466820959617479)
 

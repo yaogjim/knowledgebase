@@ -7,6 +7,19 @@ created: 2025-07-01
 description: "In this blog we provide detailed explanation of how QLoRA works and how you can use it in hugging face to finetune your models. We also touch on the lastest quantization and LoRA based training methods!"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ![](https://cdn.prod.website-files.com/61b1b0f3cfbb813f0495d1f9/61d5ae26c987d76de2556cd2_BG%2020-min.png) ![](https://cdn.prod.website-files.com/61b1b0f3cfbb813f0495d1f9/61d5ae26112cd59bc0ecef4a_BG%2021-min.png)
 

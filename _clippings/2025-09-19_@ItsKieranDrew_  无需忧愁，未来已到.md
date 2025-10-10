@@ -13,6 +13,19 @@ tags:
   - "#创业"
   - "#商业"
   - "#个人成长"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Kieran Drew** @ItsKieranDrew [2025-09-18](https://x.com/ItsKieranDrew/status/1968631433456390263)
 

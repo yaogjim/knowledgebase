@@ -8,6 +8,19 @@ created: 2025-10-07
 description:
 tags:
   - "@xbanboo #AI #瑜伽 #生成图片 #技术 #商业机会"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **banboo** @xbanboo [2025-10-06](https://x.com/xbanboo/status/1975192258770338121)
 

@@ -7,6 +7,19 @@ published: 2025-09-17
 created: 2025-09-17
 description: ""
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 # Why founders fail and why you need to run toward fear | Ben Horowitz
 ### **第一部分：成功的本质与领导者的心理素质**

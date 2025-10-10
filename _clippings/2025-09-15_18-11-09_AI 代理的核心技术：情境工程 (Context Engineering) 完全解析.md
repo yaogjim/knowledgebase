@@ -7,6 +7,19 @@ published: 2025-09-15
 created: 2025-09-15
 description: ""
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # AI 代理的核心技术：情境工程 (Context Engineering) 完全解析

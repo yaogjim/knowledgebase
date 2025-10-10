@@ -8,6 +8,19 @@ created: 2025-10-10
 description:
 tags:
   - "@sirisensen #内容制作流程 #内容杠杆 #AI辅助 #Dan-Koe #内容制作 #创意验证 #素材提炼 #结构分析 #爆款内容 #两阶段提示词系统 #执行节奏"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **西里森森** @sirisensen [2025-10-09](https://x.com/sirisensen/status/1976295680764494241)
 

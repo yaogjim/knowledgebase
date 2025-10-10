@@ -7,6 +7,19 @@ created: 2025-04-24
 description:
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 An AI-powered task-management system you can drop into Cursor, Lovable, Windsurf, Roo, and others.
 

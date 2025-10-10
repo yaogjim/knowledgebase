@@ -8,6 +8,19 @@ created: 2025-07-01
 description: "A technical guide on making a AI ‘Auto-Analyst’"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ### 打造人工智能“自动分析师”的技术指南
 

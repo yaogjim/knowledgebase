@@ -8,6 +8,19 @@ created: 2025-09-26
 description:
 tags:
   - "@rowancheung #人工智能 #创作 #效率 #语音转文本 #AI写作 #散步"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Rowan Cheung** @rowancheung [2025-09-25](https://x.com/rowancheung/status/1971248376177107321)
 

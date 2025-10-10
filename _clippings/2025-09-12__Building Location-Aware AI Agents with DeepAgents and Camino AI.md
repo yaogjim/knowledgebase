@@ -6,6 +6,19 @@ published: 2025-09-12
 created: 2025-09-12
 description: "Learn how to create sophisticated AI research agents that combine location intelligence with web search capabilities using DeepAgents framework and Camino AI."
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 人工智能代理正变得越来越复杂，但大多数都缺乏现实世界的空间感知能力。今天，我们将向您展示如何使用 [深度代理](https://blog.langchain.com/deep-agents/) 和 **卡米诺人工智能** 构建智能的位置感知代理，这些代理能够理解、研究和推理地点与位置。
 

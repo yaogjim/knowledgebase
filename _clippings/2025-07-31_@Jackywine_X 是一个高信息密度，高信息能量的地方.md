@@ -7,6 +7,19 @@ created: 2025-07-31
 description:
 tags:
   - "@Jackywine #信息管理 #知识积累 #信息获取 #学习方法"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jackywine** @Jackywine [2025-07-30](https://x.com/Jackywine/status/1950373889844138367)
 

@@ -8,6 +8,19 @@ created: 2025-07-01
 description: "why fitting in will make you unsuccessful"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ## 如果你想快乐，那就做个失败者
 

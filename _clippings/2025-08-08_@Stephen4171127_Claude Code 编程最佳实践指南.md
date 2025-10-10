@@ -7,6 +7,19 @@ created: 2025-08-08
 description:
 tags:
   - "@Stephen4171127 #AI编程 #ClaudeCode #编程最佳实践"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **熊布朗** @Stephen4171127 [2025-08-07](https://x.com/Stephen4171127/status/1953470929817698786)
 

@@ -7,6 +7,19 @@ created: 2025-07-15
 description:
 tags:
   - "@BadUncleX #产品开发 #AI #Gemini #Claude #营销自动化"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **BadUncle** @BadUncleX [2025-07-15](https://x.com/BadUncleX/status/1944985778834301270)
 

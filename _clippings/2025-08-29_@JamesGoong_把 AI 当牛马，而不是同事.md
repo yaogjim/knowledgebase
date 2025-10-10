@@ -8,6 +8,19 @@ created: 2025-08-29
 description:
 tags:
   - "@JamesGoong #AI  #编程 #效率 #职场"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **在悉尼和稀泥** @JamesGoong [2025-08-23](https://x.com/JamesGoong/status/1959093245650309550/history)
 

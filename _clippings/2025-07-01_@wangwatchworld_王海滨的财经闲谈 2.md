@@ -7,6 +7,19 @@ created: 2025-07-01
 description:
 tags:
   - "@wangwatchworld #外卖 #职业 #收入 #大学毕业生 #社会现状"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **王海滨的财经闲谈** @wangwatchworld 2025-06-27
 

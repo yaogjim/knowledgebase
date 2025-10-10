@@ -8,6 +8,19 @@ created: 2025-09-28
 description:
 tags:
   - "@geekshellio #编程 #AI #日常生活 #助手 #手机 #远程操控"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **安仔** @geekshellio [2025-09-26](https://x.com/geekshellio/status/1971594439312506923)
 

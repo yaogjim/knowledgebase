@@ -8,6 +8,19 @@ created: 2025-08-12
 description:
 tags:
   - "@vista8 #YouTube视频总结 #深度文章 #文本重构"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **向阳乔木** @vista8 [2025-08-11](https://x.com/vista8/status/1954958013628026950)
 

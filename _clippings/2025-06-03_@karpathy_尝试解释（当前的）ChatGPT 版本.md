@@ -7,6 +7,19 @@ created: 2025-06-03
 description:
 tags:
   - "@karpathy #ChatGPT #模型 #AI #LLM"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Andrej Karpathy** @karpathy [2025-06-02](https://x.com/karpathy/status/1929597620969951434)
 

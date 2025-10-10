@@ -7,6 +7,19 @@ created: 2025-04-09
 description: "把一个聊情感还比较厉害的博主做成了 agent 1 秒掌握识人术极其好用 核心是她产出了大量素材，足以做成一个能调用知识库的智能体 图片里面是分析王思聪和孙一宁"
 tags:
   - "@dontbesilent12 #GLP1 #Microdosing #MetabolicHealth #DiabetesCare #Ozempic #数字分身 #第二我 #意识容器"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **dontbesilent** @dontbesilent12 [2025-04-06](https://x.com/dontbesilent12/status/1908795200677532097)
 

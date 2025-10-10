@@ -8,6 +8,19 @@ created: 2025-09-22
 description:
 tags:
   - "@goocarlos #技术#程序员#想法#产品#生活"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Luyu Zhang** @goocarlos 2025-09-20
 

@@ -7,6 +7,19 @@ created: 2025-08-06
 description:
 tags:
   - "@YYislearning #跨境电商 #创业日记 #b端 #c端"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **YY** @YYislearning [2025-05-28](https://x.com/YYislearning/status/1927607436157866370)
 

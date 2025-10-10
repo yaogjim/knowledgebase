@@ -7,6 +7,19 @@ created: 2025-08-08
 description:
 tags:
   - "@python_xxt #"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Robinson · 鲁棒逊** @python\_xxt [2025-08-07](https://x.com/python_xxt/status/1953507444774383639)
 

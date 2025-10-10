@@ -8,6 +8,19 @@ created: 2025-08-20
 description:
 tags:
   - "@python_xxt #超级节点 #人才密度 #复杂度 #体系 #组织"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Robinson · 鲁棒逊** @python\_xxt [2025-08-19](https://x.com/python_xxt/status/1957852558493643087)
 

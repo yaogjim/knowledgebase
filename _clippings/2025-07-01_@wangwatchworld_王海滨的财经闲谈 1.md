@@ -7,6 +7,19 @@ created: 2025-07-01
 description:
 tags:
   - "@wangwatchworld #泰国留学 #高考 #命运 #认知 #国际视野 #英语 #泰语 #安全"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **王海滨的财经闲谈** @wangwatchworld 2025-06-27
 

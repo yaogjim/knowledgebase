@@ -8,6 +8,19 @@ created: 2025-10-07
 description:
 tags:
   - "@wey_gu #文档理解 #知识接入 #AGENT #企业级 #RAG #分层结构 #数据结构"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Wey Gu 古思为** @wey\_gu 2025-10-03
 

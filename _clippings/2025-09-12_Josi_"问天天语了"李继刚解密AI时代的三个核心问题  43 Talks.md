@@ -8,6 +8,19 @@ created: 2025-09-12
 description: "从混沌建秩序到点亮意义网络，重新定义人机关系"
 tags:
   - "Josi"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 原创 Josi *2025年09月01日 18:04*
 

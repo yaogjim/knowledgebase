@@ -7,6 +7,19 @@ created: 2025-07-04
 description:
 tags:
   - "@Yangyixxxx #AI #程序员 #效率 #工具 #技术红利"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Yangyi** @Yangyixxxx [2025-07-03](https://x.com/Yangyixxxx/status/1940769397989367897)
 

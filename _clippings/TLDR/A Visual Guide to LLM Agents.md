@@ -8,6 +8,19 @@ created: 2025-03-26
 description: "Explore the main components of what makes LLM Agents special."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ### 探索单智能体和多智能体的主要组件Exploring the main components of Single- and Multi-Agents
 

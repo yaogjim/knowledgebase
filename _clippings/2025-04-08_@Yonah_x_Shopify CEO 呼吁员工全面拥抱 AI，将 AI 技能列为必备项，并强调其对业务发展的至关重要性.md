@@ -7,6 +7,19 @@ created: 2025-04-08
 description: "我们团队也早就提出这个要求了，全员必须使用Cursor写代码，由部门出钱给每个人买会员。 其他部门还在纠结代码会不会泄露，担心被安全处罚。 我都无语了，其他公司用AI写代码，你们还纯手工写，能打得过别人吗？业务都要黄了还怕这些屎山代码泄露了"
 tags:
   - "@Yonah_x #Shopify #AI #技术趋势 #企业管理 #未来工作 #自动化 #人工智能"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **汉松** @Yonah\_x 2025-04-07
 

@@ -7,6 +7,19 @@ created: 2025-04-08
 description: "Shopify CEO 的内部备忘录被泄露之后他亲自发了全文 核心就是强调AI已成为Shopify所有员工的必备技能，不再只是建议，而是基本要求 比如团队在申请更多人力和资源前，必须证明为什么无法用AI完成任务 总结了一下整个备忘录"
 tags:
   - "@op7418 #Shopify #AI #人工智能 #科技 #CEO #内部备忘录"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **歸藏(guizang.ai)** @op7418 [2025-04-07](https://x.com/op7418/status/1909265757416161539)
 

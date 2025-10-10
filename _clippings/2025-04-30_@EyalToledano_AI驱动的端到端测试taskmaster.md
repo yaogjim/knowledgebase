@@ -7,6 +7,19 @@ created: 2025-04-30
 description:
 tags:
   - "@EyalToledano #人工智能 #测试 #ai #效率"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Eyal Toledano** @EyalToledano 2025-04-28
 

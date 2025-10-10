@@ -7,6 +7,19 @@ created: 2025-07-16
 description:
 tags:
   - "@BadUncleX #上下文工程 #AI #编程助手 #开发效率 #代码质量"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **BadUncle** @BadUncleX [2025-07-14](https://x.com/BadUncleX/status/1944563958108864831)
 

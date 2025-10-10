@@ -7,6 +7,19 @@ created: 2025-07-29
 description: "Technical enough to be annoying, dumb enough to be useful. Focused on the branding and marketing layer of engineering.Founder of @Blokhaus"
 tags:
   - "@markkasaurus #比特尔 #ESP32 #网状网络 #去中心化通信 #蓝牙 #比特聊天"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Mark Soares** @markkasaurus [2025-07-28](https://x.com/markkasaurus/status/1949971774579343756/history)
 

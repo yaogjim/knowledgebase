@@ -8,6 +8,19 @@ created: 2025-09-15
 description:
 tags:
   - "@kevinma_dev_zh #人工智能 #MediaTek #AI #技术 #未来"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Kevin Ma** @kevinma\_dev\_zh 2025-09-14
 

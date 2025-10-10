@@ -7,6 +7,19 @@ created: 2025-04-24
 description: "It turns out that LLMs can make CAD models for simple 3D mechanical parts. And, I think they’ll be extremely good at it soon."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 事实证明，LLMs 可以为简单的 3D 机械零件制作 CAD 模型。而且，我认为他们很快就会在这方面做得非常出色。
 

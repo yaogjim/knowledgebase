@@ -8,6 +8,19 @@ created: 2025-03-26
 description: "A blog post for developers, describing a new method for complex tool-use situations"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 随着我们不断提升 Claude 解决复杂问题的能力，我们发现了一种特别有效的方法：一种“思考”工具，它在复杂任务中为结构化思考创造了专门的空间。
 

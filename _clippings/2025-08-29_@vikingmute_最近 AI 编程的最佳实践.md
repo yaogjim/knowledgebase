@@ -8,6 +8,19 @@ created: 2025-08-29
 description:
 tags:
   - "@vikingmute #AI编程 #AGNETS"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Viking** @vikingmute [2025-08-28](https://x.com/vikingmute/status/1960982879485485132/history)
 

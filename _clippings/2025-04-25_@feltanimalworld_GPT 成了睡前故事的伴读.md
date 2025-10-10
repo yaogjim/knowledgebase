@@ -7,6 +7,19 @@ created: 2025-04-25
 description:
 tags:
   - "@feltanimalworld #GPT #睡前故事 #STEM教育 #儿童教育 #天文学 #物理学"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Susan/STEM MOM** @feltanimalworld [2025-04-25](https://x.com/feltanimalworld/status/1915575964924342359)
 

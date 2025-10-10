@@ -8,6 +8,19 @@ created: 2025-10-08
 description:
 tags:
   - "@owmio39659 #OpenAI #工作流  #软件 #科技"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **扣子是谁呀** @owmio39659 2025-10-07
 

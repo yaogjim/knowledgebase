@@ -8,6 +8,19 @@ created: 2025-04-24
 description: "This has fixed just about EVERY SINGLE problem for me with Claude 3.7 in Cursor - It has turned my development into a CRACKED BEAST - I code about 12 hours a day, and I work on about 2 different Cursor windows at a time …"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ## 我创建了一个名为“RIPER-5 模式”的惊人模式！极大地修复了 Claude 3.7！
 

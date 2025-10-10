@@ -7,6 +7,19 @@ created: 2025-05-09
 description:
 tags:
   - "@jesselaunz #AI #未来职场 #劳动力市场"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jesse Lau 遁一子** @jesselaunz 2025-05-08
 

@@ -8,6 +8,19 @@ created: 2025-09-17
 description:
 tags:
   - "@gasikaramada #codex #gpt-5-codex #魔法少女 #奇迹"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **奇迹☆魔法少女** @gasikaramada [2025-09-16](https://x.com/gasikaramada/status/1967986556058341581)
 

@@ -8,6 +8,19 @@ created: 2025-04-22
 description: "People say many things about entropy: entropy increases with time, entropy is disorder, entropy increases with energy, entropy determines the arrow of time, etc.. But I have no idea what entropy is, and from what I find, neither do most other people. This is the introduction I wish I had when first told about entropy, so hopefully you find it helpful. My goal is that by the end of this long post we will have a rigorous and intuitive understanding of those statements, and in particular, why the universe looks different when moving forward through time versus when traveling backward through time."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 人们对熵有很多说法：熵随时间增加，熵是无序，熵随能量增加，熵决定时间之箭等等。但我不知道熵是什么，而且据我所知，大多数其他人也不知道。这就是我希望在第一次被告知熵的时候就有的介绍，所以希望你觉得它有帮助。我的目标是，在这篇长文结束时，我们能对这些说法有一个严谨且直观的理解，特别是，为什么宇宙在时间向前推进时与时间向后推移时看起来不一样。
 

@@ -7,6 +7,19 @@ created: 2025-07-31
 description:
 tags:
   - "@b_charleson #人工智能 #上下文工程 #提示工程"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Brandon Charleson** @b\_charleson [2025-07-30](https://x.com/b_charleson/status/1950586190606008671)
 

@@ -8,6 +8,19 @@ created: 2025-03-26
 description: "Build your own Deep Research & Report Generation Agent for under $1! A hands-on guide to creating an OpenAI Deep Research alternative."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ## 构建一个深度研究代理：200 美元 OpenAI 工具的 1 美元替代品
 

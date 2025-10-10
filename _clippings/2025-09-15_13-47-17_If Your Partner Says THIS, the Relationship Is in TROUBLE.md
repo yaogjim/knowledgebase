@@ -7,6 +7,19 @@ published: 2025-09-15
 created: 2025-09-15
 description: ""
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 # If Your Partner Says THIS, the Relationship Is in TROUBLE
 Jay Shetty: 夫妻们来的时候基本上是说：“医生，你能改变我的伴侣吗？我觉得你们应该分手，别再互相折磨了，或者我根本就不是适合你的人。” Orna Guralnik医生是一位临床心理学家、精神分析学家和作家，也是开创性节目《夫妻治疗》的明星。她探讨了人际关系和创伤的深层问题。每个人都觉得自己约会过自恋的人。他们有多准确？百分之百准确。当夫妻们带着财务问题来时，问题真的在于钱吗？他们想觉得，“不，钱不重要”，但钱对每个人都很重要。更多人想要更多的亲密感还是更多的性？在一段关系中，你应该问自己的第一个难题是什么？我能付出吗？当有人觉得我已经给了他们太多机会，而他们就是不改变时，该怎么办？那种情况下，我会说离婚的痛苦是值得的。你怎么知道你们的关系足够牢固？我想说这是排名第一的健康播客。Jay Shetty。Jay Shetty。独一无二的Jay Shetty。

@@ -7,6 +7,19 @@ created: 2025-07-16
 description:
 tags:
   - "@LinearUncle #开源代码 #codingagent #AI #多模型组合 #私有化AI助手"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LinearUncle** @LinearUncle [2025-07-14](https://x.com/LinearUncle/status/1944579771389649091/history)
 

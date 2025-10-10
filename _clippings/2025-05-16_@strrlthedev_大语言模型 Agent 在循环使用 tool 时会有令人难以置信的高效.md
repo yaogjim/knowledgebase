@@ -7,6 +7,19 @@ created: 2025-05-16
 description:
 tags:
   - "@strrlthedev #LLM #Agent #工具 #效率"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **STRRL.gpt** @strrlthedev [2025-05-15](https://x.com/strrlthedev/status/1923166131252326499)
 

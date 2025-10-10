@@ -7,6 +7,19 @@ created: 2025-05-09
 description:
 tags:
   - "@AsukaOdysseus #回忆 #记录 #情感 #记忆 #时光"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Asuka小能猫** @AsukaOdysseus [2025-05-07](https://x.com/AsukaOdysseus/status/1920103136720810170)
 

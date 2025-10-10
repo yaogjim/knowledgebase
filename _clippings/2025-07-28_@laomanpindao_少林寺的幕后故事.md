@@ -7,6 +7,19 @@ created: 2025-07-28
 description:
 tags:
   - "@laomanpindao #少林寺 #释永信 #宗教 #洗钱 #腐败 #巨款 #政府 #寺庙"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **老蛮频道** @laomanpindao [2025-07-27](https://x.com/laomanpindao/status/1949454567693045996)
 

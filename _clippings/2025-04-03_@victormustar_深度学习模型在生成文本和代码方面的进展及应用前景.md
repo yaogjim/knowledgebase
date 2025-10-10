@@ -7,6 +7,19 @@ created: 2025-04-03
 description: "我想你忘了那个：100%开源用户界面+模型（DeepSite）"
 tags:
   - "@victormustar #深度学习 #自然语言处理 #文本生成 #代码生成 #人工智能 #机器学习 #科技前沿"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Victor M** @victormustar 2025-04-01
 

@@ -8,6 +8,19 @@ created: 2025-07-01
 description: "As promised at Build 2025 in May, Microsoft have released the GitHub Copilot Chat client for VS Code under an open source (MIT) license. So far this is just the …"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **[microsoft/vscode-copilot-chat](https://github.com/microsoft/vscode-copilot-chat)** （ [通过](https://twitter.com/ashtom/status/1939724483448717369 "@ashtom") ）如在 5 月的 Build 2025 大会上所承诺的，微软已在开源（MIT）许可下发布了适用于 VS Code 的 GitHub Copilot Chat 客户端。
 

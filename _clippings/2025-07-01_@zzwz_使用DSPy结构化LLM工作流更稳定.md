@@ -7,6 +7,19 @@ created: 2025-07-01
 description:
 tags:
   - "@zzwz #DSPy #LLM #工作流 #结构化输入输出 #学术研究"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **不鍊金丹不坐禪** @zzwz [2025-06-15](https://x.com/zzwz/status/1934249740377760081)
 

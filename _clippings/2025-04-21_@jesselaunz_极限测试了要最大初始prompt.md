@@ -7,6 +7,19 @@ created: 2025-04-21
 description:
 tags:
   - "@jesselaunz #中国 #AI #开发 #模型 #测试"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jesse Lau** @jesselaunz [2025-04-20](https://x.com/jesselaunz/status/1913793383887458716)
 

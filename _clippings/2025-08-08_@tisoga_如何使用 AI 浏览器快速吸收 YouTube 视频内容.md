@@ -7,6 +7,19 @@ created: 2025-08-08
 description:
 tags:
   - "@tisoga #AI浏览器 #视频内容提炼 #效率工具"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jiayuan** @tisoga [2025-08-07](https://x.com/tisoga/status/1953438162619122063)
 

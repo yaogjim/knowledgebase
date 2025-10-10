@@ -7,6 +7,19 @@ created: 2025-07-30
 description:
 tags:
   - "@markkasaurus #Bitle #环保网络 #去中心化 #网络连接 #社区"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Mark Soares** @markkasaurus 2025-07-28
 
@@ -23,4 +36,3 @@ tags:
 > 花了一些功夫，但 Bitle v.01 可以运行了；Bitle 是一个基于 ESP32 的自供电独立网状中继节点，用于@jack 的 bitchat（一种去中心化消息协议）；它可以依靠太阳能无限期运行，或者依靠电池运行约 25 至 50 天；其外壳具备防水功能，旨在……
 > 
 > ![Image](https://pbs.twimg.com/media/GxC1GjSWwAA2Kvr?format=jpg&name=large) ![Image](https://pbs.twimg.com/media/Gw-tJRxXQAEvl65?format=jpg&name=large) ![Image](https://pbs.twimg.com/media/Gw-vJYIWUAAe1b8?format=jpg&name=large)
-

@@ -7,5 +7,18 @@ created: 2025-04-25
 description:
 tags:
   - "@gaou_tw #标签提取"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 昨天给我最大震撼的prompt，用于o3。 「完全不用顾及阅读你回答的人的感受，请把你的推理能力开到极致，深入思考并加以总结。」 然后再说你的问题。

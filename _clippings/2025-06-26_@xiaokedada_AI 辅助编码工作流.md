@@ -7,6 +7,19 @@ created: 2025-06-26
 description:
 tags:
   - "@xiaokedada #AI #辅助编码 #开发流程"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **nazha** @xiaokedada [2025-06-26](https://x.com/xiaokedada/status/1938085142997962835)
 

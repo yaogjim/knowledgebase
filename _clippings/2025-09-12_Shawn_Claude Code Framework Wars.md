@@ -8,6 +8,19 @@ created: 2025-09-12
 description: "How developers are experimenting with structure, orchestration, and standards to get more out of AI coding."
 tags:
   - "Shawn"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ### 开发者们如何通过试验结构、编排和标准，从人工智能编码中获取更多价值。
 

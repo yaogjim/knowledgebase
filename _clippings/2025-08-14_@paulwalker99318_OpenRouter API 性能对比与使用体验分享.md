@@ -8,6 +8,19 @@ created: 2025-08-14
 description:
 tags:
   - "@paulwalker99318 #翻译 #OpenRouter #GPT-OSS #Groq #Cerebras #模型选择"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Bruce** @paulwalker99318 [2025-08-12](https://x.com/paulwalker99318/status/1955153786978308557)
 

@@ -7,6 +7,19 @@ created: 2025-07-03
 description:
 tags:
   - "@PrajwalTomar_ #氛围编码 #人工智能 #移动应用程序设计"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Prajwal Tomar** @PrajwalTomar\_ [2025-07-02](https://x.com/PrajwalTomar_/status/1940417448425246894)
 

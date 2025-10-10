@@ -7,6 +7,19 @@ created: 2025-08-01
 description:
 tags:
   - "@leeoxiang #海外信用卡 #虚拟信用卡 #信用卡"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Leo Xiang** @leeoxiang [2025-07-31](https://x.com/leeoxiang/status/1950833692185923858)
 

@@ -7,6 +7,19 @@ created: 2025-06-30
 description:
 tags:
   - "@LotusDecoder #AI #心理咨询 #科技发展 #gpt4 #claude #o1 #gemini"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LotusDecoder** @LotusDecoder [2025-06-30](https://x.com/LotusDecoder/status/1939499303204241615)
 

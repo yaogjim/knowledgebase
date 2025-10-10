@@ -8,6 +8,19 @@ created: 2025-09-01
 description:
 tags:
   - "@Yonah_x #医学AI #开源 #深度学习 #人工智能 #MedResearcher"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **汉松** @Yonah\_x [2025-08-31](https://x.com/Yonah_x/status/1962097941360869813)
 

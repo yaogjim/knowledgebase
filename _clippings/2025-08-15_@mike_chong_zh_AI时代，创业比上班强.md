@@ -8,6 +8,19 @@ created: 2025-08-15
 description:
 tags:
   - "@mike_chong_zh #AI时代 #创业 #工作 #自动化 #未来"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **迈克 Mike Chong** @mike\_chong\_zh 2025-08-13
 

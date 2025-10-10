@@ -7,6 +7,19 @@ created: 2025-08-05
 description:
 tags:
   - "@sydneyrunkle #LLM #AI #模型选择 #成本优化"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Sydney Runkle** @sydneyrunkle [2025-08-04](https://x.com/sydneyrunkle/status/1952434447686529127/history)
 

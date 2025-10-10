@@ -7,6 +7,19 @@ created: 2025-03-31
 description: "有没有可能AI 时代未来是属于 i人了，敏感者，对思维熟练的人，内观自省倾向的人。因为天天琢磨自己思维链的人，和 ai 更像是一家人，Ai亲和属性 +1。 过去的世界是外向者很占便宜，展示自己的成果，或是专供生产关系，在某个地方卡住一个生态位，向上攀爬，释放自己的独特性，收货流"
 tags:
   - "@LotusDecoder"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LotusDecoder** @LotusDecoder [2025-03-31](https://x.com/LotusDecoder/status/1906532833436512432)
 

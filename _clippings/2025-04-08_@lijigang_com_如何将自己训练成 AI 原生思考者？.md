@@ -7,6 +7,19 @@ created: 2025-04-08
 description: "如何把自己拧到AI Native Thinker 的模式？ 1. AI First. 遇事第一反应，先用AI 来做一下。它当下的效率是否比人工手搓更高，不关键，关键是养成AI First的习惯。 2. 10x. AI 介入之后，关注的不是「替代」之前的精力投入，而是能"
 tags:
   - "@lijigang_com #AI原生产 #AI思维 #数字新思维 #技术趋势 #未来工作"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **李继刚** @lijigang\_com [2025-04-08](https://x.com/lijigang_com/status/1909516592783700111)
 

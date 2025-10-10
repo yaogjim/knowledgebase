@@ -8,6 +8,19 @@ created: 2025-03-26
 description: "本文主要围绕AI技术的进步，特别是Anthropic的Claude 3.7 Sonnet模型在逻辑推理、代码生成和复杂任务执行方面的能力提升及其应用场景。"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 原创 致问 *2025年03月21日 08:32* *浙江*
 

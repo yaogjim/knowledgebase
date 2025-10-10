@@ -8,6 +8,19 @@ created: 2025-06-26
 description: "In this blog, we will show you how to configure and customize the LangGraph Retrieval Agent Template with Elasticsearch to build a powerful RAG workflow for efficient data retrieval and AI-driven responses."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 Elasticsearch 与行业领先的生成式人工智能工具和供应商有原生集成。查看我们关于超越 RAG 基础，或构建可用于生产的应用程序——弹性向量数据库的网络研讨会。
 

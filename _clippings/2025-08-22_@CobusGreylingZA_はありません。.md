@@ -8,6 +8,19 @@ created: 2025-08-22
 description:
 tags:
   - "@CobusGreylingZA #人工智能 #代理流程 #LangChain"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Cobus Greyling** @CobusGreylingZA [2025-08-21](https://x.com/CobusGreylingZA/status/1958592955364909416)
 

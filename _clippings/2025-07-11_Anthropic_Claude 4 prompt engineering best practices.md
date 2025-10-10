@@ -8,6 +8,19 @@ created: 2025-07-11
 description:
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 本指南提供了针对 Claude 4 模型（Opus 4 和 Sonnet 4）的特定提示工程技术，以帮助您在应用中获得最佳效果。与前代 Claude 模型相比，这些模型在遵循指令方面经过了更精确的训练。
 

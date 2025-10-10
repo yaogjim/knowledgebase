@@ -11,6 +11,19 @@ tags:
   - "#AI安全"
   - "#中文机器翻译"
   - "#超级智能"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **William MacAskill** @willmacaskill [2025-09-18](https://x.com/willmacaskill/status/1968759901620146427)
 

@@ -7,6 +7,19 @@ created: 2025-06-13
 description:
 tags:
   - "@BadUncleX #电影 #预告 #泰雅娜泰勒"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **BadUncle** @BadUncleX [2025-06-12](https://x.com/BadUncleX/status/1933296521438769640)
 
@@ -39,4 +52,3 @@ Claude Code：让两人团队爆发十五倍战力的AI奇迹
 这是一个关于人与AI协作、不断突破极限的真实故事。它不仅属于Kieran和Nityesh，也属于每一个敢于拥抱未来的你。
 
 ![Image](https://pbs.twimg.com/media/GtQmK4fbMAEGFhb?format=jpg&name=large)
-

@@ -7,6 +7,19 @@ created: 2025-04-09
 description: "Markdown + Prompt + MCP 分分钟上线一个可交互网站 借助藏师傅的 Prompt，同时在最后补上一句“并且部署它”，就能利用 EdgeOne Pages 的 Deploy MCP Server 直接部署上线 有图片有视频有交互，还要啥自行车！ Demo"
 tags:
   - "@msjiaozhu #网站部署 #MCP #Prompt #交互 #EdgeOnePages"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **MapleShaw** @msjiaozhu [2025-04-08](https://x.com/msjiaozhu/status/1909626350446768284)
 

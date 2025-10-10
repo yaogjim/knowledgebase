@@ -7,6 +7,19 @@ created: 2025-04-15
 description:
 tags:
   - "@dutyge #NPC #社会阶层 #教育 #公平 #命运"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **失业观察日报** @dutyge [2025-04-14](https://x.com/dutyge/status/1911628903241629885)
 

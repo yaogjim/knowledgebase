@@ -8,6 +8,19 @@ created: 2025-09-03
 description:
 tags:
   - "@indigo11 #AI #算力 #工业革命 #价值衡量 #自动化 #工作模式 #AI革命 #人工智能"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **indigo** @indigo11 [2025-09-01](https://x.com/indigo11/status/1962324853803160027)
 

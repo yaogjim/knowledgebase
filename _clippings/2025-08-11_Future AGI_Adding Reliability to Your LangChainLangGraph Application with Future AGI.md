@@ -8,6 +8,19 @@ created: 2025-08-11
 description:
 tags:
   - "Future AGI {{\"extract tags  with # in Chinese\"}}"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 了解如何通过集成 Future AGI 的可观测性框架来提高你的 LangChain/LangGraph 应用程序的可靠性
 

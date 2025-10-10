@@ -8,6 +8,19 @@ published: 2025-07-11
 description:
 tags:
   - "X (formerly Twitter) #中国经济 #转型升级 #机遇与挑战 #发展战略 #科技创新 #数字经济"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 光标成为深度研究员 没有工具，没有 MCP，只有一条简单的规则 
 1——提出相关问题 

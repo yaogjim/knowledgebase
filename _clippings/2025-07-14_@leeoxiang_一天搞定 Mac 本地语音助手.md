@@ -7,6 +7,19 @@ created: 2025-07-14
 description:
 tags:
   - "@leeoxiang #语音助手 #mac #本地 #开发"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Leo Xiang** @leeoxiang [2025-07-13](https://x.com/leeoxiang/status/1944415858224459851)
 

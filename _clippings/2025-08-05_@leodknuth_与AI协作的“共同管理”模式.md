@@ -7,6 +7,19 @@ created: 2025-08-05
 description:
 tags:
   - "@leodknuth #LLM #Prompt #AI协作 #目标管理 #项目管理"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **祥仔Leo | 行走的Meta Prompt** @leodknuth [2025-08-04](https://x.com/leodknuth/status/1952325425595830402)
 

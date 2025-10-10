@@ -7,6 +7,19 @@ created: 2025-04-09
 description: "再分享一个很实用的： 每次开发完一个新 feature，未来还有可能要使用的，在开发完成的时候就让 AI 生成一个对应的文档，记录实现的细节，然后再整理成一个 rule，下次再次添加的时候直接添加这个 rule 到上下文就好了。 拿我这个例子来说，我完成应用的国际化以后，未来"
 tags:
   - "@vikingmute #项目管理 #AI #Cursor #开发 #软件开发"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Viking** @vikingmute 2025-04-08
 

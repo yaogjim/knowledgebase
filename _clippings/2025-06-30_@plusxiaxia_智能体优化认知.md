@@ -7,6 +7,19 @@ created: 2025-06-30
 description:
 tags:
   - "@plusxiaxia #智能体 #大模型 #提示词"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **plusxiaxia** @plusxiaxia [2025-06-29](https://x.com/plusxiaxia/status/1939166874446786587)
 

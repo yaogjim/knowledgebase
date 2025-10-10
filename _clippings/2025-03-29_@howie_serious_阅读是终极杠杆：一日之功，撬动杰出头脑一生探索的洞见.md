@@ -7,6 +7,19 @@ created: 2025-03-31
 description: "阅读是终极的杠杆。一日之功，就能撬动那些杰出头脑一生探索所得的洞见。 一本书凝聚的是作者几十年人生经验、智慧与思考的精华，而你只需要付出几个小时甚至一天的时间，就能跨越时空，直接吸取这些智慧的养分。这种高效、密集的信息获取，其他任何形式的学习和经验积累都难以匹敌。 但是，真正"
 tags:
   - "@howie_serious"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **howie.serious** @howie\_serious [2025-03-29](https://x.com/howie_serious/status/1905824011730456581)
 

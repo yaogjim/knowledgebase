@@ -8,6 +8,19 @@ created: 2025-09-18
 description:
 tags:
   - "@wwwgoubuli #AI #编程 #代码 #质量 #文本 #文档"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **wwwgoubuli** @wwwgoubuli [2025-09-17](https://x.com/wwwgoubuli/status/1968314343537381823)
 

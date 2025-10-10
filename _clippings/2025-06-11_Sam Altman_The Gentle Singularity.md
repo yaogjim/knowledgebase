@@ -8,6 +8,19 @@ created: 2025-06-11
 description: "We are past the event horizon; the takeoff has started. Humanity is close to building digital superintelligence, and at least so far it’s much less weird than it seems like it should be.Robots..."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 我们已经越过了事件视界；起飞已经开始。人类正接近于构建数字超级智能，至少到目前为止，它比看上去应该的样子要正常得多。
 

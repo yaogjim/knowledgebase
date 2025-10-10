@@ -7,6 +7,19 @@ created: 2025-08-07
 description:
 tags:
   - "@LinearUncle #ICAP #股息策略 #国际资本咨询公司"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LinearUncle** @LinearUncle [2025-08-06](https://x.com/LinearUncle/status/1953064272294232292)
 

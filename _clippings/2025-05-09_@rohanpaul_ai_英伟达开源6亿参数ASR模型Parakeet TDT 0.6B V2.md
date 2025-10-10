@@ -7,6 +7,19 @@ created: 2025-05-09
 description:
 tags:
   - "@rohanpaul_ai #ASR #自动语音识别 #开源 #人工智能 #AI #英伟达"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Rohan Paul** @rohanpaul\_ai [2025-05-07](https://x.com/rohanpaul_ai/status/1920069397277774228)
 

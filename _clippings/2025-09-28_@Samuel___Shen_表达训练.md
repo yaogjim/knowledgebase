@@ -8,6 +8,19 @@ created: 2025-09-28
 description:
 tags:
   - "@Samuel___Shen #表达技巧 #李笑来 #洞哥"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **泉成漫谈录 Quancheng Rambles** @Samuel\_\_\_Shen [2025-09-27](https://x.com/Samuel___Shen/status/1971845112557982197/history)
 

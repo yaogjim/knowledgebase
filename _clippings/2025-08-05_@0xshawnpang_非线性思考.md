@@ -7,6 +7,19 @@ created: 2025-08-05
 description:
 tags:
   - "@0xshawnpang #非线性思维 #复杂思考 #跳跃性思维"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Shawn Pang** @0xshawnpang [2025-08-04](https://x.com/0xshawnpang/status/1952419516354265486)
 

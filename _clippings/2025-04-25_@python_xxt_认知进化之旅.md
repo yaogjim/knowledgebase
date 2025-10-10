@@ -7,6 +7,19 @@ created: 2025-04-25
 description:
 tags:
   - "@python_xxt #认知进化 #DIKW金字塔 #直觉 #战略 #经验"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Robinson · 鲁棒逊** @python\_xxt [2025-04-24](https://x.com/python_xxt/status/1915287981566632334)
 

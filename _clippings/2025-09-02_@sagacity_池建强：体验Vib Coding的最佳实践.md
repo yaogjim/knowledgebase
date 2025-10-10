@@ -8,6 +8,19 @@ created: 2025-09-02
 description:
 tags:
   - "@sagacity #VibeCoding #AI编码 #程序员"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **池建强** @sagacity [2025-08-31](https://x.com/sagacity/status/1961980381009531089)
 

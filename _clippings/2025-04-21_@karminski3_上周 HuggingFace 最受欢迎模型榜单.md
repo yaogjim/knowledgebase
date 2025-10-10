@@ -7,6 +7,19 @@ created: 2025-04-21
 description:
 tags:
   - "@karminski3 #文本生成  #图像生成 #代码生成 #视频生成"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **karminski-牙医** @karminski3 [2025-04-21](https://x.com/karminski3/status/1914115114266935517)
 

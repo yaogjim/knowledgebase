@@ -7,6 +7,19 @@ created: 2025-03-31
 description: "实际应用中，发现AI的大多数初期使用者，真的是一个模型用到地老天荒，而且是默认第一个是什么就一直是它了。 逐步掌握利用不同的模型在一个（或者多个）上下文中协同工作，是利用AI完成复杂任务的良好开始，这个往往比写出高质量的提示词更重要。 比如，初期的思路整理阶段，使用4o mini"
 tags:
   - "@YanyuRensheng"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **StLi** @YanyuRensheng [2025-03-30](https://x.com/YanyuRensheng/status/1906483820628701544)
 

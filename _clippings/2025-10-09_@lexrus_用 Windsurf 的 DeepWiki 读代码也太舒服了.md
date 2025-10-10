@@ -8,6 +8,19 @@ created: 2025-10-09
 description:
 tags:
   - "@lexrus # Windsurf# DeepWiki# Swift# SwiftUI# Codable# windsurf# ios# xcode"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Lex Tang** @lexrus [2025-10-08](https://x.com/lexrus/status/1975787227851739470)
 

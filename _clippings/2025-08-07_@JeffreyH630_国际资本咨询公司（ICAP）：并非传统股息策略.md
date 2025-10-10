@@ -7,6 +7,19 @@ created: 2025-08-07
 description:
 tags:
   - "@JeffreyH630 #ICAP #国际资本咨询公司 #股息策略 #投资策略"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **UncleJ** @JeffreyH630 [2025-08-06](https://x.com/JeffreyH630/status/1953041819627078104)
 

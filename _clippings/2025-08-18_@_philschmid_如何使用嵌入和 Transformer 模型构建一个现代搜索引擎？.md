@@ -8,6 +8,19 @@ created: 2025-08-18
 description:
 tags:
   - "@_philschmid #搜索引擎 #嵌入 #Transformer"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Philipp Schmid** @\_philschmid [2025-08-17](https://x.com/_philschmid/status/1956981442870751289)
 

@@ -8,6 +8,19 @@ created: 2025-08-14
 description:
 tags:
   - "@bearbig #AI #提示词 #管理"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Bear Liu** @bearbig [2025-08-13](https://x.com/bearbig/status/1955448133594517720)
 

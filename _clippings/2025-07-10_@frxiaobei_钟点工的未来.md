@@ -7,6 +7,19 @@ created: 2025-07-10
 description: "行道途中。 23年扎进AI，打通Know-How，不少赚钱项目，踩过坑，也见过光。 围城里待得够久了，出来聊聊世界，聊聊技术、聊聊赚钱。"
 tags:
   - "@frxiaobei #AI #钟点工 #劳动力市场 #社会转型 #未来工作"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **凡人小北** @frxiaobei 2025-07-09
 

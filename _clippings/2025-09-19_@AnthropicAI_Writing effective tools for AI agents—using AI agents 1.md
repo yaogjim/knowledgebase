@@ -8,6 +8,19 @@ created: 2025-09-19
 description: "Writing effective tools for AI agents—using AI agents"
 tags:
   - "@AnthropicAI"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [Anthropic 公司的工程团队](https://www.anthropic.com/engineering) ![This is an abstract illustration for the Eng Blog article, Writing effective tools for agents -- with agents.](https://www-cdn.anthropic.com/images/4zrzovbb/website/876165247ba5668bd195854eef4631ad9a184001-1000x1000.svg)
 

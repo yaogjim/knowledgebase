@@ -7,6 +7,19 @@ created: 2025-04-18
 description:
 tags:
   - "@hongming731 #AI #下半场 #OpenAI #人工智能"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **ginobefun** @hongming731 [2025-04-18](https://x.com/hongming731/status/1913041302654214617)
 

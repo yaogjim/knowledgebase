@@ -8,6 +8,19 @@ created: 2025-08-15
 description:
 tags:
   - "@goocarlos #产品经理 #产品开发 #市场风险 #价值风险 #可用性风险 #可行性风险 #商业可行性风险"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Luyu Zhang** @goocarlos 2025-08-13
 

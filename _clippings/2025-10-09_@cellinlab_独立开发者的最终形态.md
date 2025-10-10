@@ -8,6 +8,19 @@ created: 2025-10-09
 description:
 tags:
   - "@cellinlab #独立开发 # DeFi #脉冲链"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Cell 细胞** @cellinlab 2025-10-07
 

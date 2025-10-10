@@ -8,6 +8,19 @@ created: 2025-10-08
 description:
 tags:
   - "@qinbafrank #AI #数据中心 #能源 #电力 #地缘政治 #科技革命 #GPU #核电 #铜 #投资机遇"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **qinbafrank** @qinbafrank 2025-09-12
 

@@ -7,6 +7,19 @@ created: 2025-03-31
 description: "在不损害他人利益的基础上，一定要让自己变成一个极度自私自利的人。只有这样，人才会高度专注，才不会浪费自己的时间，才会专心致志和精进，才能摆脱一切无效和耗散心力、能量的关系与事务。实际上，大家看到的很多侃侃而谈的慈眉目善的成功者，其实都是这种极度自私自利的人，也正因为此，他们才成功"
 tags:
   - "@Aiallmaker"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Hashman** @Aiallmaker [2025-03-30](https://x.com/Aiallmaker/status/1906176030483923148)
 

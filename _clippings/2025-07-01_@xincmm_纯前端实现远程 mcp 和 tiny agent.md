@@ -7,6 +7,19 @@ created: 2025-07-01
 description:
 tags:
   - "@xincmm #前端 #webworker #ai #代码生成 #模型调用"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **xincmm** @xincmm [2025-06-22](https://x.com/xincmm/status/1936760675524804618)
 

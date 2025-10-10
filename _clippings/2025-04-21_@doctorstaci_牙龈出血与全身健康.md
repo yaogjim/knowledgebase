@@ -7,6 +7,19 @@ created: 2025-04-21
 description:
 tags:
   - "@doctorstaci #牙龈出血 #口腔健康 #全身炎症 #TMJD #慢性疾病"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Doctor Staci** @doctorstaci [2025-04-20](https://x.com/doctorstaci/status/1914014033394700663)
 

@@ -8,6 +8,19 @@ created: 2025-09-28
 description:
 tags:
   - "@aiwarts #AI #大模型 #开源 #文本 #图像 #音频 #视频 #Qwen3-Omni"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **卡尔的AI沃茨** @aiwarts [2025-09-27](https://x.com/aiwarts/status/1971985267147096558)
 

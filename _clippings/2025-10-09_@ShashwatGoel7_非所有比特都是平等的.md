@@ -8,6 +8,19 @@ created: 2025-10-09
 description:
 tags:
   - "@ShashwatGoel7 #强化学习 #SFT #模仿学习 #监督微调 #信息比特 #人工智能 #深度学习 #语言模型"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Shashwat Goel** @ShashwatGoel7 [2025-10-08](https://x.com/ShashwatGoel7/status/1975939253680120152)
 

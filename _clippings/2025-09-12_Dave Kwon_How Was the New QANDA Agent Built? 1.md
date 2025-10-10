@@ -8,6 +8,19 @@ created: 2025-09-12
 description: "The New QANDA Agent Is Here Designing a smarter, more powerful Agent Hello, I’m Dave, a Backend Engineer at QANDA. Some of you may have been surprised by the recent changes on QANDA. In response to …"
 tags:
   - "Dave Kwon"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ### QANDA 为何以及如何发生了变化？
 
@@ -485,4 +498,3 @@ QANDA 的新架构核心是一个 ** 多智能体系统（Swarm Architecture）*
 
 ## 6 总结一句话 🚀   
 > QANDA 已从单纯” 拍照搜题 APP“升级成由多个专职 AI 智能体协作驱动的全方位互动学习平台，实现了更灵活的人机对话、更广泛的教育场景适配，以及长期发展的技术基础。
-

@@ -7,6 +7,19 @@ created: 2025-04-07
 description: "X 书签搜索工作流更新：NotebookLM 搭配 twillot 效率更高。 之前帖子评论有人给我推荐了twillot，于是我去试用了一下，发现twillot确实好用，首先关键词检索挺好用，其次有些小细节比twitter-web-exporter要好，它会把 thread 的帖"
 tags:
   - "@Yonah_x #书签 #搜索 #NotebookLM #twillot #效率提升 #笔记 #工具"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **汉松** @Yonah\_x 2025-04-04
 

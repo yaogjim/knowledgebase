@@ -7,6 +7,19 @@ created: 2025-04-29
 description:
 tags:
   - "@leodknuth #AI #价值变现 #知识管理 #数字资产 #可复制 #方法论"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **祥仔Leo and 233 others** @leodknuth 2025-04-27
 

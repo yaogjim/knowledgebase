@@ -8,6 +8,19 @@ created: 2025-09-19
 description: "AI agents are getting close to real world applications, but most developers still find it complex to... Tagged with programming, webdev, opensource, ai."
 tags:
   - "Anmol Baranwal"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 人工智能代理正逐渐接近实际应用，但大多数开发者仍然觉得构建一个人工智能代理很复杂。
 

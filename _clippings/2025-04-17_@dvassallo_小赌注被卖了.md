@@ -7,6 +7,19 @@ created: 2025-04-17
 description:
 tags:
   - "@dvassallo #小赌注 #Gumroad #收购"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Daniel Vassallo** @dvassallo [2025-04-16](https://x.com/dvassallo/status/1912506861552869409)
 

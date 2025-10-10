@@ -8,6 +8,19 @@ created: 2025-05-16
 description: "本文探讨了 RAG 系统中语义搜索的价值和架构选型，以及 KG 驱动的 RAG 系统应用。"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ![](https://imagedelivery.net/qGOFcc1O8XwTZW3W1JAHHg/cc926642-ba16-4afb-cc8d-3c0e00fe8200/public)
 

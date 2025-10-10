@@ -8,6 +8,19 @@ created: 2025-08-22
 description: "Insights, updates, and technical deep dives on building a high-performance financial transactions database."
 tags:
   - "matklad"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ![](https://tigerbeetle.com/blog/2025-08-04-code-review-can-be-better/banner.webp)
 

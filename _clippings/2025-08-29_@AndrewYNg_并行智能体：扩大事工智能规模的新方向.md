@@ -8,6 +8,19 @@ created: 2025-08-29
 description:
 tags:
   - "@AndrewYNg #并行智能体 #人工智能 #深度学习 #软件工程"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Andrew Ng** @AndrewYNg [2025-08-28](https://x.com/AndrewYNg/status/1961118026398617648)
 

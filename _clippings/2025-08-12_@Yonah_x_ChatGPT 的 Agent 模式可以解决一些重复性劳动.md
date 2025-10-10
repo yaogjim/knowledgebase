@@ -8,6 +8,19 @@ created: 2025-08-12
 description:
 tags:
   - "@Yonah_x #AI #ChatGPT #Agent #效率 #重复性劳动"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **汉松** @Yonah\_x [2025-08-11](https://x.com/Yonah_x/status/1954845080738828629)
 

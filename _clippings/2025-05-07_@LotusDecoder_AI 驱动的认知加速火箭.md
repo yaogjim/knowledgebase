@@ -7,6 +7,19 @@ created: 2025-05-07
 description:
 tags:
   - "@LotusDecoder #AI #认知加速 #思考 #效率 #现代生活 #人工智能"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LotusDecoder** @LotusDecoder [2025-05-06](https://x.com/LotusDecoder/status/1919749713487962589)
 

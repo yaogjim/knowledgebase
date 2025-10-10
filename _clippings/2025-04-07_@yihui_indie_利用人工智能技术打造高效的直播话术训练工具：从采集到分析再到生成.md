@@ -7,6 +7,19 @@ created: 2025-04-07
 description: "我现在有个强需求，我想把各大直播间每天的在线直播录制下来，用作直播话术训练，请问大佬： 1. 什么技术能做到同时录屏多个直播？ 2.如果把在线直播的视频和话术用作商业化，有什么法律风险？"
 tags:
   - "@yihui_indie #直播话术 #AI训练 #数据采集 #主播学习 #内容创作 #人工智能技术 #语音识别 #自然语言处理"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **熠辉 Indie** @yihui\_indie [2025-04-07](https://x.com/yihui_indie/status/1909065214139728210)
 

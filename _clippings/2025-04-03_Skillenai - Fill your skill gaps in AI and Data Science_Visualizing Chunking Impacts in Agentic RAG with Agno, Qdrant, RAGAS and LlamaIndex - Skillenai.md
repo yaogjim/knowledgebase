@@ -8,6 +8,19 @@ created: 2025-04-03
 description: "In the AI Agents world of Retrieval-Augmented Generation (Agentic-RAG), one challenge that persists is how Agents chunk our source documents to optimize response accuracy and relevance. This blog series dives into how different chunking strategies — Fixed, Semantic, Agentic, and Recursive Chunking— impact the performance of Agentic RAG systems. Using Agno for creating agent and orchestration and"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 在检索增强生成（Agentic-RAG）的人工智能智能体领域，一个持续存在的挑战是智能体如何对我们的源文档进行分块，以优化响应的准确性和相关性。本博客系列深入探讨不同的分块策略——固定分块、语义分块、智能体分块和递归分块——如何影响 Agentic RAG 系统的性能。使用 `Agno` 进行智能体创建和编排，并将 `Qdrant` 用作向量存储，我们通过 `RAGAS` 和 `LlamaIndex` 评估分块效果，并通过基于指标的深入分析将结果可视化。这一探索不仅揭示了分块方法中的细微差别，还为在实际应用中优化检索管道奠定了基础。
 

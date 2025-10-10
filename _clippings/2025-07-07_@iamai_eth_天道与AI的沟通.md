@@ -7,6 +7,19 @@ created: 2025-07-07
 description:
 tags:
   - "@iamai_eth #AI #沟通 #天道 #人机交互 #能力"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **✧ 𝕀𝔸𝕄𝔸𝕀 ✧** @iamai\_eth [2025-07-06](https://x.com/iamai_eth/status/1941891372392571342)
 

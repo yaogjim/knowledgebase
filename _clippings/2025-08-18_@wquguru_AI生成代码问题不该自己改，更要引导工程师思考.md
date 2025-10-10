@@ -8,6 +8,19 @@ created: 2025-08-18
 description:
 tags:
   - "@wquguru #AI   #代码生成   #软件工程   #prompt工程"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **WquGuru** @wquguru [2025-08-17](https://x.com/wquguru/status/1957058980339237332)
 

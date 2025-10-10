@@ -8,6 +8,19 @@ created: 2025-08-21
 description:
 tags:
   - "@bluebird0605 #AI #代码生成 #Claude #Anthropic"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **未完成** @bluebird0605 [2025-08-20](https://x.com/bluebird0605/status/1958075136021787046)
 

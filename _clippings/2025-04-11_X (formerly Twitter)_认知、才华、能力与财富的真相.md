@@ -8,6 +8,19 @@ published: 2025-07-11
 description:
 tags:
   - "X (formerly Twitter) #能力 #财富 #业务 #杠杆 #环境 #运气"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **dontbesilent** @dontbesilent12 2025-04-09
 

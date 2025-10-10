@@ -7,6 +7,19 @@ created: 2025-04-03
 description: "Sequential Thinking 是当前使用频率最大的 MCP 服务器。 Multi-Agent System 是 AI 在未来的重要发展方向。 Multi-Agent System + Sequential Thinking 会是什么，介绍一下新的项目 mcp-serv"
 tags:
   - "@FradSer #多智能体系统 #顺序思维 #AI思考 #复杂问题 #团队协作 #mcp-server #mcp-server-mas-sequential-thinking"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Frad** @FradSer [2025-04-02](https://x.com/FradSer/status/1907480405122687303)
 

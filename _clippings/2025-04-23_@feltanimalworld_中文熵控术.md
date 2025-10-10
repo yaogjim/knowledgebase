@@ -7,6 +7,19 @@ created: 2025-04-23
 description:
 tags:
   - "@feltanimalworld #中文熵控术 #AI #知识垄断 #语义调度 #身份结构"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Susan/STEM MOM** @feltanimalworld 2025-04-22
 

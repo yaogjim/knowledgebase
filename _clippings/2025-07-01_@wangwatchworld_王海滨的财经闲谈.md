@@ -7,6 +7,19 @@ created: 2025-07-01
 description:
 tags:
   - "@wangwatchworld #财经 #社会 #价值观 #贫富差距 #人性"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **王海滨的财经闲谈** @wangwatchworld [2025-06-27](https://x.com/wangwatchworld/status/1938600556232310895)
 

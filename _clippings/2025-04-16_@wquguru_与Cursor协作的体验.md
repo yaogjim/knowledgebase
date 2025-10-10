@@ -7,6 +7,19 @@ created: 2025-04-16
 description:
 tags:
   - "@wquguru #代码生成 #AI #编程助手 #Cursor"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **WquGuru** @wquguru [2025-04-15](https://x.com/wquguru/status/1911932573301055850)
 

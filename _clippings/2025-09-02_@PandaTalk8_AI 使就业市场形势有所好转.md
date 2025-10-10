@@ -8,6 +8,19 @@ created: 2025-09-02
 description:
 tags:
   - "@PandaTalk8 #AI #就业市场 #技术岗位 #工程师经验 #中老年工人"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Mr Panda** @PandaTalk8 [2025-09-02](https://x.com/PandaTalk8/status/1962707757733421558)
 

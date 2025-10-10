@@ -8,6 +8,19 @@ created: 2025-09-28
 description:
 tags:
   - "@okooo5km #AI编程 #苹果开发 #代码文档 #ExaCode"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **十里** @okooo5km 2025-09-26
 

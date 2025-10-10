@@ -7,6 +7,19 @@ created: 2025-07-08
 description:
 tags:
   - "@0xScottBTC #AI编程 #Gemini #ClaudeCode #ChatGPT"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **AI索罗斯科特** @0xScottBTC [2025-07-06](https://x.com/0xScottBTC/status/1941707237199839601)
 

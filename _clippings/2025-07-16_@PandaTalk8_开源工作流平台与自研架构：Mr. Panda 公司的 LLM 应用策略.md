@@ -7,6 +7,19 @@ created: 2025-07-16
 description:
 tags:
   - "@PandaTalk8 #LLM #应用架构 #开源 #LangChain"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Mr Panda** @PandaTalk8 [2025-07-15](https://x.com/PandaTalk8/status/1945109737303106006)
 

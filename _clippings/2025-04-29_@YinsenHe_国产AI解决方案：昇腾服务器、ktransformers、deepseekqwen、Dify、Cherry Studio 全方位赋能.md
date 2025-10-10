@@ -7,6 +7,19 @@ created: 2025-04-29
 description:
 tags:
   - "@YinsenHe #国产AI #昇腾服务器 #ktransformers #deepseek #qwen #Dify #CherryStudio"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Yinsen** @YinsenHe [2025-04-29](https://x.com/YinsenHe/status/1917065341261517057)
 

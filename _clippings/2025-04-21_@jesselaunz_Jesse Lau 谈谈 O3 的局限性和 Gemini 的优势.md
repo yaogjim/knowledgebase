@@ -7,6 +7,19 @@ created: 2025-04-21
 description:
 tags:
   - "@jesselaunz #python #ai #o3 #gemini #longcontextwindow #webdevelopment"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jesse Lau** @jesselaunz 2025-04-19
 

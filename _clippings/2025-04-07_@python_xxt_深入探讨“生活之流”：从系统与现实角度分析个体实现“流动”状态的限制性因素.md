@@ -7,6 +7,19 @@ created: 2025-04-07
 description: "这个玩法，自我验证的问题3，已经非常有深度了，可以说，直击本质 问题 3: \"Life is what flows in between\" 描绘了一种理想的“流动”状态。从系统和现实角度看，个体能否实现这种“流动”状态，其最主要的限制性因素有哪些？为什么说这种状态往往是特权而非"
 tags:
   - "@python_xxt #流动状态 #特权 #社会不平等 #宏观环境 #个体资源 #需求层次理论"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Robinson · 鲁棒逊** @python\_xxt 2025-04-06
 

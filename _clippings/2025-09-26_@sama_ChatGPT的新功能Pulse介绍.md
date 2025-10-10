@@ -8,6 +8,19 @@ created: 2025-09-26
 description:
 tags:
   - "@sama #AI #ChatGPT #Pulse #个人化体验 #私人助理"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Sam Altman** @sama [2025-09-25](https://x.com/sama/status/1971297661748953263)
 

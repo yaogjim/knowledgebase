@@ -7,6 +7,19 @@ created: 2025-08-05
 description:
 tags:
   - "@GoSailGlobal #出海 #创业 #技术人 #流量密码 #多元收入"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jason Zhu** @GoSailGlobal [2025-08-03](https://x.com/GoSailGlobal/status/1952137929197076932)
 

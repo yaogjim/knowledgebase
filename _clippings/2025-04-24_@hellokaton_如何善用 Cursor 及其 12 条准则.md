@@ -7,6 +7,19 @@ created: 2025-04-24
 description:
 tags:
   - "@hellokaton #AI开发 #Cursor #代码生成 #效率 #编程 #软件开发"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **katon** @hellokaton 2025-04-21
 

@@ -7,6 +7,19 @@ created: 2025-05-16
 description:
 tags:
   - "@gregisenberg #AI #创业 #年轻人 #病毒式传播 #新经济"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **GREG ISENBERG** @gregisenberg [2025-05-15](https://x.com/gregisenberg/status/1923006842738708730)
 

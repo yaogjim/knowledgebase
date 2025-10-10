@@ -7,6 +7,19 @@ created: 2025-04-07
 description: "为什么要做短消息专用掌机？ LoRa MSG 是利用 LoRa 协议远程传输消息的手持设备，把 Blackberry 的键盘、LoRa 的远程无线传输、对讲机和业余无线电的通讯和联网方式…结合在这个肥嘟嘟的掌机里 如果互联网彻底崩溃，就用 LoRa MSG 组一个分布式的、复"
 tags:
   - "@nishuang #LoRa #物联网 #短消息 #掌机 #复古通讯 #分布式网络 #无线传输 #远程通信 #数据加密 #开源硬件"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **倪爽** @nishuang [2021-02-16](https://x.com/nishuang/status/1361573389941538816)
 

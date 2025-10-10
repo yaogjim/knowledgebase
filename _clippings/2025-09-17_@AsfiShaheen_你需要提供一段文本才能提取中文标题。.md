@@ -8,6 +8,19 @@ created: 2025-09-17
 description:
 tags:
   - "@AsfiShaheen 你需要提供一段文本才能提取带有 # 的中文标签。"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Asfi** @AsfiShaheen [2025-09-16](https://x.com/AsfiShaheen/status/1967866903331999807)
 

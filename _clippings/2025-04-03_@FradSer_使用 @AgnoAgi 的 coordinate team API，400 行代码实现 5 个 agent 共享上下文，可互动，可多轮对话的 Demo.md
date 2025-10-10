@@ -7,6 +7,19 @@ created: 2025-04-03
 description: "用 @AgnoAgi 的 coordinate team API，400 行代码就可以写出一个 5 个 agent 共享上下文，可互动的，可多轮对话的 demo。 https://docs.agno.com/teams/coordinate…"
 tags:
   - "@FradSer #人工智能 #大模型 #对话系统 #多轮对话 #上下文共享 #API"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Frad** @FradSer [2025-03-30](https://x.com/FradSer/status/1906306975111278708)
 

@@ -8,6 +8,19 @@ created: 2025-08-11
 description:
 tags:
   - "@ShenHuang_ #AI #编程 #效率 #代码生成 #Claude"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Shen Huang** @ShenHuang\_ [2025-08-10](https://x.com/ShenHuang_/status/1954687441702691067)
 

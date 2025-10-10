@@ -8,6 +8,19 @@ published: 2025-07-11
 description:
 tags:
   - "X (formerly Twitter) #AI写作 #短视频创作 #内容自动化 #效率提升"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **dontbesilent** @dontbesilent12 [2025-04-10](https://x.com/dontbesilent12/status/1910357191904944590)
 

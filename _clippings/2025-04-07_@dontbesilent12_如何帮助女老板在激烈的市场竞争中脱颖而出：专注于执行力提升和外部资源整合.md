@@ -7,6 +7,19 @@ created: 2025-04-07
 description: "最近有两个女老板来付费，一个在香港，一个在浙江，恰好都是老业务一年 3 亿 gmv（不是利润） 似乎是知识付费的完美对象 1、理解外部帮助的局限性 2、执行力爆表，不睡觉的那种，吃饭的时候都在直播 3、先打钱，至于提供什么服务，后面再说 4、还能反向知识付费，有自己的独门绝技"
 tags:
   - "@dontbesilent12 #女老板 #创业 #执行力 #外部资源 #知识付费 #成长 #商业 #成功 #战略 #直播 #Gmv"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **dontbesilent** @dontbesilent12 [2025-04-05](https://x.com/dontbesilent12/status/1908440467349577990)
 

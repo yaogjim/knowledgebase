@@ -8,6 +8,19 @@ created: 2025-08-20
 description:
 tags:
   - "@gregpr07 #BrowserUse #CDP #自动化 #网络自动化 #浏览器自动化"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Gregor Zunic** @gregpr07 [2025-08-19](https://x.com/gregpr07/status/1957861004173512875)
 

@@ -7,6 +7,19 @@ created: 2025-03-31
 description: "张忠谋自传里说他去美国留学时正逢电视兴起，没那么多人看报纸了，大众不会深度思考，变浅薄 想起报纸兴起、互联网兴起、社交网络兴起时，也都有人有这种担心，但我觉得，上网、看视频，还是让人学到了很多新鲜东西，并不必然变浅薄 真正让人变浅薄的是缺乏真诚，故弄玄虚、处心积虑挑动情绪的东西"
 tags:
   - "@FreiheitYu"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **YU** @FreiheitYu [2025-03-30](https://x.com/FreiheitYu/status/1906315054149955710)
 

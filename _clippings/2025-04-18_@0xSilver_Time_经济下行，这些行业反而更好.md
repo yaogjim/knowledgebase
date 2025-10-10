@@ -7,6 +7,19 @@ created: 2025-04-18
 description:
 tags:
   - "@0xSilver_Time #经济下行 #好行业 #消费升级 #多巴胺经济 #平价经济 #知识付费 #上瘾类 #疗愈类 #娱乐类 #大健康类 #占卜玄学类"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **0x银时** @0xSilver\_Time [2025-04-17](https://x.com/0xSilver_Time/status/1912792682235396490)
 

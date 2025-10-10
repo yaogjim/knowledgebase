@@ -7,6 +7,19 @@ created: 2025-08-05
 description:
 tags:
   - "@xbanboo #vibe coding #少儿编程 #AI教育"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **banboo** @xbanboo [2025-08-03](https://x.com/xbanboo/status/1951804166437023780)
 

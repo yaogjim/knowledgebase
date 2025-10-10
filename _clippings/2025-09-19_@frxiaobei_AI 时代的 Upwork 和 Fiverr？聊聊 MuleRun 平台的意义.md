@@ -8,6 +8,19 @@ created: 2025-09-19
 description:
 tags:
   - "@frxiaobei #AI #平台 #MuleRun #Agent #数字劳动 #AI人才"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **凡人小北** @frxiaobei [2025-09-16](https://x.com/frxiaobei/status/1967877735239516405)
 

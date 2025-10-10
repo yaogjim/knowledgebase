@@ -7,6 +7,19 @@ created: 2025-04-18
 description:
 tags:
   - "@feltanimalworld #科技#历史#战争#创新#社会动荡#科技思潮#中国#美国"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Susan/STEM MOM** @feltanimalworld [2025-04-17](https://x.com/feltanimalworld/status/1912867211737260115)
 

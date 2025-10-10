@@ -8,6 +8,19 @@ created: 2025-08-15
 description:
 tags:
   - "@laomanpindao #末世加税 #国内现状 #长远规划 #稳定 #坐看风云变"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **老蛮频道** @laomanpindao [2025-08-15](https://x.com/laomanpindao/status/1956165961641550338)
 

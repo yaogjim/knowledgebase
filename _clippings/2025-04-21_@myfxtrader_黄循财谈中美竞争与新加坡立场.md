@@ -7,6 +7,19 @@ created: 2025-04-21
 description:
 tags:
   - "@myfxtrader #中美竞争 #地缘政治 #新加坡 #黄循财"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **外汇交易员** @myfxtrader [2025-04-17](https://x.com/myfxtrader/status/1912689004887302634)
 

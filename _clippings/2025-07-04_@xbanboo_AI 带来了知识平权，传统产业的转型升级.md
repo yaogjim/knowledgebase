@@ -7,6 +7,19 @@ created: 2025-07-04
 description:
 tags:
   - "@xbanboo #AI #知识平权 #传统产业 #转型升级 #机械加工"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **banboo** @xbanboo [2025-07-03](https://x.com/xbanboo/status/1940799816910410222)
 

@@ -8,6 +8,19 @@ created: 2025-09-29
 description:
 tags:
   - "@dontbesilent12 #赛道 #定价 #竞争 #市场分析"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **dontbesilent** @dontbesilent12 [2025-09-28](https://x.com/dontbesilent12/status/1972332343026442378)
 

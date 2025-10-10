@@ -8,6 +8,19 @@ created: 2025-10-08
 description:
 tags:
   - "@Manjusaka_Lee #AI #代码 #架构 #稳定性 #技术债务 #重构"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **NadeshikoManju@薫る花は凛と咲く7月5日播出** @Manjusaka\_Lee [2025-10-06](https://x.com/Manjusaka_Lee/status/1975221669934555394)
 

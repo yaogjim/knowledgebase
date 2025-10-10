@@ -7,6 +7,19 @@ created: 2025-04-17
 description:
 tags:
   - "@Stephen4171127 #AI #Agent #Docker #沙盒 #自托管"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **熊布朗** @Stephen4171127 [2025-04-16](https://x.com/Stephen4171127/status/1912615918917620095)
 

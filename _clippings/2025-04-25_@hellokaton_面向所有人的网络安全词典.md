@@ -7,6 +7,19 @@ created: 2025-04-25
 description:
 tags:
   - "@hellokaton #网络安全 #词典 #技术术语 #简明易懂"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **katon** @hellokaton [2025-04-24](https://x.com/hellokaton/status/1915303451611078732)
 
@@ -15,4 +28,3 @@ tags:
 这在过去这样探讨几乎是不可能的，因为少有人拥有极其全面的技术宽度和你交流，有意思 🤓
 
 ![Image](https://pbs.twimg.com/media/GpSGVs_aEAAsMnq?format=jpg&name=large)
-

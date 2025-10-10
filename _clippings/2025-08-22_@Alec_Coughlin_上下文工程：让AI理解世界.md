@@ -8,6 +8,19 @@ created: 2025-08-22
 description:
 tags:
   - "@Alec_Coughlin #上下文工程 #AI #语言模型"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Alec Coughlin** @Alec\_Coughlin [2025-08-21](https://x.com/Alec_Coughlin/status/1958650101666341370)
 

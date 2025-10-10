@@ -8,6 +8,19 @@ created: 2025-09-03
 description:
 tags:
   - "@TonWin618 #toB #AI #垂直行业 #知识库 #agent"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **TonWin汤问** @TonWin618 2025-09-01
 

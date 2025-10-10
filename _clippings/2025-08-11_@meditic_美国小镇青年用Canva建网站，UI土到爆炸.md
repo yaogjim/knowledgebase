@@ -8,6 +8,19 @@ created: 2025-08-11
 description:
 tags:
   - "@meditic #美国 #小镇青年 #Canva #网站 #底层需求 #高大上 #人性 #市场割裂"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **meditic** @meditic [2025-08-10](https://x.com/meditic/status/1954426430936473670)
 

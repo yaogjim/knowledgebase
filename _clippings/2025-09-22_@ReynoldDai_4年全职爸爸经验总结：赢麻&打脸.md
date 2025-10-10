@@ -8,6 +8,19 @@ created: 2025-09-22
 description:
 tags:
   - "@ReynoldDai #全职爸爸 #心智成长 #英语自由 #科技创新 #AI教育 #学习方法"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Rey英语自由与创造力** @ReynoldDai 2025-09-18
 

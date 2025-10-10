@@ -8,6 +8,19 @@ created: 2025-08-22
 description:
 tags:
   - "@weaviate_io #AI #决策树 #透明智能 #开源框架 #Weaviate"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Weaviate vector database** @weaviate\_io [2025-08-21](https://x.com/weaviate_io/status/1958568536420299184)
 

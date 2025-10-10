@@ -7,6 +7,19 @@ created: 2025-07-01
 description:
 tags:
   - "@dotey #GenAI #应用工程师 #吴恩达 #人工智能 #技术技能 #面试技巧"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ---
 title: "吴恩达老师分享：GenAI应用工程师的關鍵技能与面试技巧"

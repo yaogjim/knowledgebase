@@ -6,6 +6,19 @@ published: 2025-09-19
 created: 2025-09-19
 description: "在 Shopify，我们一直在打造Sidekick，一个由 AI 驱动的助手，帮助商家通过自然语言交互来管理他们的店铺。从分析客户群体到填写商品表单，再到驾驭复杂的后台界面，Sidekick 已经从一个简单的工具调用系统，演变成了一个复杂的 AI 智能体 (AI Agent) 平台。一路走来，我们在架构设计、评估方法和训练技术上学到了宝贵的经验，希望能与更广泛的 AI 工程社区分享。"
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 原文： [Building Production-Ready Agentic Systems: Lessons from Shopify Sidekick](https://shopify.engineering/building-production-ready-agentic-systems)
 

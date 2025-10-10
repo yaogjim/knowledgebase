@@ -8,6 +8,19 @@ created: 2025-08-22
 description:
 tags:
   - "@dotey #编程 #AI #学习 #软件开发 #技术创新"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **宝玉** @dotey 2025-08-21
 

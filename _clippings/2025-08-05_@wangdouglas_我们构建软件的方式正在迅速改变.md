@@ -7,6 +7,19 @@ created: 2025-08-05
 description:
 tags:
   - "@wangdouglas #软件 #人工智能 #未来 #软件开发 #技术变革"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Douglas Wang** @wangdouglas [2025-08-04](https://x.com/wangdouglas/status/1952385380092903511)
 

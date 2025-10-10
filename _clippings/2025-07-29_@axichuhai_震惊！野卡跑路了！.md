@@ -7,6 +7,19 @@ created: 2025-07-29
 description:
 tags:
   - "@axichuhai #AI #创业 #Claude #SaaS #ChatGPT #野卡"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **阿西\_出海** @axichuhai [2025-07-28](https://x.com/axichuhai/status/1949699252172562500)
 

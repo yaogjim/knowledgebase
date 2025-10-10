@@ -8,6 +8,19 @@ created: 2025-10-09
 description: "About life, technology and reading"
 tags:
   - "slate"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 在 Claude Code 中使用 GLM 4.6 的体验
 

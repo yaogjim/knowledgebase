@@ -6,6 +6,19 @@ created: 2025-08-11 12:03:12
 published: 2025-08-11 12:03:12
 description: ""
 tags: ""
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ![](https://onevcat.com/assets/images/2025/claude-welcome.jpg)
 

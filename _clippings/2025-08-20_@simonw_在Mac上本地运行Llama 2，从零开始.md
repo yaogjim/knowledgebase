@@ -8,6 +8,19 @@ created: 2025-08-20
 description:
 tags:
   - "@simonw #llama #LLM #苹果硅 #macos #AI"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Simon Willison** @simonw 2025-08-19
 

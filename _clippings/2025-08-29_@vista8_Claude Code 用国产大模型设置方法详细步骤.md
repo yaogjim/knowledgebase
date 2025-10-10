@@ -8,6 +8,19 @@ created: 2025-08-29
 description:
 tags:
   - "@vista8 #Claude #国产大模型 #AI #API"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **向阳乔木** @vista8 [2025-08-27](https://x.com/vista8/status/1960616499519086817)
 

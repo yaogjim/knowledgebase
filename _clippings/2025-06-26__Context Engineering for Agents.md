@@ -7,6 +7,19 @@ created: 2025-06-26
 description: "Patterns for managing the context needed for agents to perform their tasks."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [兰斯·马丁](https://x.com/RLanceMartin)
 

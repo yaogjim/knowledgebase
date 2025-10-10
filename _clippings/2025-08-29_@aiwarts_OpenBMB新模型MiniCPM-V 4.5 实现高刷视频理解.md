@@ -8,6 +8,19 @@ created: 2025-08-29
 description:
 tags:
   - "@aiwarts #高刷视频理解 #MiniCPM-V4.5 #多模态模型"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **卡尔的AI沃茨** @aiwarts [2025-08-28](https://x.com/aiwarts/status/1961100154746146936)
 

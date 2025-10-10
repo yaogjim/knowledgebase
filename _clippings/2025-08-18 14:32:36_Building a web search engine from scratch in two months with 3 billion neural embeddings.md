@@ -6,6 +6,19 @@ created: 2025-08-18 14:32:36
 published: 2025-08-18 14:32:36
 description: ""
 tags: ""
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ## 在两个月内利用30亿个神经嵌入从头构建一个网络搜索引擎
 

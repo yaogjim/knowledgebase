@@ -7,6 +7,19 @@ created: 2025-04-29
 description:
 tags:
   - "@morganhousel #投资 #理财 #金钱 #心理"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Morgan Housel** @morganhousel [2025-04-28](https://x.com/morganhousel/status/1916850746407952598)
 

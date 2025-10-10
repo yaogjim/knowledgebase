@@ -8,6 +8,19 @@ created: 2025-08-20
 description:
 tags:
   - "@MaryamMiradi #AI代理 #真实世界应用 #药物发现 #气候变化 #商业智能"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Maryam Miradi, PhD** @MaryamMiradi [2025-08-19](https://x.com/MaryamMiradi/status/1957804179264545124)
 

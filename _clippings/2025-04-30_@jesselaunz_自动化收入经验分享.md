@@ -7,6 +7,19 @@ created: 2025-04-30
 description:
 tags:
   - "@jesselaunz #自动化收入 #编程 #商业房产 #投资 #被动收入"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jesse Lau 遁一子** @jesselaunz 2023-08-11
 

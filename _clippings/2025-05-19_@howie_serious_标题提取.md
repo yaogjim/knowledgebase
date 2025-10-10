@@ -7,6 +7,19 @@ created: 2025-05-19
 description:
 tags:
   - "@howie_serious 提取中文标签 #标签"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **howie.serious** @howie\_serious 2025-05-18
 

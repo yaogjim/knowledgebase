@@ -7,6 +7,19 @@ created: 2025-07-07
 description:
 tags:
   - "@OdysseysEth #组织变革 #人性 #战略 #企业文化 #微软 #苹果"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Odyssey** @OdysseysEth [2025-07-04](https://x.com/OdysseysEth/status/1940990004924502231)
 

@@ -7,6 +7,19 @@ created: 2025-07-29
 description:
 tags:
   - "@zzwz #深度搜索代理 #WebUI #交互设计 #混合沙盒 #异步流式 #可视化工具"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **不鍊金丹不坐禪** @zzwz [2025-07-28](https://x.com/zzwz/status/1949794596591964223)
 

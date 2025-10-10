@@ -8,6 +8,19 @@ created: 2025-10-08
 description:
 tags:
   - "@paulg #AI编程 #Replit #创业 #增长 #技术"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Paul Graham** @paulg [2025-10-07](https://x.com/paulg/status/1975599230061584619)
 

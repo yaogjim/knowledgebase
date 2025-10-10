@@ -7,6 +7,19 @@ created: 2025-04-29
 description:
 tags:
   - "@leodknuth #产品管理 #PMF #市场洞察 #用户洞察"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **祥仔Leo and 233 others** @leodknuth [2025-04-27](https://x.com/leodknuth/status/1916565656021221601)
 

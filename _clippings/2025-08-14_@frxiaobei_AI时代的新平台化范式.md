@@ -8,6 +8,19 @@ created: 2025-08-14
 description:
 tags:
   - "@frxiaobei #AI时代 #平台化 #思考型执行力 #AI工具 #AI平台"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **凡人小北** @frxiaobei 2025-08-14
 

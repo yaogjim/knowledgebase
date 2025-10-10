@@ -7,6 +7,19 @@ created: 2025-07-29
 description:
 tags:
   - "@cholf5 #AI #代码审查 #程序员 #GeminiCLI #Qwen3Coder #TODO"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **周尔复** @cholf5 [2025-07-28](https://x.com/cholf5/status/1949743363634422135)
 

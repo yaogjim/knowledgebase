@@ -8,6 +8,19 @@ created: 2025-09-19
 description: "ParserGPT (Public Beta Coming Soon): Turn messy websites into clean CSVs Heads-up: I’ve built ParserGPT to solve “scrape site, reliably.” I’m polishing the release, beta is coming soon. If …"
 tags:
   - "Ayush Shrivastava"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [Sitemap](https://medium.com/sitemap/sitemap.xml)
 

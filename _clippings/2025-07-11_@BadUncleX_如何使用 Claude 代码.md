@@ -7,6 +7,19 @@ created: 2025-07-11
 description:
 tags:
   - "@BadUncleX #ClaudeCode #AI开发 #编程助手"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **BadUncle** @BadUncleX [2025-06-27](https://x.com/BadUncleX/status/1938389296815440319)
 
@@ -106,4 +119,3 @@ Claude 处理任务时可继续发送消息，排队等待处理。
 原来claude code也能用感叹号执行命令啊，回头试试
 
 ![Image](https://pbs.twimg.com/media/GuaNeV0aEAA6Hqu?format=jpg&name=large)
-

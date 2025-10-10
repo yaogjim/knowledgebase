@@ -8,6 +8,19 @@ created: 2025-10-09
 description:
 tags:
   - "@mike_chong_zh # YC # Box # AaronLevie # AI初创 # vscode #  ide # 创新者困境 # 跨越鸿沟 # 蓝海战略"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **迈克 Mike Chong** @mike\_chong\_zh [2025-10-08](https://x.com/mike_chong_zh/status/1975946264887140778)
 

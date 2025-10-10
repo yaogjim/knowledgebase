@@ -7,6 +7,19 @@ created: 2025-07-18
 description:
 tags:
   - "@chris_dalke #打印 #尺寸 #x1carbon"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Chris Dalke** @chris\_dalke [2025-07-10](https://x.com/chris_dalke/status/1943355151877611902)
 

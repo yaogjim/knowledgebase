@@ -8,6 +8,19 @@ created: 2025-08-11
 description:
 tags:
   - "@tisoga #37signals #Linux #Omarchy #技术 #开源 #开发环境 #定制 #效率 #技术押注"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jiayuan** @tisoga [2025-08-10](https://x.com/tisoga/status/1954448345331835276)
 

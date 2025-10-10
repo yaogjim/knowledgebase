@@ -7,6 +7,19 @@ created: 2025-04-02
 description: "Claude 能否使用 MCP 来控制你的浏览器？当然可以！ 我创建了一个概念验证/参考设计的 MCP 服务器，该服务器托管一个网页，你可以在浏览器中加载该网页，然后使用 MCP 客户端（如 Claude Desktop）在该页面上编写和运行任意 JavaScript 函数"
 tags:
   - "@matdmiller #浏览器控制 #MCP #JavaScript #Web交互 #大型语言模型 #安全 #概念验证"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Mat Miller** @matdmiller [2025-03-10](https://x.com/matdmiller/status/1899189846674993534)
 

@@ -8,6 +8,19 @@ created: 2025-09-03
 description:
 tags:
   - "@vikingmute #Serverless #Redis #向量数据库 #任务队列 #开发者体验 #Upstash"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Viking** @vikingmute [2025-09-02](https://x.com/vikingmute/status/1962876769603911822)
 

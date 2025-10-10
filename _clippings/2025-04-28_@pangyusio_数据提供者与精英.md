@@ -7,6 +7,19 @@ created: 2025-04-28
 description:
 tags:
   - "@pangyusio #数据时代 #社会分化 #人工智能 #数据价值"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Pangyu 胖鱼** @pangyusio 2025-04-27
 

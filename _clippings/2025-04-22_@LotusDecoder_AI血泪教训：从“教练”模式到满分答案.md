@@ -7,6 +7,19 @@ created: 2025-04-22
 description:
 tags:
   - "@LotusDecoder #AI #训练 #学习 #对话 #思考 #换位思考"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LotusDecoder** @LotusDecoder [2025-04-21](https://x.com/LotusDecoder/status/1914227653441368216)
 

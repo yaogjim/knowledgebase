@@ -7,6 +7,19 @@ created: 2025-04-29
 description:
 tags:
   - "@huangyun_122 # Agentic AI #多智能体协作 #A2A #MCP #阅读级别"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **黄赟** @huangyun\_122 [2025-04-28](https://x.com/huangyun_122/status/1916901588528206160)
 

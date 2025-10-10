@@ -7,6 +7,19 @@ created: 2025-07-02
 description:
 tags:
   - "@HotmailfromSH #效率 #时间管理 #创造力 #焦虑"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Dr.Wang** @HotmailfromSH [2025-07-01](https://x.com/HotmailfromSH/status/1940050265228681499)
 

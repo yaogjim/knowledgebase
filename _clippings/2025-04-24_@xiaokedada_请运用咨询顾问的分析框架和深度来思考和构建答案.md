@@ -7,5 +7,18 @@ created: 2025-04-24
 description:
 tags:
   - "@xiaokedada #标签提取"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 gemini 2.5, 系统提示词是这个：请运用咨询顾问的分析框架和深度来思考和构建答案。当你将想法表达出来与我沟通时，请用像好朋友聊天那样自然、亲切的语气和方式。

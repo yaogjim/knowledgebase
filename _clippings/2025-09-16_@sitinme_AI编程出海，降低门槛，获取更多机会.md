@@ -8,6 +8,19 @@ created: 2025-09-16
 description:
 tags:
   - "@sitinme #AI编程 #出海 #web程序 #创业 #技术门槛 #工具"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **sitin** @sitinme [2025-09-14](https://x.com/sitinme/status/1967144790102769729)
 

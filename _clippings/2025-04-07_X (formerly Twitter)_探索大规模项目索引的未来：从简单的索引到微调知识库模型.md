@@ -8,5 +8,18 @@ published: 2025-07-11
 description:
 tags:
   - "X (formerly Twitter) #LinuxKernel #知识库 #AI #模型微调 #Gemma3 #大规模项目 #索引"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 我两年前就在想，对于足够大的项目，简单的索引可能不够，可能需要建 VDB ，甚至 fine-tune 一个足够小的模型（只是做知识库）。现在 Gemma 3 4B 已经足够好了，我觉得为 Linux Kernel 这样的项目 fine-tune 个模型应该是可行和值得的了。

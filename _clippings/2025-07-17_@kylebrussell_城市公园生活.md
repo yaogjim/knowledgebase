@@ -7,6 +7,19 @@ created: 2025-07-17
 description:
 tags:
   - "@kylebrussell #城市模拟游戏 #生活游戏 #温馨游戏"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Kyle Russell** @kylebrussell [2025-07-16](https://x.com/kylebrussell/status/1945501615181426993/history)
 

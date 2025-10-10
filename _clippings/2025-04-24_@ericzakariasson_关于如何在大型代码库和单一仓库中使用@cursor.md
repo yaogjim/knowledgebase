@@ -7,6 +7,19 @@ created: 2025-04-24
 description:
 tags:
   - "@ericzakariasson 提取包含 # 的中文标签"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **eric zakariasson** @ericzakariasson [2025-04-23](https://x.com/ericzakariasson/status/1915072216523497628)
 

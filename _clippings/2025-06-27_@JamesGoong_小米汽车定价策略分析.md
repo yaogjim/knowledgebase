@@ -7,6 +7,19 @@ created: 2025-06-27
 description:
 tags:
   - "@JamesGoong #小米汽车 #定价策略 #营销 #汽车行业 #雷军"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **在悉尼和稀泥** @JamesGoong [2024-03-28](https://x.com/JamesGoong/status/1773495060077887876)
 

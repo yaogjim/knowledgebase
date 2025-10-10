@@ -8,6 +8,19 @@ created: 2025-08-14
 description:
 tags:
   - "@ReynoldDai #AI时代 #教育 #未来 #创造力 #自由"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Rey英语自由与创造力** @ReynoldDai [2025-08-13](https://x.com/ReynoldDai/status/1955626572884709407)
 

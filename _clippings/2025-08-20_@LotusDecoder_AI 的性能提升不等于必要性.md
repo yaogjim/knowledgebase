@@ -8,6 +8,19 @@ created: 2025-08-20
 description:
 tags:
   - "@LotusDecoder #LLM #AI #开源 #模型优化 #微调"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LotusDecoder** @LotusDecoder 2025-08-19
 

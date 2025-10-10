@@ -8,6 +8,19 @@ created: 2025-07-01
 description: "Cursor has grown 100x in load in just a year, sees 1M+ QPS for its data layer, and serves billions of code completions, daily. A deepdive into how it’s built with cofounder, Sualeh Asif"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ### Cursor 在短短一年内负载增长了 100 倍，其数据层的每秒查询率（QPS）超过 100 万，并且每天提供数十亿次代码补全。与联合创始人苏莱赫·阿西夫一起深入了解它是如何构建的。
 

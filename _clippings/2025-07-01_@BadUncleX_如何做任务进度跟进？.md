@@ -7,6 +7,19 @@ created: 2025-07-01
 description:
 tags:
   - "@BadUncleX #任务管理 #进度跟进 #效率提升"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **BadUncle** @BadUncleX [2025-06-10](https://x.com/BadUncleX/status/1932419883687674361)
 

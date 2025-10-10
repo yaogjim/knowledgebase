@@ -7,6 +7,19 @@ created: 2025-04-17
 description: "文章浏览阅读1.6k次，点赞17次，收藏15次。FunASR是阿里巴巴达摩院开源的一款轻量级语音识别工具包，旨在为开发者提供高效、易用的语音处理解决方案。它集成了多种先进的语音识别技术和模型，支持语音识别（ASR）、语音端点检测（VAD）、标点恢复、语言模型、说话人验证、说话人分离和多人对话语音识别等功能；任务名称主要目标应用场景技术特点ASR将语音转为文本字幕生成、语音助手声学模型+语言模型VAD检测语音活动语音信号预处理时间域或频域特征分析标点恢复添加标点符号自动化文本生成上下文语义理解说话人验证确认语音归属。_funasr语音识别官方文档"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ![](https://i-blog.csdnimg.cn/direct/05513e552596439db29cf6f8af6713c3.png)之前的工作主要是 [计算机视觉](https://so.csdn.net/so/search?q=%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89&spm=1001.2101.3001.7020) 方向，大模型盛行下开始接触大语言模型和多模态模型，但是一直也没有机会接触语音识别方向的算法，比较好奇， 前两天刷到一个科普小视频提到FunASR这个开源工具，今天介绍一个语音识别领域的开源工具-FunASR。
 

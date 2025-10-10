@@ -8,6 +8,19 @@ created: 2025-07-01
 description: "Build a real estate agent using LangGraph to interact with purchase agreements and answer agent queries."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 在本教程中，你将使用 Tensorlake、LangChain 和 OpenAI 从包含签名的文档中提取上下文信息。
 

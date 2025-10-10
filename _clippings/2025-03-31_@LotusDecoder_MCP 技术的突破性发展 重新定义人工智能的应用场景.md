@@ -7,6 +7,19 @@ created: 2025-03-31
 description: "MCP 极大拓宽了 ai 的应用场景， ai 不再是一个聊天建议者，变成了规划者、调度者、部分执行者。 例如，有外地朋友过来玩，他说他想看洪崖洞，如何招待他。 MCP 前的时代，是构造提示词，一轮一轮问。把查到的景点资料放进去、交通路线放进去，让 AI 给出参考意见。 MCP"
 tags:
   - "@LotusDecoder"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LotusDecoder** @LotusDecoder [2025-03-31](https://x.com/LotusDecoder/status/1906546999299809564)
 

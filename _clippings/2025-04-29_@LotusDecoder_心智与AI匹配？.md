@@ -7,6 +7,19 @@ created: 2025-04-29
 description:
 tags:
   - "@LotusDecoder #心智 #AI #匹配 #情感 #沟通"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LotusDecoder** @LotusDecoder [2025-04-29](https://x.com/LotusDecoder/status/1917055570982670712)
 

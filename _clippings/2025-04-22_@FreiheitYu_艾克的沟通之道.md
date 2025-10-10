@@ -7,6 +7,19 @@ created: 2025-04-22
 description:
 tags:
   - "@FreiheitYu #沟通技巧 #亲情 #童年回忆"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **YU** @FreiheitYu [2025-04-21](https://x.com/FreiheitYu/status/1914317557785416012)
 

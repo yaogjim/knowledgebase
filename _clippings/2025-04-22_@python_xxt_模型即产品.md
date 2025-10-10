@@ -7,6 +7,19 @@ created: 2025-04-22
 description:
 tags:
   - "@python_xxt #LLM #人工智能 #模型训练 #智能体 #具身智能"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Robinson · 鲁棒逊** @python\_xxt 2025-03-04
 
@@ -41,4 +54,3 @@ tags:
 > ![Image](https://pbs.twimg.com/media/GlK56erWAAAaeHS?format=png&name=large) ![Image](https://pbs.twimg.com/media/GlK57eUWkAAeKup?format=jpg&name=large)
 
 ---
-

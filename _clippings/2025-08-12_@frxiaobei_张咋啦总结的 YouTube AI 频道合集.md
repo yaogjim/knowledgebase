@@ -8,6 +8,19 @@ created: 2025-08-12
 description:
 tags:
   - "@frxiaobei #AI #YouTube #学习资源 #AI技术 #人工智能"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **凡人小北** @frxiaobei [2025-08-11](https://x.com/frxiaobei/status/1954868587338088789/history)
 

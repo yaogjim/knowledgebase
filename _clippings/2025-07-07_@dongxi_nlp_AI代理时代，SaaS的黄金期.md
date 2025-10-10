@@ -7,6 +7,19 @@ created: 2025-07-07
 description:
 tags:
   - "@dongxi_nlp #AI #SaaS #代理 #软件开发 #出海app"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **马东锡 NLP** @dongxi\_nlp 2025-07-05
 

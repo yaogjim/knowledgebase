@@ -8,6 +8,19 @@ created: 2025-03-31
 description: "The C4 model is a lightweight and flexible framework for representing a variety of software architecture patterns, such as microservices, monoliths, event-driven, or domain-driven design. In this…"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ## ⚡ 简而言之
 

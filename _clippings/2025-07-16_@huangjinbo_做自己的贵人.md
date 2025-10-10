@@ -7,6 +7,19 @@ created: 2025-07-16
 description:
 tags:
   - "@huangjinbo #乐观 #分享 #进步 #帮助 #爱自己"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **佐仔** @huangjinbo [2025-07-11](https://x.com/huangjinbo/status/1943549043956924760)
 

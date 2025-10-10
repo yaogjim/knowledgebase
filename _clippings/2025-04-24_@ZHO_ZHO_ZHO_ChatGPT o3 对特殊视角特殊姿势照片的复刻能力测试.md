@@ -7,6 +7,19 @@ created: 2025-04-24
 description:
 tags:
   - "@ZHO_ZHO_ZHO #ChatGPT #图片生成 #视觉复刻 #特殊视角 #特殊姿势"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **\-Zho-** @ZHO\_ZHO\_ZHO [2025-04-23](https://x.com/ZHO_ZHO_ZHO/status/1914897282899599833)
 

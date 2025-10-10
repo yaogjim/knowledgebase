@@ -8,6 +8,19 @@ created: 2025-04-24
 description: "一个用于AI驱动开发的通用任务管理系统，使用Google Gemini模型，专为与Cursor AI无缝协作而设计。 - skindhu/AI-TASK-MANAGER"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [Open in github.dev](https://github.dev/) [Open in a new github.dev tab](https://github.dev/) [Open in codespace](https://github.com/codespaces/new/skindhu/AI-TASK-MANAGER?resume=1)
 

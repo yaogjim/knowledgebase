@@ -8,6 +8,19 @@ created: 2025-08-28
 description: "Ever wished you could just chat with a PDF document instead of scrolling through endless pages looking for answers? Well, that’s exactly what we’re going to build today! Think of it like having a…"
 tags:
   - "Mohamed Arbi Nsibi"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [Sitemap](https://medium.com/sitemap/sitemap.xml)
 
@@ -566,4 +579,3 @@ for output in graph.stream(inputs):
 [https://github.com/Goodnight77/Just-RAG/tree/main/Agentic-Qdrant-RAG](https://github.com/Goodnight77/Just-RAG/tree/main/Agentic-Qdrant-RAG)
 
 随时可以尝试，随意摆弄，如果遇到问题就告诉我。我总是很乐意帮忙！
-

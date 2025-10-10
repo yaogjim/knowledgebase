@@ -8,6 +8,19 @@ created: 2025-10-09
 description:
 tags:
   - "@shaogefenhao #认知科学 #观念 #错位 #错误思维"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **少个分号** @shaogefenhao 2025-10-07
 

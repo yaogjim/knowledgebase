@@ -7,6 +7,19 @@ created: 2025-04-25
 description:
 tags:
   - "@xiaokedada #爬虫 #工具 #数据采集 #飞书 #多维表格 #AI #摘要 #小红书 #内容创作"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **nazha** @xiaokedada 2025-04-24
 

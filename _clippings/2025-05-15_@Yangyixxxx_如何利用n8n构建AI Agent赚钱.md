@@ -7,6 +7,19 @@ created: 2025-05-15
 description:
 tags:
   - "@Yangyixxxx #n8n #人工智能 #自动化 #AI #赚钱 #创业 #工具"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Yangyi** @Yangyixxxx [2025-05-15](https://x.com/Yangyixxxx/status/1922812654323892373)
 

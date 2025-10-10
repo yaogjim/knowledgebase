@@ -8,6 +8,19 @@ created: 2025-07-07
 description: "抗衰老全攻略：38 岁视角 写在前面 38 岁——既不是青春刚启，也未至暮年，却恰好处在 \"上有老下有小\"、事业与健康都要并行的档口。过去一年，我把“衰老”当成一个项目来研究：先做文献综述，再列优先队列，最后写成本博客，给未来 10 年的自己一份“操作手册”。如果你也处在类似年纪和处境，希望这份笔记能帮你少走弯路。 目录 为什么 38 岁开始聊衰老？ 我眼中的“衰老主干线” 五大内源驱动 × 对策速查表 ROS：自由基攻防战（深度解析） NAD⁺：能量‑修复核心（深度解..."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ## 抗衰老全攻略：38 岁视角
 

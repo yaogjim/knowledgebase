@@ -7,6 +7,19 @@ created: 2025-03-31
 description: "第一次看雷军的《小米创业思考》，读了 20 页就不读了。 因为在前 20 页他已经讲了他创业的发心和团队。 不管是所谓一人公司，还是 vc 初创，人永远是核心。 一个商业流程，输入和输出 2 端都是人。给你掏钱的是人，提供服务的最终也是人。AI 和各种技术，运营，也只是在流"
 tags:
   - "@JamesGoong"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **在悉尼和稀泥** @JamesGoong [2025-03-30](https://x.com/JamesGoong/status/1906167973649547580)
 

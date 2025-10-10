@@ -7,6 +7,19 @@ created: 2025-04-22
 description: "Aman's AI Journal | Course notes and learning material for Artificial Intelligence and Deep Learning Stanford classes."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 - - [复杂动力学第一定律](https://aman.ai/primers/ai/top-30-papers/#the-first-law-of-complexodynamics)
 	- [循环神经网络的不合理有效性](https://aman.ai/primers/ai/top-30-papers/#the-unreasonable-effectiveness-of-recurrent-neural-networks)

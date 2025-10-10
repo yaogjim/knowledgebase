@@ -7,6 +7,19 @@ created: 2025-04-03
 description: "求教：目前中文tts效果比较好的方案是什么？ 心血来潮，想玩一玩中文tts"
 tags:
   - "@howie_serious #中国古代科技 #四大发明 #造纸术 #印刷术 #指南针 #火药"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **howie.serious** @howie\_serious [2025-04-02](https://x.com/howie_serious/status/1907403973121966441)
 

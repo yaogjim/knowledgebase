@@ -7,6 +7,19 @@ created: 2025-05-23
 description:
 tags:
   - "@AndrewYNg #LLM #强化学习 #微调 #推理 #GRPO"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 新课程： 使用 GRPO 对 LLMs 进行强化微调 ！  
   

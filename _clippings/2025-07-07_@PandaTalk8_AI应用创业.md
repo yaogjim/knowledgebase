@@ -7,6 +7,19 @@ created: 2025-07-07
 description:
 tags:
   - "@PandaTalk8"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Mr Panda** @PandaTalk8 [2025-07-06](https://x.com/PandaTalk8/status/1941993671412547591)
 

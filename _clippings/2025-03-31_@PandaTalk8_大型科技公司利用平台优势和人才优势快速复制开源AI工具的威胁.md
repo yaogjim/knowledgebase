@@ -7,6 +7,19 @@ created: 2025-03-31
 description: "小团队创业，最好还是要避开那种通用型产品，比如像deep research 这种产品，你花很大功规开发的ai agent 调了很多大模型，写了一大堆prompt，解决了大量的tool use的问题， 调教出来的一个还不错的产品，还没有等你开始盈利，大厂借着平台优势和人才优势，很快"
 tags:
   - "@PandaTalk8"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Mr Panda** @PandaTalk8 [2025-03-31](https://x.com/PandaTalk8/status/1906538142582423793)
 

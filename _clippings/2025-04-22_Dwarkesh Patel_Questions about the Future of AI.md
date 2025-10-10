@@ -8,6 +8,19 @@ created: 2025-04-22
 description: "Considerations about economics, history, training, deployment, investment, and more"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ### 关于经济学、历史、培训、部署、投资等方面的考量
 

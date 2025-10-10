@@ -7,6 +7,19 @@ created: 2025-05-16
 description:
 tags:
   - "@gregschoeninger #文本到SQL #微调 #Qwen #GPT-4.1"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Greg Schoeninger** @gregschoeninger [2025-05-14](https://x.com/gregschoeninger/status/1922781767720706151)
 

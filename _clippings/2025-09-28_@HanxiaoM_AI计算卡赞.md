@@ -8,6 +8,19 @@ created: 2025-09-28
 description:
 tags:
   - "@HanxiaoM #AI加速卡 #m5stack #计算卡 #硬件"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **HanxiaoMeow** @HanxiaoM [2025-09-26](https://x.com/HanxiaoM/status/1971481368350921116)
 

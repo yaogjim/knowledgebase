@@ -8,6 +8,19 @@ created: 2025-08-22
 description:
 tags:
   - "@Yangyixxxx #拆书 #AI #互联网 #版权"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Yangyi** @Yangyixxxx 2025-08-13
 

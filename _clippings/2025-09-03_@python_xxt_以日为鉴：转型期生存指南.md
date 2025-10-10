@@ -8,6 +8,19 @@ created: 2025-09-03
 description:
 tags:
   - "@python_xxt #AI时代 #转型 #生存指南 #末世预言 #日本化 #主权个体"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Robinson · 鲁棒逊** @python\_xxt 2025-08-30
 

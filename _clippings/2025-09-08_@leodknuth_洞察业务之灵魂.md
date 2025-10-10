@@ -8,6 +8,19 @@ created: 2025-09-08
 description:
 tags:
   - "@leodknuth #业务洞察 #人机协作 #提示词 #深度思考 #创业 #需求"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **祥仔Leo | 行走的Meta Prompt** @leodknuth [2025-09-07](https://x.com/leodknuth/status/1964703455932764369)
 

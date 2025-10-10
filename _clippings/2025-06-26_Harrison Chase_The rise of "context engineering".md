@@ -8,6 +8,19 @@ created: 2025-06-26
 description: "Header image from Dex Horthy on Twitter.Context engineering is building dynamic systems to provide the right information and tools in the right format such that the LLM can plausibly accomplish the task.Most of the time when an agent is not performing reliably the underlying cause is that the"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 *标题图片来自* [*推特上的德克斯·霍尔蒂*](https://x.com/dexhorthy/status/1933283008863482067?ref=blog.langchain.com) *。*
 

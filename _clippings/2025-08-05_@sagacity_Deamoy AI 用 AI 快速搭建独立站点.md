@@ -7,6 +7,19 @@ created: 2025-08-05
 description:
 tags:
   - "@sagacity #AI #低代码 #网站搭建 #DeamoyAI"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **池建强** @sagacity [2025-08-04](https://x.com/sagacity/status/1952318113946702066)
 
@@ -17,4 +30,3 @@ Deamoy 有什么不一样吗？还真有点。不同于传统的代码生成工�
 他们自己做了些底层协议的研发，比如AI 与视觉双工编辑，挺厉害的。Figma 导入设计稿也能直接做成在线网站。这样的产品形态，让我对未来的工作方式有了新的想象。推荐。
 
 ![Image](https://pbs.twimg.com/media/GxgG7MoaQAAf-P9?format=jpg&name=large)
-

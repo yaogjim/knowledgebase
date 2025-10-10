@@ -7,6 +7,19 @@ created: 2025-04-23
 description:
 tags:
   - "@c_valenzuelab #人工智能 #数据市场 #包容性创新"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Cristóbal Valenzuela** @c\_valenzuelab [2025-04-22](https://x.com/c_valenzuelab/status/1914784656727416848)
 

@@ -8,6 +8,19 @@ created: 2025-07-11
 description:
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 嘿，[r/ClaudeAI](https://www.reddit.com/r/ClaudeAI/)！这是一篇转自我博客 [的跨平台帖子](https://bagerbach.com/blog/how-i-use-claude-code) 。我在这里分享我对 Claude 代码的了解，希望你觉得它有用 ：）
 

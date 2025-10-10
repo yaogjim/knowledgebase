@@ -8,6 +8,19 @@ created: 2025-08-19
 description:
 tags:
   - "@xDinoDeer #Reddit #搬运 #翻译 #海外热点"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **DinoDeer** @xDinoDeer [2025-08-18](https://x.com/xDinoDeer/status/1957448454357340233)
 

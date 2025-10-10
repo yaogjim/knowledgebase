@@ -8,6 +8,19 @@ created: 2025-09-26
 description: "Ed Stack built Dick’s Sporting Goods from a struggling family store into an empire of more than 800 stores and billions in sales. Along the way he nearly lost everything. Multiple times. This episode is the story of what he did, how he did it, and the lessons you can learn. Available Now: Apple Podcasts …"
 tags:
   - "Farnam Street"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 # \[异类\] 埃德·斯塔克：迪克斯体育用品公司的经验教训
 

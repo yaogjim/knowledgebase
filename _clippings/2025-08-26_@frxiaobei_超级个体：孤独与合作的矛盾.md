@@ -8,6 +8,19 @@ created: 2025-08-26
 description:
 tags:
   - "@frxiaobei #超级个体 #AI #科技 #未来 #合作 #孤独"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **凡人小北** @frxiaobei 2025-08-24
 

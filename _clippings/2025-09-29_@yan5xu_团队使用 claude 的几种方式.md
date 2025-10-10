@@ -8,6 +8,19 @@ created: 2025-09-29
 description:
 tags:
   - "@yan5xu #claude #LLM #代管 #成本 #openrouter #gcp #aws"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **yan5xu** @yan5xu [2025-09-28](https://x.com/yan5xu/status/1972295040652435819)
 

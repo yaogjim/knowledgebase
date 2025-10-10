@@ -7,6 +7,19 @@ created: 2025-07-28
 description:
 tags:
   - "@Yangyixxxx #商业 #创业 #成功 #AI #人工智能"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Yangyi** @Yangyixxxx [2025-07-27](https://x.com/Yangyixxxx/status/1949310274265350187)
 

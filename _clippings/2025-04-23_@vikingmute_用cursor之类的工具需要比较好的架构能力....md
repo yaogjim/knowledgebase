@@ -7,5 +7,18 @@ created: 2025-04-23
 description:
 tags:
   - "@vikingmute  #工具 #架构 #开发 #自动化 #测试"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 用cursor之类的工具需要比较好的架构能力，把模块拆分做好，每次只完成一个小模块，添加自动化测试，最后再整合起来。 我这个项目就是大部分代码通过cursor 以及 chatgpt 做出来的。

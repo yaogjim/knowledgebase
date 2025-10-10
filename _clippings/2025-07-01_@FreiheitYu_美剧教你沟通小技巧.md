@@ -7,6 +7,19 @@ created: 2025-07-01
 description:
 tags:
   - "@FreiheitYu #沟通技巧 #美剧 #职场 #生活"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **YU** @FreiheitYu [2025-06-17](https://x.com/FreiheitYu/status/1934839828744442367)
 

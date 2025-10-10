@@ -7,6 +7,19 @@ created: 2025-07-31
 description:
 tags:
   - "@zzwz #AI #产品经理 #AutoQA #软件测试"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **不鍊金丹不坐禪** @zzwz [2025-07-30](https://x.com/zzwz/status/1950496526322765832)
 

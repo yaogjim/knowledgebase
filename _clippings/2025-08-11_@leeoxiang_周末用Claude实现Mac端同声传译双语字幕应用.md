@@ -8,6 +8,19 @@ created: 2025-08-11
 description:
 tags:
   - "@leeoxiang #同声传译 #双语字幕 #Mac应用 #实时翻译 #机器翻译"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Leo Xiang** @leeoxiang [2025-08-10](https://x.com/leeoxiang/status/1954517729333202956)
 

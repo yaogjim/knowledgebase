@@ -8,6 +8,19 @@ created: 2025-09-15
 description: "与十几位位创始人、产业上下游和投资人聊完之后，我得到了3个核心预测，关于格局的演化、未来的生态，以及决定这一切的‘引爆点’。"
 tags:
   - "yan5xu"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ![cover_image](http://mmecoa.qpic.cn/sz_mmecoa_jpg/2OaBSNklTSict3pWJibMVQrDBduBreu6xz7nVQOHIDF3aFTRiaUNvPgpuDrMdHEnU1IGWmJemO3jxMWiaCvN37IaBg/0?wx_fmt=jpeg)
 

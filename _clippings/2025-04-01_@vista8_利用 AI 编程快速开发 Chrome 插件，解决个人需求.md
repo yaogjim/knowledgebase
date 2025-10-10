@@ -7,6 +7,19 @@ created: 2025-04-01
 description: "5分钟写一个Chrome插件！ 之前写的复制标题和URL的Chrome插件源码被误删。 索性重写，两周Vibe Coding经验，熟练度提升，5分钟搞定。 实现步骤： 1. 新建一个文件夹，Windsurf打开 2. Cursor Directory复制一个Chrome插"
 tags:
   - "@vista8 #AI编程 #Chrome插件 #效率提升 #个客定制 #开发工具"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **向阳乔木** @vista8 [2025-03-31](https://x.com/vista8/status/1906752136345788879)
 

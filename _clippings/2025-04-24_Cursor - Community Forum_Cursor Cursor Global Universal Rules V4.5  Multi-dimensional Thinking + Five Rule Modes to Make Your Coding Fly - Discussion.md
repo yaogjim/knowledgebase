@@ -8,6 +8,19 @@ created: 2025-04-24
 description: "[Cursor] Cursor  Global Universal Rules V4.5 : Multi-dimensional Thinking + Five Rule Modes to Make Your Coding FlyThe prompt shared today is very strong. Although the next prompt will be stronger, this one is truly pow…"
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ## \[光标\]光标全球通用规则 V4.5：多维思维 + 五种规则模式让你的编码如飞
 

@@ -8,6 +8,19 @@ created: 2025-03-26
 description: "Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems."
 tags:
   - "clippings"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-17"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 Product 公告
 
