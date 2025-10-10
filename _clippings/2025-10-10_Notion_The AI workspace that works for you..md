@@ -1,0 +1,302 @@
+---
+title: "The AI workspace that works for you."
+source: "https://www.notion.so/150-7-2784c8d70127801fa6e0d8b11b6b6651"
+author:
+  - "[[Notion]]"
+published: 2025-10-10
+created: 2025-10-10
+description: "A tool that connects everyday work into one space. It gives you and your teams AI tools—search, writing, note-taking—inside an all-in-one, flexible workspace."
+tags:
+  - "Notion"
+---
+## 如何用150美金在7天内注册一个美国公司
+
+随着国内亚马逊OA卖家数量越来越多，于此同时亚马逊也收紧了对国内亚马逊账户品牌售卖的权限，在这种情况之下，美国公司的亚马逊账号几乎没有受到影响，因此，如果想继续长期深耕亚马逊OA模式，拥有一个美国公司的亚马逊店铺是一个不错的选择，今天就来跟大家介绍一下，如何花费不超过150美金，且在7天内完成一家美国公司的注册（包括公司地址公证及EIN申请）
+
+#### 首先注册美国公司，需要准备以下3个资料：
+
+1、个人护照（必须在有效期内）
+
+2、个人国际驾照（必须在有效期内，可在支付宝搜索“个人国际驾照”免费申请）
+
+3、visa或者master可用来支付跨境消费的信用卡（做oa的童鞋基本都有了）
+
+这里就以注册一个美国Wyoming（怀俄明州）的LLC类型公司为例，（为什么要选择LLC类型的公司，这里简单BB一下，首先LLC类型公司是80%的公司创立者的选择，另外LLC即Limited Liability Company的缩写，意思就是有限责任公司，如果公司倒闭清算，那么只需要以你投资的金额为限负经济责任，也就是说，债权人不可以从股东个人财产中索偿，公司倒闭，作为个人是不会破产的~）一步一步介绍注册步骤：
+
+![](https://www.notion.so/image/attachment%3A2e412304-a071-4670-be5d-fc947a2bf5f3%3Aimage.png?table=block&id=2784c8d7-0127-8012-b6e8-c33326e9a3e0&spaceId=3bcd5dbc-13e6-4524-89ff-32be3cf8ac94&width=1420&userId=&cache=v2)
+
+上面截图是我8月16日下的订单，8月20日订单完成，公司注册完成。订单所花费用如下（此为公司注册，未包括EIN的费用，EIN在fiverr上花15美金2天即可搞定，也可自己免费申请）：
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/P45OXORCAAAGI?)
+
+下面正式开始，注册Wyoming州的美国公司步骤如下（注册其他州也差不多是这几个步骤）：
+
+步骤1:为自己的公司取个名字
+
+步骤2:选择一个registered agent，完成公司注册
+
+步骤3:完成公司注册地址公证
+
+步骤4:申请一个EIN
+
+#### 首先，步骤1，为自己的公司取一个名字，这里有几点建议和需要注意的地方。
+
+关于公司取名，可以取跟自己亚马逊店铺一样的名字，或者自己产品的品牌名字，或者直接以自己的姓名命名也ok，总之，最好是取一个容易记，且比较好识别的公司名称即可。对了，也可以继续使用之前哈雷同学介绍的品牌取名方法给自己公司取名，多选几个名称备选，公司名称最好以LLC为结尾，即注册为LLC类型的公司。
+
+另外也可参考这个链接，这是怀俄明州政府关于公司取名的说明及注意事项：
+
+[http://sos.wyo.gov/Business/Docs/HowToChooseACompanyName.pdf](http://sos.wyo.gov/Business/Docs/HowToChooseACompanyName.pdf)
+
+取名完成后，可以先通过以下链接查询名字是否可用，即检查公司名是否跟已成立在案的公司重名，以下链接是怀俄明州政府网站提供的公司名免费查询工具～
+
+[https://wyobiz.wyo.gov/Business/FilingSearch.aspx#&&YHdYEPo2Tb1AyBd0ikTkO+iS49OchgZ9+5Gr9oHPKT024IStc7vP7z+SbZLIxjITYS9fb6Bzo8NgfXRtRMhZ9Gugbq6j9ye5e+1kK5vlEk2huGAKsoW3aOxpLoaVNjkYOVYjT0EEPPRuLm842kWOW3URwmDpOqDwdypNwTz9TIzSb7M8vS82zesJCzPe/9/bLOKmyA==](https://wyobiz.wyo.gov/Business/FilingSearch.aspx#&&YHdYEPo2Tb1AyBd0ikTkO+iS49OchgZ9+5Gr9oHPKT024IStc7vP7z+SbZLIxjITYS9fb6Bzo8NgfXRtRMhZ9Gugbq6j9ye5e+1kK5vlEk2huGAKsoW3aOxpLoaVNjkYOVYjT0EEPPRuLm842kWOW3URwmDpOqDwdypNwTz9TIzSb7M8vS82zesJCzPe/9/bLOKmyA==)
+
+#### 步骤2，选择一个Registered Agent，完成公司注册
+
+这里简单说一下，为什么要通过Agent来注册公司，而不是自己操作注册。
+
+实际上，任意一个年满18岁且在Wyoming州有真实地址的人都可以成为你注册公司的Registered Agent，当然我们就不考虑个人代理了，直接找专业的注册公司作为我们的代理，毕竟我们肉身不在美国，之后可能还有其他关于公司的事情需要代理来处理。
+
+另外，选择代理也有以下一些好处（仅列举了一下，我们可能会关注的好处）：
+
+#### 1、确保你注册公司的合规性及有效性
+
+因为你不在美国，不了解当地公司的政策及法律，所以找一个专业靠谱的代理公司，他们能适时的提醒你做年审或者其他相关事宜，并且可以直接帮你完成这些事项，并把相关的结果或者文件帮你扫描，并发送给你，这样就省事方便很多～
+
+#### 2、可以保护好自己的隐私
+
+如果使用自己的地址作为公司地址（当然前提是你有Wyoming州的有效真实地址），那么这个地址就要公示在州政府的公司数据库里面，这个是可以公开查询的，相当于暴露自己的住址啦。而如果使用代理，他们会提供公司地址，这样就不用暴露自己的真实地址啦。
+
+#### 3、公司相关文件在线存储
+
+作为一个肉身不在美国本地的美国公司老板，一个好的代理会把所有的资料和文件都扫描上传到你的订单账户里面，即在线会有所有文件的电子存档及备份，再也不用担心找不到文件了，而且如果你需要调用这些资料，可以很方便的取用。
+
+好了，这里说完了代理公司注册的好处，那下面说介绍一下代理注册美国公司的代理费用（注意，这里的代理费用是指支付给代理公司的服务费），基本分为几个档，0元（即免费），$39, $99, $125等，不同Agent的费用不同。注册完美国公司后，每年都会要进行年审，即提交年报之类的事宜，第二年这个服务一年是$119元起，这个费用会根据不同州的公司有所不同；
+
+下面就以我使用的Incfile代理公司为例来介绍一下如果注册美国公司，选择他是因为，这个代理一家美国非常老牌专业做公司注册业务的公司，公司成立于2004年，已经服务超过50w的中小企业用户，在shopperapproved第三方的review评价网站有2w多条评价，且评分高达4.8分，最重要的是，通过他们注册公司，可直接免除第一年的代理注册费用，也就是免费提供注册服务费，能帮我们节省一笔注册服务费；
+
+OK，前面说了那么多，那如何通过Incfile注册美国公司呢？
+
+首先打开Incfile的官网： [https://www.incfile.com/](https://www.incfile.com/) 在首页找到start my business按钮开始进入注册流程。以下图标记的3个位置都是注册入口，请随意选择～
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/DI56XORCAAQDC?)
+
+点击进入注册流程之后，你会来到下面的页面，左边选择LLC，右边选择你公司要注册的州，这里我们选择WY，如下图所示，选择完后，页面会自动定位到下面价格板块；
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/DQ56XORCACQAO?)
+
+我们选择第一个silver package，也就是$102的这个选项即可：
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/P456XORCABACK?)
+
+这里的102元，其实是州政府收取的注册公司费用，相当于代理免费帮你注册公司，是不是很香～
+
+点击Get the silver package按钮，我们进入下一个步骤，在这个步骤页面，需要填写自己的一些信息，Contact person就写你自己的信息；
+
+名字 写自己的拼音即可
+
+邮箱 写自己的常用邮箱，用来接收订单相关信息及后面可能的通知邮件，因此要留自己有效且常用的邮箱
+
+电话 留GV号码即可
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/QA5OXORCABQFY?)
+
+接下来是mailing address，这个地址注意，最好写你的国际驾照上一样的地址（国内地址），这样后面在地址公证表上可以统一，基本上只是记录用，其实在公司注册过程中用不到。
+
+另外，注意state 和 zip code，国内地址是无法选到相应正确的state的，这里直接填写Texas，邮编写00000即可（这个在incfile的faq里面有提到）
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/JY5OXORCACQAO?)
+
+然后，点击next按钮，进入下一页，注册时间，选择左侧3周就好，实际花不了几天时间就可以注册下来了；
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/FQ5OXORCADACC?)
+
+点击next进入下一个页面，填写自己的公司名字，这个名字请先按照前面第一个步骤检查没有重复后，再填写，这样以免反复修改耽误时间，其他信息，按下图填写：
+
+business purpose部分给你一个参考，意思就是你会在亚马逊，沃尔玛等电商平台做消费品等零售生意：
+
+I will do online retail business which sell comsumer products on Amazon, Walmart and other e-commerce platforms.
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/ME5OXORCABAFW?)
+
+接下来，保留默认选项，公司地址选择incfile给你提供的$29／月地址服务，这个费用是外额的地址费用，相较于其他租凭地址（上百美金一个月），这个价格是相当nice了，所以毫不犹豫的选就对了
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/IE56XORCABQCE?)
+
+再下一步，页面会引导你升级到premium package，我们不需要，直接拉到页面下方，选择
+
+No thanks, I will pass on this opportunity.
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/DU5OXORCADQBW?)
+
+下一页，merber1，这里选者Individual，然后写上你的名字，跟前面保持一致即可
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/EQ5OXORCAAQF4?) ![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/AU5OXORCADAAW?) ![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/QM5OXORCADAC6?)
+
+再下一步，是否要incfile帮你办理EIN，这里选者左边NO，就可以啦，等公司注册下来，我们去fiverr可以找到15美金就可以帮你把EIN申请下来，当然你也可以直接填表，然后fax传真到指定号码，也是可以自己获取到的，都不复杂的。
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/AA56XORCACAHU?)
+
+然后到了set up business bank页面，这里我们不需要，选择 no
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/7A46XORCADQEM?)
+
+再然后，公司注册下来的文件，例如business license（相当于营业执照）这些文件是要电子档存档在incfile账户里，还是要邮寄到手里，这里我们选择电子档就好啦。
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/QI56XORCACACK?)
+
+然后是税务咨询，可以选左边，不过反正是免费的，选择右边的选项也ok，你选择了右边免费咨询后，他们会通过发GV的短信及邮件跟你确认电话沟通的时间，当然全程是英文沟通，感兴趣的童鞋可以选右边这个选择~。
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/JE5OXORCADQBK?)
+
+最后，会进入一个订单信息review的页面，就是前面提交的所有信息的汇总页，再检查一下你填写的信息是否正确，如果不正确，可以点击edit修改，如果正确那就进入下一步，付款环节了，到这里，你的订单进度已经到95%了，整个所有费用是$131，使用信用卡支付即可。
+
+![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/WQ46XORCACACK?) ![](https://cloud-pic.wpsgo.com/LzhwRDVUSlR1WnprY2R1VGptY05xYjR3UFRpditwVXM3aFRyV3o3djNkc3NZUWZIcFlobzdka1Jya2NBZW1QdXc3WldqbGhRcitOTStSc2dKTVNoR1NRbnlXb0tzS2doN1dRbUh4ajBWWDdBekJEWlY1TE43bmx5ZzhNc0NVTXduYklLaVlvNTRYVS9VT0RIbkE3cWRQQlpGNDBKWnBwVWI2MlRaMnQyd3I2MG9wNmJJVFprNk1oM044aU9mcTFvbHNZVXdJQ3BMdFFMMXN5TG5uQnUzSVZ5bm5iZ2JHbXJmTGptNUVUL3ZYeUNaZjFrcjcwN3o2OWNkQ1F6VVljNUpVdTJvcFRWbDIvZlhJb0lHNUdDRXc9PQ==/attach/object/XY5OXORCABAAO?)
+
+付款完成后，还需要再填写一些信息，我这里没有截图了，按照页面提示填写即可，按真实情况填写即可，不难不复杂，最后填写完成后，就等着incfile代理注册你的公司吧。
+
+付款后，你会收到Incfile给你发送的订单确认邮件，然后你也可以在他们的网站后台查看到你的订单了，到此注册公司的网站操作步骤就完成了。
+
+恭喜你，到这里你已经完成美国公司注册70%的步骤了！
+
+在Incfile网站下单，等待Incfile帮我们注册美国公司，那接下来还有2个步骤需要操作（一个是对公司地址进行验证，另一个是申请EIN），才算完成完整的公司注册流程。
+
+#### 步骤3 完成公司注册地址公证
+
+等公司注册下来后，一般是3-5天左右，Incfile会邮件通知你接下来需要采取的动作，即需要公证公司的地址，你会收到以下标题的邮件（标题中的数字是订单号）；点击邮件中的按钮，进入Incfile的后台，进行地址验证的步骤；
+
+![](https://cloud-pic.wpsgo.com/L1RTYjJwTTNxS1FkOTNSYlQzZGIxUDVTVzcxOXhXL3RNY0JGMHBSeGxhQ2pkbU5wZG9GeW5OUE5UYXcyTWRwRmFoSmR0MnpHSzhrMVkwRW4zdG1ENVpVY2k3azVxUkJtUXdiT1BuUitaYnpVNHNWU21ENXFmWkhzcVFKbzJyMWRaMklGL3VocUI1eDNXOFRSemVpNTd3bVRud0Y3bFJCZGdBd0J6Z210VlhwVGsxa3R2cTI3THJmclBjMkxLMEd1alFjRFhqNUdBcU5KaWpScWM4TXlNSWV6U3A2dGpFaGkxOHNXdWhkMTBSUlFGNk02VzFMeFAwTkYwM2dzMXFYNWgzUVJQa2NFWjNmM1YzdEo2NXRpMFE9PQ==/attach/object/7WGOXORCAAAGI?) ![](https://cloud-pic.wpsgo.com/L1RTYjJwTTNxS1FkOTNSYlQzZGIxUDVTVzcxOXhXL3RNY0JGMHBSeGxhQ2pkbU5wZG9GeW5OUE5UYXcyTWRwRmFoSmR0MnpHSzhrMVkwRW4zdG1ENVpVY2k3azVxUkJtUXdiT1BuUitaYnpVNHNWU21ENXFmWkhzcVFKbzJyMWRaMklGL3VocUI1eDNXOFRSemVpNTd3bVRud0Y3bFJCZGdBd0J6Z210VlhwVGsxa3R2cTI3THJmclBjMkxLMEd1alFjRFhqNUdBcU5KaWpScWM4TXlNSWV6U3A2dGpFaGkxOHNXdWhkMTBSUlFGNk02VzFMeFAwTkYwM2dzMXFYNWgzUVJQa2NFWjNmM1YzdEo2NXRpMFE9PQ==/attach/object/VWGOXORCADQEM?)
+
+点击橙色按钮后，会进入你在Incfile的账号后台，进行公司注册地址公证的操作页面：
+
+![](https://cloud-pic.wpsgo.com/L1RTYjJwTTNxS1FkOTNSYlQzZGIxUDVTVzcxOXhXL3RNY0JGMHBSeGxhQ2pkbU5wZG9GeW5OUE5UYXcyTWRwRmFoSmR0MnpHSzhrMVkwRW4zdG1ENVpVY2k3azVxUkJtUXdiT1BuUitaYnpVNHNWU21ENXFmWkhzcVFKbzJyMWRaMklGL3VocUI1eDNXOFRSemVpNTd3bVRud0Y3bFJCZGdBd0J6Z210VlhwVGsxa3R2cTI3THJmclBjMkxLMEd1alFjRFhqNUdBcU5KaWpScWM4TXlNSWV6U3A2dGpFaGkxOHNXdWhkMTBSUlFGNk02VzFMeFAwTkYwM2dzMXFYNWgzUVJQa2NFWjNmM1YzdEo2NXRpMFE9PQ==/attach/object/PWG6XORCACQEA?)
+
+或者，你直接登录你的账号后台，会看到顶部有一个非常显眼的红色提醒条幅：
+
+![](https://cloud-pic.wpsgo.com/L1RTYjJwTTNxS1FkOTNSYlQzZGIxUDVTVzcxOXhXL3RNY0JGMHBSeGxhQ2pkbU5wZG9GeW5OUE5UYXcyTWRwRmFoSmR0MnpHSzhrMVkwRW4zdG1ENVpVY2k3azVxUkJtUXdiT1BuUitaYnpVNHNWU21ENXFmWkhzcVFKbzJyMWRaMklGL3VocUI1eDNXOFRSemVpNTd3bVRud0Y3bFJCZGdBd0J6Z210VlhwVGsxa3R2cTI3THJmclBjMkxLMEd1alFjRFhqNUdBcU5KaWpScWM4TXlNSWV6U3A2dGpFaGkxOHNXdWhkMTBSUlFGNk02VzFMeFAwTkYwM2dzMXFYNWgzUVJQa2NFWjNmM1YzdEo2NXRpMFE9PQ==/attach/object/4KGOXORCADAFS?)
+
+点击上面Start Notarization按钮，会进入验证资料提交页面，这里就要用到最开始提到的个人护照和国际驾照了
+
+下面要提供2个身份验证的文件，一个我们选择Foreign Passort，右边number填写你的护照号
+
+另一个选择US State Issued Driver's License(虽然我们不是美国签发的驾照，没关系，选这个就好），右边number位置填写你的身份证号码，然后点击提交
+
+![](https://cloud-pic.wpsgo.com/L1RTYjJwTTNxS1FkOTNSYlQzZGIxUDVTVzcxOXhXL3RNY0JGMHBSeGxhQ2pkbU5wZG9GeW5OUE5UYXcyTWRwRmFoSmR0MnpHSzhrMVkwRW4zdG1ENVpVY2k3azVxUkJtUXdiT1BuUitaYnpVNHNWU21ENXFmWkhzcVFKbzJyMWRaMklGL3VocUI1eDNXOFRSemVpNTd3bVRud0Y3bFJCZGdBd0J6Z210VlhwVGsxa3R2cTI3THJmclBjMkxLMEd1alFjRFhqNUdBcU5KaWpScWM4TXlNSWV6U3A2dGpFaGkxOHNXdWhkMTBSUlFGNk02VzFMeFAwTkYwM2dzMXFYNWgzUVJQa2NFWjNmM1YzdEo2NXRpMFE9PQ==/attach/object/QKHOXORCACAD2?)
+
+提交后，你马上就会收到以下邮件，点击按钮，进入notarize这个专业地址验证机构的页面，注册一下，进入下一个页面
+
+![](https://cloud-pic.wpsgo.com/L1RTYjJwTTNxS1FkOTNSYlQzZGIxUDVTVzcxOXhXL3RNY0JGMHBSeGxhQ2pkbU5wZG9GeW5OUE5UYXcyTWRwRmFoSmR0MnpHSzhrMVkwRW4zdG1ENVpVY2k3azVxUkJtUXdiT1BuUitaYnpVNHNWU21ENXFmWkhzcVFKbzJyMWRaMklGL3VocUI1eDNXOFRSemVpNTd3bVRud0Y3bFJCZGdBd0J6Z210VlhwVGsxa3R2cTI3THJmclBjMkxLMEd1alFjRFhqNUdBcU5KaWpScWM4TXlNSWV6U3A2dGpFaGkxOHNXdWhkMTBSUlFGNk02VzFMeFAwTkYwM2dzMXFYNWgzUVJQa2NFWjNmM1YzdEo2NXRpMFE9PQ==/attach/object/EKG6XORCADQDM?)
+
+第一次进入网站，需要按页面提示完成注册（这里提一点：必须要通过邮箱的链接进入第三方验证机构，我们购买的套餐是包含这个地址验证服务费用的，有些agent这个地址验证服务要额外收费，费用付给这个地址验证的第三方，费用大概70-100美金的样子，所以我们这里又省了一笔~）
+
+![](https://cloud-pic.wpsgo.com/L1RTYjJwTTNxS1FkOTNSYlQzZGIxUDVTVzcxOXhXL3RNY0JGMHBSeGxhQ2pkbU5wZG9GeW5OUE5UYXcyTWRwRmFoSmR0MnpHSzhrMVkwRW4zdG1ENVpVY2k3azVxUkJtUXdiT1BuUitaYnpVNHNWU21ENXFmWkhzcVFKbzJyMWRaMklGL3VocUI1eDNXOFRSemVpNTd3bVRud0Y3bFJCZGdBd0J6Z210VlhwVGsxa3R2cTI3THJmclBjMkxLMEd1alFjRFhqNUdBcU5KaWpScWM4TXlNSWV6U3A2dGpFaGkxOHNXdWhkMTBSUlFGNk02VzFMeFAwTkYwM2dzMXFYNWgzUVJQa2NFWjNmM1YzdEo2NXRpMFE9PQ==/attach/object/DKG6XORCACQA2?)
+
+注册完成之后，你会来到地址公证的表单review页面，是一个pdf文件，就是上面截图中右上角露出一部分页面的文件，检查文件中所填写的信息内容，重点看一下你前面步骤提交的两个验证文件的号码是否写对可，一个是你的护照号，一个是国际驾照上的身份证号。
+
+确认没有问题的话，就点击下一步进入视频验证环节，这里可以选择在桌面网页端进行，也可以下载Notarize的APP在手机端验证，建议是下载Notarize手机APP（app store直接搜索Notarize下载即可），这样就省去了调试摄像头，声音等等环节，毕竟手机这些设置都是已经ready可以直接使用的~，App或者web端会有检测你视频验证的环境的确认页面，确认话筒是否有声音，然后视频镜头是否ok，再然后是网络环境是否稳定等，都没问题的话，点击下一步，会让你拍照或者上传护照及国际驾照的照片。
+
+护照是要拍有你头像且有签名的那一页，国际驾照是有你的驾照地址，身份证号码和照片的那一页
+
+按要求拍照或者提交后，就会进入视频验证排队通道了，界面会提示还有多少人或者目前所有工作人员繁忙，让稍后再试。如果显示了，前面有xx人，那就等着，app或者web端界面不要关闭，过一会就会轮到你，开始视频验证了。如果是提示所有工作人员繁忙稍后再试，那就换个时间，一般晚上（即对方的白天）工作人员会多一些。
+
+视频验证流程是这样的：
+
+1、验证人员会跟你热情问好，你就正常回复他就行~ 类似于Fine, thank you 之类
+
+2、验证人员会检查你所提供的证件是否在有效期，他自己看图自己验证
+
+3、然后会问你，是否是sole business的公司，即是否是个人独资公司，你回答Yes即可；
+
+4、接着就会让你在文件上签字，其实是电子签名，在APP或者web端页面，下面可以看到Signature按钮，点击会进入电子签名页面，直接签你的中文拼音就好，签好后，点击确认
+
+5、然后你的签名就会出现在文件的7b和16 项的位置，视频验证人员看到签字ok了后，这中间可能会因为网络问题有点延迟，不用担心，等一下，或者重新签字操作就好啦。
+
+6、到这里地址验证就完成了，验证人员还会继续亲切的跟你问好，然后会说验证完成，资料已经传给代理商了即Incfile，然后你也会收到验证通过的邮件。
+
+![](https://www.notion.so/image/attachment%3A125dfcdb-e084-4b7a-bfac-fe5a37a0ae23%3Aimage.png?table=block&id=2784c8d7-0127-801a-b917-ee35286ad595&spaceId=3bcd5dbc-13e6-4524-89ff-32be3cf8ac94&width=1420&userId=&cache=v2)
+
+嵌入任何内容（PDF、 Google 文档、 Google 地图、Spotify 等）
+
+#### 步骤4 申请EIN
+
+申请EIN我是找fiverr搞定的，一共花费HK$145.77（可能我当时下单用的是香港vpn，所以变成港币了），8月24日下单，28号我就拿到了我的EIN，速度还是很快的。
+
+![](https://cloud-pic.wpsgo.com/L1RTYjJwTTNxS1FkOTNSYlQzZGIxUDVTVzcxOXhXL3RNY0JGMHBSeGxhQ2pkbU5wZG9GeW5OUE5UYXcyTWRwRmFoSmR0MnpHSzhrMVkwRW4zdG1ENVpVY2k3azVxUkJtUXdiT1BuUitaYnpVNHNWU21ENXFmWkhzcVFKbzJyMWRaMklGL3VocUI1eDNXOFRSemVpNTd3bVRud0Y3bFJCZGdBd0J6Z210VlhwVGsxa3R2cTI3THJmclBjMkxLMEd1alFjRFhqNUdBcU5KaWpScWM4TXlNSWV6U3A2dGpFaGkxOHNXdWhkMTBSUlFGNk02VzFMeFAwTkYwM2dzMXFYNWgzUVJQa2NFWjNmM1YzdEo2NXRpMFE9PQ==/attach/object/2SGOXORCAAACY?)
+
+如果你也需要这个服务，可以先按以下邀请链接注册fiverr，你的第一个订单可以享受10% off的折扣；
+
+[http://www.fiverr.com/s2/cdfe753e03](http://www.fiverr.com/s2/cdfe753e03)
+
+按照流程下单后，会要填写一些相关的信息，以便他去申请EIN，我把我的回答贴出来，供大家参考，具体如下：
+
+Kindly visit: [https://www.irs.gov/pub/irs-pdf/fss4.pdf](https://www.irs.gov/pub/irs-pdf/fss4.pdf) （其实申请EIN就是填写这张表，所以也可以自己填写申请，然后把申请表发传真到指定号码就好了，这样就可以免费了）
+
+Page 2 got some explanations, you may check it out.
+
+\--
+
+The following questions are based on that form, I will be using your answers to fill it out to apply for the EIN. Message me if you have questions.
+
+\--
+
+What country are you running your business from?
+
+我的回答给你作为参考：
+
+My company name is xxx（写你的公司名称），which is a company established up at Wyoming, USA（如果你在其他州，那就写其他州的名字）. I will do online retail business in USA, I will do business on Amazon，walmart ，esty and other ecommerce platform in USA.
+
+Is this EIN request for a business outside USA?
+
+YES
+
+What is the Legal name of entity (or individual) for whom the EIN is being requested?
+
+EIN is for the following company：
+
+company name：xx （写你的公司名称）
+
+company registe at Wyoming， USA （如果你在其他州，那就写其他州的名字）
+
+What is the mailing address? (Room no, Apartment no, Suite No, Floor No, bldg name/number, street name, area/city/county, country, zip code)
+
+where you want the documents to be sent to (can be a USA or your country address or both)
+
+这个地址是申请成功后，EIN文件的寄送地址，这里我直接提供了公司注册的验证地址，在Incfile的后台可以找到。
+
+What is the name of the responsible party? (It may be the same as the entity/individual's name)
+
+company name：xx （写你的公司名称）
+
+Is this application for a limited liability company (LLC)?
+
+YES
+
+What is the type of entity?
+
+Sole proprietor (individual business "such as selling good online")
+
+What is the reason for applying?
+
+Started new business
+
+When did this business start? (month, day, year)
+
+My company is just set up several days ago, all the business is not start yet.
+
+What is the principal activity of the business? (Retail? Yes/no. What do you sell/buy/do, please explain)
+
+（最后这个问题，有点类似于注册公司的经营范围，我就直接从亚马逊目录里面挑选了一些我可能会售卖的品类）
+
+I will do online retail business. I will sell consumer goods like home, kitchen and garden tools, clothing,shoes, pet supplies, toys,sports, automative accessories and ect.
+
+以上这些问题是在fiverr上下单之后，在订单页填写的，填写提交后，一般第二天他就会处理开始申请EIN了，一般2天就能拿到EIN。
+
+EIN拿到后，他会通过fiverr把EIN 发给你，相当于订单发货了。拿到的EIN号码是立即生效的，但是相关的EIN文件会要2周到1个月的时间寄送到上面你填写的地址。我直接寄送给了Incfile提供的公司地址，到时候他们收到会进行扫描上传到我的账户中，以便后面使用需要。
+
+![](https://cloud-pic.wpsgo.com/L1RTYjJwTTNxS1FkOTNSYlQzZGIxUDVTVzcxOXhXL3RNY0JGMHBSeGxhQ2pkbU5wZG9GeW5OUE5UYXcyTWRwRmFoSmR0MnpHSzhrMVkwRW4zdG1ENVpVY2k3azVxUkJtUXdiT1BuUitaYnpVNHNWU21ENXFmWkhzcVFKbzJyMWRaMklGL3VocUI1eDNXOFRSemVpNTd3bVRud0Y3bFJCZGdBd0J6Z210VlhwVGsxa3R2cTI3THJmclBjMkxLMEd1alFjRFhqNUdBcU5KaWpScWM4TXlNSWV6U3A2dGpFaGkxOHNXdWhkMTBSUlFGNk02VzFMeFAwTkYwM2dzMXFYNWgzUVJQa2NFWjNmM1YzdEo2NXRpMFE9PQ==/attach/object/GCG6XORCADABC?)
+
+OK, 到此，美国公司注册的所有流程就完成啦~ 一共花费131美金+148港币，不到1000人民币，如果有需要，那就自己动手吧~
+
+如果你在注册美国公司过程中有什么问题，欢迎关注我的X帐号 [https://x.com/zouxulucky](https://x.com/zouxulucky) ，直接DM我，必定知无不言～
+
+![](https://www.notion.so/image/attachment%3A85d51dcb-0dfc-4252-bb39-7331f1f15a9c%3Aimage.png?table=block&id=2784c8d7-0127-80f2-b834-f8b0423b6426&spaceId=3bcd5dbc-13e6-4524-89ff-32be3cf8ac94&width=1420&userId=&cache=v2)
