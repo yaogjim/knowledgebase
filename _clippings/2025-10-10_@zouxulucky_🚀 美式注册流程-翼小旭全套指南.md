@@ -8,6 +8,19 @@ created: 2025-10-10
 description:
 tags:
   - "@zouxulucky #出海注册 #美国公司 #注册流程 #翼小旭教程"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-18"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **翼小旭Sunny Zou** @zouxulucky [2025-09-24](https://x.com/zouxulucky/status/1970789940738023556)
 

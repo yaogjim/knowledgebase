@@ -8,6 +8,19 @@ created: 2025-10-10
 description:
 tags:
   - "@kevinma_dev_zh #美国公司注册 #注册美国公司 #出海捕鱼 #海外公司注册 #企业管理"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-18"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Kevin Ma** @kevinma\_dev\_zh [2025-10-09](https://x.com/kevinma_dev_zh/status/1976313208702116165)
 

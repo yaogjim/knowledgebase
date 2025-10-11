@@ -8,6 +8,19 @@ created: 2025-10-11
 description:
 tags:
   - "@sydneyrunkle # LangChain # 中间件 # AI"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-18"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Sydney Runkle** @sydneyrunkle [2025-10-10](https://x.com/sydneyrunkle/status/1976753314462417344/history)
 

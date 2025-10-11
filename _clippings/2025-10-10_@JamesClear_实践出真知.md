@@ -8,6 +8,19 @@ created: 2025-10-10
 description:
 tags:
   - "@JamesClear # 学习 # 行为 # 爱 # 牢固掌握 # 持久"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-18"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **James Clear** @JamesClear [2025-10-09](https://x.com/JamesClear/status/1976396917593735459)
 

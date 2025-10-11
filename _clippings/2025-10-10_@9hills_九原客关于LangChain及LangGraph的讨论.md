@@ -8,6 +8,19 @@ created: 2025-10-10
 description:
 tags:
   - "@9hills #LangChain #LangGraph #工作流 #智能助手 #AI开发 #机器学习 #深度学习"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-18"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **九原客** @9hills 2025-10-09
 

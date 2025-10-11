@@ -8,6 +8,19 @@ created: 2025-10-10
 description:
 tags:
   - "@Ni_luvya #言论自由 #通信隐私 #长期自律 #自律 #抵抗噪音 #自律生活"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-18"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **luvya** @Ni\_luvya 2025-10-04
 

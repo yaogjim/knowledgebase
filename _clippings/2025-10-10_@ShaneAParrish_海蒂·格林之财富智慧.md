@@ -8,6 +8,19 @@ created: 2025-10-10
 description:
 tags:
   - "@ShaneAParrish #投资 #经典篇 #赫蒂·格林 #财富智慧 #华尔街女巫"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-18"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Shane Parrish** @ShaneAParrish [2025-10-08](https://x.com/ShaneAParrish/status/1975901152920162340)
 

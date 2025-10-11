@@ -8,6 +8,19 @@ created: 2025-10-10
 description:
 tags:
   - "@koylanai # 互动内容管理 # AI代理系统 # 数字大脑"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-18"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Muratcan Koylan** @koylanai [2025-10-06](https://x.com/koylanai/status/1975090268316827983)
 

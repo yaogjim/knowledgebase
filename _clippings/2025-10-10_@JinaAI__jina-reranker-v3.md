@@ -8,6 +8,19 @@ created: 2025-10-10
 description:
 tags:
   - "@JinaAI_ #NLP #机器学习 #深度学习 #自然语言处理 #问答系统 #信息检索"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-18"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jina AI** @JinaAI\_ [2025-10-03](https://x.com/JinaAI_/status/1974148565770338705)
 
