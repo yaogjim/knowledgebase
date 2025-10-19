@@ -13,6 +13,7 @@ tags:
 
 我自己配的分层 "rules" 和 Skills 挂载其实都是一个目的:
 
+..
 1\. 分层挂载, 按需注入 / Agent 自主索引加载
 
 2\. 挂载的 Rules / Skills , 除了是静态文本能力提示词, 也可以是相应能力所需搭配的 Toolkit (CLI / MCP / Scripts) 的 commands & --help . (正如强如阿波罗飞船宇航员也是有各种成吨 SOP 手册)
