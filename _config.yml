@@ -54,6 +54,11 @@ social:
   links:
     - "https://github.com/yaogjim"
 
+feed:
+  collections:
+    - clippings
+
+
 # 页脚设置
 footer_content: "Copyright &copy; 2025 我的知识库. "
 

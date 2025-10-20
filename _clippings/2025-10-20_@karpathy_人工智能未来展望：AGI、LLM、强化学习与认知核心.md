@@ -8,6 +8,19 @@ created: 2025-10-20
 description:
 tags:
   - "@karpathy #人工智能 #AGI #LLM #强化学习 #认知核心"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Andrej Karpathy** @karpathy 2025-10-17
 

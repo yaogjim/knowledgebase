@@ -8,6 +8,19 @@ created: 2025-10-17
 description:
 tags:
   - "@zzwz # 分层技能挂载 # Agent 自主索引 # CLI # MCP # Scripts"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **不鍊金丹不坐禪** @zzwz 2025-10-17
 

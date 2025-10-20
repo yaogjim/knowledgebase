@@ -8,6 +8,19 @@ created: 2025-10-13
 description:
 tags:
   - "@_avichawla #机器学习 #NLP #人工智能 #RAG #REFRAG #Meta #Llama"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Avi Chawla** @\_avichawla [2025-10-12](https://x.com/_avichawla/status/1977260787027919209)
 

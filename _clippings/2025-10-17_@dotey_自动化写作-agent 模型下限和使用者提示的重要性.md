@@ -8,6 +8,19 @@ created: 2025-10-17
 description:
 tags:
   - "@dotey #自动化写作 #AI写作 #模型能力 #使用者提示"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **宝玉** @dotey 2025-10-16
 

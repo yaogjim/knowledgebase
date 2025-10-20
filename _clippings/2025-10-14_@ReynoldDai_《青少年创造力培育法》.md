@@ -8,6 +8,19 @@ created: 2025-10-14
 description:
 tags:
   - "@ReynoldDai #AI #创造力 #教育改革 #青少年成长 #自主性 #教育创新"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Rey英语自由与创造力** @ReynoldDai 2025-05-30
 

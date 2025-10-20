@@ -8,6 +8,19 @@ created: 2025-10-15
 description:
 tags:
   - "@Barret_China # AI Coding # Codex CLI # Chrome 插件 # OilMonkey 脚本"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Barret李靖** @Barret\_China [2025-10-14](https://x.com/Barret_China/status/1978128281737343178)
 

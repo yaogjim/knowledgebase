@@ -8,6 +8,19 @@ created: 2025-10-14
 description: "Really interesting new project from Andrej Karpathy, described at length in this discussion post. It provides a full ChatGPT-style LLM, including training, inference and a web Ui, that can be …"
 tags:
   - "Simon Willison"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **[nanochat](https://github.com/karpathy/nanochat)** （ [经由](https://twitter.com/karpathy/status/1977755427569111362 "@karpathy") ）安德烈·卡帕西推出的一个非常有趣的新项目， [在这篇讨论帖](https://github.com/karpathy/nanochat/discussions/1) 中有详细阐述。
 

@@ -8,6 +8,19 @@ created: 2025-10-11
 description:
 tags:
   - "@Aurimas_Gr #LLM #AI #机器学习 #RAG #MCP #智能体化"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Aurimas Griciūnas** @Aurimas\_Gr [2025-10-10](https://x.com/Aurimas_Gr/status/1976633701564809382)
 

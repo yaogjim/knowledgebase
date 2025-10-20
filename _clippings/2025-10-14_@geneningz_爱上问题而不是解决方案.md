@@ -8,6 +8,19 @@ created: 2025-10-14
 description:
 tags:
   - "@geneningz # 独立创业 # CEO思维 # 概念与实践 # 创业管理"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **张俊林JohnAI创业笔记** @geneningz 2025-10-12
 

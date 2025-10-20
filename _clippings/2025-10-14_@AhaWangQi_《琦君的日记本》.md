@@ -8,6 +8,19 @@ created: 2025-10-14
 description:
 tags:
   - "@AhaWangQi #琦君的日记本 #Tim #王凯 #YouTube #数字产品频道 #Umbrella #UBI #无风险贷款 #影视特效 #AE #摄影 #DigitalRev #TV #影视飓风 #Kai #Wong #香港人 #英国人 #主播 #相机 #评测 #机器人 #AI #财务管理 #对账 #财务经理"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **琦君的日记本** @AhaWangQi 2025-10-13
 

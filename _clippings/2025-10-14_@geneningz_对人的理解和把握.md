@@ -8,6 +8,19 @@ created: 2025-10-14
 description:
 tags:
   - "@geneningz #人工智能 #创业笔记 #人工智能应用"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **张俊林JohnAI创业笔记** @geneningz 2025-10-06
 

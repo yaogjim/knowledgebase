@@ -8,6 +8,19 @@ created: 2025-10-14
 description:
 tags:
   - "@frxiaobei # 人工智能 # 投资 # 认知复利 # 基础能力 # 学习能力"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **凡人小北** @frxiaobei 2025-10-13
 

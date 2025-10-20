@@ -8,6 +8,19 @@ created: 2025-10-14
 description:
 tags:
   - "@karpathy # AI # LLM # ChatGPT # Andrej Karpathy # nanochat # 自动化 # 机器学习 # 深度学习"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Andrej Karpathy** @karpathy [2025-10-13](https://x.com/karpathy/status/1977755427569111362)
 

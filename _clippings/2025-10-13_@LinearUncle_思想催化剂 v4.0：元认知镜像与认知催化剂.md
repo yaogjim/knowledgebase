@@ -8,6 +8,19 @@ created: 2025-10-13
 description:
 tags:
   - "@LinearUncle # 真诚 # 倾听 # 共情 # 平等 # 指出盲区 # 长期主义"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LinearUncle** @LinearUncle 2025-10-11
 

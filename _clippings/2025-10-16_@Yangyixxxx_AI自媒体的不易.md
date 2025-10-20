@@ -8,6 +8,19 @@ created: 2025-10-16
 description:
 tags:
   - "@Yangyixxxx #成功背后不为人知的付出 #努力并非充分条件 #创业需要机遇"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Yangyi** @Yangyixxxx 2025-10-13
 

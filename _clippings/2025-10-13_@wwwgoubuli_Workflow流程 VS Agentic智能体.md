@@ -8,6 +8,19 @@ created: 2025-10-13
 description:
 tags:
   - "@wwwgoubuli #workflow #agentic #区块链 #defi #ai #机器学习 #智能体 #区块链应用"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **wwwgoubuli** @wwwgoubuli [2025-10-12](https://x.com/wwwgoubuli/status/1977384985108914659)
 

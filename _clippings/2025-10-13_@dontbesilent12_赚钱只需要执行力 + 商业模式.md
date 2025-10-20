@@ -8,6 +8,19 @@ created: 2025-10-13
 description:
 tags:
   - "@dontbesilent12 #认知 #智力 #执行力 #商业模式 #赚钱 #创业 #成功"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **dontbesilent** @dontbesilent12 [2025-10-12](https://x.com/dontbesilent12/status/1977352632655053230)
 

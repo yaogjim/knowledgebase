@@ -8,6 +8,19 @@ created: 2025-10-11
 description:
 tags:
   - "@Svwang1 {{\"extract tags  with # in Chinese\"}}"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **硅谷王川 Chuan** @Svwang1 [2025-10-10](https://x.com/Svwang1/status/1976799622770327958)
 

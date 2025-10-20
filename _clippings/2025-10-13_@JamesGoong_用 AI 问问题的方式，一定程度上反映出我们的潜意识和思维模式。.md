@@ -8,6 +8,19 @@ created: 2025-10-13
 description:
 tags:
   - "@JamesGoong #创业 #赚钱 #AI #思考模式 #麦肯锡 #IBM #埃森哲 #工具 #合作伙伴 #智能体经济"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **在悉尼和稀泥** @JamesGoong [2025-10-05](https://x.com/JamesGoong/status/1974769226255925522/history)
 

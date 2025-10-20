@@ -8,6 +8,19 @@ created: 2025-10-14
 description:
 tags:
   - "@zzwz # jinaAI # 个人开发者 # CF 赛博菩萨 # LM"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **不鍊金丹不坐禪** @zzwz 2025-10-13
 

@@ -8,6 +8,19 @@ created: 2025-10-16
 description:
 tags:
   - "@catmangox #金融投资 #投资产品 #信息差 #投资者 #风险收益"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **猫总** @catmangox [2025-10-14](https://x.com/catmangox/status/1977922463284838752)
 

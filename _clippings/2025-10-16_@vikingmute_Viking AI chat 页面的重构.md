@@ -8,6 +8,19 @@ created: 2025-10-16
 description:
 tags:
   - "@vikingmute # context7 # vercel # ai-element # streamdown # MCP"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Viking** @vikingmute [2025-10-14](https://x.com/vikingmute/status/1978026321998762395)
 

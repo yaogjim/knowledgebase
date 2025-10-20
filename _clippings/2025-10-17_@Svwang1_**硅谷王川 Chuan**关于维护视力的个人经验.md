@@ -8,6 +8,19 @@ created: 2025-10-17
 description:
 tags:
   - "@Svwang1 # 硅谷王川 Chuan # 属于上班族 # 属于健康"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **硅谷王川 Chuan** @Svwang1 [2025-10-16](https://x.com/Svwang1/status/1978818437011951839)
 

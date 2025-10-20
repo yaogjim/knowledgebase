@@ -8,6 +8,19 @@ created: 2025-10-16
 description:
 tags:
   - "@JefferyTatsuya # 人工智能 # 神经网络 # 模型演进 # 上下文工程"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jeffery Kaneda　金田達也** @JefferyTatsuya 2025-10-09
 

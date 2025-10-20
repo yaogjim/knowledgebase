@@ -8,6 +8,19 @@ created: 2025-10-11
 description:
 tags:
   - "@bourneliu66 # vs-code # vscode-plugin # yolo"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **刘小排** @bourneliu66 2025-10-10
 

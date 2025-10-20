@@ -8,6 +8,19 @@ created: 2025-10-16
 description:
 tags:
   - "@Yangyixxxx # 人人可以做生意 # 用户需求驱动产品 # dog fooding # 产品化 # 认证"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Yangyi** @Yangyixxxx [2025-10-15](https://x.com/Yangyixxxx/status/1978396823720255712)
 

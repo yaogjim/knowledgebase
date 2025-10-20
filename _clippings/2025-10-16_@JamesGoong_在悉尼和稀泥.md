@@ -8,6 +8,19 @@ created: 2025-10-16
 description:
 tags:
   - "@JamesGoong #产研 #远程办公 #办公文化 #企业政策 #工业时代"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **在悉尼和稀泥** @JamesGoong 2025-10-14
 

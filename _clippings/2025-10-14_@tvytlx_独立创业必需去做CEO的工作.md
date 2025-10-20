@@ -8,6 +8,19 @@ created: 2025-10-14
 description:
 tags:
   - "@tvytlx # 创业 # 产品运营 # CEO # CTO # 用户增长"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Xiao Tan** @tvytlx [2025-10-12](https://x.com/tvytlx/status/1977288945852727584)
 

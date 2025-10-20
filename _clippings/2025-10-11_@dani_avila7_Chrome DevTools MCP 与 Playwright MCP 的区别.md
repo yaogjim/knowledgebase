@@ -8,6 +8,19 @@ created: 2025-10-11
 description:
 tags:
   - "@dani_avila7 # Chromium # Playwright # Chrome DevTools # 浏览器自动化 # UI 测试 # 问答"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Daniel San** @dani\_avila7 2025-10-09
 

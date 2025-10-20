@@ -8,6 +8,19 @@ created: 2025-10-14
 description:
 tags:
   - "@ReynoldDai #心理学 #谈判术 #情商 #人性"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Rey英语自由与创造力** @ReynoldDai 2025-08-23
 

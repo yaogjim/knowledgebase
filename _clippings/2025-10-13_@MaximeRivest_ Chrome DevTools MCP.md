@@ -8,6 +8,19 @@ created: 2025-10-13
 description:
 tags:
   - "@MaximeRivest # Chrome DevTools # MCP # Claude Code # Chrome浏览器 # 浏览器开发者控制台 # AI #  # 自动化 #"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Maxime Rivest** @MaximeRivest [2025-10-12](https://x.com/MaximeRivest/status/1977463062174060645)
 

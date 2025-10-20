@@ -8,6 +8,19 @@ created: 2025-10-13
 description:
 tags:
   - "@shaogefenhao #管理 #权力 #制度 #文化 #激励"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **少个分号** @shaogefenhao 2025-10-11
 

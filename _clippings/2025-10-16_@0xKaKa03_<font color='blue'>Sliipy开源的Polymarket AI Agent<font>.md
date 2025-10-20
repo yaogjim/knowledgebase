@@ -8,6 +8,19 @@ created: 2025-10-16
 description:
 tags:
   - "@0xKaKa03 <font color='blue'>#Polymarket</font><font color='blue'>#AI Agent</font><font color='blue'>#开源</font><font color='blue'>#数据分析</font><font color='blue'>#加密市场</font><font color='blue'>#定价错误</font>"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Sliipy** @0xKaKa03 [2025-10-13](https://x.com/0xKaKa03/status/1977794661675909151)
 

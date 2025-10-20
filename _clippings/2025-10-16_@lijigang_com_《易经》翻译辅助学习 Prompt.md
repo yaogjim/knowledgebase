@@ -8,6 +8,19 @@ created: 2025-10-16
 description:
 tags:
   - "@lijigang_com #翻译 #易经 #Gemini2.5Pro #翻译原则 #现代汉语习惯"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **李继刚** @lijigang\_com [2025-10-15](https://x.com/lijigang_com/status/1978304806197617050)
 

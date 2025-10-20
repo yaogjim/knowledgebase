@@ -8,6 +8,19 @@ created: 2025-10-11
 description:
 tags:
   - "@imwsl90 #独立开发者 #AI套壳项目 #TypingMind #月入百万美金 #收入分析"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-10-27"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **卫斯理** @imwsl90 [2025-10-10](https://x.com/imwsl90/status/1976594366887260642)
 
