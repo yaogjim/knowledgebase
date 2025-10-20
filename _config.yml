@@ -40,7 +40,6 @@ defaults:
       type: "pages"
     values:
       layout: "default"
-      date: "{{ created }}"
 
 # 插件
 plugins:
