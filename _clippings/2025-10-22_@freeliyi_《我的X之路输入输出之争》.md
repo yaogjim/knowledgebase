@@ -1,13 +1,15 @@
 ---
-title: "《我的X之路:输入输出之争》"
-source: "https://x.com/freeliyi/status/1980018741187355089"
+title: 《我的X之路:输入输出之争》
+source: https://x.com/freeliyi/status/1980018741187355089
 author:
   - "[[@freeliyi]]"
 published: 2025-10-22
 created: 2025-10-22
-description:
+description: 
 tags:
-  - "@freeliyi # 德语基础 # 时间管理 # 产出效率"
+  - 德语基础
+  - 时间管理
+  - 产出效率
 ---
 **自由李亿freeliyi** @freeliyi [2025-10-19](https://x.com/freeliyi/status/1980018741187355089)
 
