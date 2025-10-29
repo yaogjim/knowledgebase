@@ -26,10 +26,3 @@ tags:
 **Yifeng Wang** @ewind\_dev [2025-10-28](https://x.com/ewind_dev/status/1983105190527209505)
 
 这个手法好像叫做 subagent 🌝
-
----
-
-**Breakout** @breakoutprop
-
-Up To 100k With Breakout's Best in Class Prop Trading Platform and Keep up to 90%  
-最高可达 10 万美金，借助 Breakout 顶级的专业交易平台，并可保留高达 90%的收益
