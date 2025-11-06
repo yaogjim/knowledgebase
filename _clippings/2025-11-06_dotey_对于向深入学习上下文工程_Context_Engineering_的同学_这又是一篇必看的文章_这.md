@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "mcp"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 对于向深入学习上下文工程（Context Engineering）的同学，这又是一篇必看的文章。 这

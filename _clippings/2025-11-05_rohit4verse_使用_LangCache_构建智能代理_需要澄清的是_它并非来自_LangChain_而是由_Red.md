@@ -11,6 +11,19 @@ tags:
   - "@rohit4verse"
   - "https"
   - "2025-11-04"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 使用 LangCache 构建智能代理。需要澄清的是，它并非来自 LangChain，而是由 Red

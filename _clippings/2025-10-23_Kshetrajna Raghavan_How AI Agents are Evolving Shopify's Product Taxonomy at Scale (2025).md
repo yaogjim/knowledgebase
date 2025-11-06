@@ -8,6 +8,19 @@ created: 2025-10-23
 description: "Our prior work used Vision Language Models for automatic product classification. This post delves into how AI agents are evolving the taxonomy itself."
 tags:
   - "Kshetrajna Raghavan"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ***博客文章由 Kshetrajna Raghavan 和 Ricardo Tejedor 共同撰写***
 

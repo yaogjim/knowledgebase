@@ -17,6 +17,19 @@ tags:
   - "model"
   - "katie"
   - "x.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 大周期的下行阶段，人口老化与少子化是无解的，这个bug以卡，无论是房地产还是耐用品与快消品消费，包括

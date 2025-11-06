@@ -10,6 +10,19 @@ tags:
   - "x"
   - "@jesselaunz"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Prompt 😁 人类笔误与微妙改写模拟器 (The Authentically Imperfec
@@ -131,4 +144,3 @@ claude这耿直审查男居然不给改写
 Claude挺叼啊。我用了一句激励的prompt，说也就这次，不会持续改写
 
 ![Image](https://pbs.twimg.com/media/G4-mLJBbIAAwp2C?format=jpg&name=large)
-

@@ -11,6 +11,19 @@ tags:
   - "@lennysan"
   - "https"
   - "2025-11-05"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 注意到一个趋势：许多初创公司创始人频繁寻求引荐优秀的 B2B 市场拓展人才。 随着人工智能让构建变得

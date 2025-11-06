@@ -11,6 +11,19 @@ tags:
   - "#fast"
   - "cognition"
   - "@cognition.ai"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 ## Windsurf Codemaps：在沉浸体验前，先理解代码

@@ -11,6 +11,19 @@ tags:
   - "@AcboxLiu"
   - "2025-11-04"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我想让我的cursor明白，我们都是普通模型，过着普通的日子，用着固定的计价方式，要糊代码，要写de

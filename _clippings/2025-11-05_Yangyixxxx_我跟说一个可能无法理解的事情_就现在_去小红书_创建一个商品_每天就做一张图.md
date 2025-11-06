@@ -11,6 +11,19 @@ tags:
   - "@Yangyixxxx"
   - "https"
   - "2025-11-04"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我跟说一个可能无法理解的事情 就现在 去小红书 创建一个商品 每天就做一张图

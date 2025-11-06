@@ -11,6 +11,19 @@ tags:
   - "@karminski3"
   - "https"
   - "pbs"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # llama.cpp 终于要砸 Ollama 饭碗了！ llama.cpp 是一个C++实现的大模型推

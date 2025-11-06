@@ -11,6 +11,19 @@ tags:
   - "@0xdeusyu"
   - "https"
   - "rainman"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 洗澡的时候想到的： 《为什么要去大公司：见识决定上限》 （Rainman 口述版）

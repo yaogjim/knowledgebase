@@ -8,6 +8,19 @@ created: 2025-10-22
 description:
 tags:
   - "@JefferyTatsuya # AI # ChatGPT # Claude # 企业文档系统 # 商业Agent #"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Jeffery Kaneda　金田達也** @JefferyTatsuya 2025-10-21
 

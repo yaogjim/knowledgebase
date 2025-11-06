@@ -17,6 +17,19 @@ tags:
   - "mcp"
   - "//x"
   - "x.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # #分享 大脑和工具之间的抽象：Skills Anthropic 前几天推出 Skills，今天研究了

@@ -11,6 +11,19 @@ tags:
   - "#pruning"
   - "philschmid"
   - "@Philipp Schmid"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # ## 使用 Gemini、n8n 和 Google Cloud Run 构建您的首个 AI 智能体

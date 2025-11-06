@@ -8,6 +8,19 @@ created: 2025-10-23
 description:
 tags:
   - "@lijigang_com # AI助力 # 任务拆解 # 意图文档 #"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **李继刚** @lijigang\_com [2025-10-22](https://x.com/lijigang_com/status/1981022866419105863)
 

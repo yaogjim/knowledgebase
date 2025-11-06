@@ -8,6 +8,19 @@ created: 2025-11-06
 description:
 tags:
   - "@xleaps # LLM # Token # AI # 智能体 # 代理 AI # 构建效率 AI"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Eric Xu (e/Mettā)** @xleaps 2025-11-05
 

@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@python_xxt #山姆店 #超市店面 #会员制 #购物环境"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Robinson · 鲁棒逊** @python\_xxt [2025-06-28](https://x.com/python_xxt/status/1939033221670523331)
 

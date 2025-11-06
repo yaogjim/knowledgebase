@@ -8,6 +8,19 @@ created: 2025-10-23
 description: "AI 味去除 - 仅在 Gemini 2.5 Pro 上测试通过. Contribute to hylarucoder/ai-flavor-remover development by creating an account on GitHub."
 tags:
   - "hylarucoder"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ## AI 味去除
 

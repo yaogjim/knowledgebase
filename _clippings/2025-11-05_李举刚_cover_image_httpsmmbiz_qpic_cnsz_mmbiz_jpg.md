@@ -11,6 +11,19 @@ tags:
   - "@李举刚"
   - "ai"
   - "教训"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # ![cover_image](httpsmmbiz.qpic.cnsz_mmbiz_jpg

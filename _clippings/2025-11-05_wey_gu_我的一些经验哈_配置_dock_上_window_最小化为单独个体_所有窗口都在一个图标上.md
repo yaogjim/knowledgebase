@@ -11,6 +11,19 @@ tags:
   - "@wey_gu"
   - "window"
   - "app"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我的一些经验哈 - 配置 dock 上 window 最小化为单独个体，所有窗口都在一个图标上

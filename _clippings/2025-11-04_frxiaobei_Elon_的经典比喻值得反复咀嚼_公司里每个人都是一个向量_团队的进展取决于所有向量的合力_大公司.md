@@ -16,6 +16,19 @@ tags:
   - "2025-11-03"
   - "**凡人小北**"
   - "x.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Elon 的经典比喻值得反复咀嚼： 公司里每个人都是一个向量，团队的进展取决于所有向量的合力。大公司

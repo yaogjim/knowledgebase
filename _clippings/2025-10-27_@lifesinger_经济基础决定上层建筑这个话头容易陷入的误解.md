@@ -8,6 +8,19 @@ created: 2025-10-27
 description:
 tags:
   - "@lifesinger #马克思主义经济学 #幸存者偏差 #马洛斯 #物质层面疲于奔命 #精神追求 #精神富足"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Frank Wang 玉伯** @lifesinger [2025-10-25](https://x.com/lifesinger/status/1982060685455479257)
 

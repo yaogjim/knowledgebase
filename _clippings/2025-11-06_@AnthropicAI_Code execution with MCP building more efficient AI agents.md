@@ -8,6 +8,19 @@ created: 2025-11-06
 description: "Learn how code execution with the Model Context Protocol enables agents to handle more tools while using fewer tokens, reducing context overhead by up to 98.7%."
 tags:
   - "@AnthropicAI"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [Anthropic 的工程实践](https://www.anthropic.com/engineering)
 

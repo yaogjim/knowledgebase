@@ -17,6 +17,19 @@ tags:
   - "#速卖通"
   - "#Shopify"
   - "#跨境电商玩家"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **余温** @gkxspace [2025-10-28](https://x.com/gkxspace/status/1983085615911444897/history)
 

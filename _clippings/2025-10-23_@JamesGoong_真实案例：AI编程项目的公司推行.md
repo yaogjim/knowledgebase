@@ -8,6 +8,19 @@ created: 2025-10-23
 description:
 tags:
   - "@JamesGoong # AI #程序员 #科技 #创业 #AI程式 #推行 #企业文化"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **在悉尼和稀泥** @JamesGoong 2025-10-22
 

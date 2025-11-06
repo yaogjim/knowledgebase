@@ -6,6 +6,19 @@ created: 2025-11-04 17:52:38
 published: 2025-11-04 17:52:38
 description: ""
 tags: ""
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [
 

@@ -8,6 +8,19 @@ created: 2025-10-28
 description:
 tags:
   - "@ewind_dev # AI # ChatGPT # 码龄 # 深度研究  # GitHub 仓库"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Yifeng Wang** @ewind\_dev [2025-10-27](https://x.com/ewind_dev/status/1982849240385859898)
 

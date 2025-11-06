@@ -11,6 +11,19 @@ tags:
   - "@iamtonyzhu"
   - "2025-11-03"
   - "naval"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 宝玉老师在评论区问起Prompt， 于是我研究了一下，新出炉：评书短视频剧本字幕Prompt提示词框

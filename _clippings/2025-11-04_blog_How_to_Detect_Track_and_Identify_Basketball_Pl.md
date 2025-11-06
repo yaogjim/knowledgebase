@@ -14,6 +14,19 @@ tags:
   - "rf-detr"
   - "blog.roboflow.com"
   - "@blog.roboflow.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 ![How to Detect, Track, and Identify Basketball Players with Computer Vision](/content/images/size/w400/format/webp/2025/09/img-blog-detect-track-identify-basketball-players-v1.png)

@@ -8,6 +8,19 @@ created: 2025-11-04
 description:
 tags:
 
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 企业不能选择时代，只能被时代选择 基于最近汽车市场的变化： 理想汽车销量下滑，零跑、小鹏销量上涨，小

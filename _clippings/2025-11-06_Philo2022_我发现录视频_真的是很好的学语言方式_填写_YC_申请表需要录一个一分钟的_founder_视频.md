@@ -11,6 +11,19 @@ tags:
   - "@Philo2022"
   - "2025-11-05"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我发现录视频，真的是很好的学语言方式！ 填写 YC 申请表需要录一个一分钟的 founder 视频，

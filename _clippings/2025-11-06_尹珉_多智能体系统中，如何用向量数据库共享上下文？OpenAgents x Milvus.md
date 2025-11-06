@@ -8,6 +8,19 @@ created: 2025-11-06
 description: "静态编排 VS 动态编排，谁是多agent系统最优解？"
 tags:
   - "尹珉"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 静态编排 VS 动态编排，谁是多agent系统最优解？

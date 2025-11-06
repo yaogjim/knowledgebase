@@ -8,6 +8,19 @@ created: 2025-11-06
 description:
 tags:
   - "@cryptocishanjia #币圈慈善家 #AI工具 #交易系统 #生活目标 #个人成长 #投资习惯 #交易日记 #情感管理 #自我修炼 #人生规划"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **币圈慈善家** @cryptocishanjia [2025-11-06](https://x.com/cryptocishanjia/status/1986329918956052866)
 

@@ -16,6 +16,19 @@ tags:
   - "2025-11-02"
   - "**徹言**"
   - "x.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 把 Cursor 当操作系统的 Agent 来使用了。  2025-01-30  很早以前给某公

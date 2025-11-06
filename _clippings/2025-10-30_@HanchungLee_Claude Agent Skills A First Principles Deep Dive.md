@@ -8,6 +8,19 @@ created: 2025-10-30
 description: "Technical deep dive into Claude Agent Skills' prompt-based meta-tool architecture. Learn how context injection design, two-message patterns, LLM-based routin..."
 tags:
   - "@HanchungLee"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 Claude 的智能体 `技能` 系统代表了一种基于提示词的精妙元工具架构，通过专业化指令注入来扩展 LLM 能力。与传统函数调用或代码执行不同， ` 技能` 通过\*\*提示词扩展\*\*和\*\*上下文修改\*\*来运作，无需编写可执行代码即可改变 Claude 处理后续请求的方式。
 

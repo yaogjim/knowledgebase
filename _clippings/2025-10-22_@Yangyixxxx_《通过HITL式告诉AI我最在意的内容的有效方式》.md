@@ -8,6 +8,19 @@ created: 2025-10-22
 description:
 tags:
   - "@Yangyixxxx #人工智能 #深度学习 #视频内容 #注意力机制 #用户生成内容"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Yangyi** @Yangyixxxx 2025-10-20
 

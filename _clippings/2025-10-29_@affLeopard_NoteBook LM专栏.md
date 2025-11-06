@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@affLeopard # NoteBookLM # 笔记管理 # AI学习工具 # 个人知识库"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Bob Zhang | Humorist** @affLeopard [2025-10-24](https://x.com/affLeopard/status/1981741826479697965)
 

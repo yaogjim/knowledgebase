@@ -17,6 +17,19 @@ tags:
   - "2025-11-04"
 
   - "x.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 **小互** @imxiaohu [2025-11-03](https://x.com/imxiaohu/status/1985174703976435861)

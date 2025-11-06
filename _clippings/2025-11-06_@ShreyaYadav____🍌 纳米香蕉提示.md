@@ -8,6 +8,19 @@ created: 2025-11-06
 description:
 tags:
   - "@ShreyaYadav___"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Shreya Yadav** @ShreyaYadav\_\_\_ [2025-11-04](https://x.com/ShreyaYadav___/status/1985738257708302430)
 

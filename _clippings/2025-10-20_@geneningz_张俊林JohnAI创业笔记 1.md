@@ -8,6 +8,19 @@ created: 2025-10-20
 description:
 tags:
   - "@geneningz # 人类3.0 # 云端大脑 # 神经科学实验室 # 脑机接口"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **张俊林JohnAI创业笔记** @geneningz 2025-10-18
 

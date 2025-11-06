@@ -11,6 +11,19 @@ tags:
   - "@hongming731"
   - "claude"
   - "code"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 放了 36 篇内容生成了视频和音频，想进一步了解 Claude Code 的使用和最佳实践的可以一起

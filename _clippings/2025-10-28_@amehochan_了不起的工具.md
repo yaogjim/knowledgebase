@@ -8,6 +8,19 @@ created: 2025-10-28
 description:
 tags:
   - "@amehochan #格雷   #工具    #工程    #机械   #中文"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Yufan Sheng** @amehochan 2025-09-11
 

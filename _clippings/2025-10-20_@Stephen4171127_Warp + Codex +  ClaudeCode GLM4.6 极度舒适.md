@@ -8,6 +8,19 @@ created: 2025-10-20
 description:
 tags:
   - "@Stephen4171127 # WPS # IDE # Python # Codex # ClaudeCode # GLM4.6 # GPT # AI # 机器学习 # 自动化"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **熊布朗** @Stephen4171127 [2025-10-18](https://x.com/Stephen4171127/status/1979582995762659721)
 

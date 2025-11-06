@@ -8,6 +8,19 @@ created: 2025-10-20
 description:
 tags:
   - "@LinearUncle # Figma # 设计 # UI 设计 # 产品设计"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **LinearUncle** @LinearUncle [2025-10-18](https://x.com/LinearUncle/status/1979532549505294536/history)
 

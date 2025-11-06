@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@foundmyfitness #高强度间歇训练 #线粒体自噬 #PGC-1α #新陈代谢 #肌肉健康"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Dr. Rhonda Patrick** @foundmyfitness [2024-10-23](https://x.com/foundmyfitness/status/1849154074895360440)
 

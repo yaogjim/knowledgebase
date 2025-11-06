@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "2025-11-05"
   - "ai"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # AI 能提升下限，但是如果自身水平不足，看不出来生成内容的问题，但如果专业的人去用 AI 生成内容，

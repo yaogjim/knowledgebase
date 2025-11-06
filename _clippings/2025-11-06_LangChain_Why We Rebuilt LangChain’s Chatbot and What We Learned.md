@@ -8,6 +8,19 @@ created: 2025-11-06
 description: "By Liam BushBackgroundEvery successful platform needs reliable support, but we realized our own team was spending hours tracking down answers to technical questions. This friction wasn't just slowing down our engineers—it was a critical bottleneck for our users.We set out to solve this using the very"
 tags:
   - "LangChain"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 *By Liam Bush*
 

@@ -8,6 +8,19 @@ created: 2025-10-20
 description:
 tags:
   - "@yan5xu # Agent # 认知流程 # 人工智能 # 流程设计 # 机器学习 # AI"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **yan5xu** @yan5xu [2025-10-18](https://x.com/yan5xu/status/1979451118876057669)
 

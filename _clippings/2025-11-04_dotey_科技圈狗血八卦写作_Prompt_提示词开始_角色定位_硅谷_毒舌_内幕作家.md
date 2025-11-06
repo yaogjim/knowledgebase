@@ -8,6 +8,19 @@ created: 2025-11-04
 description:
 tags:
 
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 科技圈狗血八卦写作 Prompt --- 提示词开始 --- # 角色定位：硅谷“毒舌”内幕作家

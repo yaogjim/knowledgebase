@@ -16,6 +16,19 @@ tags:
   - "2025-11-03"
   - "**铁锤人**"
   - "x.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 如何提高执行力呢？ Andrew Huberman 是斯坦福大学的神经学教授，在油管有 720w订阅

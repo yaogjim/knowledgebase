@@ -11,6 +11,19 @@ tags:
   - "@anthropic.com"
   - "mcp"
   - "salesforce"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # [Anthropic 的工程实践](engineering)

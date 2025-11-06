@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@0xShellywang # 产品迭代 # 技术债务 # 产品维护 # 编程与工程学 #产品开发 # 产品设计 # 后续支持"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Shelly** @0xShellywang 2025-10-28
 

@@ -11,6 +11,19 @@ tags:
   - "@vista8"
   - "language"
   - "models"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 喂饭必须喂到位！（自己也需要） PPT只有论文链接，估计很多人也懒得下载。 让AI写了个脚本，下载全

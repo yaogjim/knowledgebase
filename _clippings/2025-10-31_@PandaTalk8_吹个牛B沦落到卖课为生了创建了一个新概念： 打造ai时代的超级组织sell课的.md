@@ -8,6 +8,19 @@ created: 2025-10-31
 description:
 tags:
   - "@PandaTalk8 #开发能力#内容运营#sell课#ai时代#超级组织#个体经济#生产力#工程能力"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Mr Panda** @PandaTalk8 [2025-10-30](https://x.com/PandaTalk8/status/1984040881041920235)
 我个人的工程能力顶得上10个普通人的水准， 加个ai ， 我可以顶20个人。如果再加上我的内容运营的能力， 我自己就是一个公司。

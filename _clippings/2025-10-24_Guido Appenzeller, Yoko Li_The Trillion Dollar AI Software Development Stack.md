@@ -10,6 +10,19 @@ description: "Generative AI is revolutionizing software development, with AI cod
 tags:
   - "Guido Appenzeller"
   - "Yoko Li"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 [![An AI image of a man sitting at a laptop with humanoid robots behind him.](https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/10/250918-Trillion-Dollar-AI-Software-Dev-Stack-Social-img-1200x630-1.png)](https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/10/250918-Trillion-Dollar-AI-Software-Dev-Stack-Social-img-1200x630-1.png)
 

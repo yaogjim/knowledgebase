@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@WuChuanIJ #吴川 #微软 #RD-Agent #Qlib #LightGBM #LLM #DeepSeek #数据处理 #机器学习 #投资策略"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **吴川** @WuChuanIJ [2025-10-28](https://x.com/WuChuanIJ/status/1982991392340422740)
 

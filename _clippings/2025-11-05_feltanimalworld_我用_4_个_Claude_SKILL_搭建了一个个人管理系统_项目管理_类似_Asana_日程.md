@@ -11,6 +11,19 @@ tags:
   - "@feltanimalworld"
   - "2025-11-04"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我用 4 个 Claude SKILL 搭建了一个个人管理系统， 项目管理（类似 Asana） 日程

@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@frxiaobei #医疗行业 #AI应用 #OpenEvidence #创业故事 #数据驱动 #产品落地"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **凡人小北** @frxiaobei [2025-10-28](https://x.com/frxiaobei/status/1983122840829517939)
 

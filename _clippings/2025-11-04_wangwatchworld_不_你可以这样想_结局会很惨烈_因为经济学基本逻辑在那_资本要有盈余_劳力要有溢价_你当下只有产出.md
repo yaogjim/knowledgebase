@@ -17,6 +17,19 @@ tags:
   - "model"
   - "2025-11-03"
   - "x.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 不，你可以这样想，结局会很惨烈，因为经济学基本逻辑在那：资本要有盈余，劳力要有溢价。 你当下只有产出

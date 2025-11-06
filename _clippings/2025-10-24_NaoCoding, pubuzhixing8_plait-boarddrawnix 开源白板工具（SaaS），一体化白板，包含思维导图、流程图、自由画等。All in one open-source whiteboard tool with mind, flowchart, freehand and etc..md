@@ -10,6 +10,19 @@ description:
 tags:
   - "NaoCoding"
   - "pubuzhixing8"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 开源白板工具（SaaS），一体化白板，包含思维导图、流程图、自由画等。All in one open-source whiteboard tool with mind, flowchart, freehand and etc.
 ![Product showcase](https://github.com/plait-board/drawnix/raw/develop/apps/web/public/product_showcase/case-2.png)](https://github.com/plait-board/drawnix/blob/develop/apps/web/public/product_showcase/case-2.png)
@@ -87,4 +100,3 @@ docker pull pubuzhixing/drawnix:latest
 - [plait](https://github.com/worktile/plait) - 开源画图框架
 - [slate](https://github.com/ianstormtaylor/slate) - 富文本编辑器框架
 - [floating-ui](https://github.com/floating-ui/floating-ui) - 一个超级好用的创建弹出层基础库
-

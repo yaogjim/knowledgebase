@@ -8,6 +8,19 @@ created: 2025-11-06
 description:
 tags:
   - "@redtachyon #强化学习 #基础设施 #算法 #数据 #环境性能 #策略采样 #训练器"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Ariel** @redtachyon [2025-11-05](https://x.com/redtachyon/status/1986177621357691263)
 

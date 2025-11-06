@@ -8,6 +8,19 @@ created: 2025-10-20
 description:
 tags:
   - "@wumeilv_ai # AI编程# 软件开发# 辅助工具# 项目管理"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **吴美律AI日记** @wumeilv\_ai 2025-10-18
 

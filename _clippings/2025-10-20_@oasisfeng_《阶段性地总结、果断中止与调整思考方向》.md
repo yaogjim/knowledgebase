@@ -8,6 +8,19 @@ created: 2025-10-20
 description:
 tags:
   - "@oasisfeng # 智能体十年# 强化学习# LLM # 迁移学习"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Oasis Feng** @oasisfeng 2025-10-19
 

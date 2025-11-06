@@ -17,6 +17,19 @@ tags:
   - "ai"
   - "**shelly**"
   - "x.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 最近接触许多自动化咨询服务的团队有感。 咨询公司有两类。 不是按规模分。

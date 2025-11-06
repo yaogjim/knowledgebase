@@ -8,6 +8,19 @@ created: 2025-11-06
 description:
 tags:
   - "@noisepoint_agi #噪点 #AI #AGI #人工智能 #李想 #理想 #中国 #产品经理 #马斯克"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **噪点noisepoint** @noisepoint\_agi [2025-11-05](https://x.com/noisepoint_agi/status/1985891501008982499)
 

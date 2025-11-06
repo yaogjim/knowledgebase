@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@oasisfeng #信息做空 #GTA模型 #GeminiAI #负值经济学 #信息经济学"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Oasis Feng** @oasisfeng 2025-08-20
 

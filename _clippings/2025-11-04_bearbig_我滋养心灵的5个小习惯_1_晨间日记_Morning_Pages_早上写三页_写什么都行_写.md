@@ -17,6 +17,19 @@ tags:
   - "2025-11-03"
   - "**bear"
   - "x.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我滋养心灵的5个小习惯： 1. 晨间日记（Morning Pages） 早上写三页，写什么都行。写

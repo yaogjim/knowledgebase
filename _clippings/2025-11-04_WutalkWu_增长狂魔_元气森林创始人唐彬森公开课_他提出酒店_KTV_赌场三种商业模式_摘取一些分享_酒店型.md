@@ -18,6 +18,19 @@ tags:
   - "2025-11-03"
   - "ai"
   - "x.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 增长狂魔、元气森林创始人唐彬森公开课，他提出酒店、KTV、赌场三种商业模式，摘取一些分享 酒店型：

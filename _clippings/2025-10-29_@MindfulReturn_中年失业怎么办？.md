@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@MindfulReturn # AI # 产业 # 技术 # 创业 # 销售 # 成功 # 经验分享"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **MindfulReturn 身心修复局** @MindfulReturn [2025-10-27](https://x.com/MindfulReturn/status/1982616258240819261)
 

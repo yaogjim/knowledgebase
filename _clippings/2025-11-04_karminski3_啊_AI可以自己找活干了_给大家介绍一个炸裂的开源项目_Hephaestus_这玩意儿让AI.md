@@ -18,6 +18,19 @@ tags:
   - "👋"
   - "spec"
   - "x.com"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 啊？AI可以自己找活干了？ 给大家介绍一个炸裂的开源项目 Hephaestus - 这玩意儿让AI

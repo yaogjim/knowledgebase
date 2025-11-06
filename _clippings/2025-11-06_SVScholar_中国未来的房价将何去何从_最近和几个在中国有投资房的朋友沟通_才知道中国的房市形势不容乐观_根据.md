@@ -11,6 +11,19 @@ tags:
   - "@SVScholar"
   - "https"
   - "2025-10-28"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 中国未来的房价将何去何从？ 最近和几个在中国有投资房的朋友沟通，才知道中国的房市形势不容乐观。 根据

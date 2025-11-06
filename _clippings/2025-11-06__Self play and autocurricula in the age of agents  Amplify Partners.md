@@ -6,6 +6,19 @@ published: 2025-11-06
 created: 2025-11-06
 description: "Why we should care about using autocurricula to train digital agents and how unsupervised environment design and evolutionary algorithms might help us get there."
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 2016 年，DeepMind 通过结合自我对弈与强化学习，成功构建了 [AlphaGo](https://deepmind.google/research/projects/alphago/) 。他们让模型与稍早版本的自身进行对弈来实施训练，这种做法逐步提升了所遭遇棋局的难度，更准确地说，它形成了一种自动化的任务进阶机制——即自课程学习。
 

@@ -8,6 +8,19 @@ created: 2025-11-04
 description:
 tags:
   - "@0xShellywang # AI # 时代 # 未来 # 减少失败 # 把握生活 # 个人魅力 # 个体经济 # 创新 # 成长"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Shelly** @0xShellywang 2025-11-03
 

@@ -8,6 +8,19 @@ created: 2025-10-29
 description: "> 每天2小时，如何在多平台持续输出病毒式内容？揭秘百万粉丝创作者的AI辅助系统 --- ## 🔄 核心流程：从推特到全平台的内容循环 丹·科的内容系统本质上是一个\"验证-扩展-复用\"的循环。 ##"
 tags:
   - "YouMind"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 Dan Koe AI内容永动机：方法论与元提示词实操
 

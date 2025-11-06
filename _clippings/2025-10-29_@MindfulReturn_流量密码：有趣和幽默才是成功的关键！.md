@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@MindfulReturn #短视频营销 #流量密码 #社交媒体 #内容策略 #营销技巧 #创意策划"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **MindfulReturn 身心修复局** @MindfulReturn [2025-10-15](https://x.com/MindfulReturn/status/1978386592164466912)
 

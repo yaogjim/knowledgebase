@@ -8,6 +8,19 @@ created: 2025-10-28
 description:
 tags:
   - "@Stephen4171127 # AI # coding # ClaudeCode"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **熊布朗** @Stephen4171127 2025-10-27
 

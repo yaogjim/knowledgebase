@@ -8,6 +8,19 @@ created: 2025-10-23
 description:
 tags:
   - "@shaogefenhao #教育 #父母心 #自学能力 #时代潮流"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **少个分号** @shaogefenhao 2025-10-22
 

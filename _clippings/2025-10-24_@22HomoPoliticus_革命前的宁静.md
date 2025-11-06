@@ -8,6 +8,19 @@ created: 2025-10-24
 description:
 tags:
   - "@22HomoPoliticus #社交媒体 #社运圈 #民运"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Ignatius Lee** @22HomoPoliticus [2025-10-23](https://x.com/22HomoPoliticus/status/1981318192623403486)
 

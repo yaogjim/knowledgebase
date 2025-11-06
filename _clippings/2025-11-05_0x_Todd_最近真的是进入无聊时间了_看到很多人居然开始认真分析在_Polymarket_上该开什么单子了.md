@@ -11,6 +11,19 @@ tags:
   - "@0x_Todd"
   - "https"
   - "2025-11-04"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 最近真的是进入无聊时间了。 看到很多人居然开始认真分析在 Polymarket 上该开什么单子了😂

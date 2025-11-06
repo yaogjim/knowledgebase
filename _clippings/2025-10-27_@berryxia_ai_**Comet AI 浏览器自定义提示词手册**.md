@@ -8,6 +8,19 @@ created: 2025-10-27
 description:
 tags:
   - "@berryxia_ai **AI** **Comet** **Browser** **Custom Prompt** **Manual** **提示词手册**"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Berryxia.AI** @berryxia\_ai [2025-10-26](https://x.com/berryxia_ai/status/1982442362115940498)
 

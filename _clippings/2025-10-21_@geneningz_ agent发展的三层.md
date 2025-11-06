@@ -8,6 +8,19 @@ created: 2025-10-21
 description:
 tags:
   - "@geneningz # agent发展 # AI工具 # 数字空间 # 人类环境 # 复用"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **张俊林JohnAI创业笔记** @geneningz 2025-10-17
 

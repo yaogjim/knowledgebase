@@ -16,6 +16,19 @@ tags:
   - "@kevinma\_dev\_zh"
   - "x.com"
   - "@kevinma_dev_zh"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 今天上午外出，老婆和丈母娘带娃玩，我就指挥 Claude Code 远程干活 现在才体会到手机编程的

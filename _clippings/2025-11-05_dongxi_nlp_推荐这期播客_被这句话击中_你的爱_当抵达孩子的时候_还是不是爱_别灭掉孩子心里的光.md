@@ -11,6 +11,19 @@ tags:
   - "@dongxi_nlp"
   - "https"
   - "2025-11-04"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 推荐这期播客。 被这句话击中，“你的爱，当抵达孩子的时候，还是不是爱？” 别灭掉孩子心里的光。

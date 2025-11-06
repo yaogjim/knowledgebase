@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@bozhou_ai # AI内容创作 # 博客 # 内容创作 # 创作提示词 # 优质内容 # 数字艺术"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **泊舟** @bozhou\_ai [2025-10-29](https://x.com/bozhou_ai/status/1983418984402911234)
 

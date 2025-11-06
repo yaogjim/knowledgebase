@@ -8,6 +8,19 @@ created: 2025-10-20
 description:
 tags:
   - "@sanvibyfish #加密货币 #出海交易 #虚拟银行 #服务提醒"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **sanvi.dev** @sanvibyfish [2025-10-18](https://x.com/sanvibyfish/status/1979469969407750253)
 

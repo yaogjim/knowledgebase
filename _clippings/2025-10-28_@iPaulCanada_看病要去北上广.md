@@ -8,6 +8,19 @@ created: 2025-10-28
 description:
 tags:
   - "@iPaulCanada #看病 #医护 #北上广"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **iPaul** @iPaulCanada [2025-10-27](https://x.com/iPaulCanada/status/1982940982149525591)
 

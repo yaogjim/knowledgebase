@@ -8,6 +8,19 @@ created: 2025-10-21
 description:
 tags:
   - "@Wujizhuzhu # 中国社会学家 # 土地改革 # 增长模式 # 城乡差距 # 政治生态 # 社会学研究"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **朱无忌无忌** @Wujizhuzhu 2025-10-21
 

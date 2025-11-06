@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@FeitengLi # 视频字幕识别 # 语音转文字 # 时代峰 # Gemini AI #"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Feiteng** @FeitengLi 2025-09-27
 

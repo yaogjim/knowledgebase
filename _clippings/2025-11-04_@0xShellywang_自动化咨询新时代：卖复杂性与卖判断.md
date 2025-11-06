@@ -8,6 +8,19 @@ created: 2025-11-04
 description:
 tags:
   - "@0xShellywang #自动化咨询 #咨询服务 #AI #low-code #信息差 #判断力"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Shelly** @0xShellywang [2025-11-03](https://x.com/0xShellywang/status/1985196360027812345)
 

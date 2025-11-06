@@ -8,6 +8,19 @@ created: 2025-10-20
 description:
 tags:
   - "@frxiaobei #医疗人工智能 #AI医疗 #医疗信息化 #技术伦理 #医疗创新 #医疗行业 #医疗系统"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **凡人小北** @frxiaobei [2025-10-20](https://x.com/frxiaobei/status/1980153288587911509)
 

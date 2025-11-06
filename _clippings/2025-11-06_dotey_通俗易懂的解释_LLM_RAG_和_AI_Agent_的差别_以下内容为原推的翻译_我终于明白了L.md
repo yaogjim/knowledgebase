@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "---"
   - "ai"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 通俗易懂的解释 LLM，RAG 和 AI Agent 的差别，以下内容为原推的翻译： 我终于明白了L

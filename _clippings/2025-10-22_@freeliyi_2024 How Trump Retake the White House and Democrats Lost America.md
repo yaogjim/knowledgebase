@@ -11,6 +11,19 @@ tags:
   - "@freeliyi"
   - "美国大选"
   - "读书笔记"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **自由李亿freeliyi** @freeliyi [2025-10-21](https://x.com/freeliyi/status/1980743202144665610/history)
 

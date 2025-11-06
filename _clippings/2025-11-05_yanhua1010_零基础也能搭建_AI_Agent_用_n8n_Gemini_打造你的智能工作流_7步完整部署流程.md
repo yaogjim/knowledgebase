@@ -11,6 +11,19 @@ tags:
   - "@yanhua1010"
   - "https"
   - "ai"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 零基础也能搭建 AI Agent！用 n8n + Gemini 打造你的智能工作流 7步完整部署流程

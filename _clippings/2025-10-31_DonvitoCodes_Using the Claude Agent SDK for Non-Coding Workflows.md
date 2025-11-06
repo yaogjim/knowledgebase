@@ -8,6 +8,19 @@ created: 2025-10-31
 description: "I’ve been exploring the Claude Agent SDK, and I had this idea — why not use it for non-coding workflows instead of relying on other agent frameworks like CrewAI or LangChain?To validate the idea, I built a simple example: a news researcher agent tha..."
 tags:
   - "DonvitoCodes"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 

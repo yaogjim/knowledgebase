@@ -11,6 +11,19 @@ tags:
   - "@Yangyixxxx"
   - "鉴别真话与假话的关键策略"
   - "当下有没有使用的降级方案"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Thread by @Yangyixxxx

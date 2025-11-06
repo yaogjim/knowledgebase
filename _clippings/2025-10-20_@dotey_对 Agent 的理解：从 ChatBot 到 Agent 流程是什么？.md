@@ -8,6 +8,19 @@ created: 2025-10-20
 description:
 tags:
   - "@dotey #人工智能 #智能体 #ChatBot #机器人 #推理 #认知流程 #AI #AGI #OpenAI"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **宝玉** @dotey 2025-10-18
 

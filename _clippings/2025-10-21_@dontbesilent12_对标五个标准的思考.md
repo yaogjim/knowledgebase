@@ -8,6 +8,19 @@ created: 2025-10-21
 description:
 tags:
   - "@dontbesilent12 #创业 #对标 #投资 #营销 #流量"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **dontbesilent** @dontbesilent12 [2025-10-19](https://x.com/dontbesilent12/status/1979942085009850542)
 

@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@cellinlab #财富策略 #人生哲学 #投资理财 #生活规划"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Cell 细胞** @cellinlab [2025-10-28](https://x.com/cellinlab/status/1983078809986330939)
 

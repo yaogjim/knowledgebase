@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@MindfulReturn #自媒体 #内容创作 #变现 #账号运营 #长窄爱 #达·芬奇画鸡蛋 #输入输出循环 #自媒体成功 #起号 #社交媒体 #数字营销"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **MindfulReturn 身心修复局** @MindfulReturn [2025-10-13](https://x.com/MindfulReturn/status/1977683893114605605)
 

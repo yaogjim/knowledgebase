@@ -8,6 +8,19 @@ created: 2025-10-29
 description:
 tags:
   - "@kevinma_dev_zh #学习理论  #可理解性输入  #刻意练习  #英语学习"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Kevin Ma** @kevinma\_dev\_zh [2025-09-24](https://x.com/kevinma_dev_zh/status/1970795043012419724)
 

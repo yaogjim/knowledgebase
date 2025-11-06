@@ -8,6 +8,19 @@ created: 2025-10-31
 description: "Principal AI Scientist @ In-Parallel | ex CIO/CAIO @ Resoniks"
 tags:
   - "@donvito #ClaudeAgentSDK #AI智能体 #代理 #MCP #子代理 #翻译"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-11-13"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Melvin Vivas** @donvito [2025-10-30](https://x.com/donvito/status/1983851704975327473)
 
