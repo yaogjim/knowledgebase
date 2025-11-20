@@ -106,3 +106,33 @@ skill 的问题是，这个里面的提示词不会像agent一样逐步加载，
 **Browny** @brownylin [2025-11-18](https://x.com/brownylin/status/1990898374757752864)
 
 前陣子用了一下，覺得 Skill 是從協定走向了心法
+
+* * *
+
+**刚戈** @gangxiao [2025-11-18](https://x.com/gangxiao/status/1990791479485477312)
+
+官方有一个skill-creator ，可以用来创建自己的skills
+
+* * *
+
+**tchaikovsky** @T\_chaikovsky [2025-11-18](https://x.com/T_chaikovsky/status/1990830156177461324)
+
+还没搞懂skill跟mcp还有子agent的区别
+
+* * *
+
+**xsser** @xsser\_w [2025-11-18](https://x.com/xsser_w/status/1990728029203468640)
+
+skill就是一个路由器
+
+* * *
+
+**William说** @WilliamCuiX [2025-11-18](https://x.com/WilliamCuiX/status/1990708821304492221)
+
+https://github.com/WilliamSaysX/skill-forge… 可以用这个官方增强版，可以把任何github仓库或者文档站点变Skill，非常方便。
+
+* * *
+
+**LifeGPT** @Life4GPT [2025-11-19](https://x.com/Life4GPT/status/1990973932539932970)
+
+凡事问AI，已经变了。跟我们过去凡事找手机的路径依赖是类似：）
