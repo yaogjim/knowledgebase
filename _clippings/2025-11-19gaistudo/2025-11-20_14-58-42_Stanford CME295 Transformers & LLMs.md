@@ -1,12 +1,12 @@
 ---
-title: "2025-11-20_"
+title: 2025-11-20_Stanford CME295 Transformers & LLMs
 source: ""
 author:
   - ""
 published: 2025-11-20
 created: 2025-11-20
 description: ""
-tags: []
+tags:
 ---
 
 # Stanford CME295 Transformers & LLMs | Autumn 2025 | Lecture 7 - Agentic LLMs

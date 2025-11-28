@@ -1,12 +1,12 @@
 ---
-title: "2025-11-25_"
+title: "2025-11-25_Stanford AI Club: Jeff Dean 谈 AI 重要趋势"
 source: ""
 author:
   - ""
 published: 2025-11-25
 created: 2025-11-25
 description: ""
-tags: []
+tags:
 ---
 
 # Stanford AI Club: Jeff Dean 谈 AI 重要趋势

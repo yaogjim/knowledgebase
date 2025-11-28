@@ -1,12 +1,12 @@
 ---
-title: "2025-11-25_"
-source: ""
+title: 2025-11-25_Anthropic  Glean OpenRouter 与 Menlo Ventures 的 Deedy Das 探讨如何构建 AI 护城河
+source: 
 author:
   - ""
 published: 2025-11-25
 created: 2025-11-25
 description: ""
-tags: []
+tags:
 ---
 
 # Anthropic, Glean & OpenRouter: 与 Menlo Ventures 的 Deedy Das 探讨如何构建 AI 护城河

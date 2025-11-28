@@ -1,12 +1,12 @@
 ---
-title: "2025-11-25_"
+title: 2025-11-25_The Aftermath of a $1B Exit
 source: ""
 author:
   - ""
 published: 2025-11-25
 created: 2025-11-25
 description: ""
-tags: []
+tags:
 ---
 
 # The Aftermath of a $1B Exit. - YouTube

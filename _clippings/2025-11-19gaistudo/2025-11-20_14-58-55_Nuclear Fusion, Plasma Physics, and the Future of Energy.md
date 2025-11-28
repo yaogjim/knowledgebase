@@ -1,12 +1,12 @@
 ---
-title: "2025-11-20_"
+title: 2025-11-20_Nuclear Fusion, Plasma Physics, and the Future of Energy
 source: ""
 author:
   - ""
 published: 2025-11-20
 created: 2025-11-20
 description: ""
-tags: []
+tags:
 ---
 
 # David Kirtley: Nuclear Fusion, Plasma Physics, and the Future of Energy | Lex Fridman Podcast #485

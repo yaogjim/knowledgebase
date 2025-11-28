@@ -1,12 +1,12 @@
 ---
-title: "2025-11-25_"
-source: ""
+title: 2025-11-25_Robinhood CEO Making Everyone An Owner
+source: 
 author:
   - ""
 published: 2025-11-25
 created: 2025-11-25
 description: ""
-tags: []
+tags:
 ---
 
 # Robinhood CEO: Making Everyone An Owner

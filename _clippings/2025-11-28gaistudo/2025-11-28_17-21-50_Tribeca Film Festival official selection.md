@@ -1,12 +1,12 @@
 ---
-title: "2025-11-28_"
+title: 2025-11-28_Tribeca Film Festival official selection
 source: ""
 author:
   - ""
 published: 2025-11-28
 created: 2025-11-28
 description: ""
-tags: []
+tags:
 ---
 
 # The Thinking Game | Full documentary | Tribeca Film Festival official selection

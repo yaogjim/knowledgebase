@@ -1,12 +1,12 @@
 ---
-title: "2025-11-28_"
+title: 2025-11-28_创世纪任务 (Genesis Mission)、Claude 4.5、谷歌对决英伟达以及 ChatGPT 购物
 source: ""
 author:
   - ""
 published: 2025-11-28
 created: 2025-11-28
 description: ""
-tags: []
+tags:
 ---
 
 # 美国的官方 AI 计划：创世纪任务 (Genesis Mission)、Claude 4.5、谷歌对决英伟达以及 ChatGPT 购物

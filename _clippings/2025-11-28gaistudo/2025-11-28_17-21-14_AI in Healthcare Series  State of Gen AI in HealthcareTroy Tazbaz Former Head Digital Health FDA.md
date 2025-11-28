@@ -1,12 +1,12 @@
 ---
-title: "2025-11-28_"
+title: "2025-11-28_AI in Healthcare Series: State of Gen AI in Healthcare, Troy Tazbaz Former Head Digital Health FDA"
 source: ""
 author:
   - ""
 published: 2025-11-28
 created: 2025-11-28
 description: ""
-tags: []
+tags:
 ---
 
 # AI in Healthcare Series: State of Gen AI in Healthcare, Troy Tazbaz Former Head Digital Health FDA

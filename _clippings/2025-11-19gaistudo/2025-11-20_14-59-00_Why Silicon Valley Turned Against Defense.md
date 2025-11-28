@@ -1,12 +1,12 @@
 ---
-title: "2025-11-20_"
+title: 2025-11-20_Why Silicon Valley Turned Against Defense
 source: ""
 author:
   - ""
 published: 2025-11-20
 created: 2025-11-20
 description: ""
-tags: []
+tags:
 ---
 
 # Ben Horowitz & Marc Andreessen: Why Silicon Valley Turned Against Defense (And How We're Fixing It)

@@ -1,12 +1,12 @@
 ---
-title: "2025-11-28_"
+title: 2025-11-28_Ilya Sutskever我们要从扩展（Scaling）时代迈向研究（Research）时代
 source: ""
 author:
   - ""
 published: 2025-11-28
 created: 2025-11-28
 description: ""
-tags: []
+tags:
 ---
 
 # Ilya Sutskever：我们要从扩展（Scaling）时代迈向研究（Research）时代

@@ -1,12 +1,12 @@
 ---
-title: "2025-11-25_"
-source: ""
+title: 2025-11-25_Michael Ovitz, Creative Artists Agency (CAA)  David Senra
+source: 
 author:
   - ""
 published: 2025-11-25
 created: 2025-11-25
-description: ""
-tags: []
+description: 
+tags:
 ---
 
 # Michael Ovitz, Creative Artists Agency (CAA) | David Senra
