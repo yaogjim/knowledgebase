@@ -8,7 +8,7 @@
     "single_file_data_path": ".smart-env/smart_sources.json",
     "min_chars": 200,
     "embed_model": {
-      "adapter": "ollama",
+      "adapter": "lm_studio",
       "transformers": {
         "legacy_transformers": false,
         "model_key": "TaylorAI/bge-micro-v2"
@@ -21,13 +21,23 @@
         "model_key": "gemini-embedding-001"
       },
       "lm_studio": {
-        "model_key": ""
+        "model_key": "text-embedding-qwen3-embedding-4b",
+        "models": {
+          "text-embedding-qwen3-embedding-4b": {
+            "id": "text-embedding-qwen3-embedding-4b",
+            "model_name": "text-embedding-qwen3-embedding-4b",
+            "max_tokens": 2048,
+            "description": "LM Studio model: text-embedding-qwen3-embedding-4b",
+            "adapter": "lm_studio"
+          }
+        }
       },
       "": {},
       "ollama": {
         "model_key": "undefined",
         "host": "http://localhost:11434"
-      }
+      },
+      "text-embedding-qwen3-embedding-4b": {}
     },
     "excluded_headings": "",
     "file_exclusions": "Untitled,Cursor,Manus,Same.dev,Lovable,Devin,Replit Agent,Windsurf Agent & VSCode Agent (And other Open Sourced) System Prompts,Tools & AI Models..md,_clippings/2025-11-12长文/2025-11-12_Tim Ferriss_The Tim Ferriss Show Transcripts David Baszucki,Co-Founder of Roblox — The Path to 150M+ Daily Users,Critical Business Decisions,Ketogenic Therapy for Brain Health,Daily Routines,The Roblox Economy,and More (834).md,_clippings/2025-11-26技术杂谈/2025-11-25_Anton Pidkuiko (Maintainer),Olivier Chafik (Maintainer),Ido Salomon (MCP-UI),Liad Yosef (MCP-UI),Nick Cooper (Core Maintainer),Sean Strong (Anthropic),Jerome Swannack (Anthropic),Alexi Christakis (OpenAI),Bryan Ashley (OpenAI).md,_clippings/2025-04-30杂谈/2025-04-24_GitHub_x1xhlolsystem-prompts-and-models-of-ai-tools FULL v0,_clippings/2025-04-30杂谈/2025-04-24_GitHub_x1xhlolsystem-prompts-and-models-of-ai-tools FULL v0, Cursor, Manus, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent & VSCode Agent (And other Open Sourced) System Prompts, Tools & AI Models..md,_clippings/2025-11-12长文/2025-11-12_Tim Ferriss_The Tim Ferriss Show Transcripts David Baszucki, Co-Founder of Roblox — The Path to 150M+ Daily Users, Critical Business Decisions, Ketogenic Therapy for Brain Health, Daily Routines, The Roblox Economy, and More (834).md,_clippings/2025-11-26技术杂谈/2025-11-25_Anton Pidkuiko (Maintainer), Olivier Chafik (Maintainer), Ido Salomon (MCP-UI), Liad Yosef (MCP-UI), Nick Cooper (Core Maintainer), Sean Strong (Anthropic), Jerome Swannack (Anthropic), Alexi Christakis (OpenAI), Bryan Ashley (OpenAI).md",
@@ -42,7 +52,7 @@
     "show_full_path": false,
     "exclude_blocks_from_source_connections": false,
     "exclude_frontmatter_blocks": true,
-    "expanded_view": false,
+    "expanded_view": true,
     "results_limit": "20"
   },
   "language": "en",
@@ -52,10 +62,20 @@
     "chat_model": {
       "adapter": "ollama",
       "ollama": {}
-    }
+    },
+    "active_thread_key": "",
+    "system_prompt": "",
+    "detect_self_referential": true,
+    "review_context": true,
+    "stream": true,
+    "language": "en",
+    "modifier_key_to_send": "shift",
+    "use_tool_calls": true
   },
   "smart_notices": {
-    "muted": {}
+    "muted": {
+      "embedding_paused": true
+    }
   },
   "version": ""
 }
