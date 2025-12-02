@@ -1,0 +1,61 @@
+{
+  "is_obsidian_vault": true,
+  "smart_blocks": {
+    "embed_blocks": true,
+    "min_chars": 200
+  },
+  "smart_sources": {
+    "single_file_data_path": ".smart-env/smart_sources.json",
+    "min_chars": 200,
+    "embed_model": {
+      "adapter": "ollama",
+      "transformers": {
+        "legacy_transformers": false,
+        "model_key": "TaylorAI/bge-micro-v2"
+      },
+      "TaylorAI/bge-micro-v2": {},
+      "openai": {
+        "model_key": "text-embedding-3-small"
+      },
+      "gemini": {
+        "model_key": "gemini-embedding-001"
+      },
+      "lm_studio": {
+        "model_key": ""
+      },
+      "": {},
+      "ollama": {
+        "model_key": "undefined",
+        "host": "http://localhost:11434"
+      }
+    },
+    "excluded_headings": "",
+    "file_exclusions": "Untitled,Cursor,Manus,Same.dev,Lovable,Devin,Replit Agent,Windsurf Agent & VSCode Agent (And other Open Sourced) System Prompts,Tools & AI Models..md,_clippings/2025-11-12长文/2025-11-12_Tim Ferriss_The Tim Ferriss Show Transcripts David Baszucki,Co-Founder of Roblox — The Path to 150M+ Daily Users,Critical Business Decisions,Ketogenic Therapy for Brain Health,Daily Routines,The Roblox Economy,and More (834).md,_clippings/2025-11-26技术杂谈/2025-11-25_Anton Pidkuiko (Maintainer),Olivier Chafik (Maintainer),Ido Salomon (MCP-UI),Liad Yosef (MCP-UI),Nick Cooper (Core Maintainer),Sean Strong (Anthropic),Jerome Swannack (Anthropic),Alexi Christakis (OpenAI),Bryan Ashley (OpenAI).md,_clippings/2025-04-30杂谈/2025-04-24_GitHub_x1xhlolsystem-prompts-and-models-of-ai-tools FULL v0,_clippings/2025-04-30杂谈/2025-04-24_GitHub_x1xhlolsystem-prompts-and-models-of-ai-tools FULL v0, Cursor, Manus, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent & VSCode Agent (And other Open Sourced) System Prompts, Tools & AI Models..md,_clippings/2025-11-12长文/2025-11-12_Tim Ferriss_The Tim Ferriss Show Transcripts David Baszucki, Co-Founder of Roblox — The Path to 150M+ Daily Users, Critical Business Decisions, Ketogenic Therapy for Brain Health, Daily Routines, The Roblox Economy, and More (834).md,_clippings/2025-11-26技术杂谈/2025-11-25_Anton Pidkuiko (Maintainer), Olivier Chafik (Maintainer), Ido Salomon (MCP-UI), Liad Yosef (MCP-UI), Nick Cooper (Core Maintainer), Sean Strong (Anthropic), Jerome Swannack (Anthropic), Alexi Christakis (OpenAI), Bryan Ashley (OpenAI).md",
+    "folder_exclusions": ""
+  },
+  "ribbon_icons": {
+    "connections": true,
+    "random_note": false
+  },
+  "smart_view_filter": {
+    "render_markdown": true,
+    "show_full_path": false,
+    "exclude_blocks_from_source_connections": false,
+    "exclude_frontmatter_blocks": true,
+    "expanded_view": false,
+    "results_limit": "20"
+  },
+  "language": "en",
+  "new_user": true,
+  "re_import_wait_time": 13,
+  "smart_chat_threads": {
+    "chat_model": {
+      "adapter": "ollama",
+      "ollama": {}
+    }
+  },
+  "smart_notices": {
+    "muted": {}
+  },
+  "version": ""
+}
