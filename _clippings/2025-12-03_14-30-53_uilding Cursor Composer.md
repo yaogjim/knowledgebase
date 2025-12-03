@@ -5,8 +5,9 @@ author:
   - ""
 published: 2025-12-03
 created: 2025-12-03
-description: ""
-tags:
+description: 
+tags: 
+date: 2024-12-03
 ---
 
 # Building Cursor Composer – Lee Robinson, Cursor
