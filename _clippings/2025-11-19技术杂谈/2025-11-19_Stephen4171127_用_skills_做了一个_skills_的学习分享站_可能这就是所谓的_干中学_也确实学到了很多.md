@@ -11,6 +11,19 @@ tags:
   - "@Stephen4171127"
   - "skills"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 用 skills 做了一个 skills 的学习分享站，可能这就是所谓的“干中学”，也确实学到了很多

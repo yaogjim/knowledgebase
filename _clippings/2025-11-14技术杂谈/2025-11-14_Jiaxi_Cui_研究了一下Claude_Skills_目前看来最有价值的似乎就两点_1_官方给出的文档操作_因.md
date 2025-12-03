@@ -11,6 +11,19 @@ tags:
   - "@Jiaxi_Cui"
   - "2025-11-13"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 研究了一下Claude Skills，目前看来最有价值的似乎就两点： 1. 官方给出的文档操作。因

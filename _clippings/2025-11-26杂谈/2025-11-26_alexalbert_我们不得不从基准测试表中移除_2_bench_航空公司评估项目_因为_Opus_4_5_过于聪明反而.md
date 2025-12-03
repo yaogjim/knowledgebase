@@ -11,6 +11,19 @@ tags:
   - "@alexalbert__"
   - "https"
   - "2025-11-25"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我们不得不从基准测试表中移除τ2-bench 航空公司评估项目，因为 Opus 4.5 过于聪明反而

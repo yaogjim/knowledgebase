@@ -11,6 +11,19 @@ tags:
   - "@LotusDecoder"
   - "2025-11-12"
   - "profit"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 秘籍三：拆解“说人话”的精细指令库 用户 Rasputin_mad_monk 显然对 OP 的粗

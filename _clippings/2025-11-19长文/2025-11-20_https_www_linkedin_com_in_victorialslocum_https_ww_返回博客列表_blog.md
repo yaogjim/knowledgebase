@@ -11,6 +11,19 @@ tags:
   - "#define"
   - "weaviate"
   - "elysia"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # [返回博客列表](blog)

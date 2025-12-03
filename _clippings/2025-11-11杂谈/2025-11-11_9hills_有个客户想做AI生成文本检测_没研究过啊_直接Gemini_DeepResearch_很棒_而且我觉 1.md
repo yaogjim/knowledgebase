@@ -11,6 +11,19 @@ tags:
   - "@9hills"
   - "https"
   - "2025-11-10"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 有个客户想做AI生成文本检测，没研究过啊，直接Gemini DeepResearch，很棒，而且我觉

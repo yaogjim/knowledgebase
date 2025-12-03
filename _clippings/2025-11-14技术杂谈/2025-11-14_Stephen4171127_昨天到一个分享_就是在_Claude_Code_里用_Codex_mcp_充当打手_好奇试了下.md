@@ -11,6 +11,19 @@ tags:
   - "@Stephen4171127"
   - "https"
   - "cc"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 昨天到一个分享，就是在 Claude Code 里用 Codex（ mcp ）充当打手，好奇试了下，

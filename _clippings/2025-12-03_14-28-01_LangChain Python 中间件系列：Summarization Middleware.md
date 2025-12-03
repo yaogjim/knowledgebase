@@ -7,6 +7,19 @@ published: 2025-12-03
 created: 2025-12-03
 description: ""
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # LangChain Python 中间件系列：Summarization Middleware (摘要中间件)

@@ -8,6 +8,19 @@ created: 2025-11-12
 description:
 tags:
   - "@wangwatchworld # 宾馆 # 零件 # 大数据 # 京东 # 优质客户 # 退货 # 大数据分析 # 自由市场 # 价格歧视 # 线下店 # 公平"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **王海滨的财经闲谈** @wangwatchworld [2025-11-11](https://x.com/wangwatchworld/status/1988243401360458209)
 

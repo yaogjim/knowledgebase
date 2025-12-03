@@ -11,6 +11,19 @@ tags:
   - "@dontbesilent12"
   - "2025-11-19"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 「卖产品赚钱」不是一件事，是 N 件事 第一层是有人需要这个产品 第二层是有人愿意为这个产品付钱

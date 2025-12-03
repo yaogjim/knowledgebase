@@ -11,6 +11,19 @@ tags:
   - "@iamnanyi"
   - "https"
   - "2025-11-13"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 这几天用Claude Agent SDK搭建一个数据处理Agent，感觉像是打开了一个完全不一样的世

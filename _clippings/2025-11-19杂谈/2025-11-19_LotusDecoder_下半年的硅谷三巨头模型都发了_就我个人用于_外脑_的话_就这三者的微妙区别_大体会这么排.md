@@ -11,6 +11,19 @@ tags:
   - "@LotusDecoder"
   - "2025-11-18"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 下半年的硅谷三巨头模型都发了。 就我个人用于 外脑 的话， 就这三者的微妙区别，大体会这么排，

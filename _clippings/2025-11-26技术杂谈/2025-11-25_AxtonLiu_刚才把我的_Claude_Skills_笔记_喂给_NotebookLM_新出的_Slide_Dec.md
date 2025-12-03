@@ -11,6 +11,19 @@ tags:
   - "@AxtonLiu"
   - "https"
   - "2025-11-23"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 刚才把我的「Claude Skills 笔记」喂给 NotebookLM 新出的 Slide Dec

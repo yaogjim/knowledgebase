@@ -11,6 +11,19 @@ tags:
   - "@Stephen4171127"
   - "mcp"
   - "tokens"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 说说 Anthropic 官方关于 MCP 代码执行的文章 首先这篇文章发现了俩问题，也确实是困扰大

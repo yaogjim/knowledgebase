@@ -11,6 +11,19 @@ tags:
   - "@vista8"
   - "https"
   - "image"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 原来开发一个AI Agent比想象中简单。 用CrewAI框架 + Nextjs，聊好需求，10分钟

@@ -11,6 +11,19 @@ tags:
   - "@shaneparrish"
   - "https"
   - "2025-11-05"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 史蒂夫·沃兹尼亚克是默默打造苹果公司的工程师。以下是我从这期节目和研究中提炼出的26条可供参考的见解

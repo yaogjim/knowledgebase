@@ -11,6 +11,19 @@ tags:
   - "@JefferyTatsuya"
   - "https"
   - "image"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 一直在工程层面解决memory的问题，这个论文看起来有机会直接在模型层引入短期长期记忆。 转成PP

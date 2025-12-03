@@ -11,6 +11,19 @@ tags:
   - "@Svwang1"
   - "硅谷王川"
   - "chuan"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Stewart Horejsi 大概是 1936年出生，四十多岁的时候还是个不起眼的小生意人，继承了

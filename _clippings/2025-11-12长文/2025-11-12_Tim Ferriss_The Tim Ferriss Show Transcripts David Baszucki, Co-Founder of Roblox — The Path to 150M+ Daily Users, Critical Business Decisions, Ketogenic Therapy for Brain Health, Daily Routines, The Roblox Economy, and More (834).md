@@ -8,6 +8,19 @@ created: 2025-11-12
 description: "Please enjoy this transcript of my interview with David Baszucki (@DavidBaszucki), the founder and CEO of Roblox. TIME named Roblox one of the “100 Most Influential Companies,” and it has been recognized by Fast Company for innovation on their “Most Innovative Companies” and “Most Innovat..."
 tags:
   - "Tim Ferriss"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 我与 [罗布乐思创始人兼首席执行官戴维·巴祖基](https://tim.blog/2025/11/04/david-baszucki-roblox/) （ [@DavidBaszucki](https://x.com/DavidBaszucki) ）的对话实录。 [**罗布乐思**](https://www.roblox.com/) 被《时代》杂志评为"百家最具影响力企业"之一，并因入选《快公司》杂志"最具创新力企业"及"游戏行业最具创新力企业"榜单而获得创新认可。
 

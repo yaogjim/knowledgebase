@@ -11,6 +11,19 @@ tags:
   - "@wangwatchworld"
   - "2025-11-10"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 器官移植对老人来说是无用的，因为衰落的躯体接受不了。 像刘銮雄接受移植时年纪还轻，每天要吃各种排异药

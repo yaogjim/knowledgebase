@@ -11,6 +11,19 @@ tags:
   - "@bozhou_ai"
   - "https"
   - "2025-10-30"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 听了最新的一期AI炼金术的博客，说的是企业化AI转型困境。 播客中说现在最大的阻力反而是技术部门，我

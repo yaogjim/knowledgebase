@@ -11,6 +11,19 @@ tags:
   - "@DesmondShum"
   - "https"
   - "2025-11-13"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 三亿两千万就业岗位的迷思：当中国劳动力市场遭遇机器革命。多年来我一直强调，中国增长模式已濒临枯竭。北

@@ -11,6 +11,19 @@ tags:
   - "@frxiaobei"
   - "2025-12-01"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 深以为然。 在 AGI 快速逼近的时代，努力做那个最后离场的人。 AI 会越来越强，我们真正要补的是

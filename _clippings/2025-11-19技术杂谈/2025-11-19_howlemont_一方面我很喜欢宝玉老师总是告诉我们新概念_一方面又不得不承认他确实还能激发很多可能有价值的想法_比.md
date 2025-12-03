@@ -11,6 +11,19 @@ tags:
   - "@howlemont"
   - "software"
   - "2025-11-18"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 一方面我很喜欢宝玉老师总是告诉我们新概念，一方面又不得不承认他确实还能激发很多可能有价值的想法。 比

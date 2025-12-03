@@ -11,6 +11,19 @@ tags:
   - "@Philipp Schmid"
   - "if"
   - "user"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # ## Gemini 3 提示工程：通用场景最佳实践

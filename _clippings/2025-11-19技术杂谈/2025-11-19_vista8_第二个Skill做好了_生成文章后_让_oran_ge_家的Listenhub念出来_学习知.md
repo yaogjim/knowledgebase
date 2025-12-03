@@ -11,6 +11,19 @@ tags:
   - "@vista8"
   - "https"
   - "image"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 第二个Skill做好了。 生成文章后，让 @oran_ge 家的Listenhub念出来。 学习知

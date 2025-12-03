@@ -11,6 +11,19 @@ tags:
   - "@DemarsErnestine"
   - "title"
   - "image"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 上班以来，最大的收获就是被老板推荐读了一下几本书，经济学不是用来赚钱的，但能让你更加看清这个世界。

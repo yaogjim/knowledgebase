@@ -11,6 +11,19 @@ tags:
   - "@LotusDecoder"
   - "2025-11-19"
   - "ai"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 延伸思考一下， AI 会吃掉 人类表达类任务 让人类的意图传递更加高效，

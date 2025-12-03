@@ -11,6 +11,19 @@ tags:
   - "@JamesGoong"
   - "ai"
   - "2025-10-05"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 把 AI 当做智库（人），而不是当做工具。 在面试的时候，有一个所谓的 STAR 模型。即： Sit

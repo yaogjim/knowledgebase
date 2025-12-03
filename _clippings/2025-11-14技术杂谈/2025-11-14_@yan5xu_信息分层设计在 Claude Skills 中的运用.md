@@ -8,6 +8,19 @@ created: 2025-11-14
 description:
 tags:
   - "@yan5xu # 信息分层设计 # LOD # AI Agent # 渲染 # 级别详细度"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **yan5xu** @yan5xu [2025-11-14](https://x.com/yan5xu/status/1989171335818600488)
 

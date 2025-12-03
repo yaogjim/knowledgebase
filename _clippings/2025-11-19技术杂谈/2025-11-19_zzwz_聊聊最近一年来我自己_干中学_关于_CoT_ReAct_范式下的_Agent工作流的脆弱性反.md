@@ -11,6 +11,19 @@ tags:
   - "x"
   - "@zzwz"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 聊聊最近一年来我自己 #干中学 关于 CoT ReAct 范式下的 Agent工作流的脆弱性反

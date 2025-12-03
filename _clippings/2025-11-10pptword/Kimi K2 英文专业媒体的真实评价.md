@@ -1,3 +1,19 @@
+---
+date: "2025-12-03"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
+---
 ## **Kimi K2 Thinking 模型：在海外的真实影响** 
 
 作者：傅盛

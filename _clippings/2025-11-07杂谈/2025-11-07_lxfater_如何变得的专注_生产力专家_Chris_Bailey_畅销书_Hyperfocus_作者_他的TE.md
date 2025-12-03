@@ -11,6 +11,19 @@ tags:
   - "@lxfater"
   - "chris"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 如何变得的专注？ 生产力专家 Chris Bailey（畅销书《Hyperfocus》作者，他的TE

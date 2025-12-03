@@ -8,6 +8,19 @@ created: 2025-11-11
 description:
 tags:
   - "@StockMKTNewz #沃伦比福特 #伯克希尔#哈撒韦 #投资 #财务 #财富管理"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Evan** @StockMKTNewz [2025-11-10](https://x.com/StockMKTNewz/status/1987940365194662070)
 

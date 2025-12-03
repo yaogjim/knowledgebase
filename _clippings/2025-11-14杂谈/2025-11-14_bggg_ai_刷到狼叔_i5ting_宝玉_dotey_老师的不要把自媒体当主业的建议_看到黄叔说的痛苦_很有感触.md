@@ -11,6 +11,19 @@ tags:
   - "@bggg_ai"
   - "https"
   - "2025-11-13"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 刷到狼叔@i5ting、宝玉@dotey 老师的不要把自媒体当主业的建议、看到黄叔说的痛苦，很有感触

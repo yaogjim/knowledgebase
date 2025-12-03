@@ -11,6 +11,19 @@ tags:
   - "@python_xxt"
   - "https"
   - "2025-06-05"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # TL上 长期有推友讨论CS值不值得学 基于长期对各行业的观察，我给个人的理解和结论： 对于资质许

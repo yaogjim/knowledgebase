@@ -11,6 +11,19 @@ tags:
   - "@iamzhihui"
   - "https"
   - "ffmpeg"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Claude 代码技能 + yt-dlp + ffmpeg 等于 超级视频总结分析助手 ☑️ 安装

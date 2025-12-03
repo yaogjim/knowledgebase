@@ -11,6 +11,19 @@ tags:
   - "@shao__meng"
   - "agent"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Agent 怎么使用文件系统实现上下文工程？ @LangChainAI 这篇博客的核心观点是：当前

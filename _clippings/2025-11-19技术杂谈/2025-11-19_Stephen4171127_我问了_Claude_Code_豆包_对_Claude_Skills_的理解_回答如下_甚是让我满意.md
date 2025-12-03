@@ -11,6 +11,19 @@ tags:
   - "@Stephen4171127"
   - "claude"
   - "skills"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我问了 Claude Code（豆包）对 Claude Skills 的理解，回答如下，甚是让我满意

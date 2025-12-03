@@ -11,6 +11,19 @@ tags:
   - "@theguardian.com"
   - "https"
   - "www"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 电脑在帕梅拉话还没说完时就插了进来。我最近陪挚友帕梅拉去看医生，她已年过七旬，独居且身患多种慢性病，

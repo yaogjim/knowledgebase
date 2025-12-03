@@ -11,6 +11,19 @@ tags:
   - "@huangyun_122"
   - "https"
   - "code"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我发现，只要让 AI 自动升维，超过 4 档，哪怕是 kimi 也一定把我干冒烟 拿程序员写提示词举

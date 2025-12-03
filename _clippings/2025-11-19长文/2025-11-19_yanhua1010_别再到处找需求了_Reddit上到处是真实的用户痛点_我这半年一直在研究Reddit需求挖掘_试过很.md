@@ -11,6 +11,19 @@ tags:
   - "@yanhua1010"
   - "https"
   - "2025-11-16"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 别再到处找需求了，Reddit上到处是真实的用户痛点 我这半年一直在研究Reddit需求挖掘，试过很

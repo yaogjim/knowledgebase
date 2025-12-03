@@ -11,6 +11,19 @@ tags:
   - "@0xShellywang"
   - "2025-11-12"
   - "shelly"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我接触到的，主动询问的更多是跟销售直接挂钩的，效益最直接，老板最关心，top down 推动。 1

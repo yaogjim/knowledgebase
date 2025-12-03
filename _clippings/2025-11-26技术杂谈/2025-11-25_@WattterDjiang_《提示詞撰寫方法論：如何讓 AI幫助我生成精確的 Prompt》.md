@@ -8,6 +8,19 @@ created: 2025-11-25
 description:
 tags:
   - "@WattterDjiang # Prompt生成 # AI幫助 # 提示詞撰寫 # 生成Prompt"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Wattter** @WattterDjiang 2025-11-23
 
@@ -27,4 +40,3 @@ tags:
 > 我向 AI 描述我的想法，让它生成提示词。之后，我对结果进行测试和验证。根据验证结果，我要求 AI 调整提示词，然后再次测试。我重复这个过程，直到完全满意。 x.com/Zhaoge01/statu…
 > 
 > ![Image](https://pbs.twimg.com/media/G6dWyl5XwAA2wLJ?format=jpg&name=large)
-

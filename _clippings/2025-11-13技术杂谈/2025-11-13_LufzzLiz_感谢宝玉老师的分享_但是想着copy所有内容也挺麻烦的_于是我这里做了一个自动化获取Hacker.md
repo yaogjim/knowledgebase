@@ -11,6 +11,19 @@ tags:
   - "@LufzzLiz"
   - "https"
   - "2025-11-12"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 感谢宝玉老师的分享，但是想着copy所有内容也挺麻烦的。 于是我这里做了一个自动化获取Hacker

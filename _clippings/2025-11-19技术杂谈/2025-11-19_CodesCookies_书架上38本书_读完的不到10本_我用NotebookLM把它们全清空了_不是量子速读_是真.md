@@ -11,6 +11,19 @@ tags:
   - "#2"
   - "x"
   - "@CodesCookies"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 书架上38本书，读完的不到10本？ 我用NotebookLM把它们全清空了——不是量子速读，是真

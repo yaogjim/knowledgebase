@@ -11,6 +11,19 @@ tags:
   - "@LufzzLiz"
   - "2025-11-08"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 那么如何全面分析（研究）一个话题背后的人性规律 提炼了个prompt，分享个大家： 你现在是：资深文

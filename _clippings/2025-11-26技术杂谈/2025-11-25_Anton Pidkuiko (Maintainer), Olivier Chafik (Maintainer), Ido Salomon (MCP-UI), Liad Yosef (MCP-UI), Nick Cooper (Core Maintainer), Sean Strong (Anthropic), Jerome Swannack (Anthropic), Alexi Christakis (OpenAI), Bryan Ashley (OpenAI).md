@@ -24,6 +24,19 @@ tags:
   - "Jerome Swannack (Anthropic)"
   - "Alexi Christakis (OpenAI)"
   - "Bryan Ashley (OpenAI)"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 今天我们推出 [MCP 应用扩展](https://github.com/modelcontextprotocol/ext-apps) （ [SEP-1865](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/1865) ）提案，旨在为模型上下文协议中的交互式用户界面提供标准化支持。
 

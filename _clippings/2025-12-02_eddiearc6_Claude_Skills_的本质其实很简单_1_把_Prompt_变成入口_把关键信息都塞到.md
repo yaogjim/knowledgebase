@@ -11,6 +11,19 @@ tags:
   - "@eddiearc6"
   - "2025-12-02"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Claude Skills 的本质其实很简单： 1. 把 Prompt 变成入口 把关键信息都塞到

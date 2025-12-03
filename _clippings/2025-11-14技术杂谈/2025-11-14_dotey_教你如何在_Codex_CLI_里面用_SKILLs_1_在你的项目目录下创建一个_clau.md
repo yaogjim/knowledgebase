@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "code"
   - "skill"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 教你如何在 Codex CLI 里面用 SKILLs 1. 在你的项目目录下创建一个 “.clau

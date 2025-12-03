@@ -11,6 +11,19 @@ tags:
   - "@dontbesilent12"
   - "https"
   - "2025-11-12"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 知识分享悖论定理 作者：dontbesilent 在知识变现领域，保留知识不会增加收益，完全公开反而

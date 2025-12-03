@@ -11,6 +11,19 @@ tags:
   - "@frxiaobei"
   - "2025-11-18"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Andrej Karpathy 这个阅读方法有点意思… 大概就是： 先自己把文章章节从头到尾过一遍

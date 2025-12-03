@@ -11,6 +11,19 @@ tags:
   - "@PMbackttfuture"
   - "https"
   - "2025-11-13"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 这个我还蛮想说下自己的痛苦的 我现在收入分三块： 1. 服务：做AI产品顾问，挺稳定的，也不算少，

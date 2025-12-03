@@ -11,6 +11,19 @@ tags:
   - "@laogui"
   - "https"
   - "2025-11-19"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 今天来讲一讲 Google 新 IDE Antigravity 背后的故事。 几个月前，Windsu

@@ -6,6 +6,19 @@ created: 2025-11-25 09:42:43
 published: 2025-11-25 09:42:43
 description: ""
 tags: ""
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 探索这款下一代 AI 模型的先进功能——包括思考、搜索基础和惊艳的 4K 输出——将如何赋能您构建复杂而富有创意的应用程序。
 

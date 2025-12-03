@@ -11,6 +11,19 @@ tags:
   - "@zhang_benita"
   - "2025-11-18"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 小鹏新上任的自动驾驶中心负责人刘先明的首次专访🤓 他提出了一个新颖的做法：“我们的做法简单直接，把

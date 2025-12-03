@@ -11,6 +11,19 @@ tags:
   - "x"
   - "@xiaokedada"
   - "agent"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # #分享 一个新的角度，关于 Skills 中的自定义脚本的能力，也许这会是 Agent 产品未来演化

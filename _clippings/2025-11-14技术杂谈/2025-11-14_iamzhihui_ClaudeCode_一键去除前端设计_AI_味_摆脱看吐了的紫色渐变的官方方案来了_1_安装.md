@@ -11,6 +11,19 @@ tags:
   - "@iamzhihui"
   - "text"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # ClaudeCode 一键去除前端设计 AI 味 摆脱看吐了的紫色渐变的官方方案来了 1️⃣：安装

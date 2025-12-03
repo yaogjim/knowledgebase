@@ -11,6 +11,19 @@ tags:
   - "@mubeitech"
   - "https"
   - "2025-11-18"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 不教识字，却学会了阅读？ 特斯拉的AI，从未被告知“什么是人、什么是车”，但它竟全都能识别。 Elo

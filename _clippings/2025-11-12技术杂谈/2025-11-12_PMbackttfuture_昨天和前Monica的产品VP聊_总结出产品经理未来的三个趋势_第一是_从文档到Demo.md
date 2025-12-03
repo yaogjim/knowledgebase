@@ -11,6 +11,19 @@ tags:
   - "@PMbackttfuture"
   - "https"
   - "2025-11-11"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 昨天和前Monica的产品VP聊 总结出产品经理未来的三个趋势 第一是：从文档到Demo

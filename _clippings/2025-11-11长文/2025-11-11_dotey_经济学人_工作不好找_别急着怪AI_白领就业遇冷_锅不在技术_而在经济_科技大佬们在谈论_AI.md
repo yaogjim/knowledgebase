@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "https"
   - "2025-11-10"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 经济学人：工作不好找，别急着怪AI—— 白领就业遇冷，锅不在技术，而在经济 科技大佬们在谈论 AI

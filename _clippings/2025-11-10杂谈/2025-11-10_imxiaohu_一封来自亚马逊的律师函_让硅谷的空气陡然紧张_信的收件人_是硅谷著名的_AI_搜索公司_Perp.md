@@ -11,6 +11,19 @@ tags:
   - "@imxiaohu"
   - "ai"
   - "perplexity"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 一封来自亚马逊的律师函，让硅谷的空气陡然紧张。 信的收件人，是硅谷著名的 AI 搜索公司： Perp

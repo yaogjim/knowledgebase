@@ -11,6 +11,19 @@ tags:
   - "@dontbesilent12"
   - "2025-11-12"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 这里涉及到我整个业务能成立的根本原因 认为「免费分享」就是「慈善」或者「利他」，是一个常见误解 实际

@@ -11,6 +11,19 @@ tags:
   - "@shao__meng"
   - "2025-11-18"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Andrej Karpathy 分享他的 AI 阅读习惯，还开源了一个阅读工具 Karpathy 现

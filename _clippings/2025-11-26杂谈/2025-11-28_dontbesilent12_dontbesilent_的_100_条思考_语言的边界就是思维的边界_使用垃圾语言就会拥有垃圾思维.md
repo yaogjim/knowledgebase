@@ -11,6 +11,19 @@ tags:
   - "@dontbesilent12"
   - "https"
   - "2025-11-27"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # dontbesilent 的 100 条思考 语言的边界就是思维的边界，使用垃圾语言就会拥有垃圾思维

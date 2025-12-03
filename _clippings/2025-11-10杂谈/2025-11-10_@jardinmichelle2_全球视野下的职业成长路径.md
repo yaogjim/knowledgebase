@@ -8,6 +8,19 @@ created: 2025-11-10
 description:
 tags:
   - "@jardinmichelle2 #职业成长 #创业 #人生智慧 #小巨人"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Michelle Li · 米总在路上** @jardinmichelle2 [2025-11-09](https://x.com/jardinmichelle2/status/1987578660182958181)
 

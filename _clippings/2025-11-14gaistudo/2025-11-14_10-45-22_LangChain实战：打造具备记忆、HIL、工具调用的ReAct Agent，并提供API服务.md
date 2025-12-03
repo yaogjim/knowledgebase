@@ -7,6 +7,19 @@ published: 2025-11-14
 created: 2025-11-14
 description: ""
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # LangChain实战：打造具备记忆、HIL、工具调用的ReAct Agent，并提供API服务

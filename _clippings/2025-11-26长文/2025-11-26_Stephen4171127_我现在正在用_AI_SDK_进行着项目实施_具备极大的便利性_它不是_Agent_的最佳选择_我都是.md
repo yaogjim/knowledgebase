@@ -11,6 +11,19 @@ tags:
   - "@Stephen4171127"
   - "agent"
   - "sdk"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我现在正在用 AI SDK 进行着项目实施，具备极大的便利性，它不是 Agent 的最佳选择，我都是

@@ -11,6 +11,19 @@ tags:
   - "@shao__meng"
   - "research"
   - "claude"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # [开源推荐] Multi-Agent Research System Anthropic 开源

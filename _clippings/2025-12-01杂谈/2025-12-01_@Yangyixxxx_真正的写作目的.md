@@ -8,6 +8,19 @@ created: 2025-12-01
 description:
 tags:
   - "@Yangyixxxx #写作 #自洽 #流量 #奖励函数 #自我认知 #写作目的"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Yangyi** @Yangyixxxx [2025-11-30](https://x.com/Yangyixxxx/status/1995149671606694129)
 

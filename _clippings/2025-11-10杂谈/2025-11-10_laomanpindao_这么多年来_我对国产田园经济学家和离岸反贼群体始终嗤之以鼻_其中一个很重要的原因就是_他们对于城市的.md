@@ -11,6 +11,19 @@ tags:
   - "@laomanpindao"
   - "https"
   - "2025-11-09"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 这么多年来，我对国产田园经济学家和离岸反贼群体始终嗤之以鼻，其中一个很重要的原因就是，他们对于城市的

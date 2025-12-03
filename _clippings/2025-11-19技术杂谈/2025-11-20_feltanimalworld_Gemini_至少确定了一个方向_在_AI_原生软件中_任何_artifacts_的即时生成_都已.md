@@ -11,6 +11,19 @@ tags:
   - "@feltanimalworld"
   - "https"
   - "2025-11-19"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Gemini 至少确定了一个方向： 在 AI 原生软件中，任何 artifacts 的即时生成，都已

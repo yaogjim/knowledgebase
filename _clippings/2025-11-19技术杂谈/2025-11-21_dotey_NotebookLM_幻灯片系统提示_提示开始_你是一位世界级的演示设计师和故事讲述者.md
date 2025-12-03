@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "https"
   - "2025-11-20"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # NotebookLM 幻灯片系统提示----提示开始----你是一位世界级的演示设计师和故事讲述者。

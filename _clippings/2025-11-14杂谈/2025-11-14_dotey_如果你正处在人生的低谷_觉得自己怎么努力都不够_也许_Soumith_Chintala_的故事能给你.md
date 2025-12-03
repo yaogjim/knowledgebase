@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "soumith"
   - "ai"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 如果你正处在人生的低谷，觉得自己怎么努力都不够，也许 Soumith Chintala 的故事能给你

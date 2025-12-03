@@ -7,6 +7,19 @@ published: 2025-11-28
 created: 2025-11-28
 description: ""
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # AI in Healthcare Series: State of Gen AI in Healthcare, Troy Tazbaz Former Head Digital Health FDA

@@ -11,6 +11,19 @@ tags:
   - "@wwwgoubuli"
   - "2025-11-10"
   - "claude"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 做了不少项目，应该还是有一点发言权的吧。 不想从零开始，想更快地落实到业务上的话，可以选择 clau

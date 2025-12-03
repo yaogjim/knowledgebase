@@ -8,6 +8,19 @@ created: 2025-11-11
 description: "There are few different open source packages we maintain: LangChain and LangGraph being the biggest ones, but DeepAgents being an increasingly popular one. I’ve started using different terms to describe them: LangChain is an agent framework, LangGraph is an agent runtime, DeepAgents is an agent harness. Other folks are"
 tags:
   - "LangChain Accounts"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 我们维护着几个不同的开源软件包： [LangChain](https://docs.langchain.com/oss/python/langchain/quickstart?ref=blog.langchain.com&ajs_aid=52fc5c7a-ee15-4113-91a9-edd21e24400b) 和 [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview?ref=blog.langchain.com&ajs_aid=52fc5c7a-ee15-4113-91a9-edd21e24400b) 是其中规模最大的，而 [DeepAgents](https://docs.langchain.com/oss/python/deepagents/overview?ref=blog.langchain.com&ajs_aid=52fc5c7a-ee15-4113-91a9-edd21e24400b) 正日益受到欢迎。我开始用不同的术语来描述它们：LangChain 是智能体框架，LangGraph 是智能体运行时，DeepAgents 则是 [智能体治理工具](https://www.vtrivedy.com/posts/claude-code-sdk-haas-harness-as-a-service?ref=blog.langchain.com) 。其他人也在使用这些术语——但我认为框架、运行时和治理工具之间尚无明确定义。本文将尝试厘清这些概念。我必须承认这些定义仍存在模糊与重叠之处，因此非常欢迎各位提出反馈意见！
 

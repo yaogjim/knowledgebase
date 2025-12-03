@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "manus"
   - "2025-11-17"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Skill 这个不一定是完全从 Manus 借鉴，不过 Manus 很多 Agent 上的工程实践确

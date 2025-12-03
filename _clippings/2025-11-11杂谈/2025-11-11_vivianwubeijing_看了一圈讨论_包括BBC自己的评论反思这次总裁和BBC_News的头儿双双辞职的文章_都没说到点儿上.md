@@ -11,6 +11,19 @@ tags:
   - "@vivianwubeijing"
   - "https"
   - "2025-11-11"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 看了一圈讨论，包括BBC自己的评论反思这次总裁和BBC News的头儿双双辞职的文章，都没说到点儿上

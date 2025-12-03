@@ -8,6 +8,19 @@ created: 2025-11-19
 description:
 tags:
   - "@gkxspace # Claude # AI # 机器人 # 语句 # 代码 # 可复用能力 # 插件"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **余温** @gkxspace [2025-11-15](https://x.com/gkxspace/status/1989619603249500526)
 

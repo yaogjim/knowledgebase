@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "https"
   - "2025-11-23"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 告别 Alex Xu，迎接 🍌 纳米巴纳诺专业版搭配信息图提示 （开个玩笑！其实我是 Alex

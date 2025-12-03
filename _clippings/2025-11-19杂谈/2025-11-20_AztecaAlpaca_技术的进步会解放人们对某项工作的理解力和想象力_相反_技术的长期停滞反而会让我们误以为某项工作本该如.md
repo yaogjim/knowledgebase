@@ -11,6 +11,19 @@ tags:
   - "@AztecaAlpaca"
   - "2025-11-19"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 技术的进步会解放人们对某项工作的理解力和想象力。相反，技术的长期停滞反而会让我们误以为某项工作本该如

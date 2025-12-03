@@ -11,6 +11,19 @@ tags:
   - "@servasyy"
   - "https"
   - "2025-11-14"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我现在读书，喜欢用NotebookLM先读一遍，基本了解这本书讲什么，段落和重点，决定要不要细读。

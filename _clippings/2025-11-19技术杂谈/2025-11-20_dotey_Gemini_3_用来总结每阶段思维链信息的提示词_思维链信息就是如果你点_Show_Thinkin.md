@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "2025-11-19"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Gemini 3 用来总结每阶段思维链信息的提示词，思维链信息就是如果你点“Show Thinkin

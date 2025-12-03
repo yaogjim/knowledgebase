@@ -11,6 +11,19 @@ tags:
   - "@LotusDecoder"
   - "opus"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 和之前的使用感受是一致的， Claude 4.5 是典型的可以跳出旧框架，再来看待问题， 站在一个更

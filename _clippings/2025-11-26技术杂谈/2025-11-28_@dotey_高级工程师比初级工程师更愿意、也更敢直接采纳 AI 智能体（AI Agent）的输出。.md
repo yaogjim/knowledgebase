@@ -8,6 +8,19 @@ created: 2025-11-28
 description:
 tags:
   - "@dotey # AI # 代理编程 # AI Agent # 工程能力 # AI 智能体 # 专业技能 # 创新技术"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **宝玉** @dotey 2025-11-27
 

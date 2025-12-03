@@ -11,6 +11,19 @@ tags:
   - "@axtrur"
   - "https"
   - "2025-11-11"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 这个问题太有发言权了（毕竟算是做过好几个ai项目落地） 对于sdk的使用经验：langchain，a

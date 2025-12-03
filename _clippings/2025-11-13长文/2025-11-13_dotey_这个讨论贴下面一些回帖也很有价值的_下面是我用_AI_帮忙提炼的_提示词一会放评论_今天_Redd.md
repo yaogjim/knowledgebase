@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "2025-11-12"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 这个讨论贴下面一些回帖也很有价值的，下面是我用 AI 帮忙提炼的，提示词一会放评论： 今天，Redd

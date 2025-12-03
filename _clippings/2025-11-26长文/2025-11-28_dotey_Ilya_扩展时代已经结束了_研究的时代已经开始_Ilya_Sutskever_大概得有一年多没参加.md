@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "ilya"
   - "ai"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Ilya：扩展时代已经结束了，研究的时代已经开始 Ilya Sutskever 大概得有一年多没参加

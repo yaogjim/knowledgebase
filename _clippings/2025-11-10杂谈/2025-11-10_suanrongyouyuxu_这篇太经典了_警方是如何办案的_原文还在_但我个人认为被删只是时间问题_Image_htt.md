@@ -11,6 +11,19 @@ tags:
   - "@suanrongyouyuxu"
   - "https"
   - "2025-11-09"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 这篇太经典了。警方是如何办案的。 原文还在，但我个人认为被删只是时间问题。 ![Image](htt

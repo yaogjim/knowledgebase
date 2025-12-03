@@ -11,6 +11,19 @@ tags:
   - "@dontbesilent12"
   - "https"
   - "image"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 在抖音和小红书分别搜索了 iPhone 17 Pro Max 的手机壳 从搜索结果就可以明显看出这两

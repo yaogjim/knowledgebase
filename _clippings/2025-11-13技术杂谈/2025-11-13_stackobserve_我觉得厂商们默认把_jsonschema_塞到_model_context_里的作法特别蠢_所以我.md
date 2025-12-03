@@ -11,6 +11,19 @@ tags:
   - "@stackobserve"
   - "mcp"
   - "2025-11-12"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我觉得厂商们默认把 jsonschema 塞到 model context 里的作法特别蠢, 所以我

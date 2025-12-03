@@ -8,6 +8,19 @@ created: 2025-11-13
 description:
 tags:
   - "@9hills # AIcoding #Claude #安全性监控 #GLM #模型监控 #编程安全 #机器学习"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **九原客** @9hills [2025-11-12](https://x.com/9hills/status/1988518261278052753)
 

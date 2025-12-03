@@ -11,6 +11,19 @@ tags:
   - "@shao__meng"
   - "https"
   - "@readwise"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 刷了一天 Gemini 3，换换脑子，咱们看看纳瓦尔的最新播客「Curate People（筛选人才

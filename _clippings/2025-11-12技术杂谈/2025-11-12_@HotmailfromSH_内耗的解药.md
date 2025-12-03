@@ -8,6 +8,19 @@ created: 2025-11-12
 description:
 tags:
   - "@HotmailfromSH #内耗 #多向思考 #心理健康 #拖延 #焦虑 #完美主义 #自责"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Dr.Wang** @HotmailfromSH [2025-11-11](https://x.com/HotmailfromSH/status/1988054073921466806)
 

@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "ai"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 一方面我不喜欢 Andrej Karpathy 总是发明新的概念，一方面又不得不承认他确实很多想法是

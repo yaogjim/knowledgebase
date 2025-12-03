@@ -11,6 +11,19 @@ tags:
   - "@yan5xu"
   - "https"
   - "2025-12-01"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 可能受到 Manus 的启发，现在对使用文件系统作为上下文管理工程的实践越来越多，比如 Anthro

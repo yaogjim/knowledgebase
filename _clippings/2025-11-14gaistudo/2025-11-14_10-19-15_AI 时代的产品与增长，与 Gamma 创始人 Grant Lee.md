@@ -7,6 +7,19 @@ published: 2025-11-14
 created: 2025-11-14
 description: ""
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # AI 时代的产品与增长，与 Gamma 创始人 Grant Lee

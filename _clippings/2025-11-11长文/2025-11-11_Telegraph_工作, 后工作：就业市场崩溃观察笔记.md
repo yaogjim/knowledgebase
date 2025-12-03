@@ -8,6 +8,19 @@ created: 2025-11-11
 description: "Ahmed Mohamedhttps://urlahmed.com/2025/11/05/work-after-work-notes-from-an-unemployed-new-grad-watching-the-job-market-break/下面是中英对照翻译I have been putting off writing this for a month, mostly because I did everything I was supposed to do and it still feels like I have no idea what game I am actually playing.我拖了一个月才写这篇，主要是因为我做了所有应该做的事，但仍然觉得完全不知道自己到底在玩什么游戏。I went to university. I got good grades. I did three internships. I ran a tiny consultancy for a while, building things for people and sending invoices…"
 tags:
   - "Telegraph"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 Ahmed Mohamed
 

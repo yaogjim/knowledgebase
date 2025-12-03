@@ -11,6 +11,19 @@ tags:
   - "@YanyuRensheng"
   - "https"
   - "li"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 麦肯锡发布了一份企业应用AI情况的分析报告： 这份《The state of AI in 2025》

@@ -11,6 +11,19 @@ tags:
   - "@ProgramerJohann"
   - "https"
   - "2025-07-06"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # microsandbox ，一个开源、可自托管部署的代码执行沙箱工具，用于安全运行不受信任的用户或A

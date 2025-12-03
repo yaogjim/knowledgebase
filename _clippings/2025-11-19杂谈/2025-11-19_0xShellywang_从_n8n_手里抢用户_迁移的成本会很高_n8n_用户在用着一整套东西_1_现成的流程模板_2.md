@@ -11,6 +11,19 @@ tags:
   - "@0xShellywang"
   - "2025-11-18"
   - "n8n"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 从 n8n 手里抢用户，迁移的成本会很高。n8n 用户在用着一整套东西： 1. 现成的流程模板 2

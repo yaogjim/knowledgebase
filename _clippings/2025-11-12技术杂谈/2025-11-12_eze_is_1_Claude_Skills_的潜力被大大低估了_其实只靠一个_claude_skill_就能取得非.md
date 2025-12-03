@@ -11,6 +11,19 @@ tags:
   - "@eze_is_1"
   - "ai"
   - "image"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Claude Skills 的潜力被大大低估了。 其实只靠一个 claude skill，就能取得非

@@ -11,6 +11,19 @@ tags:
   - "@frxiaobei"
   - "凡人小北"
   - "2025-11-11"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 卡内基梅隆大学机器学习系主任 Zico Kolter 要开一门新课《Intro to Modern

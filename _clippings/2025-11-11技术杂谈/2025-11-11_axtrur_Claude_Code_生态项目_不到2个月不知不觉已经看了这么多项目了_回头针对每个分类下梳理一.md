@@ -11,6 +11,19 @@ tags:
   - "@axtrur"
   - "https"
   - "claude"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Claude Code 生态项目！（不到2个月不知不觉已经看了这么多项目了，回头针对每个分类下梳理一

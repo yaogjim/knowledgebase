@@ -8,6 +8,19 @@ created: 2025-11-12
 description: "What made Character.ai's early models so engaging? Before open-source models became the norm, our team built Kaiju - a family of in-house LLMs designed to power millions of fast, expressive conversations every day with an eye towards safety.Our latest blog post looks back at that foundational work."
 tags:
   - "The Character.AI Team"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 随着 Character.ai 团队转向基于 [开源模型](https://blog.character.ai/breaking-news-our-open-source-models-are-a-lot-of-fun/) 进行构建，我们希望分享一些我们原创研究的工作成果。毕竟，我们的创始人诺姆·沙泽尔正是 Transformer 架构的发明者！
 

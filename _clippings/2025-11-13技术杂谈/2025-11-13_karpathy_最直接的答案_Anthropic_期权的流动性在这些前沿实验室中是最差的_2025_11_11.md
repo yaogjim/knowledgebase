@@ -11,6 +11,19 @@ tags:
   - "@karpathy"
   - "2025-11-12"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 最直接的答案：Anthropic 期权的流动性在这些前沿实验室中是最差的  2025-11-11

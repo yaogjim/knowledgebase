@@ -11,6 +11,19 @@ tags:
   - "@AndrewYNg"
   - "https"
   - "2025-11-13"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我最近收到一封邮件，标题是《一位 18 岁青年的困惑：现在投身 AI 领域是否为时已晚？》。经作者授

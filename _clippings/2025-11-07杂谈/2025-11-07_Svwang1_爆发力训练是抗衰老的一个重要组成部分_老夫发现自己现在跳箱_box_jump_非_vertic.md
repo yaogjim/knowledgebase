@@ -11,6 +11,19 @@ tags:
   - "@Svwang1"
   - "2025-11-07"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 爆发力训练是抗衰老的一个重要组成部分。 老夫发现自己现在跳箱 (box jump, 非 vertic

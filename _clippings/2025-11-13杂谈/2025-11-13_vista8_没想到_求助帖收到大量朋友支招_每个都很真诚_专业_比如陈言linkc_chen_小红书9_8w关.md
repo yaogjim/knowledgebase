@@ -11,6 +11,19 @@ tags:
   - "@vista8"
   - "2025-11-11"
   - "看起来"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 没想到，求助帖收到大量朋友支招，每个都很真诚、专业。 比如陈言linkc-chen（小红书9.8w关

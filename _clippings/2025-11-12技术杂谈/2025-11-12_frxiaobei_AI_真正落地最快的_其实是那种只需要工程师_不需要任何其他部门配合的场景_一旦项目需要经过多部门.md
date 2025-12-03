@@ -11,6 +11,19 @@ tags:
   - "@frxiaobei"
   - "https"
   - "2025-11-11"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # AI 真正落地最快的，其实是那种只需要工程师、不需要任何其他部门配合的场景。 一旦项目需要经过多部门

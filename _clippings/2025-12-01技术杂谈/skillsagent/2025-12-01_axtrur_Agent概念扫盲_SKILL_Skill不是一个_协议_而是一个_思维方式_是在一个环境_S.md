@@ -11,6 +11,19 @@ tags:
   - "@axtrur"
   - "https"
   - "axtrur"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Agent概念扫盲【SKILL】 Skill不是一个“协议”，而是一个“思维方式”，是在一个环境（S

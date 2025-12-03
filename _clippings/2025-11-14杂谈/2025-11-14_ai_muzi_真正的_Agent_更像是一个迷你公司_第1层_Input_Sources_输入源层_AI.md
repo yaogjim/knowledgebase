@@ -11,6 +11,19 @@ tags:
   - "@ai_muzi"
   - "2025-11-13"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 真正的 Agent，更像是一个迷你公司： 🟢 第1层：Input Sources（输入源层） AI

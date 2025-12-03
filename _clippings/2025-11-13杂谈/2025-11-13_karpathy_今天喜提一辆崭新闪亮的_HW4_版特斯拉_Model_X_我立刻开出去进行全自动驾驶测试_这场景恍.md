@@ -11,6 +11,19 @@ tags:
   - "@karpathy"
   - "https"
   - "2025-11-12"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 今天喜提一辆崭新闪亮的 HW4 版特斯拉 Model X，我立刻开出去进行全自动驾驶测试——这场景恍

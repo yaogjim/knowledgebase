@@ -11,6 +11,19 @@ tags:
   - "#why"
   - "llamaindex"
   - "@step"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # [📣 立即报名参加我们的网络研讨会：超越 OCR：AI 智能体如何解析复杂文档 📣](https

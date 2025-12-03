@@ -11,6 +11,19 @@ tags:
   - "@liruifengv"
   - "message"
   - "const"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 最近在学习 AI Agent 开发，本文将使用 Claude Agent SDK 的 TypeScr

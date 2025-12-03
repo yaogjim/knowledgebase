@@ -11,6 +11,19 @@ tags:
   - "@skylarbpayne.com"
   - "ai"
   - "llm"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 十多年前我初入人工智能领域时，机器学习尚未成为主流。虽然谷歌、脸书、领英等企业都在投入，但关注点截然

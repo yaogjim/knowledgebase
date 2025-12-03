@@ -11,6 +11,19 @@ tags:
   - "@feltanimalworld"
   - "https"
   - "2025-11-12"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 当年明月悟到几个高认知人士在20-40岁必经的阶段： 1）意识到自己的大脑是宇宙频率的容器。不是用来

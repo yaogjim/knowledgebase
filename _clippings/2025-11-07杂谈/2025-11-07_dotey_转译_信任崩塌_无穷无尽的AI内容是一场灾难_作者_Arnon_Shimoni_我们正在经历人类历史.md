@@ -10,6 +10,19 @@ tags:
   - "x"
   - "@dotey"
   - "funnel"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 转译：信任崩塌：无穷无尽的AI内容是一场灾难 作者：Arnon Shimoni 我们正在经历人类历史

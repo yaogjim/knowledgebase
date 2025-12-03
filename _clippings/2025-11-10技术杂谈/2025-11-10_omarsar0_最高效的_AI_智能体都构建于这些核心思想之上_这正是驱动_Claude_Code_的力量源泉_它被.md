@@ -11,6 +11,19 @@ tags:
   - "@omarsar0"
   - "https"
   - "2025-11-08"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 最高效的 AI 智能体都构建于这些核心思想之上。这正是驱动 Claude Code 的力量源泉。它被

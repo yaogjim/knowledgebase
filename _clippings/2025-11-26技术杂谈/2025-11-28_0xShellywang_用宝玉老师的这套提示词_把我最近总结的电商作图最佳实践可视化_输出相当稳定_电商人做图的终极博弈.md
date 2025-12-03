@@ -11,6 +11,19 @@ tags:
   - "@0xShellywang"
   - "ai"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 用宝玉老师的这套提示词，把我最近总结的电商作图最佳实践可视化，输出相当稳定。 电商人做图的终极博弈：

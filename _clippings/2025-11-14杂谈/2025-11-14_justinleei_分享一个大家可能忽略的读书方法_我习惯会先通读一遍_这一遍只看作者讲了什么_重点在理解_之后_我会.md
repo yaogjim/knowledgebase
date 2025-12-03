@@ -11,6 +11,19 @@ tags:
   - "@justinleei"
   - "2025-11-13"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 分享一个大家可能忽略的读书方法： 我习惯会先通读一遍，这一遍只看作者讲了什么，重点在理解。之后，我会

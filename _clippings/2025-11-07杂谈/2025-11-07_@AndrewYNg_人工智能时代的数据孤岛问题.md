@@ -8,6 +8,19 @@ created: 2025-11-07
 description:
 tags:
   - "@AndrewYNg #人工智能代理 #数据孤岛 #数据管理 #SaaS供应商"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **Andrew Ng** @AndrewYNg [2025-11-06](https://x.com/AndrewYNg/status/1986500817613169025)
 

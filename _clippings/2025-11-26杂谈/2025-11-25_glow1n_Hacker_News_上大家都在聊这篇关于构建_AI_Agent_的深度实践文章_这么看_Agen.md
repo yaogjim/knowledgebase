@@ -11,6 +11,19 @@ tags:
   - "@glow1n"
   - "agent"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Hacker News 上大家都在聊这篇关于构建 AI Agent 的深度实践文章，这么看，Agen

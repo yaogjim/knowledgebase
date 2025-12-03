@@ -11,6 +11,19 @@ tags:
   - "@frxiaobei"
   - "https"
   - "ai"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # ChatGPT 要上的这个群聊功能好。我理解这算是一次潜移默化的形态进化。 这几年大模型的交互形态让

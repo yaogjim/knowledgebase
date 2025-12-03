@@ -11,6 +11,19 @@ tags:
   - "@frxiaobei"
   - "langgraph"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # LangChain 上了一门小白课，免费的。 面向想要构建具备记忆能力 + 长任务流程 + 人机协作

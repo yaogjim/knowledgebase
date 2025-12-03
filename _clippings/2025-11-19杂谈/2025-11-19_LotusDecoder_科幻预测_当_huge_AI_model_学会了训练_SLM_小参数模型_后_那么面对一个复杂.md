@@ -11,6 +11,19 @@ tags:
   - "@LotusDecoder"
   - "model"
   - "lotusdecoder"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 科幻预测： 当 huge AI model 学会了训练 SLM （小参数模型）后， 那么面对一个复杂

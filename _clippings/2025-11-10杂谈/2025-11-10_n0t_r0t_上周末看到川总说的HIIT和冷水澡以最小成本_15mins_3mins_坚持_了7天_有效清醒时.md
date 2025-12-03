@@ -11,6 +11,19 @@ tags:
   - "#2021"
   - "x"
   - "@n0t_r0t"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 上周末看到川总说的HIIT和冷水澡以最小成本(15mins+3mins) “坚持”了7天，有效清醒时

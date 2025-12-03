@@ -11,6 +11,19 @@ tags:
   - "@starzq"
   - "2025-12-01"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 目前最清晰的一期关于Robotics机器人的科普，嘉宾是Google DeepMind 机器人团队

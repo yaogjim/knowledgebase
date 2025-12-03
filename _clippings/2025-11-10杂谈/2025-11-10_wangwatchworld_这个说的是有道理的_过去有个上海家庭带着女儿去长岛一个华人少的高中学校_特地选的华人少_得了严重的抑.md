@@ -11,6 +11,19 @@ tags:
   - "@wangwatchworld"
   - "2025-11-03"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 这个说的是有道理的。过去有个上海家庭带着女儿去长岛一个华人少的高中学校，特地选的华人少，得了严重的抑

@@ -11,6 +11,19 @@ tags:
   - "@sirisensen"
   - "https"
   - "2025-11-11"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 李诞说他朋友在跟AI聊天的时候，问了一个问题：有没有什么你觉得人类还没有总结出来的哲学观点，又能震撼

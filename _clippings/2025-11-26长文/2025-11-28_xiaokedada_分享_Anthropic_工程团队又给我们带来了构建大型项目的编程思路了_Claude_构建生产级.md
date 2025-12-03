@@ -11,6 +11,19 @@ tags:
   - "x"
   - "@xiaokedada"
   - "claude"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # #分享 Anthropic 工程团队又给我们带来了构建大型项目的编程思路了 Claude 构建生产级

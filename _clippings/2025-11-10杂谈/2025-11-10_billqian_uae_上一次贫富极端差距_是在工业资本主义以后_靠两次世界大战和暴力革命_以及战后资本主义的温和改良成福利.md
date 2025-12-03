@@ -11,6 +11,19 @@ tags:
   - "@billqian_uae"
   - "https"
   - "2025-11-09"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 上一次贫富极端差距，是在工业资本主义以后，靠两次世界大战和暴力革命，以及战后资本主义的温和改良成福利

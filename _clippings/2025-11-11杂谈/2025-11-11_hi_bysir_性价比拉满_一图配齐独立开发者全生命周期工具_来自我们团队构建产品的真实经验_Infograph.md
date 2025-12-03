@@ -11,6 +11,19 @@ tags:
   - "@hi_bysir"
   - "https"
   - "2025-11-10"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 性价比拉满，一图配齐独立开发者全生命周期工具 来自我们团队构建产品的真实经验 ![Infograph

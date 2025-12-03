@@ -11,6 +11,19 @@ tags:
   - "@frxiaobei"
   - "https"
   - "2025-11-22"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 消失的学徒：当 AI 锯断了通往专家的阶梯 当AI锯断了通往专家的梯子。新手失去了痛苦试错的机会，未

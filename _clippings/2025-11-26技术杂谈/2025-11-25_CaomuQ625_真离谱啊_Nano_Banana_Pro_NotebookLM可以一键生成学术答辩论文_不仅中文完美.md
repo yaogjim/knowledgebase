@@ -11,6 +11,19 @@ tags:
   - "@CaomuQ625"
   - "https"
   - "2025-11-22"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 真离谱啊！Nano Banana Pro+NotebookLM可以一键生成学术答辩论文。不仅中文完美

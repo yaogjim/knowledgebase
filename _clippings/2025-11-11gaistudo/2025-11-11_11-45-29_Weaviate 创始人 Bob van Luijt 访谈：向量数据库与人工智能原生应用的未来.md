@@ -7,6 +7,19 @@ published: 2025-11-11
 created: 2025-11-11
 description: ""
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 # Weaviate 创始人 Bob van Luijt 访谈：向量数据库与人工智能原生应用的未来
 

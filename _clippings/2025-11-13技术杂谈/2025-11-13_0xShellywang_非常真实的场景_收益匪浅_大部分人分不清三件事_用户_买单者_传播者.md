@@ -11,6 +11,19 @@ tags:
   - "@0xShellywang"
   - "2025-11-12"
   - "build"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 非常真实的场景，收益匪浅。 大部分人分不清三件事： 用户、买单者、传播者。

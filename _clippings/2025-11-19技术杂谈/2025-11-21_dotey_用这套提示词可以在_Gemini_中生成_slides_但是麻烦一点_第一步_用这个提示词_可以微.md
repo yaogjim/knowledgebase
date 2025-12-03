@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "https"
   - "image"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 用这套提示词可以在 Gemini 中生成 slides，但是麻烦一点。 第一步：用这个提示词（可以微

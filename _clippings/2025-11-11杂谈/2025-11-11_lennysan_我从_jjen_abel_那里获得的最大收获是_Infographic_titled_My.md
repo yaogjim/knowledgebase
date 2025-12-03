@@ -11,6 +11,19 @@ tags:
   - "x"
   - "@lennysan"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我从 @jjen_abel 那里获得的最大收获是 ![Infographic titled My

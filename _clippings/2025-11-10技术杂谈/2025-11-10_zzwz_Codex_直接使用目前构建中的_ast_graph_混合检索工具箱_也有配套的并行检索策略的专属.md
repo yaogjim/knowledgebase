@@ -11,6 +11,19 @@ tags:
   - "@zzwz"
   - "code"
   - "index"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Codex 直接使用目前构建中的 ast-graph 混合检索工具箱 (也有配套的并行检索策略的专属

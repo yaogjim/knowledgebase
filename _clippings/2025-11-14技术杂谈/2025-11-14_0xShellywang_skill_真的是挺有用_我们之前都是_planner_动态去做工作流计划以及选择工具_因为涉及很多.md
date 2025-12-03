@@ -11,6 +11,19 @@ tags:
   - "@0xShellywang"
   - "image"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # skill 真的是挺有用。我们之前都是 planner 动态去做工作流计划以及选择工具。因为涉及很多

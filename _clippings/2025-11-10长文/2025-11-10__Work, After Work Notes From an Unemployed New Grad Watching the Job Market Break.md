@@ -6,6 +6,19 @@ published: 2025-11-10
 created: 2025-11-10
 description:
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 我拖了一个月才动笔写这篇文章，主要是因为我已经做了所有该做的事，却依然感觉自己根本不知道在玩什么游戏。
 

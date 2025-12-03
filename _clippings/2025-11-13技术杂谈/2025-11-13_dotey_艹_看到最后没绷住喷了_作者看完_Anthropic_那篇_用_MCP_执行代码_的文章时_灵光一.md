@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "https"
   - "2025-11-12"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 艹，看到最后没绷住喷了 作者看完 Anthropic 那篇“用 MCP 执行代码”的文章时，“灵光一

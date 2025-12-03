@@ -6,6 +6,19 @@ published: 2025-11-11
 created: 2025-11-11
 description: "Kaggle is the world’s largest data science community with powerful tools and resources to help you achieve your data science goals."
 tags:
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ![](https://www.kaggle.com/static/images/community/nudges/gemma_icon.svg)
 

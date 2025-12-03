@@ -11,6 +11,19 @@ tags:
   - "@胡猛"
   - "苔藓花园播客"
   - "cover_image"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # ![cover_image](httpsmmbiz.qpic.cnmmbiz_jpglrm

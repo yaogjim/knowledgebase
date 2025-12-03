@@ -11,6 +11,19 @@ tags:
   - "@yan5xu"
   - "https"
   - "2025-11-27"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 这有一块有一个反范式。如果你用户体量足够大的时候。system Prompt 全局前缀一致，因为缓存

@@ -11,6 +11,19 @@ tags:
   - "@shao__meng"
   - "anthropic"
   - "git"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # [Anthropic 工程博客] 构建长运行智能体的高效框架 Anthropic 最新工程博客探

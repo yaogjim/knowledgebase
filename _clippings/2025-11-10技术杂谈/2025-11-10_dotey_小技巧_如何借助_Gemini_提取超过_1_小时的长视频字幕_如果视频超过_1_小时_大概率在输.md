@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "https"
   - "image"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 小技巧：如何借助 Gemini 提取超过 1 小时的长视频字幕？ 如果视频超过 1 小时，大概率在输

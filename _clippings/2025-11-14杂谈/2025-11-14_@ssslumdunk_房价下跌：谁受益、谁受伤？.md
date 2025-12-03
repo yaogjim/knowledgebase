@@ -8,6 +8,19 @@ created: 2025-11-14
 description:
 tags:
   - "@ssslumdunk #房价下跌 #社会问题 #经济分析 #普通人"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 **龙心盐** @ssslumdunk [2025-11-13](https://x.com/ssslumdunk/status/1988878658472235240)
 

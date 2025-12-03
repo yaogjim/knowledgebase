@@ -11,6 +11,19 @@ tags:
   - "@nopinduoduo"
   - "https"
   - "2025-11-07"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 想起多年前高中老师讲错题时的一句话，你第一遍做题不会，算错了很正常，不要紧，整理错题，吸取经验。 第

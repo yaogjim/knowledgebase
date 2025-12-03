@@ -11,6 +11,19 @@ tags:
   - "@JamesGoong"
   - "https"
   - "ai"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 用 AI 问问题的方式，一定程度上反映出我们的潜意识和思维模式。 我想大部分程序员和我一样，因为多年

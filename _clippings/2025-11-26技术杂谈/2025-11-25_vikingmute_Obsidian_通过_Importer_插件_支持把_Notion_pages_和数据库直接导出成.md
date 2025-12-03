@@ -11,6 +11,19 @@ tags:
   - "@vikingmute"
   - "notion"
   - "obsidian"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Obsidian 通过 Importer 插件 支持把 Notion pages 和数据库直接导出成

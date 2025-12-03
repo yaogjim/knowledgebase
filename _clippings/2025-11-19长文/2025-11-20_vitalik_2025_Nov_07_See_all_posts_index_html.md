@@ -11,6 +11,19 @@ tags:
   - "@vitalik.eth.limo"
   - "银河大脑抗性"
   - "nov"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 2025 Nov 07 [See all posts](........index.html

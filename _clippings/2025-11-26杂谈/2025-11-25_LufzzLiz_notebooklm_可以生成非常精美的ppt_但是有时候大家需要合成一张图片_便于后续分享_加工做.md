@@ -11,6 +11,19 @@ tags:
   - "@LufzzLiz"
   - "https"
   - "2025-11-23"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # notebooklm 可以生成非常精美的ppt，但是有时候大家需要合成一张图片，便于后续分享、加工做

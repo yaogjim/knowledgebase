@@ -11,6 +11,19 @@ tags:
   - "humanlayer"
   - "@Kyle Mistele"
   - "claude"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 注：本文同样适用于 `AGENTS.md` ，这是面向 OpenCode、Zed、Cursor

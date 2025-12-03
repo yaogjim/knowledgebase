@@ -11,6 +11,19 @@ tags:
   - "@op7418"
   - "https"
   - "2025-11-19"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我去，谷歌居然还出了一个 AI IDE Antigravity 没想到先给 Cursor 和 Cla

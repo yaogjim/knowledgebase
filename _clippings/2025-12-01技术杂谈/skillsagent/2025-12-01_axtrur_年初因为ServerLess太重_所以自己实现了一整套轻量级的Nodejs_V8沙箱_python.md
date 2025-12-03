@@ -11,6 +11,19 @@ tags:
   - "@axtrur"
   - "2025-07-06"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 年初因为ServerLess太重，所以自己实现了一整套轻量级的Nodejs（V8沙箱），python

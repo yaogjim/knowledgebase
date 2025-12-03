@@ -11,6 +11,19 @@ tags:
   - "@feltanimalworld"
   - "2025-11-13"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # Michael 这个视频做得太好了，我居然从头到尾一秒钟没跳过，完全被吸住。 我有几点自己的感受，其

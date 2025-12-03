@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "https"
   - "2025-11-06"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # The Pragmatic Engineer 最新的一篇文章，认为亚马逊这次裁员不是为了省钱买 GP

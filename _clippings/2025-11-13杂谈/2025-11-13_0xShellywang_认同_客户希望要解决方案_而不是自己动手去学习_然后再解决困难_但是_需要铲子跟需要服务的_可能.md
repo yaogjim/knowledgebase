@@ -11,6 +11,19 @@ tags:
   - "@0xShellywang"
   - "2025-11-12"
   - "n8n"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 认同“客户希望要解决方案，而不是自己动手去学习，然后再解决困难。” 但是，需要铲子跟需要服务的，可能

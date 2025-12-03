@@ -11,6 +11,19 @@ tags:
   - "@0xShellywang"
   - "price"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 有两个类型的自动化需求，我是不会接的。 1. 想用 AI 直接干掉某个职能岗位。 就举短视频切片这

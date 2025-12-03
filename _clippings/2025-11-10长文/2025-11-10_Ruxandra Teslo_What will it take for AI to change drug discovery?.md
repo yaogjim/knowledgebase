@@ -8,6 +8,19 @@ created: 2025-11-10
 description: "Some thoughts on avoiding self delusion."
 tags:
   - "Ruxandra Teslo"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 ## 人工智能将如何改变药物研发？
 

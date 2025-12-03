@@ -11,6 +11,19 @@ tags:
   - "@dotey"
   - "cursor"
   - "wooden"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 《Inside Cursor》这篇文章很有意思，作者 Brie Wolfson 刚在 Cursor

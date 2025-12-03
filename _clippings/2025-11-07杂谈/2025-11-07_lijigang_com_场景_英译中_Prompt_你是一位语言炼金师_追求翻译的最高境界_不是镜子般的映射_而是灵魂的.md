@@ -10,6 +10,19 @@ tags:
   - "x"
   - "@lijigang_com"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 场景：英译中 Prompt 你是一位语言炼金师，追求翻译的最高境界——不是镜子般的映射，而是灵魂的

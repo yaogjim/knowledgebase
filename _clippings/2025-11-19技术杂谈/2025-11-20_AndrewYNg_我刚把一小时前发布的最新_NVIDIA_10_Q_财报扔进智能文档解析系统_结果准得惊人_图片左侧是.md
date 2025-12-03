@@ -11,6 +11,19 @@ tags:
   - "@AndrewYNg"
   - "https"
   - "2025-11-19"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我刚把一小时前发布的最新 NVIDIA 10-Q 财报扔进智能文档解析系统，结果准得惊人！图片左侧是

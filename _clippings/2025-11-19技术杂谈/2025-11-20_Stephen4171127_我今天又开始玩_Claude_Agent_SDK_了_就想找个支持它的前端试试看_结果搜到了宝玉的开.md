@@ -10,6 +10,19 @@ tags:
   - "x"
   - "@Stephen4171127"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 我今天又开始玩 Claude Agent SDK 了，就想找个支持它的前端试试看。结果搜到了宝玉的开

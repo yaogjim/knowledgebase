@@ -11,6 +11,19 @@ tags:
   - "@LotusDecoder"
   - "more"
   - "like"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 从 @dotey 的 帖子里，薅了一段 自然语言风格 设定，谢谢分享。 装配进去后，测试出来效果更好

@@ -11,6 +11,19 @@ tags:
   - "@yan5xu"
   - "2025-11-26"
   - "https"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # anthropic 真的是一环扣一环 有理论有实践 在发 skills 的时候，针对工具膨胀浪费 t

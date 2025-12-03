@@ -11,6 +11,19 @@ tags:
   - "@CEOBriefing"
   - "https"
   - "2025-11-18"
+status: "inbox"
+importance: 2
+effort: 2
+review_level: 0
+review_next: "2025-12-10"
+review_interval: null
+review_count: 0
+decision: null
+topics: []
+links_out: []
+summary: ""
+pov: ""
+actions: []
 ---
 
 # 中国企业为何不从产能过剩中激流勇退？最近三十年来，中国经济的一个特点就是产能过剩、竞争激烈。可是为什
