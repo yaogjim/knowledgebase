@@ -3,7 +3,6 @@ title: 2025-12-03_uilding Cursor Composer
 source: ""
 author:
   - ""
-published: 2025-12-03
 created: 2025-12-03
 description: 
 tags: 
