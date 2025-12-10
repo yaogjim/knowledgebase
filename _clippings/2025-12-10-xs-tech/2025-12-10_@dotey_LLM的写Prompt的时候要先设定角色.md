@@ -1,5 +1,5 @@
 ---
-title: "LLM的\\"心理特性\\"\\""
+title: "写Prompt的时候要先设定角色"
 source: "https://x.com/dotey/status/1671316445093933057"
 author:
   - "[[@dotey]]"
