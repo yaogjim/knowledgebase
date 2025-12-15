@@ -1,13 +1,24 @@
 ---
-title: "<h2>Literary Machine Learning快速上手 </h2>"
-source: "https://x.com/CerebralAtlas/status/2000149110549340284"
+title: 2025-12-15_@gkxspace_Literary Machine Learning快速上手
+source: https://x.com/CerebralAtlas/status/2000149110549340284
 author:
   - "[[@gkxspace]]"
-date: "2025-12-15T13:41:01+08:00"
+date: 2025-12-15T13:41:01+08:00
 created: 2025-12-15
-description:
+description: 
 tags:
-  - "@gkxspace # 人工智能 # 快速学习 # 机器学习 # LLM # 学习效率 #"
+  - "@gkxspace"
+  - "#"
+  - 人工智能
+  - "#"
+  - 快速学习
+  - "#"
+  - 机器学习
+  - "#"
+  - LLM
+  - "#"
+  - 学习效率
+  - "#"
 ---
 **余温** @gkxspace [2025-12-14](https://x.com/gkxspace/status/2000025951850435038)
 

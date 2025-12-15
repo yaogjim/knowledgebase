@@ -1,13 +1,23 @@
 ---
-title: "<font color=\"blue\">NotebookLM 里面生成PPT的提示词模板</font>"
-source: "https://x.com/dotey/status/1999694013687824816"
+title: 2025-12-15_@dotey_NotebookLM 里面生成PPT的提示词模板
+source: https://x.com/dotey/status/1999694013687824816
 author:
   - "[[@dotey]]"
-date: "2025-12-15T15:21:05+08:00"
+date: 2025-12-15T15:21:05+08:00
 created: 2025-12-15
-description:
+description: 
 tags:
-  - "@dotey # NotebookLM # 生成PPT 的提示词模板 # 提示词 # PPT #"
+  - "@dotey"
+  - "#"
+  - NotebookLM
+  - "#"
+  - 生成PPT
+  - 的提示词模板
+  - "#"
+  - 提示词
+  - "#"
+  - PPT
+  - "#"
 ---
 **宝玉** @dotey [2025-12-13](https://x.com/dotey/status/1999694013687824816)
 
