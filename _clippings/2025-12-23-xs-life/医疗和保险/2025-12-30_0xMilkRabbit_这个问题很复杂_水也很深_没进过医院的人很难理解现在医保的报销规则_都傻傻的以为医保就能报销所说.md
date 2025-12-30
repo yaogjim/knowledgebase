@@ -1,16 +1,16 @@
 ---
-title: "2025-12-29_0xMilkRabbit_这个问题很复杂_水也很深_没进过医院的人很难理解现在医保的报销规则_都傻傻的以为医保就能报销所说"
+title: "2025-12-30_0xMilkRabbit_这个问题很复杂_水也很深_没进过医院的人很难理解现在医保的报销规则_都傻傻的以为医保就能报销所说"
 source: "https://x.com/0xMilkRabbit/status/2005180235516649669"
 author:
   - "[[@0xMilkRabbit]]"
-published: 2025-12-29
-created: 2025-12-29
+published: 2025-12-30
+created: 2025-12-30
 description:
 tags:
   - "x"
   - "@0xMilkRabbit"
   - "https"
-  - "2025-12-28"
+  - "image"
 ---
 
 # 这个问题很复杂， 水也很深 没进过医院的人很难理解现在医保的报销规则， 都傻傻的以为医保就能报销所说
@@ -133,6 +133,30 @@ tags:
 
 * * *
 
+**最爱吃兽奶的兔** @0xMilkRabbit [2025-12-29](https://x.com/0xMilkRabbit/status/2005526003129671843)
+
+关于评论区还有私信小伙伴相关问题的讨论
+
+> 2025-12-29
+> 
+> 很多人不明白，医保不是说报销 90%？
+> 
+> 为啥他花了 1w 报销了 4k；
+> 
+> 我花了 2k，报销了 100，薛定谔的 90% ？
+> 
+> 其实这里的规则很多。
+> 
+> 门诊、住院，门慢特，比例不同，
+> 
+> 人员身份在职、退休、无业，比例不同，
+> 
+> 医疗机构等级一级，二级，三级，比例不同（三级医院比例最低）.... x.com/0xMilkRabbit/s…
+> 
+> ![Image](https://pbs.twimg.com/media/G9UPKASbYAAkkHn?format=jpg&name=large) ![Image](https://pbs.twimg.com/media/G9UILTKaUAEo6Gz?format=jpg&name=large) ![Image](https://pbs.twimg.com/media/G9UI7cFaAAE2Ng-?format=jpg&name=large)
+
+* * *
+
 **JIM'S FRIENDS ｜RIVER MemeMax** @JimmyShequ [2025-12-28](https://x.com/JimmyShequ/status/2005194496670351727)
 
 你本身买的什么险啊 我全家都是大病险……
@@ -147,142 +171,26 @@ tags:
 
 * * *
 
-**sdfsdfsfdf566** @shjdjjj2 [2025-12-28](https://x.com/shjdjjj2/status/2005306543659753789)
+**Complex** @Complex
 
-写的蛮详细，亲戚有得肿瘤，实际看病下来，各省体制外p民的社保或者新农合、惠民保这类基本不顶用，杯水车薪，一套复杂算法算下来，90%都得自费
+From Playboi Carti to Kim Kardashian, Tyler, the Creator to Doja Cat and Fortnite added megawatt star power this year.
 
-* * *
-
-**最爱吃兽奶的兔** @0xMilkRabbit [2025-12-28](https://x.com/0xMilkRabbit/status/2005321334600204326)
-
-没办法，真的什么价钱什么东西🥹
-
-医保新农合这些规则挺多的，大问题上这报不了，那要自费的。
-
-买惠民保的初衷是托底，也不可能指望花小钱办大事，惠民保一年才 100 左右吧，还没我家猫一个月保险贵🤣，肯定不能指望他向商业保险一样的价值。
-
-而且他免赔额挺高的，也决定着适合大开销。
+Powered by @fortnite 
 
 * * *
 
-**MG** @GMM12173393 [2025-12-28](https://x.com/GMM12173393/status/2005186562301333672)
+**MAX Z** @maxweb00 [2025-12-29](https://x.com/maxweb00/status/2005511319202734202)
 
-我是币圈从业，没有社保，自己家里给老家买的新农合（400一年），但是很局限，建议搭配哪些
-
-* * *
-
-**最爱吃兽奶的兔** @0xMilkRabbit [2025-12-28](https://x.com/0xMilkRabbit/status/2005194703613157533)
-
-医疗险这种其实没有上限，也有很多人花钱买服务，所以我就按照下限（也就是基准）来说。
-
-像文中说的，
-
-你在 B 省居民医保（新农合）继续交这是基准，
-
-如果你觉得想妥善一些且你本身平时感觉身体还不错，没什么基础疾病，我们币圈小年轻岁数又小，
+医保改革之后你什么险也没用，因为现在每个病的治疗是有额度的，医院不可能赔钱。什么？你说你要自费，对不起，那也不行，就算你自费也要消耗医院的额度，所以你只能得到这个金额范围内的药物或治疗
 
 * * *
 
-**Richard lu** @0xrichardlu [2025-12-28](https://x.com/0xrichardlu/status/2005237729408549131)
+**最爱吃兽奶的兔** @0xMilkRabbit [2025-12-29](https://x.com/0xMilkRabbit/status/2005515495655809157)
 
-当兵退伍或者转业确实基本医疗免费😂，亲属也有优惠
+这又牵扯到另一个问题了，不能一概而论
 
-* * *
+住院要测算费用，门诊自费随便
 
-**最爱吃兽奶的兔** @0xMilkRabbit [2025-12-28](https://x.com/0xMilkRabbit/status/2005245898591482231)
+所以很多时候住院，贵的药医生都会给你开处方，让你去外面买，所以商保的院外购药规则对很多人来说就很重要了。
 
-亲属记着得直接伴侣，具体可能会和后面的职级有关，改天打探一下
-
-* * *
-
-**鱼鱼鱼** @zhizunyu2077 [2025-12-28](https://x.com/zhizunyu2077/status/2005312285347303496)
-
-没那么复杂，看等级，从50到95就能覆盖工人到公务员，100也有，一般是当官和军人之类的，但是其实里面还是有猫腻。
-
-* * *
-
-**最爱吃兽奶的兔** @0xMilkRabbit [2025-12-28](https://x.com/0xMilkRabbit/status/2005322876409508161)
-
-名义覆盖，猫腻很大
-
-* * *
-
-**大仙** @\_daxian [2025-12-28](https://x.com/_daxian/status/2005212593808695642)
-
-水很深
-
-* * *
-
-**最爱吃兽奶的兔** @0xMilkRabbit [2025-12-28](https://x.com/0xMilkRabbit/status/2005246189512581405)
-
-深的不是一点，咕噜咕噜噜
-
-* * *
-
-**yangzi** @yangzi1925969 [2025-12-28](https://x.com/yangzi1925969/status/2005264214861214077)
-
-有时候这保险买了也白买
-
-* * *
-
-**最爱吃兽奶的兔** @0xMilkRabbit [2025-12-28](https://x.com/0xMilkRabbit/status/2005317827050586286)
-
-这玩意真不能瞎买
-
-* * *
-
-**黑眼圈** @i\_m\_m\_ [2025-12-28](https://x.com/i_m_m_/status/2005209870187012203)
-
-太真实了😂
-
-* * *
-
-**买了就跌，卖了就涨** @qinyan18646684 [2025-12-28](https://x.com/qinyan18646684/status/2005393333938692128)
-
-他说的是商业保险，我岳父今年摔一跤，住了几天医院，还赚了几万块钱😂
-
-* * *
-
-**JH.** @JHVeryyellow [2025-12-28](https://x.com/JHVeryyellow/status/2005397178790142132)
-
-Healthcare is a maze but planning beats panic every time
-
-医疗像个迷宫，但规划每次都能战胜恐慌
-
-* * *
-
-**Okarun** @Okarunw3 [2025-12-28](https://x.com/Okarunw3/status/2005197788188139566)
-
-. Healthcare reimbursement is way more complicated than people think.
-
-医保报销远比人们想象的复杂。
-
-* * *
-
-**小Z** @richrichardoz [2025-12-28](https://x.com/richrichardoz/status/2005351378332610828)
-
-币圈的很多人应该都是无业游民（灵活就业），建议作者可以写一个币圈医疗保险推荐。从低端到高端的。
-
-* * *
-
-**一一姐姐免费破处** @OTuczynski23638 [2025-12-28](https://x.com/OTuczynski23638/status/2005247045062594701)
-
-🎉~
-
-🌿
-
-🙏
-
-🦖
-
-* * *
-
-**Betty，同城免费线下** @LKlimko3300 [2025-12-28](https://x.com/LKlimko3300/status/2005248272911495481)
-
-🤳🤐😊
-
-⌚
-
-‱、
-
-🌻
+在一个，这个问题就是相对的，
