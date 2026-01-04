@@ -69,28 +69,6 @@ tags:
 
 * * *
 
-**virushuo** @virushuo [2025-12-22](https://x.com/virushuo/status/2002920796122169619)
-
-没有全自动化，因为还需要人来review和对齐一下，不然一旦出了一个小偏差就会很快走向错误了
-
-* * *
-
-**China Says** @China\_says
-
-UN stuck in outdated power structure
-
-The U.N. Security Council remains constrained by the power structures that don't reflect today's global reality, according to Prof. Jia Lieying, head of China's first university-based U.N. research institute.
-
-Countries and regional
-
-联合国陷入过时的权力结构
-
-中国首个高校联合国研究机构负责人贾烈英教授表示，联合国安理会仍然受到无法反映当今全球现实的权力结构的制约。
-
-国家和地区
-
-* * *
-
 **brucexu.eth** @brucexu\_eth [2025-12-22](https://x.com/brucexu_eth/status/2002932101117780136)
 
 我的类似产品快出来了，空闲时间开发了一阵子了，到时候发给你内测🤣
@@ -153,15 +131,15 @@ gemini3的上下文关联是最长的吧，当作pm是不是最合适
 
 * * *
 
-**0xCharlie** @web3nomercy [2025-12-23](https://x.com/web3nomercy/status/2003361484353712615)
-
-get, 听起来和kilocode的orchestrator模式有点像, 我体验下
-
-* * *
-
 **云比云** @yunbiyun [2025-12-22](https://x.com/yunbiyun/status/2003095906514882857)
 
 看完这些流程很有启发。我在想是不是可以先把整体架构和协作方式搭好，具体功能尽量按需再实现。在现在 AI 能力几乎随时可补齐的情况下，把需求当作“用到才拿出来”的模块，或许能让代码和系统都更精炼一些？
+
+* * *
+
+**0xCharlie** @web3nomercy [2025-12-23](https://x.com/web3nomercy/status/2003361484353712615)
+
+get, 听起来和kilocode的orchestrator模式有点像, 我体验下
 
 * * *
 
