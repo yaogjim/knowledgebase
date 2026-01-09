@@ -17,7 +17,7 @@ tags:
 
 **耳朵** @RookieRicardoR [2026-01-03](https://x.com/RookieRicardoR/status/2007450352350834837)
 
-最近一直在使用一个绝对被低估的开源宝藏组合：OpenCode + oh-my-opencode。
+最近一直在使用一个绝对被低估的开源宝藏组合1：OpenCode + oh-my-opencode。
 
 如果你觉得 Claude Code 已经是体验天花板，那这个组合可能会刷新你的认知。
 
