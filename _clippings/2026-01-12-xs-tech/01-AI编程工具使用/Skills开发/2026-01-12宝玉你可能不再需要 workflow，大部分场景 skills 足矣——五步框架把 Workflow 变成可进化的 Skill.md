@@ -1,11 +1,12 @@
 ---
-title: "宝玉 on X: "你可能不再需要 workflow，大部分场景 skills 足矣——五步框架把 Workflow 变成可进化的 Skill" / X"
-source: "https://x.com/dotey/status/2010176124450484638"
-author: ""
+title: 2026-01-12宝玉你可能不再需要 workflow，大部分场景 skills 足矣——五步框架把 Workflow 变成可进化的 Skill
+source: https://x.com/dotey/status/2010176124450484638
+author:
+  - ""
 created: 2026-01-12 09:09:54
 date: 2026-01-12 09:09:54
 description: ""
-tags: ""
+tags:
 ---
 “80 多个节点的 workflow，稳定性和可调整性，不是 subagent 能比拟的。”
 
