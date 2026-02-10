@@ -60,29 +60,3 @@ Agent Loop + Skills，个人就是这么实现的，内核极简，构建、挂�
 **C137** @sisyphu19507252 [2026-02-10](https://x.com/sisyphu19507252/status/2021034226427240584)
 
 逸季超在接受采访的时候说信仰纯血版的agent，我还不相信，认为工程永远有自己的空间。
-
----
-
-**云比云** @yunbiyun [2026-02-09](https://x.com/yunbiyun/status/2020938794871218482)
-
-AI迭代速度，光速飞升！
-
----
-
-**Samay** @samaydhawan1994
-
-Here's what a revenue number looks like inside an SEC filing:
-
-<ix:nonFraction contextRef="FD2024Q4YTD"
-
-name="us-gaap:Revenues" unitRef="USD"
-
-decimals="-6" format="ixt:num-dot-decimal">
-
-130,497
-
-</ix:nonFraction>
-
-The $ revenue is 130,497.
-
-Everything else is iXBRL—markup that
