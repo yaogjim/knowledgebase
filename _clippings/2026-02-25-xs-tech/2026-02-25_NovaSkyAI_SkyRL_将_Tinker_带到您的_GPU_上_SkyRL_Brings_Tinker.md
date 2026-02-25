@@ -1,0 +1,18 @@
+---
+title: "2026-02-25_novasky_ai_notion_site_SkyRL_将_Tinker_带到您的_GPU_上_SkyRL_Brings_Tinker_to_Y"
+source: "https://novasky-ai.notion.site/skyrl-tinker"
+author:
+  - "[[@NovaSkyAI]]"
+published: 2026-02-25
+created: 2026-02-25
+description:
+tags:
+  - "novasky-ai"
+  - "@NovaSkyAI"
+  - "tinker"
+  - "skyrl"
+---
+
+# SkyRL 将 Tinker 带到您的 GPU 上。 --- SkyRL Brings Tinker to Your GPUs
+
+ 🧸 SkyRL 将 Tinker 带到您的 GPU 上。 泰勒·格里格斯、菲利普·莫里茨、埃里克·唐以及 SkyRL 团队 🗓️ 发布日期：2026 年 2 月 13 日 我们很高兴地宣布， SkyRL 现在实现了 Tinker API—— 由 Thinking Machines Lab 推出的简单而强大的训练 API。 如今，任何用 Tinker API 编写的训练脚本都可以使用 SkyRL 的高性能后端在您自己的 GPU 上本地运行，而 无需更改任何代码 。 立即开始使用 快速入门 指南。 为什么选择 Tinker？ 如今，开源的训练后学习模型（LLM）十分分散。当一种新的训练方法发布时，其代码只能在作者选择的框架上运行。将其移植到你自己的技术栈上，即使能够移植，也需要数天甚至数周的工程时间。开源训练后学习社区正在白白浪费其最大的优势之一： 共享。 我们相信，开放的训练标准能够极大地促进训练后阶段的发展，就像 OpenAI API 在实现推理的广泛互操作性方面所发挥的作用一样。在 SkyRL tx 项目中广泛使用 Tinker API 之后，我们发现它是最有希望被广泛采用的训练 API。为什么呢？ API 的层级恰到好处。Tinker 的 API 接口简洁明了： 向前向后() — 进行一次向前和向后的传球 优化步骤() — 应用优化步骤 样本（） — 基于当前模型生成推广方案 保存检查点() / 加载检查点() — 保持并恢复训练状态 就是这样。我们发现这种简单的界面能够非常有效地将基础设施逻辑与训练后的算法和数据流分离。 API 下方： Tinker 后端处理基础设施问题，例如模态分片、梯度管理、权重同步原语以及模型加载和卸载。 在 API 之上： 研究人员可以完全灵活地组合 Tinker 的底层原语，以实现任意的训练后算法。无论是 SFT、RL、DPO， 还是新的研究思路，用户只需专注于算法本身，后端则无需关心算法。 研究和基础设施之间这种清晰分离的契约，使得 Tinker 既简单又强大，便于构建。 自行改造 GPU SkyRL 将 Tinker API 带到您自己的硬件上，使 SkyRL 用户能够在自己的 GPU 上启动完全兼容 Tinker 的服务，用于训练和采样。通过此版本，您无需更改代码即可在 SkyRL 的高性能训练基础设施上运行 Thinking Machines tinker-cookbook 中的脚本： FSDP2 和 Megatron 后端用于训练密集模型和 MoE 模型 用于快速推理的 vLLM 用于可扩展长期训练的 异步强化学习 用于多 LoRa 训练和推理的 JAX 后端，将 SkyRL-tx 和-train 项目统一到一个入口点下。 最大控制 在您自己的 GPU 上运行 Tinker 可以最大限度地灵活地支持您最关心的各种工作流程： 想要训练 Thinky 托管服务不支持的模型？ 想用 LoRA 进行训练 还是 进行全参数微调？ 想用 Tinker 但已经买了显卡？ 想修改后端基础设施，但又想发布其他人可以轻松使用的代码？ Tinker on SkyRL 为研究人员提供了对其训练后工作流程的完全控制，同时使用同样简单而强大的 Tinker API 界面。 建筑学 SkyRL 中用于暴露 Tinker API 的系统架构分为三层： API 层 — FastAPI 服务器，它接受 Tinker HTTP 请求，将其存储在数据库中，并返回用于异步轮询的 futures。 引擎层 ——后台进程，负责批量处理请求并将其分发给 SkyRL 后端工作进程。 后端层 ——将 Tinker 操作转换为 SkyRL 的后端工作线程调用，管理 Ray 工作线程、FSDP2/Megatron 训练和 vLLM 推理。 60秒内试一试 # 1. Install SkyRL git clone https://github.com/NovaSky-AI/SkyRL.git cd SkyRL # 2. Start the Tinker-compatible server uv run --extra tinker --extra fsdp -m skyrl.tinker.api \ --base-model "Qwen/Qwen3-0.6B" --backend fsdp 监督式学习 # In a separate terminal:# 3. Install Thinking Machines' tinker-cookbook git clone https://github.com/ThinkingMachinesLab/tinker-cookbook.git cd tinker-cookbook # 4. Run a simple supervised learning loop TINKER_API_KEY = tml-dummy uv run --with tinker --with datasets \ python -m tinker_cookbook.recipes.sl_loop \ base_url = http://localhost:8000 \ model_name = "Qwen/Qwen3-0.6B" 您现在可以在自己的硬件上运行 Tinker 训练程序了！之前在 Thinking Machines 托管服务上运行的脚本现在可以在您的硬件上运行，无需任何代码更改。 查看训练曲线 强化学习 想试试 RL 吗？使用相同的服务器启动命令，然后替换为 rl_loop 食谱： # Run a simple RL loop TINKER_API_KEY = tml-dummy uv run --with tinker --with datasets --with torch \ python -m tinker_cookbook.recipes.rl_loop \ base_url = http://localhost:8000 \ model_name = "Qwen/Qwen3-0.6B" 查看训练曲线 有关更多配方和配置选项，请参阅 SkyRL 文档中的 快速入门指南 和 Cookbook 脚本 指南。 支持哪些功能 今天的版本包含了一系列受支持的 Tinker 功能，重点是为单租户单模型后训练提供强大的支持： 接下来会发生什么？ Tinker 集成中 一些 功能正在积极开发中，旨在缩小 SkyRL 和 Thinking Machines 托管服务之间的功能差距。我们尤其兴奋的是，我们将提供 多 LoRa 采样和训练功能 ，从而支持多智能体训练后工作流程，并允许您在自己的硬件上运行多租户服务。 请访问我们的 “功能限制与路线图” 页面，了解更多关于完善功能的信息。我们随时欢迎您的贡献！ SkyRL 代码库重组 现在，做一些后续工作：SkyRL 将把现有的训练脚本和示例全部迁移到 Tinker API。这将使代码库结构更加清晰，分为 后端 （基于 PyTorch 的 FSDP/Megatron/vLLM 后端和多 LoRa JAX 后端）和 前端 （训练脚本、环境、智能体）。我们将保留所有现有功能和集成；它们只是迁移到 Tinker API。 介入 👋 现在正是参与的好时机！ 不妨试试看。 克隆代码库，运行 快速入门指南 ，尝试一些 Cookbook 脚本 ，然后告诉我们结果如何。我们非常欢迎您提交错误报告和功能建议。 欢迎贡献。 “限制与路线图” 页面列出了待完成的工作项。如果您对任何内容感兴趣，请随时在 Slack 中联系我们，或提交 Issue/PR。 加入社区。 我们最活跃的平台是 Slack 工作区 ：欢迎来打个招呼、提问或分享你正在开发的项目。 Github 仓库： SkyRL 关注或私信我们 ： @NovaSkyAI
