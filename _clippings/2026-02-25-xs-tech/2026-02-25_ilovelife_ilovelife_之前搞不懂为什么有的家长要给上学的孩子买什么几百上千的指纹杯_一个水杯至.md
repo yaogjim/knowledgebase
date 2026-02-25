@@ -9,6 +9,7 @@ description:
 tags:
   - "x"
   - "@ilovelife"
+  - "https"
   - "ilovelife"
 ---
 
@@ -18,7 +19,7 @@ tags:
 
 之前搞不懂为什么有的家长要给上学的孩子买什么几百上千的指纹杯，一个水杯至于么，看了这个视频，对不起，之前是我说话太大声了~
 
-*\[视频 ×1\]*
+[![视频](https://pbs.twimg.com/amplify_video_thumb/2026143431299579904/img/CZul4mcIxl9wTX0-.jpg)](https://x.com/ilovek8s/status/2026143610119553267)
 
 * * *
 

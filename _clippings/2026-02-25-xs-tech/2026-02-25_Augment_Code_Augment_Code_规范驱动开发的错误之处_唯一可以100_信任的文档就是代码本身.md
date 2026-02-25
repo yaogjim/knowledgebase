@@ -10,7 +10,7 @@ tags:
   - "x"
   - "@Augment Code"
   - "what"
-  - "spec"
+  - "if"
 ---
 
 # Augment Code # 规范驱动开发的错误之处 唯一可以100%信任的文档就是代码本身
@@ -45,13 +45,13 @@ So when we started building
 
 想想当你把任务交给一位优秀的初级工程师时会发生什么。你把工单交给他，他开始着手处理，当他发现 API 不支持工单中假设的分页方式时，他会主动更新工单。他不会等你发现问题，也不会直接构建错误的东西。他会回来告诉你：“这个假设是错误的，我做了以下更改，原因如下。” 你审核他的更新，然后决定批准还是拒绝。
 
-That's the relationship we wanted between the developer and the spec. The ticket stays honest because both sides are maintaining it.
+这就是我们希望开发者与规范之间建立的关系。由于双方都在维护，所以工单才能保持真实可靠。
 
-The junior engineer analogy goes further than you'd think. A good junior doesn't narrate every line of code. They surface the decisions that change direction: "I found an existing auth context, so I wired into that instead of creating a new one." That's the signal. That's what you want from agents too. Getting this granularity right turns out to be one of the genuinely interesting design problems in the system. Too much and the spec becomes noise you learn to ignore. Too little and you're back to guessing what happened.
+初级工程师的比喻比你想象的更贴切。优秀的初级工程师不会逐行解释代码。他们会指出那些改变方向的决策：“我找到了一个现有的认证上下文，所以我直接接入了它，而不是创建一个新的。” 这就是信号。这也是你希望代理做到的。正确把握这种细粒度是系统中真正有趣的设计难题之一。信息太多，规范就会变成噪音，你最终会学会忽略它。信息太少，你又得重新去猜测发生了什么。
 
-Here's what a task actually looks like. You write: "Add a dark mode toggle to the settings page that respects system preferences." The coordinator reads your codebase, drafts a spec with three subtasks: add the toggle component, wire it to a preference store, update the CSS variables.
+实际任务是这样的：你写道：“在设置页面添加一个遵循系统偏好设置的深色模式切换按钮。”协调员会阅读你的代码库，并起草一份包含三个子任务的规范：添加切换组件、将其连接到偏好设置存储、更新 CSS 变量。
 
-You scan it, notice it missed the bit about persisting the choice across sessions, and add a line.
+你扫描了一下，发现它漏掉了关于跨会话保留选择的部分，于是添加了一行。
 
 You approve.
 
