@@ -73,6 +73,65 @@
       </footer>
     {% endif %}
     
+    <!-- 前后文章导航 -->
+    <div class="post-navigation">
+      {% assign collection = site.clippings %}
+      {% assign current_url = page.url %}
+      {% assign prev_url = nil %}
+      {% assign next_url = nil %}
+      {% assign prev_title = nil %}
+      {% assign next_title = nil %}
+
+      {% for item in collection %}
+        {% if item.url == current_url %}
+          {% assign prev_index = forloop.index0 | minus: 1 %}
+          {% assign next_index = forloop.index0 | plus: 1 %}
+          {% if prev_index >= 0 %}
+            {% assign prev_item = collection[prev_index] %}
+            {% assign prev_url = prev_item.url %}
+            {% assign prev_title = prev_item.title %}
+          {% endif %}
+          {% if next_index < collection.size %}
+            {% assign next_item = collection[next_index] %}
+            {% assign next_url = next_item.url %}
+            {% assign next_title = next_item.title %}
+          {% endif %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      {% comment %} Fallback to standard page.previous/next {% endcomment %}
+      {% if prev_url == nil and page.previous %}
+        {% assign prev_url = page.previous.url %}
+        {% assign prev_title = page.previous.title %}
+      {% endif %}
+      
+      {% if next_url == nil and page.next %}
+        {% assign next_url = page.next.url %}
+        {% assign next_title = page.next.title %}
+      {% endif %}
+
+      <div class="nav-links">
+        {% if prev_url %}
+          <a href="{{ prev_url | relative_url }}" class="nav-btn prev">
+            <span class="nav-arrow">&larr; 上一篇</span>
+            <span class="nav-title">{{ prev_title | truncate: 30 }}</span>
+          </a>
+        {% else %}
+          <div class="nav-btn prev disabled"></div>
+        {% endif %}
+
+        {% if next_url %}
+          <a href="{{ next_url | relative_url }}" class="nav-btn next">
+             <span class="nav-arrow">下一篇 &rarr;</span>
+             <span class="nav-title">{{ next_title | truncate: 30 }}</span>
+          </a>
+        {% else %}
+          <div class="nav-btn next disabled"></div>
+        {% endif %}
+      </div>
+    </div>
+    
     <!-- 相关文章推荐 -->
     {% if site.clippings.size > 1 %}
     <div class="related-posts">
@@ -95,7 +154,7 @@
       </ul>
     </div>
     {% endif %}
-    
+
     <!-- 返回首页的链接 -->
     <div class="back-to-home">
       <a href="{{ '/' | relative_url }}">&larr; 返回知识库首页</a>
