@@ -1,0 +1,18 @@
+---
+title: "2026-03-09_infoq_com_OpenAI_Introduces_Harness_Engineering_Codex_Agents"
+source: "https://www.infoq.com/news/2026/02/openai-harness-engineering-codex/"
+author:
+  - "[[@infoq.com]]"
+published: 2026-03-09
+created: 2026-03-09
+description:
+tags:
+  - "infoq"
+  - "@infoq.com"
+  - "ai"
+  - "openai"
+---
+
+# OpenAI Introduces Harness Engineering: Codex Agents Power Large‑Scale Software Development - InfoQ
+
+ BT InfoQ 软件架构师通讯 每月概览：架构师或有志成为架构师者需了解的事项。 View an example InfoQ 首页 新闻 OpenAI 推出 Harness Engineering：Codex 智能体驱动大规模软件开发 Architecture & Design AI 智能体群模式（3 月 26 日网络研讨会） OpenAI 推出 Harness 工程：Codex 智能体驱动大规模软件开发 Lead Engineer Write for InfoQ Feed your curiosity.Help 550k+ global senior developers each month stay ahead.Get in touch 登录收听这篇文章 OpenAI 详细介绍了一种新的 内部工程方法论，名为 Harness 工程 ，该方法论利用 AI 代理推动软件开发生命周期的关键环节。该系统使用 Codex（一套 AI 代理）执行诸如编写代码、生成测试以及管理可观测性等任务，这些任务基于工程师定义的声明式提示。Harness 标准化了工作流程，减少了对手工编写脚本和定制工具的依赖。 Ryan Lopopolo ，OpenAI 的技术人员提到： 我们构建了 Harness，以提供一种一致且可靠的方式来运行大规模 AI 工作负载，因此团队可以专注于研究和产品开发，而不是基础设施编排。 在为期五个月的内部实验中，OpenAI 工程师开发并发布了一款测试版产品，该产品包含约一百万行代码，且没有任何人工编写的源代码。一小队工程师指导智能代理完成拉取请求和持续集成工作流。这项工作包括应用逻辑、文档、持续集成配置、可观测性设置以及工具链。工程师提供了提示和反馈，而 Codex 智能代理则自主迭代完成复现缺陷、提出修复方案和验证结果等任务。 Codex 代理驱动的应用测试与反馈（来源： OpenAI 博客文章 ） Harness 工程将人类工程师的注意力从实现代码转向设计环境、明确意图和提供结构化反馈。Codex 直接与开发工具交互，打开拉取请求、评估变更并迭代，直到满足任务标准。代理使用遥测数据（包括日志、指标和跨度），在隔离的开发环境中监控应用性能并复现缺陷。 Codex 智能体的可观测性和遥测工作流 ( 来源: OpenAI 博客文章 ) 内部文档组织在一个结构化的 docs 目录中，该目录包含图谱、执行计划和设计规范。这些文档作为代理的单一事实来源。交叉链接的设计和架构文档通过代码检查工具和持续集成验证机制化地强制执行，确保一致性并减少对人工监督的需求。 OpenAI 通过机械规则和结构测试在跨领域中实施架构边界和依赖层。依赖以受控顺序从 Types → Config → 代码库 → Service → Runtime → UI 流动，代理被限制在这些层内操作。结构测试验证合规性并防止违反模块化分层。 Martin Fowler, 作家兼 Thoughtworks 技术专家, 在 LinkedIn 的 帖子中提到 Harness 工程是 AI 赋能软件开发关键部分的一种有价值的框架化理解。Harness 工程包括上下文工程、架构约束和垃圾回收。 OpenAI 报告称，Harness 将脚手架、反馈循环、文档和架构约束编码为机器可读的工件，Codex 代理使用这些工件在开发工作流中执行任务，包括代码生成、测试和可观测性。 About the Author Related Topics:Development Development Architecture & Design Architecture & Design AI, ML & Data Engineering AI, ML & Data Engineering Observability Observability OpenAI OpenAI Automation Automation Continuous Improvement Continuous Improvement Product Development Product Development AI Development AI Development Agents Agents Continuous Integration Continuous Integration Continuous Delivery Continuous Delivery Software Engineering Software Engineering SoftwareParadigm SoftwareParadigm Related Sponsors 从可观测性到可操作性：设计适用于 AWS 的自主 SRE 代理型 AI 对于 Jakarta EE 开发者的 AI 工具必备指南 为什么 API 不能信任客户端——以及如何弥合差距 设计云基础设施的控制平面：治理、状态与持续编排（4月16日线上直播研讨会）——预约席位 可扩展的企业级 Java 适用于云 - 下载电子书 Related Content Argo CD 3.3 带来更安全的 GitOps 删除操作和更顺畅的日常运维 OpenAI 推出 Frontier，这是一个用于在整个企业范围内构建、部署和管理 AI 代理的平台 LocalStack for AWS 停止提供社区版 引发开发者担忧 停止猜测，开始改进：使用 DORA 指标和流程行为图表 OpenAI 在 110 亿美元多云交易中确保 AWS 为前沿平台提供分发支持 Cloudflare 推出用于代理的 Markdown 和内容信号，以引导 AI 爬虫 Vercel 发布 React 最佳实践指南，包含 40+条针对 AI 代理的性能规则 Microsoft 开源了智能体互操作入门套件的评测，以对企业级 AI 智能体进行基准测试 Google 将其开发者文档带入 AI 代理时代 Related Sponsors 面向未来的架构：每位资深从业者必须应对的关键软件趋势 — 下载 InfoQ 电子杂志 AI 原生系统、平台工程、弹性架构以及不断演进的 DevOps 实践正在重塑现代软件。这份 2025 年 InfoQ 趋势电子杂志提炼了资深工程师和架构师设计、扩展并自信地领导所需理解的模式。 AI 代理群模式（2026 年 3 月 26 日直播研讨会）- 预留您的席位 了解 AI 智能体群体如何通过多智能体架构解决复杂问题。这场 InfoQ 网络研讨会探讨了顺序模式、协作模式和委托模式，重点关注 LLM 系统中的上下文管理、并行性和状态驱动的信任。 Sponsored by Related Content OpenAI 发布 Codex 应用服务器架构以统一 AI 代理界面 OpenAI 将单个主 PostgreSQL 实例扩展到每秒数百万查询以支持 ChatGPT Xcode 26.3 带来 Anthropic Claude 代理和 OpenAI Codex 的集成代理式编码 Icon DevOps 现代化：AI 代理、智能可观测性与自动化 Rspress 2.0：AI 原生文档、更快启动速度与重新设计的主题 新研究重新评估 AGENTS.md 文件对 AI 编码的价值 The InfoQ Newsletter 每周二发送的 InfoQ 上周内容汇总。加入一个拥有超过 25 万高级开发者的社区。 查看示例 BT 
