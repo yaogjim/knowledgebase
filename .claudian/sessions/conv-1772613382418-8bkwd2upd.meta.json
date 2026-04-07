@@ -1,0 +1,22 @@
+{
+  "id": "conv-1772613382418-8bkwd2upd",
+  "title": "Summarize high-value content with markdown links",
+  "titleGenerationStatus": "success",
+  "createdAt": 1772613382418,
+  "updatedAt": 1772614312890,
+  "lastResponseAt": 1772614312890,
+  "sessionId": "b6a039f9-2369-4ec8-a51b-d8e9c9fb083b",
+  "sdkSessionId": "b6a039f9-2369-4ec8-a51b-d8e9c9fb083b",
+  "externalContextPaths": [
+    "/Volumes/workspace/docs/Obsidian/knowledgebase/_clippings"
+  ],
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

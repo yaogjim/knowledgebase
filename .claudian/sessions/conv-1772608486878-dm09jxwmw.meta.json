@@ -1,0 +1,22 @@
+{
+  "id": "conv-1772608486878-dm09jxwmw",
+  "title": "Identify high-value content from yesterday's do...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1772608486878,
+  "updatedAt": 1772612593353,
+  "lastResponseAt": 1772612435020,
+  "sessionId": "4495985a-c700-446b-b5ab-9a9c62453d41",
+  "sdkSessionId": "4495985a-c700-446b-b5ab-9a9c62453d41",
+  "externalContextPaths": [
+    "/Volumes/workspace/docs/Obsidian/knowledgebase/_clippings"
+  ],
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

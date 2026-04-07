@@ -1,0 +1,22 @@
+{
+  "id": "conv-1772612633331-p77u57s1h",
+  "title": "Greet user",
+  "titleGenerationStatus": "success",
+  "createdAt": 1772612633331,
+  "updatedAt": 1772613371151,
+  "lastResponseAt": 1772613323867,
+  "sessionId": "980d2528-e76a-4a8e-a818-b9f83099891f",
+  "sdkSessionId": "980d2528-e76a-4a8e-a818-b9f83099891f",
+  "externalContextPaths": [
+    "/Volumes/workspace/docs/Obsidian/knowledgebase/_clippings"
+  ],
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 12,
+    "cacheCreationInputTokens": 1482,
+    "cacheReadInputTokens": 60430,
+    "contextWindow": 200000,
+    "contextTokens": 61924,
+    "percentage": 31
+  }
+}

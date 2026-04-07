@@ -1,0 +1,22 @@
+{
+  "id": "conv-1772612489520-3o22zeb9z",
+  "title": "Create 2026-03-03 high-value content summary wi...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1772612489521,
+  "updatedAt": 1772612600163,
+  "lastResponseAt": 1772612515539,
+  "sessionId": "ddb91b60-d83c-4bcb-b1da-98732c95b49f",
+  "sdkSessionId": "ddb91b60-d83c-4bcb-b1da-98732c95b49f",
+  "externalContextPaths": [
+    "/Volumes/workspace/docs/Obsidian/knowledgebase/_clippings"
+  ],
+  "usage": {
+    "model": "opus",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
