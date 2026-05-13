@@ -32,6 +32,7 @@
       "enableBangBash": false,
       "enableOpus1M": false,
       "enableSonnet1M": false,
+      "customModels": "",
       "lastModel": "sonnet",
       "environmentVariables": "",
       "environmentHash": ""
@@ -41,6 +42,7 @@
       "safeMode": "workspace-write",
       "cliPath": "",
       "cliPathsByHost": {},
+      "customModels": "",
       "reasoningSummary": "detailed",
       "environmentVariables": "",
       "environmentHash": "",
@@ -55,11 +57,13 @@
   "savedProviderEffort": {},
   "savedProviderServiceTier": {},
   "savedProviderThinkingBudget": {},
+  "savedProviderPermissionMode": {},
   "lastCustomModel": "",
   "maxTabs": 3,
   "tabBarPosition": "input",
   "enableAutoScroll": true,
-  "openInMainTab": false,
+  "deferMathRenderingDuringStreaming": true,
+  "chatViewPlacement": "right-sidebar",
   "hiddenProviderCommands": {},
   "enabledPlugins": []
 }
