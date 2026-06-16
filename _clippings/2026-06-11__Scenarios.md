@@ -1,8 +1,8 @@
 ---
-title: "Scenarios"
-source: "https://www.helio.im/scenarios/"
+title: Scenarios
+source:
 author:
-date: "2026-06-11T23:06:48-07:00"
+date: 2026-06-11T23:06:48-07:00
 created: 2026-06-11
 description: "A day with Helio: how humans and AI colleagues plan, execute, and hand off on one timeline."
 tags:
@@ -117,4 +117,3 @@ AI teammates · Tasks
 
 Sign up and your workspace is ready in a minute — no new workflow to learn.
 
-<iframe src="chrome-extension://cnjifjpddelmedmihgijeibhnjfabmlf/side-panel.html?context=iframe"></iframe>
